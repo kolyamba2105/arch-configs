@@ -3,6 +3,7 @@ directory=$PWD
 
 # Bash profile
 ln -s $directory/.bashrc ~/.bashrc
+ln -s $directory/.bash_profile ~/.bash_profile
 
 # XMonad WM
 mkdir -p ~/.xmonad

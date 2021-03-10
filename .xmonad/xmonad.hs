@@ -69,10 +69,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
   fromList $
     -- launch a terminal
   [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    -- launch xfrun4 (changed fro xfce DE, but doesn't work anyway!
-    -- , ((modm,               xK_p     ), spawn "xfrun4")
-    -- launch App Finder (changed for xfce DE)
-  , ((modm .|. shiftMask, xK_p), spawn "xfce4-appfinder")
+    -- launch dmenu
+  , ((modm .|. shiftMask, xK_p), spawn "dmenu_run")
+    -- launch browser
+  , ((modm .|. shiftMask, xK_g), spawn "google-chrome-stable || firefox")
     -- close focused window
   , ((modm .|. shiftMask, xK_c), kill)
      -- Rotate through the available layout algorithms
@@ -110,7 +110,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
     -- See also the statusBar function from Hooks.DynamicLog.
     --
   , ((modm, xK_b), sendMessage ToggleStruts)
-    -- Quit xmonad
+    -- Quit xmonad (REMOVE/UPDATE IN FUTURE)
   , ((modm .|. shiftMask, xK_q), spawn "xfce4-session-logoout")
     -- Restart xmonad
   , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
