@@ -5,6 +5,9 @@ directory=$PWD
 ln -s $directory/.bashrc ~/.bashrc
 ln -s $directory/.bash_profile ~/.bash_profile
 
+# X init
+ln -s $directory/.xinitrc ~/.xinitrc
+
 # XMonad WM
 mkdir -p ~/.xmonad
 ln -s $directory/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs

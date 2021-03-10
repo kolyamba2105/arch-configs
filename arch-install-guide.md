@@ -68,3 +68,19 @@ Export `LANG` variable from `.bashrc`: `export LANG=en_US.UTF8`
 [This video](https://www.youtube.com/watch?v=pouX5VvX0_Q) will explain how to install Xorg along with the WM.
 
 [Picom issue](https://github.com/yshui/picom/wiki/Vsync-Situation) - this might not be needed if all video-drivers are installed correctly.
+
+### Install `JetBrains Mono` font
+
+[Article](https://wiki.archlinux.org/index.php/fonts) for reference.
+
+- Download font from the [official site](https://www.jetbrains.com/ru-ru/lp/mono).
+- Install utilities that deal with archives: `sudo pacman -S zip unzip`
+- Extract the archive: `unzip JetBrainsMono-2.225.zip`.
+- Install (just move) font:
+  1. Create a directory where all fonts are installed by default: `mkdir -p ~/.local/share/fonts/ttf`.
+  2. Choose `ttf` fonts: `cd ~/Downloads/fonts`.
+  3. Move fonts: `mv ttf ~/.local/share/fonts/ttf/JetBrainsMono`.
+
+### Set typing repeat speed
+
+In `.xinitrc` put this: `xset r rate 200 35` (aready done).
