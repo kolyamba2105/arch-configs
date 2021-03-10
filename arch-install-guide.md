@@ -85,6 +85,11 @@ Export `LANG` variable from `.bashrc`: `export LANG=en_US.UTF8`
 
 In `.xinitrc` put this: `xset r rate 200 35` (aready done).
 
+### Setup keyboard layouts
+
+During basic installation proccess, generate both US and RU locales (with `locale-gen`).
+Minor issue: Russian keyboard erases username in a terminal.
+
 ### Setup sound
 
 Just install `alsa-utils` with `sudo pacman -S alsa-utils` and then reboot.

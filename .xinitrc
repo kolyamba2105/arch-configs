@@ -34,6 +34,9 @@ fi
 
 # ----- MY CONFIG STARTS HERE -----
 
+# Set keyboard layouts
+setxkbmap -layout us,ru -option grp:alt_shift_toggle
+
 # Swap ESC and CAPS keys
 setxkbmap -option caps:swapescape
 
