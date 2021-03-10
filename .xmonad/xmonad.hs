@@ -110,8 +110,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
     -- See also the statusBar function from Hooks.DynamicLog.
     --
   , ((modm, xK_b), sendMessage ToggleStruts)
-    -- Quit xmonad (REMOVE/UPDATE IN FUTURE)
-  , ((modm .|. shiftMask, xK_q), spawn "xfce4-session-logoout")
+    -- Quit xmonad
+  , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess))
     -- Restart xmonad
   , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
     -- Run xmessage with a summary of the default keybindings (useful for beginners)

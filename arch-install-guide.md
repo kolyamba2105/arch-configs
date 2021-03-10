@@ -84,3 +84,7 @@ Export `LANG` variable from `.bashrc`: `export LANG=en_US.UTF8`
 ### Set typing repeat speed
 
 In `.xinitrc` put this: `xset r rate 200 35` (aready done).
+
+### Setup sound
+
+Just install `alsa-utils` with `sudo pacman -S alsa-utils` and then reboot.
