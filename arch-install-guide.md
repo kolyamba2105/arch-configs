@@ -1,4 +1,4 @@
-### Arch installation guide
+# Arch installation guide
 
 ## Basic installation
 
