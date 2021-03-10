@@ -66,3 +66,5 @@ Install `open-ssh` to be able to generate ssh keys on your machine.
 Export `LANG` variable from `.bashrc`: `export LANG=en_US.UTF8`
 
 [This video](https://www.youtube.com/watch?v=pouX5VvX0_Q) will explain how to install Xorg along with the WM.
+
+[Picom issue](https://github.com/yshui/picom/wiki/Vsync-Situation) - this might not be needed if all video-drivers are installed correctly.
