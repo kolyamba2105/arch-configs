@@ -17,7 +17,7 @@ Config
       , Run
           DynNetwork
           [ "-t"
-          , "Network: <tx>/<rx>"
+          , "Network: <tx> / <rx>"
           , "--Low"
           , "1000"
           , "--High"
@@ -30,7 +30,7 @@ Config
           , "darkred"
           ]
           10
-      , Run Kbd [("us", "<fc=#ffca28>US</fc>"), ("ru", "<fc=#ffca28>RU</fc>")]
+      , Run Kbd [("us", "US"), ("ru", "RU")]
       , Run UnsafeStdinReader
       ]
   , alignSep = "}{"
