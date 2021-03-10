@@ -23,7 +23,7 @@ import XMonad.Util.SpawnOnce
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
---
+-- Consider switching to Alacritty
 myTerminal = "kitty"
 
 -- Whether focus follows the mouse pointer.
@@ -73,6 +73,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
   , ((modm .|. shiftMask, xK_p), spawn "dmenu_run")
     -- launch browser
   , ((modm .|. shiftMask, xK_g), spawn "google-chrome-stable || firefox")
+    -- launch Alacritty terminal
+  , ((modm, xK_0), spawn "alacritty")
     -- close focused window
   , ((modm .|. shiftMask, xK_c), kill)
      -- Rotate through the available layout algorithms

@@ -20,6 +20,10 @@ mkdir -p ~/.config
 mkdir -p ~/.config/kitty
 ln -s $directory/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 
+# Alacritty terminal
+mkdir -p ~/.config/alacritty
+ln -s $directory/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+
 # Neovim
 mkdir -p ~/.config/nvim
 ln -s $directory/.config/nvim/init.vim ~/.config/nvim/init.vim
