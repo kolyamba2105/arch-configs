@@ -8,35 +8,19 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
-
-
-
-
-
-
-
-    xrdb -merge $sysresources
-
+  xrdb -merge $sysresources
 fi
 
 if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
+  xmodmap $sysmodmap
 fi
 
 if [ -f "$userresources" ]; then
-
-
-
-
-
-
-
-    xrdb -merge "$userresources"
-
+  xrdb -merge "$userresources"
 fi
 
 if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
+  xmodmap "$usermodmap"
 fi
 
 # start some nice programs
@@ -48,7 +32,19 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-# Typing repeat speed
+# ----- MY CONFIG STARTS HERE -----
+
+# Swap ESC and CAPS keys
+setxkbmap -option caps:swapescape
+
+# Set typing repeat speed
 xset r rate 200 35
 
+# Render wallpaper
+nitrogen --restore &
+
+# Start compositor
+picom --config ~/.config/picom/picom.conf &
+
+# Start window manager
 xmonad --replace
