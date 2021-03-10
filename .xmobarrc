@@ -1,0 +1,39 @@
+Config
+  { font = "xft:JetBrainsMono Nerd Font:weight=bold:pixelsize=14:antialias=true"
+  , bgColor = "#333333"
+  , fgColor = "#e0e0e0"
+  , position = Top
+  , overrideRedirect = False
+  , lowerOnStart = True
+  , hideOnStart = False
+  , allDesktops = True
+  , persistent = True
+  , commands =
+      [ Run Date "%b %d %Y - %H:%M" "date" 50
+      , Run Cpu ["-t", "CPU: <total>%", "-H", "50", "--high", "red"] 20
+      , Run Memory ["-t", "Memory: <used>M (<usedratio>%)"] 20
+      , Run DiskU [("/", "HDD: <free> free")] [] 60
+      , Run Com "uname" ["-r"] "" 3600
+      , Run
+          DynNetwork
+          [ "-t"
+          , "Network:  <tx>  <rx>"
+          , "--Low"
+          , "1000"
+          , "--High"
+          , "5000"
+          , "--low"
+          , "darkgreen"
+          , "--normal"
+          , "darkorange"
+          , "--high"
+          , "darkred"
+          ]
+          10
+      , Run Kbd [("us", "<fc=#ffca28>US</fc>"), ("ru", "<fc=#ffca28>RU</fc>")]
+      , Run UnsafeStdinReader
+      ]
+  , alignSep = "}{"
+  , template =
+      " %UnsafeStdinReader% }{ <fc=#ef5350> %dynnetwork%</fc> <fc=#eeeeee> | </fc> <fc=#ab47bc> %cpu%</fc> <fc=#eeeeee> | </fc> <fc=#5c6bc0> %memory%</fc> <fc=#eeeeee> | </fc> <fc=#26c6da> %disku%</fc> <fc=#eeeeee> | </fc> <fc=#ffee58> %kbd%</fc> <fc=#eeeeee> | </fc> <fc=#ff7043> %date%</fc> "
+  }
