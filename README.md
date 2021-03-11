@@ -96,4 +96,27 @@ Minor issue: Russian keyboard erases username in a terminal.
 
 ### Setup sound
 
-Just install `alsa-utils` with `sudo pacman -S alsa-utils` and then reboot.
+Install `pulse-audio` and (maybe) `alsa-utils`.
+
+### Power management
+
+Go to `/etc/systemd/logind.conf` and change lid options. Brightness can be changed via terminal
+
+### Network management
+
+Install `netctl`, `dialog` and `wifi-menu` (when installing Arch)
+`wifi-menu` will let you connect to wifi during installation and while using the OS.
+
+All wifi configs will be stored in `/etc/netctl/` directory.
+
+Example:
+
+- Save network as `wlp5s0-network-name` (via `wifi-menu`).
+- `sudo netctl enable wlp5s0-network-name` - will run this service on init each time
+- `sudo netctl disable wlp5s0-network-name` - will stop running this service on init
+- `sudo netctl start wlp5s0-network-name` - run this each time when logging in
+- `sudo netctl stop wlp5s0-network-name`
+- `sudo netctl stop-all`
+- `sudo netctl switch-to wlp5s0-network-name-2`
+
+Basically network manager was installed during basic installation proccess, check that first (`networkmanager`).
