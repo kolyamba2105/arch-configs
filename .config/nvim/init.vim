@@ -71,7 +71,7 @@ nmap <silent> <C-w> :bd<CR>
 nmap <silent> <leader>w :w<CR>
 
 nmap <leader>f :call CocAction('format')<CR>
-nmap <leader>o :call CocActionAsync('runCommand', 'tsserver.organizeImports')<CR>
+nmap <leader>i :call CocActionAsync('runCommand', 'tsserver.organizeImports')<CR>
 
 nmap <silent> <C-n> :NERDTreeToggle<CR>
 
@@ -136,8 +136,13 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Trigger completion.
+" Trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
 
 setlocal formatprg=hindent
  
+" Quickly insert an empty new line without entering insert mode
+" Consider using this plugin instead - https://github.com/tpope/vim-unimpaired
+nnoremap <leader>o o<Esc>
+nnoremap <leader>O O<Esc>
+
