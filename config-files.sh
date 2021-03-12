@@ -1,3 +1,19 @@
+# Remove all existing configs first
+rm ~/.bash_profile
+rm ~/.bashrc
+
+rm ~/.xinitrc
+
+rm ~/.xmonad/xmonad.hs
+rm ~/.xmobarrc
+
+rm ~/.config/alacritty/alacritty.yml
+rm ~/.config/kitty/kitty.conf
+rm ~/.config/nvim/init.vim
+rm ~/.config/picom/picom.conf
+rm ~/.config/rofi/config.rasi
+rm ~/.config/rofi/themes/custom.rasi
+
 # In case if repo directory gets renamed
 directory=$PWD
 
