@@ -104,7 +104,9 @@ Minor issue: Russian keyboard erases username in a terminal.
 
 ### Setup sound
 
-Install `pulse-audio` and (maybe) `alsa-utils`.
+[Article](https://linuxhint.com/guide_linux_audio/) for reference.
+
+Install  `alsa-utils` (sound doesn't work without it), `pulse-audio` along with `pulsemixer` as a FrontEnd for PulseAudio.
 
 ### Power management
 

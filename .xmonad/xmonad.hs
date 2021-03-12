@@ -75,6 +75,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
   , ((modm .|. shiftMask, xK_g), spawn "google-chrome-stable || firefox")
     -- launch Alacritty terminal
   , ((modm, xK_0), spawn "alacritty")
+    -- launch PulseMixer
+  , ((modm .|. shiftMask, xK_m), spawn "kitty -e pulsemixer")
     -- close focused window
   , ((modm .|. shiftMask, xK_c), kill)
      -- Rotate through the available layout algorithms
