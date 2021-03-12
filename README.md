@@ -1,26 +1,27 @@
-# Config files
+# Installation guide
 
-A set of configuration files that help me to setup my OS the way I want.
+## Basic installation
 
-## Arch installation guide
+I was following [this video](https://www.youtube.com/watch?v=PQgyW10xD8s&list=PL5--8gKSku16Ncr9H_BAZSzWecjaSWlvY&index=5&ab_channel=DistroTube) to proceed with Arch basic installation, which basically follows the original [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide).
+Most of the stuff will remain the same. The only thing that is not covered by the video is `Connect to Internet` part, but it's covered [here](https://wiki.archlinux.org/index.php/Network_configuration). I can also generate both `RU` and `US` locales.
 
-### Basic installation
+## Desktop installation
 
-Basically I was following [this video](https://www.youtube.com/watch?v=PQgyW10xD8s&list=PL5--8gKSku16Ncr9H_BAZSzWecjaSWlvY&index=5&ab_channel=DistroTube)...
-
-### Desktop installation
+[This video](https://www.youtube.com/watch?v=pouX5VvX0_Q) will explain how to install Xorg along with the WM.
 
 When it comes to GUI setup, first thing we have to take care of is video drivers installation.
 
-Run the command to determine what video card is in your machine: `lspci -v | grep -A1 -e VGA -e 3D`.
-The output for my machine (Lenovo ThinkPad E580) was this:
+- `lspci -v | grep -A1 -e VGA -e 3D` - shows what video-card is installed on your machine.
+
+The output for my machine (Lenovo ThinkPad E580) was like this:
 
 ```
 00:02.0 VGA compatible controller: Intel Corporation UHD Graphics 620 (rev 07) (prog-if 00 [VGA controller])
 	Subsystem: Lenovo Device 5069
 ```
 
-Run the command that will list all the available video-drivers: `pacman -Ss xf86-video`.
+- `pacman -Ss xf86-video` - lists all the available video-drivers.
+
 The output for my machine was like this:
 
 ```
@@ -52,50 +53,60 @@ community/xf86-video-qxl-debian 0.1.5+git20200331-1 (xorg-drivers)
     Xorg X11 qxl video driver (Debian binary)
 ```
 
-As you may notice, some of the drivers are already installed on my machine. They were installed automatically
-by Manjaro installer, so I'll probabably need the same packages for fresh Arch installation.
-Another interesting thing is that accoring to [Arch Wiki](https://wiki.archlinux.org/index.php/Xorg#Driver_installation)
-I have drivers for both `Radeon` and `Intel` video-cards. That's strange why the first command showed only one video-card.
+Some of the drivers are already installed on my machine. They were installed automatically by `Manjaro` installer, so I'll need the same packages for fresh `Arch` installation. 
 
-When video-driver(s) is installed, we can move on to installing some basic packages for GUI.
-Run the command: `sudo pacman -S xord xorg-xinit`.
+When video-drivers are installed, we can move on to installing some basic packages for `GUI`.
 
-Install the most Necessary programs:
-- `nitrogen` for rendering wallpapers.
-- `picom` as a window compositor.
-- `kitty` and `alacritty` as terminal emulators.
-- `rofi` for running (launching) applications.
-- `firefox` and `google-chrome` for browsing.
+### First steps
+- `sudo pacman -Syuu` - updates pacman.
+- `sudo pacman -S xorg xorg-xinit` - installs `X` window system.
+- `sudo pacman -S xmonad xmonad-contrib xmobar` - installs window manager.
 
-Enable `AUR` packages in your system:
-- Clone yay repo: `git clone https://aur.archlinux.org/yay-git.git`
-- Make sure `base-devel` is installed, otherwise run `sudo pacman -S base-devel`
-- `cd yay-git` and run `makepkg -si` to build and intall `yay` helper.
+### Setup git
+- `sudo pacman -S git open-ssh` - install git and ssh tool to be able to generate SSH keys.
+- `git config --global user.name "John Doe"` - set name in git.
+- `git config --global user.email johndoe@example.com` - set e-mail in git.
 
-Install `open-ssh` to be able to generate ssh keys on your machine.
+### IMPORTANT
 
-Export `LANG` variable from `.bashrc`: `export LANG=en_US.UTF8` (there was an issue with `xMobar`, it couldn't read the config
-file, because it couldn't recognize the locale, but then this problem disappeared).
+At some point when you're booted into fresh Arch GUI, generate an `SSH` and add it to `GitHub` profile.
 
-[This video](https://www.youtube.com/watch?v=pouX5VvX0_Q) will explain how to install Xorg along with the WM.
+### Enable `AUR` in your system
 
-[Picom issue](https://github.com/yshui/picom/wiki/Vsync-Situation) - this might not be needed if all video-drivers are installed correctly.
+- `git clone https://aur.archlinux.org/yay-git.git` - clone `yay` repo.
+- `sudo pacman -S base-devel` - install `base-devel` (package required for lots of things in Arch).
+- `cd yay-git && makepkg -si` - buildo `yay` from source.
+
+### Install the most necessary programs
+- `kitty` and `alacritty`.
+- `vim` and `nvim`.
+- `firefox` and `chromium`.
+- `nitrogen`.
+- `picom`.
+- `rofi`.
+
+### Export `LANG` variable from `.bashrc`
+- `export LANG=en_US.UTF8` - there was an issue with `xMobar`, it couldn't read the config file, because it couldn't recognize the locale, but then this problem disappeared (maybe won't be needed).
+
+### Picom issue
+[An issue](https://github.com/yshui/picom/wiki/Vsync-Situation) with terminal opacity.
+This might not be needed if all video-drivers are installed correctly.
 
 ### Install `JetBrains Mono` font
 
 [Article](https://wiki.archlinux.org/index.php/fonts) for reference.
 
 - Download font from the [official site](https://www.jetbrains.com/ru-ru/lp/mono).
-- Install utilities that deal with archives: `sudo pacman -S zip unzip`
-- Extract the archive: `unzip JetBrainsMono-2.225.zip`.
-- Install (just move) font:
+- `sudo pacman -S zip unzip` - install utilities that deal with archives.
+- `unzip JetBrainsMono-2.225.zip` - extract the archive.
+- Install font:
   1. Create a directory where all fonts are installed by default: `mkdir -p ~/.local/share/fonts/ttf`.
   2. Choose `ttf` fonts: `cd ~/Downloads/fonts`.
   3. Move fonts: `mv ttf ~/.local/share/fonts/ttf/JetBrainsMono`.
 
 ### Set typing repeat speed
 
-In `.xinitrc` put this: `xset r rate 200 35` (aready done).
+In `.xinitrc` put this: `xset r rate 200 35` (aready added to config).
 
 ### Setup keyboard layouts
 
@@ -106,26 +117,56 @@ Minor issue: Russian keyboard erases username in a terminal.
 
 [Article](https://linuxhint.com/guide_linux_audio/) for reference.
 
-Install  `alsa-utils` (sound doesn't work without it), `pulse-audio` along with `pulsemixer` as a FrontEnd for PulseAudio.
+Install  `alsa-utils` (sound doesn't work without it), `pulse-audio` along with `pulsemixer` as a front-end for `pulse-audio`.
 
 ### Power management
 
-Go to `/etc/systemd/logind.conf` and change lid options. Brightness can be changed via terminal
-Also install `htop` as a Task Manager.
+- `sudo pacman -S htop` - install Task Manager.
+- `sudo nvim /etc/systemd/logind.conf` and change lid options. Brightness can be changed via terminal.
+
+Example settings:
+
+```
+[Login]
+#NAutoVTs=6
+#ReserveVT=6
+#KillUserProcesses=no
+#KillOnlyUsers=
+#KillExcludeUsers=root
+#InhibitDelayMaxSec=5
+#UserStopDelaySec=10
+#HandlePowerKey=poweroff
+#HandleSuspendKey=suspend
+#HandleHibernateKey=hibernate
+HandleLidSwitch=hibernate
+HandleLidSwitchExternalPower=hibernate
+HandleLidSwitchDocked=ignore
+#HandleRebootKey=reboot
+#PowerKeyIgnoreInhibited=no
+#SuspendKeyIgnoreInhibited=no
+#HibernateKeyIgnoreInhibited=no
+#LidSwitchIgnoreInhibited=yes
+#RebootKeyIgnoreInhibited=no
+#HoldoffTimeoutSec=30s
+#IdleAction=ignore
+#IdleActionSec=30min
+#RuntimeDirectorySize=10%
+#RuntimeDirectoryInodes=400k
+#RemoveIPC=yes
+#InhibitorsMax=8192
+#SessionsMax=8192
+```
 
 ### Network management
 
-Install `netctl`, `dialog` and `wifi-menu` (when installing Arch)
-`wifi-menu` will let you connect to wifi during installation and while using the OS.
-
-All wifi configs will be stored in `/etc/netctl/` directory.
+Install `netctl`, `dialog` and `wifi-menu` (when installing Arch). `wifi-menu` will let you connect to wi-fi during installation and while using the OS. All wifi configs will be stored in `/etc/netctl` directory.
 
 Example:
 
 - Save network as `wlp5s0-network-name` (via `wifi-menu`).
-- `sudo netctl enable wlp5s0-network-name` - will run this service on init each time
-- `sudo netctl disable wlp5s0-network-name` - will stop running this service on init
-- `sudo netctl start wlp5s0-network-name` - run this each time when logging in
+- `sudo netctl enable wlp5s0-network-name` - run this service on init each time.
+- `sudo netctl disable wlp5s0-network-name` - stop running this service on init.
+- `sudo netctl start wlp5s0-network-name` - run this each time when logging in.
 - `sudo netctl stop wlp5s0-network-name`
 - `sudo netctl stop-all`
 - `sudo netctl switch-to wlp5s0-network-name-2`
