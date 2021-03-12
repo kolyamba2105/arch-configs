@@ -1,0 +1,36 @@
+* {
+  background-color: #212121;
+  text-color: #eeeeee;
+  font: "JetBrains Mono 11";
+}
+
+#window {
+  border-radius: 4px;
+  padding: 8px;
+}
+
+#element {
+  border: 0;
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+#element.selected.normal {
+  background-color: #40c4ff;
+  text-color: #212121;
+}
+
+#inputbar {
+  padding: 0px 0px 10px 0px;
+}
+
+#entry {
+  padding: 4px 8px;
+}
+
+#prompt {
+  background-color: #69f0ae;
+  border-radius: 4px;
+  padding: 4px 8px;
+  text-color: #212121;
+}

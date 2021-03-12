@@ -57,8 +57,15 @@ by Manjaro installer, so I'll probabably need the same packages for fresh Arch i
 Another interesting thing is that accoring to [Arch Wiki](https://wiki.archlinux.org/index.php/Xorg#Driver_installation)
 I have drivers for both `Radeon` and `Intel` video-cards. That's strange why the first command showed only one video-card.
 
-When video-driver(s) is installed, we can move on to installing some basic packages for graphic environment.
-Run the command: `sudo pacman -S xord xorg-xinit dmenu nitrogen picom kitty firefox`
+When video-driver(s) is installed, we can move on to installing some basic packages for GUI.
+Run the command: `sudo pacman -S xord xorg-xinit`.
+
+Install the most Necessary programs:
+- `nitrogen` for rendering wallpapers.
+- `picom` as a window compositor.
+- `kitty` and `alacritty` as terminal emulators.
+- `rofi` for running (launching) applications.
+- `firefox` and `google-chrome` for browsing.
 
 Enable `AUR` packages in your system:
 - Clone yay repo: `git clone https://aur.archlinux.org/yay-git.git`
@@ -67,7 +74,8 @@ Enable `AUR` packages in your system:
 
 Install `open-ssh` to be able to generate ssh keys on your machine.
 
-Export `LANG` variable from `.bashrc`: `export LANG=en_US.UTF8`
+Export `LANG` variable from `.bashrc`: `export LANG=en_US.UTF8` (there was an issue with `xMobar`, it couldn't read the config
+file, because it couldn't recognize the locale, but then this problem disappeared).
 
 [This video](https://www.youtube.com/watch?v=pouX5VvX0_Q) will explain how to install Xorg along with the WM.
 
@@ -101,6 +109,7 @@ Install `pulse-audio` and (maybe) `alsa-utils`.
 ### Power management
 
 Go to `/etc/systemd/logind.conf` and change lid options. Brightness can be changed via terminal
+Also install `htop` as a Task Manager.
 
 ### Network management
 

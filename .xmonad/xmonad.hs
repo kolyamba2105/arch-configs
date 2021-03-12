@@ -69,8 +69,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
   fromList $
     -- launch a terminal
   [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    -- launch dmenu
-  , ((modm .|. shiftMask, xK_p), spawn "dmenu_run")
+    -- launch rofi
+  , ((modm .|. shiftMask, xK_p), spawn "rofi -show run")
     -- launch browser
   , ((modm .|. shiftMask, xK_g), spawn "google-chrome-stable || firefox")
     -- launch Alacritty terminal

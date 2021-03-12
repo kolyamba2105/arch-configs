@@ -32,3 +32,8 @@ ln -s $directory/.config/nvim/init.vim ~/.config/nvim/init.vim
 mkdir -p ~/.config/picom
 ln -s $directory/.config/picom/picom.conf ~/.config/picom/picom.conf
 
+# Rofi application runner
+mkdir -p ~/.config/rofi
+mkdir -p ~/.config/rofi/themes
+ln -s $directory/.config/rofi/config.rasi ~/.config/rofi/config.rasi
+ln -s $directory/.config/rofi/themes/custom.rasi ~/.config/rofi/themes/custom.rasi
