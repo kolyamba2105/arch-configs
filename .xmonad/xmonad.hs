@@ -72,7 +72,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
     -- launch rofi
   , ((modm .|. shiftMask, xK_p), spawn "rofi -show run")
     -- launch browser
-  , ((modm .|. shiftMask, xK_g), spawn "google-chrome-stable || firefox")
+  , ((modm .|. shiftMask, xK_g), spawn "firefox")
     -- launch Alacritty terminal
   , ((modm, xK_0), spawn "alacritty")
     -- launch PulseMixer

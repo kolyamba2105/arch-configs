@@ -31,9 +31,10 @@ Config
           ]
           10
       , Run Kbd [("us", "US"), ("ru", "RU")]
+      , Run Battery ["--template", "Battery: <left>%"] 50
       , Run UnsafeStdinReader
       ]
   , alignSep = "}{"
   , template =
-      " %UnsafeStdinReader% }{ <fc=#ef5350>%dynnetwork%</fc> <fc=#eeeeee> | </fc> <fc=#ab47bc>%cpu%</fc> <fc=#eeeeee> | </fc> <fc=#5c6bc0>%memory%</fc> <fc=#eeeeee> | </fc> <fc=#26c6da>%disku%</fc> <fc=#eeeeee> | </fc> <fc=#ffee58>Keyboard: %kbd%</fc> <fc=#eeeeee> | </fc> <fc=#ff7043>%date%</fc> "
+      " %UnsafeStdinReader% }{ <fc=#ef5350>%dynnetwork%</fc> <fc=#eeeeee> | </fc> <fc=#ab47bc>%cpu%</fc> <fc=#eeeeee> | </fc> <fc=#5c6bc0>%memory%</fc> <fc=#eeeeee> | </fc> <fc=#26c6da>%disku%</fc> <fc=#eeeeee> | </fc> <fc=#66bb6a>%battery%</fc> <fc=#eeeeee> | </fc> <fc=#ffee58>Keyboard: %kbd%</fc> <fc=#eeeeee> | </fc> <fc=#ff7043>%date%</fc> "
   }

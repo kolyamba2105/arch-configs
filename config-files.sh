@@ -6,6 +6,7 @@ rm ~/.xinitrc
 
 rm ~/.xmonad/xmonad.hs
 rm ~/.xmobarrc
+rm ~/.hindent.yaml
 
 rm ~/.config/alacritty/alacritty.yml
 rm ~/.config/kitty/kitty.conf
@@ -28,6 +29,7 @@ ln -s $directory/.xinitrc ~/.xinitrc
 mkdir -p ~/.xmonad
 ln -s $directory/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
 ln -s $directory/.xmobarrc ~/.xmobarrc
+ln -s $directory/.hindent.yaml ~/.hindent.yaml
 
 # Create config directory if it doesn't exist
 mkdir -p ~/.config
