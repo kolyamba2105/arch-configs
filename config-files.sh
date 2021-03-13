@@ -3,6 +3,7 @@ rm ~/.bash_profile
 rm ~/.bashrc
 
 rm ~/.xinitrc
+rm ~/.screenlayout/my-layout.sh
 
 rm ~/.xmonad/xmonad.hs
 rm ~/.xmobarrc
@@ -24,6 +25,10 @@ ln -s $directory/.bash_profile ~/.bash_profile
 
 # X init
 ln -s $directory/.xinitrc ~/.xinitrc
+
+# Screen layout (monitors settings)
+mkdir -p ~/.screenlayout
+ln -s $directory/.screenlayout/my-layout.sh ~/.screenlayout/my-layout.sh
 
 # XMonad WM
 mkdir -p ~/.xmonad

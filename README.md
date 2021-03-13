@@ -121,8 +121,11 @@ Install  `alsa-utils` (sound doesn't work without it), `pulse-audio` along with 
 
 ### Power management
 
+Articles about [power management](https://wiki.archlinux.org/index.php/Power_management) and [session lock](https://wiki.archlinux.org/index.php/Session_lock).
+
 - `sudo pacman -S htop` - install Task Manager.
 - `sudo nvim /etc/systemd/logind.conf` and change lid options. Brightness can be changed via terminal.
+- `sudo pacman -S slock` - install simple session lock.
 
 Example settings:
 
@@ -157,9 +160,13 @@ HandleLidSwitchDocked=ignore
 #SessionsMax=8192
 ```
 
+### Monitors management
+
+Install a front-end for `xrandr` (which comes with `xorg`) called `arandr`. That's a simple GUI that will let you manage your monitors setup.
+
 ### Network management
 
-Install `netctl`, `dialog` and `wifi-menu` (when installing Arch). `wifi-menu` will let you connect to wi-fi during installation and while using the OS. All wifi configs will be stored in `/etc/netctl` directory.
+During basic installation procces install  `networkmanager`,  `dhcpcd`, `netctl`, `dialog` and `wifi-menu`. `wifi-menu` will let you connect to wi-fi during installation and while using the OS. All wifi configs will be stored in `/etc/netctl` directory.
 
 Example:
 
@@ -172,3 +179,7 @@ Example:
 - `sudo netctl switch-to wlp5s0-network-name-2`
 
 Basically network manager was installed during basic installation proccess, check that first (`networkmanager`).
+
+### Touchpad settings
+
+[Link](https://unix.stackexchange.com/questions/337008/activate-tap-to-click-on-touchpad) for reference.
