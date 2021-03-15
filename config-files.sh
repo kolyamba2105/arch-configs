@@ -50,6 +50,7 @@ ln -s $directory/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.y
 # Neovim
 mkdir -p ~/.config/nvim
 ln -s $directory/.config/nvim/init.vim ~/.config/nvim/init.vim
+ln -s $directory/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 # Picom compositor
 mkdir -p ~/.config/picom
