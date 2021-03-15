@@ -20,6 +20,7 @@ import XMonad.Layout.Spacing
 import qualified XMonad.StackSet as W
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
+import Graphics.X11.ExtraTypes.XF86
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -67,17 +68,21 @@ myFocusedBorderColor = "#46d9ff"
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) =
   fromList $
-    -- launch a terminal
+    -- Launch a terminal
   [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    -- launch rofi
-  , ((modm .|. shiftMask, xK_p), spawn "rofi -show run")
-    -- launch browser
-  , ((modm .|. shiftMask, xK_g), spawn "firefox")
-    -- launch Alacritty terminal
+    -- Launch rofi
+  , ((modm, xK_p), spawn "rofi -show run")
+    -- Launch browser
+  , ((modm, xK_g), spawn "google-chrome-stable")
+    -- Launch Alacritty terminal
   , ((modm, xK_0), spawn "alacritty")
-    -- launch PulseMixer
-  , ((modm .|. shiftMask, xK_m), spawn "kitty -e pulsemixer")
-    -- close focused window
+    -- Launch PulseMixer
+  , ((modm, xK_s), spawn "kitty -e pulsemixer")
+    -- Increase brightness by 10%
+  , ((0, xF86XK_MonBrightnessUp ), spawn "xbacklight -inc 10")
+    -- Decrease brightness by 10%
+  , ((0, xF86XK_MonBrightnessDown ), spawn "xbacklight -dec 10")
+    -- Close focused window
   , ((modm .|. shiftMask, xK_c), kill)
      -- Rotate through the available layout algorithms
   , ((modm, xK_space), sendMessage NextLayout)
