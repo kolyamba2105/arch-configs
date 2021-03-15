@@ -1,3 +1,9 @@
 {
-  "diagnostic.virtualText": true
+  "diagnostic.virtualText": true,
+  "prettier.arrowParens": "avoid",
+  "prettier.jsxBracketSameLine": true,
+  "prettier.printWidth": 100,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all"
 }
