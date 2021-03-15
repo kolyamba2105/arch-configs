@@ -59,9 +59,9 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor = "#282c34"
+myNormalBorderColor = "#424242"
 
-myFocusedBorderColor = "#46d9ff"
+myFocusedBorderColor = "#18ffff"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -172,8 +172,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 defaultTallLayout = Tall nMaster delta ratio
   where
     nMaster = 1
+    delta = 4 / 100
     ratio = 1 / 2
-    delta = 3 / 100
 
 tallLayout = defaultSpacing defaultTallLayout
 

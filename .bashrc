@@ -5,6 +5,10 @@
 export EDITOR=nvim
 export VISUAL=nvim
 
+export LANG=en_US.UTF-8
+
+export HISTCONTROL=ignoreboth
+
 [[ $- != *i* ]] && return
 
 colors() {
@@ -94,6 +98,8 @@ fi
 unset use_color safe_term match_lhs sh
 
 alias cp="cp -i"                          # confirm before overwriting something
+alias mv="mv -i"                          # confirm before moving/overwriting something
+alias rm="rm -i"                          # confirm before removing something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
@@ -142,3 +148,4 @@ ex ()
 }
 
 PATH=$PATH:/home/kolyamba/.yarn/bin
+PATH=~/.local/bin:$PATH

@@ -1,6 +1,6 @@
 Config
   { font = "xft:JetBrainsMono:weight=bold:pixelsize=14:antialias=true"
-  , bgColor = "#333333"
+  , bgColor = "#424242"
   , fgColor = "#e0e0e0"
   , position = Top
   , overrideRedirect = False
@@ -31,7 +31,22 @@ Config
           ]
           10
       , Run Kbd [("us", "US"), ("ru", "RU")]
-      , Run Battery ["--template", "Battery: <left>%"] 50
+      , Run
+          Battery
+          [ "--template"
+          , "Battery: <left>%"
+          , "--Low"
+          , "20"
+          , "--High"
+          , "80"
+          , "--low"
+          , "#ff1744"
+          , "--normal"
+          , "#2979ff"
+          , "--high"
+          , "#76ff03"
+          ]
+          50
       , Run UnsafeStdinReader
       ]
   , alignSep = "}{"
