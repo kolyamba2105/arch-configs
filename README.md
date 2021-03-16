@@ -127,6 +127,8 @@ Articles about [power management](https://wiki.archlinux.org/index.php/Power_man
 - `sudo nvim /etc/systemd/logind.conf` and change lid options. Brightness can be changed via terminal.
 - `sudo pacman -S slock` - install simple session lock.
 
+Follow the instructions from [this article](https://wiki.archlinux.org/index.php/Slock) to enable *Lock on suspend*.
+
 Example settings:
 
 ```

@@ -121,6 +121,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
   , ((modm, xK_b), sendMessage ToggleStruts)
     -- Lock screen
   , ((modm .|. shiftMask, xK_l), spawn "slock")
+    -- Suspend system
+  , ((modm .|. shiftMask, xK_s), spawn "systemctl suspend")
     -- Quit xmonad
   , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess))
     -- Restart xmonad
@@ -254,7 +256,7 @@ xmobarPrettyPrinting xMobar =
       , ppVisible = xmobarColor "#18ffff" "" -- Visible but not current workspace
       , ppHidden = xmobarColor "#40c4ff" "" . wrap "*" "" -- Hidden workspaces in xmobar
       , ppHiddenNoWindows = xmobarColor "#ff4081" "" -- Hidden workspaces (no windows)
-      , ppTitle = xmobarColor "#64ffda" "" . shorten 60 -- Title of active window in xmobar
+      , ppTitle = xmobarColor "#64ffda" "" . shorten 50 -- Title of active window in xmobar
       , ppLayout = xmobarColor "#eeff41" ""
       , ppSep = "<fc=#eeeeee> | </fc>" -- Separators in xmobar
       , ppUrgent = xmobarColor "#ff5252" "" . wrap "!" "!" -- Urgent workspace

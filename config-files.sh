@@ -4,6 +4,7 @@ rm ~/.bashrc
 
 rm ~/.xinitrc
 rm ~/.screenlayout/my-layout.sh
+rm ~/.screenlayout/monitor-only.sh
 
 rm ~/.xmonad/xmonad.hs
 rm ~/.xmobarrc
@@ -32,6 +33,7 @@ ln -s $directory/.xinitrc ~/.xinitrc
 # Screen layout (monitors settings)
 mkdir -p ~/.screenlayout
 ln -s $directory/.screenlayout/my-layout.sh ~/.screenlayout/my-layout.sh
+ln -s $directory/.screenlayout/monitor-only.sh ~/.screenlayout/monitor-only.sh
 
 # XMonad WM
 mkdir -p ~/.xmonad

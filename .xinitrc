@@ -34,6 +34,9 @@ fi
 
 # ----- MY CONFIG STARTS HERE -----
 
+# Apply screen layout
+~/.screenlayout/monitor-only.sh
+
 # Set keyboard layouts
 setxkbmap -layout us,ru -option grp:alt_shift_toggle
 
