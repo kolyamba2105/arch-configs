@@ -82,7 +82,7 @@ if ${use_color} ; then
 		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 	fi
 
-	alias ls='ls --color=auto'
+	alias ls='ls -la --color=auto'
 	alias grep='grep --colour=auto'
 	alias egrep='egrep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
@@ -100,8 +100,8 @@ unset use_color safe_term match_lhs sh
 alias cp="cp -i"                          # confirm before overwriting something
 alias mv="mv -i"                          # confirm before moving/overwriting something
 alias rm="rm -i"                          # confirm before removing something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
+alias df="df -h"                          # human-readable sizes
+alias free="free -m"                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 

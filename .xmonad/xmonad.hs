@@ -9,6 +9,7 @@
 import Data.Map (fromList)
 import Data.Maybe (fromJust)
 import Data.Monoid
+import Graphics.X11.ExtraTypes.XF86
 import System.Exit
 import System.IO
 import XMonad
@@ -20,12 +21,13 @@ import XMonad.Layout.Spacing
 import qualified XMonad.StackSet as W
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
-import Graphics.X11.ExtraTypes.XF86
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 -- Consider switching to Alacritty
 myTerminal = "kitty"
+
+myBrowser = "firefox"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -73,15 +75,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
     -- Launch rofi
   , ((modm, xK_p), spawn "rofi -show run")
     -- Launch browser
-  , ((modm, xK_g), spawn "google-chrome-stable")
-    -- Launch Alacritty terminal
-  , ((modm, xK_0), spawn "alacritty")
+  , ((modm, xK_g), spawn myBrowser)
     -- Launch PulseMixer
-  , ((modm, xK_s), spawn "kitty -e pulsemixer")
+  , ((modm, xK_s), spawn (myTerminal ++ " -e pulsemixer"))
     -- Increase brightness by 10%
-  , ((0, xF86XK_MonBrightnessUp ), spawn "xbacklight -inc 10")
+  , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 10")
     -- Decrease brightness by 10%
-  , ((0, xF86XK_MonBrightnessDown ), spawn "xbacklight -dec 10")
+  , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10")
     -- Close focused window
   , ((modm .|. shiftMask, xK_c), kill)
      -- Rotate through the available layout algorithms
@@ -172,7 +172,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 defaultTallLayout = Tall nMaster delta ratio
   where
     nMaster = 1
-    delta = 4 / 100
+    delta = 2 / 100
     ratio = 1 / 2
 
 tallLayout = defaultSpacing defaultTallLayout
@@ -205,13 +205,7 @@ defaultSpacing = mySpacing 6
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook =
-  composeAll
-    [ className =? "MPlayer" --> doFloat
-    , className =? "Gimp" --> doFloat
-    , resource =? "desktop_window" --> doIgnore
-    , resource =? "kdesktop" --> doIgnore
-    ]
+myManageHook = composeAll []
 
 ------------------------------------------------------------------------
 -- Event handling
