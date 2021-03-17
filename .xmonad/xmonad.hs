@@ -17,7 +17,10 @@ import XMonad.Hooks.DynamicLog (PP(..), dynamicLogWithPP, shorten, wrap, xmobarC
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Grid
 import XMonad.Layout.LayoutModifier
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
+import XMonad.Layout.Tabbed
 import qualified XMonad.StackSet as W
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
@@ -76,6 +79,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
   , ((modm, xK_p), spawn "rofi -show run")
     -- Launch browser
   , ((modm, xK_g), spawn myBrowser)
+    -- Launch browser in private mode
+  , ((modm .|. shiftMask, xK_g), spawn (myBrowser ++ " --private-window"))
     -- Launch PulseMixer
   , ((modm, xK_s), spawn (myTerminal ++ " -e pulsemixer"))
     -- Increase brightness by 10%
@@ -177,21 +182,33 @@ defaultTallLayout = Tall nMaster delta ratio
     delta = 2 / 100
     ratio = 1 / 2
 
-tallLayout = defaultSpacing defaultTallLayout
+tallLayout = renamed [Replace "Tall"] (defaultSpacing defaultTallLayout)
 
-mirrorLayout = defaultSpacing (Mirror defaultTallLayout)
+-- mirrorLayout = defaultSpacing (Mirror defaultTallLayout)
+-- gridLayout = defaultSpacing Grid
+--
+tabbedLayout = renamed [Replace "Tabbed"] (noBorders (tabbedBottomAlways shrinkText myTabbedTheme))
 
-fullLayout = defaultSpacing Full
+myTabbedTheme =
+  def
+    { fontName = "xft:JetBrainsMono:pixelsize=14:antialias=true"
+    , activeColor = "#b2ff59"
+    , inactiveColor = "#424242"
+    , activeBorderColor = "#b2ff59"
+    , inactiveBorderColor = "#424242"
+    , activeTextColor = "#333333"
+    , inactiveTextColor = "#ffffff"
+    }
 
-gridLayout = defaultSpacing Grid
+fullLayout = noBorders Full
 
-myLayout = avoidStruts (tallLayout ||| mirrorLayout ||| gridLayout ||| fullLayout)
+myLayout = avoidStruts (tallLayout ||| tabbedLayout ||| fullLayout)
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
 defaultSpacing :: l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
-defaultSpacing = mySpacing 6
+defaultSpacing = mySpacing 4
 
 ------------------------------------------------------------------------
 -- Window rules:
