@@ -20,6 +20,8 @@ rm ~/.config/picom/picom.conf
 rm ~/.config/rofi/config.rasi
 rm ~/.config/rofi/themes/custom.rasi
 
+rm /usr/local/bin/copy-screenshot.sh
+
 # In case if repo directory gets renamed
 directory=$PWD
 
@@ -66,3 +68,7 @@ mkdir -p ~/.config/rofi
 mkdir -p ~/.config/rofi/themes
 ln -s $directory/.config/rofi/config.rasi ~/.config/rofi/config.rasi
 ln -s $directory/.config/rofi/themes/custom.rasi ~/.config/rofi/themes/custom.rasi
+
+# Add copy-screenshot globally available
+chmod +x $directory/scripts/copy-screenshot.sh
+ln -s $directory/scripts/copy-screenshot.sh /usr/local/bin/copy-screenshot

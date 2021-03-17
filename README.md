@@ -129,6 +129,15 @@ Articles about [power management](https://wiki.archlinux.org/index.php/Power_man
 
 Follow the instructions from [this article](https://wiki.archlinux.org/index.php/Slock) to enable *Lock on suspend*.
 
+Add the following lines to `/etc/X11/xorg.conf` (as mentioned in the article above):
+
+```
+Section "ServerFlags"
+    Option "DontVTSwitch" "True"
+    Option "DontZap" "True"
+EndSection
+```
+
 Example settings:
 
 ```
