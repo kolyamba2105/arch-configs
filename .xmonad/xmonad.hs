@@ -57,9 +57,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
     -- Launch PulseMixer
   , ((modm, xK_s), spawn (myTerminal ++ " -e pulsemixer"))
     -- Increase brightness by 10%
-  , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 10")
+  , ((modm, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 10")
     -- Decrease brightness by 10%
-  , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10")
+  , ((modm, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10")
+   --Take a screenshot of entire display
+  , ((modm, xK_Print), spawn "scrot ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png -d 1")
+   --Take a screenshot of focused window
+  , ( (modm .|. controlMask, xK_Print)
+    , spawn "scrot ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png -d 1-u")
+   --Take a screenshot of chosen area
+  , ( (modm .|. shiftMask, xK_Print)
+    , spawn "scrot ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png -s 1-u")
     -- Close focused window
   , ((modm .|. shiftMask, xK_c), kill)
      -- Rotate through the available layout algorithms
