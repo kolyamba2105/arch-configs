@@ -1,11 +1,3 @@
---
--- xmonad example config file.
---
--- A template showing all available configuration hooks,
--- and how to override the defaults in your own xmonad.hs conf file.
---
--- Normally, you'd only override those defaults you care about.
---
 import Data.Map (fromList)
 import Data.Maybe (fromJust)
 import Data.Monoid
@@ -25,10 +17,7 @@ import qualified XMonad.StackSet as W
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 
--- The preferred terminal program, which is used in a binding below and by
--- certain contrib modules.
--- Consider switching to Alacritty
-myTerminal = "kitty"
+myTerminal = "alacritty"
 
 myBrowser = "firefox"
 
@@ -41,29 +30,13 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
 -- Width of the window border in pixels.
---
 myBorderWidth = 2
 
--- modMask lets you specify which modkey you want to use. The default
--- is mod1Mask ("left alt").  You may also consider using mod3Mask
--- ("right alt"), which does not conflict with emacs keybindings. The
--- "windows key" is usually mod4Mask.
---
 myModMask = mod4Mask
 
--- The default number of workspaces (virtual screens) and their names.
--- By default we use numeric strings, but any string may be used as a
--- workspace name. The number of workspaces is determined by the length
--- of this list.
---
--- A tagging example:
---
--- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
---
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 -- Border colors for unfocused and focused windows, respectively.
---
 myNormalBorderColor = "#424242"
 
 myFocusedBorderColor = "#18ffff"
@@ -117,7 +90,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
   , ((modm, xK_t), withFocused $ windows . W.sink)
     -- Increment the number of windows in the master area
   , ((modm, xK_comma), sendMessage (IncMasterN 1))
-    -- Deincrement the number of windows in the master area
+    -- Decrement the number of windows in the master area
   , ((modm, xK_period), sendMessage (IncMasterN (-1)))
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -211,7 +184,7 @@ defaultSpacing :: l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 defaultSpacing = mySpacing 4
 
 ------------------------------------------------------------------------
--- Window rules:
+-- Window rules
 -- Execute arbitrary actions and WindowSet manipulations when managing
 -- a new window. You can use this to, for example, always float a
 -- particular program, or have a client always appear on a particular
