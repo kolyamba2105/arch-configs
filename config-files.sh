@@ -17,6 +17,7 @@ rm ~/.config/nvim/init.vim
 rm ~/.config/nvim/coc-settings.json
 
 rm ~/.config/picom/picom.conf
+
 rm ~/.config/rofi/config.rasi
 rm ~/.config/rofi/themes/custom.rasi
 

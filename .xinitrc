@@ -35,7 +35,11 @@ fi
 # ----- MY CONFIG STARTS HERE -----
 
 # Apply screen layout
-~/.screenlayout/monitor-only.sh
+# ~/.screenlayout/monitor-only.sh
+
+if (xrandr --listmonitors | grep "Monitors: 2"); then
+  ~/.screenlayout/monitor-only.sh
+fi
 
 # Set keyboard layouts
 setxkbmap -layout us,ru -option grp:alt_shift_toggle
