@@ -30,7 +30,7 @@ Config
           , "darkred"
           ]
           10
-      , Run Kbd [("us", "US"), ("ru", "RU")]
+      , Run Kbd [("us", "US"), ("pl", "PL"), ("ru", "RU"), ("ua", "UA")]
       , Run
           Battery
           [ "--template"

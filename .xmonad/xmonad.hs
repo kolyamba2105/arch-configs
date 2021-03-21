@@ -166,7 +166,6 @@ defaultTallLayout = Tall nMaster delta ratio
 tallLayout = renamed [Replace "Tall"] (defaultSpacing defaultTallLayout)
 
 -- mirrorLayout = defaultSpacing (Mirror defaultTallLayout)
--- gridLayout = defaultSpacing Grid
 -- fullLayout = noBorders Full
 --
 tabbedLayout = renamed [Replace "Tabbed"] (noBorders (tabbedBottomAlways shrinkText myTabbedTheme))
@@ -182,8 +181,9 @@ myTabbedTheme =
     , inactiveTextColor = "#ffffff"
     }
 
+gridLayout = renamed [Replace "Grid"] (defaultSpacing Grid)
 
-myLayout = avoidStruts (tabbedLayout ||| tallLayout)
+myLayout = avoidStruts (tabbedLayout ||| tallLayout ||| gridLayout)
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True

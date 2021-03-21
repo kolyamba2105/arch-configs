@@ -3,7 +3,7 @@
 ## Basic installation
 
 I was following [this video](https://www.youtube.com/watch?v=PQgyW10xD8s&list=PL5--8gKSku16Ncr9H_BAZSzWecjaSWlvY&index=5&ab_channel=DistroTube) to proceed with Arch basic installation, which basically follows the original [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide).
-Most of the stuff will remain the same. The only thing that is not covered by the video is `Connect to Internet` part, but it's covered [here](https://wiki.archlinux.org/index.php/Network_configuration). I can also generate both `RU` and `US` locales.
+Most of the stuff will remain the same. The only thing that is not covered by the video is `Connect to Internet` part, but it's covered [here](https://wiki.archlinux.org/index.php/Network_configuration). I can also generate `RU`, `PL`, `UA` and `US` locales.
 
 ## Desktop installation
 
@@ -53,16 +53,18 @@ community/xf86-video-qxl-debian 0.1.5+git20200331-1 (xorg-drivers)
     Xorg X11 qxl video driver (Debian binary)
 ```
 
-Some of the drivers are already installed on my machine. They were installed automatically by `Manjaro` installer, so I'll need the same packages for fresh `Arch` installation. 
+Some of the drivers are already installed on my machine. They were installed automatically by `Manjaro` installer, so I'll need the same packages for fresh `Arch` installation.
 
 When video-drivers are installed, we can move on to installing some basic packages for `GUI`.
 
 ### First steps
+
 - `sudo pacman -Syuu` - updates pacman.
 - `sudo pacman -S xorg xorg-xinit` - installs `X` window system.
 - `sudo pacman -S xmonad xmonad-contrib xmobar` - installs window manager.
 
 ### Setup git
+
 - `sudo pacman -S git open-ssh` - install git and ssh tool to be able to generate SSH keys.
 - `git config --global user.name "John Doe"` - set name in git.
 - `git config --global user.email johndoe@example.com` - set e-mail in git.
@@ -78,17 +80,21 @@ At some point when you're booted into fresh Arch GUI, generate an `SSH` and add 
 - `cd yay-git && makepkg -si` - buildo `yay` from source.
 
 ### Install the most necessary programs
+
 - `kitty` and `alacritty`.
 - `vim` and `nvim`.
-- `firefox` and `chromium`.
+- `firefox`.
 - `nitrogen`.
 - `picom`.
 - `rofi`.
+- `fish` - interactive shell.
 
 ### Export `LANG` variable from `.bashrc`
+
 - `export LANG=en_US.UTF8` - there was an issue with `xMobar`, it couldn't read the config file, because it couldn't recognize the locale, but then this problem disappeared (maybe won't be needed).
 
 ### Picom issue
+
 [An issue](https://github.com/yshui/picom/wiki/Vsync-Situation) with terminal opacity.
 This might not be needed if all video-drivers are installed correctly.
 
@@ -117,7 +123,7 @@ Minor issue: Russian keyboard erases username in a terminal.
 
 [Article](https://linuxhint.com/guide_linux_audio/) for reference.
 
-Install  `alsa-utils` (sound doesn't work without it), `pulse-audio` along with `pulsemixer` as a front-end for `pulse-audio`.
+Install `alsa-utils` (sound doesn't work without it), `pulse-audio` along with `pulsemixer` as a front-end for `pulse-audio`.
 
 ### Power management
 
@@ -127,7 +133,7 @@ Articles about [power management](https://wiki.archlinux.org/index.php/Power_man
 - `sudo nvim /etc/systemd/logind.conf` and change lid options. Brightness can be changed via terminal.
 - `sudo pacman -S slock` - install simple session lock.
 
-Follow the instructions from [this article](https://wiki.archlinux.org/index.php/Slock) to enable *Lock on suspend*.
+Follow the instructions from [this article](https://wiki.archlinux.org/index.php/Slock) to enable _Lock on suspend_.
 
 Add the following lines to `/etc/X11/xorg.conf` (as mentioned in the article above):
 
@@ -177,7 +183,7 @@ Install a front-end for `xrandr` (which comes with `xorg`) called `arandr`. That
 
 ### Network management
 
-During basic installation procces install  `networkmanager`,  `dhcpcd`, `netctl`, `dialog` and `wifi-menu`. `wifi-menu` will let you connect to wi-fi during installation and while using the OS. All wifi configs will be stored in `/etc/netctl` directory.
+During basic installation procces install `networkmanager`, `dhcpcd`, `netctl`, `dialog` and `wifi-menu`. `wifi-menu` will let you connect to wi-fi during installation and while using the OS. All wifi configs will be stored in `/etc/netctl` directory.
 
 Example:
 

@@ -38,11 +38,12 @@ fi
 # ~/.screenlayout/monitor-only.sh
 
 if (xrandr --listmonitors | grep "Monitors: 2"); then
-  ~/.screenlayout/monitor-only.sh
+  # ~/.screenlayout/monitor-only.sh
+  ~/.screenlayout/my-layout.sh
 fi
 
 # Set keyboard layouts
-setxkbmap -layout us,ru -option grp:alt_shift_toggle
+setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle
 
 # Swap ESC and CAPS keys
 setxkbmap -option caps:swapescape

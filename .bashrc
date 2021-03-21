@@ -149,3 +149,6 @@ ex ()
 
 PATH=$PATH:/home/kolyamba/.yarn/bin
 PATH=~/.local/bin:$PATH
+
+# Start fish shell
+fish
