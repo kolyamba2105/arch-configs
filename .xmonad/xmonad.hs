@@ -46,13 +46,15 @@ myFocusedBorderColor = "#18ffff"
 -- Key bindings. Add, modify or remove key bindings here.
 --
 myKeys =
-  [ ("M-S-<Return>", spawn $ XMonad.terminal conf)
+  [ ("M-S-<Return>", spawn myTerminal)
     -- Launch rofi
   , ("M-p", spawn "rofi -show run")
-    -- Launch browser
-  , ("M-g", spawn myBrowser)
-    -- Launch browser in private mode
-  , ("M-S-g", spawn (myBrowser ++ " --private-window"))
+    -- Launch default browser
+  , ("M-f", spawn myBrowser)
+    -- Launch default browser (firefox in this case) in private mode
+  , ("M-S-f", spawn (myBrowser ++ " --private-window"))
+    -- Launch chromium in incognito mode
+  , ("M-g", spawn "chromium --incognito")
     -- Launch PulseMixer
   , ("M-s", spawn (myTerminal ++ " -e pulsemixer"))
     -- Increase brightness by 10%
@@ -70,8 +72,6 @@ myKeys =
   , ("M-S-c", kill)
     -- Rotate through the available layout algorithms
   , ("M-<Space>", sendMessage NextLayout)
-    --  Reset the layouts on the current workspace to default
-  , ("M-S-<Space>", setLayout $ XMonad.layoutHook conf)
     -- Resize viewed windows to the correct size
   , ("M-n", refresh)
     -- Move focus to the next window
@@ -104,8 +104,8 @@ myKeys =
   , ("M-S-l", spawn "slock")
     -- Suspend system
   , ("M-S-s", spawn "systemctl suspend")
-    -- Quit xmonad
-  , ("M-S-q", io (exitWith ExitSuccess))
+    -- Quit xmonad (don't want to accidentally close session)
+  , ("M-S-q", return ())
     -- Restart xmonad
   , ("M-q", spawn "xmonad --recompile; xmonad --restart")
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
@@ -145,6 +145,7 @@ defaultTallLayout = Tall nMaster delta ratio
 tallLayout = renamed [Replace "Tall"] (defaultSpacing defaultTallLayout)
 
 -- mirrorLayout = defaultSpacing (Mirror defaultTallLayout)
+-- gridLayout = renamed [Replace "Grid"] (defaultSpacing Grid)
 -- fullLayout = noBorders Full
 --
 tabbedLayout = renamed [Replace "Tabbed"] (noBorders (tabbedBottomAlways shrinkText myTabbedTheme))
@@ -160,9 +161,7 @@ myTabbedTheme =
     , inactiveTextColor = "#ffffff"
     }
 
-gridLayout = renamed [Replace "Grid"] (defaultSpacing Grid)
-
-myLayout = avoidStruts (tabbedLayout ||| tallLayout ||| gridLayout)
+myLayout = avoidStruts (tabbedLayout ||| tallLayout)
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
