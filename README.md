@@ -119,11 +119,20 @@ In `.xinitrc` put this: `xset r rate 200 35` (aready added to config).
 During basic installation proccess, generate both US and RU locales (with `locale-gen`).
 Minor issue: Russian keyboard erases username in a terminal.
 
-### Setup sound
+### Sound setup
 
 [Article](https://linuxhint.com/guide_linux_audio/) for reference.
 
 Install `alsa-utils` (sound doesn't work without it), `pulse-audio` along with `pulsemixer` as a front-end for `pulse-audio`.
+
+### Bluetooth setup
+
+Follow installation guide from [this article](https://wiki.archlinux.org/index.php/Bluetooth#Installation). Load `btusb` module, check if the device is not blocked by `rfkill` etc (everything is in the article).
+If you're getting `No default controller available` error in `bluetoothctl` - check [this](https://stackoverflow.com/questions/48279646/bluetoothctl-no-default-controller-available).
+
+In order to be able to use audio equipment like bluetooth headphones or speakers, you need to install the additional `pulseaudio-bluetooth` package. With a default PulseAudio installation you should immediately be able to stream audio from a bluetooth device to your speakers.
+
+Another [article](https://wiki.archlinux.org/index.php/bluetooth_headset) for reference.
 
 ### Power management
 
