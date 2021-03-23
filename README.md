@@ -131,6 +131,7 @@ Follow installation guide from [this article](https://wiki.archlinux.org/index.p
 If you're getting `No default controller available` error in `bluetoothctl` - check [this](https://stackoverflow.com/questions/48279646/bluetoothctl-no-default-controller-available).
 
 In order to be able to use audio equipment like bluetooth headphones or speakers, you need to install the additional `pulseaudio-bluetooth` package. With a default PulseAudio installation you should immediately be able to stream audio from a bluetooth device to your speakers.
+Check [Audio -> PulseAudio](https://wiki.archlinux.org/index.php/Bluetooth#PulseAudio) section to make bluetooth headphones work with `pulseaudio`.
 
 Another [article](https://wiki.archlinux.org/index.php/bluetooth_headset) for reference.
 

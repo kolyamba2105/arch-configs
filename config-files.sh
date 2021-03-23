@@ -12,6 +12,8 @@ rm ~/.hindent.yaml
 
 rm ~/.config/alacritty/alacritty.yml
 
+rm ~/.config/fish/config.fish
+
 rm ~/.config/kitty/kitty.conf
 
 rm ~/.config/nitrogen/bg-saved.cfg
@@ -50,6 +52,10 @@ ln -s $directory/.hindent.yaml ~/.hindent.yaml
 
 # Create config directory if it doesn't exist
 mkdir -p ~/.config
+
+# Fish config
+mkdir -p ~/.config/fish
+ln -s $directory/.config/fish/config.fish ~/.config/fish/config.fish
 
 # Kitty terminal
 mkdir -p ~/.config/kitty
