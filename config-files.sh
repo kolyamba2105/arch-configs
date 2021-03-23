@@ -11,7 +11,11 @@ rm ~/.xmobarrc
 rm ~/.hindent.yaml
 
 rm ~/.config/alacritty/alacritty.yml
+
 rm ~/.config/kitty/kitty.conf
+
+rm ~/.config/nitrogen/bg-saved.cfg
+rm ~/.config/nitrogen/nitrogen.cfg
 
 rm ~/.config/nvim/init.vim
 rm ~/.config/nvim/coc-settings.json
@@ -21,7 +25,7 @@ rm ~/.config/picom/picom.conf
 rm ~/.config/rofi/config.rasi
 rm ~/.config/rofi/themes/custom.rasi
 
-rm /usr/local/bin/copy-screenshot.sh
+rm /usr/local/bin/copy-screenshot
 
 # In case if repo directory gets renamed
 directory=$PWD
@@ -54,6 +58,11 @@ ln -s $directory/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 # Alacritty terminal
 mkdir -p ~/.config/alacritty
 ln -s $directory/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+
+# Nitrogen wallpapers
+mkdir -p ~/.config/nitrogen
+ln -s $directory/.config/nitrogen/bg-saved.cfg ~/.config/nitrogen/bg-saved.cfg
+ln -s $directory/.config/nitrogen/nitrogen.cfg ~/.config/nitrogen/nitrogen.cfg
 
 # Neovim
 mkdir -p ~/.config/nvim
