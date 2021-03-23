@@ -210,8 +210,12 @@ Basically network manager was installed during basic installation proccess, chec
 
 [Link](https://unix.stackexchange.com/questions/337008/activate-tap-to-click-on-touchpad) for reference.
 
-### Making screenshots
+### Make screenshots
 
 - `sudo pacman -S scrot` - install a simple CLI for taking screenshots.
 - `sudo pacman -S xclip` - install a tool for copying stuff into clipboard.
 - `cat <image-name>.png | xclip -selection clipboard -t image/png` - copy image into clipboard.
+
+### Default applications settings
+
+[Article](https://wiki.archlinux.org/index.php/Xdg-utils) for reference.
