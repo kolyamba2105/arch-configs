@@ -36,8 +36,8 @@ rm /usr/local/bin/toggle-bluetooth
 directory=$PWD
 
 # Bash profile
-ln -s $directory/.bashrc ~/.bashrc
 ln -s $directory/.bash_profile ~/.bash_profile
+ln -s $directory/.bashrc ~/.bashrc
 
 # X init
 ln -s $directory/.xinitrc ~/.xinitrc
