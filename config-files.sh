@@ -27,6 +27,8 @@ rm ~/.config/picom/picom.conf
 rm ~/.config/rofi/config.rasi
 rm ~/.config/rofi/themes/custom.rasi
 
+rm ~/.config/starship/config.toml
+
 rm /usr/local/bin/copy-screenshot
 rm /usr/local/bin/toggle-bluetooth
 
@@ -85,6 +87,10 @@ mkdir -p ~/.config/rofi
 mkdir -p ~/.config/rofi/themes
 ln -s $directory/.config/rofi/config.rasi ~/.config/rofi/config.rasi
 ln -s $directory/.config/rofi/themes/custom.rasi ~/.config/rofi/themes/custom.rasi
+
+# Starship prompt
+mkdir -p ~/.config/starship
+ln -s $directory/.config/starship/config.toml ~/.config/starship/config.toml
 
 # Make copy-screenshot globally available
 chmod +x $directory/scripts/copy-screenshot.sh

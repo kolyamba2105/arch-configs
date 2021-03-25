@@ -5,5 +5,8 @@
   "prettier.printWidth": 100,
   "prettier.semi": false,
   "prettier.singleQuote": true,
-  "prettier.trailingComma": "all"
+  "prettier.trailingComma": "all",
+  "cSpell.userWords": [
+    "Kanyon"
+  ]
 }

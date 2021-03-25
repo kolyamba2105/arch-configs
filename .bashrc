@@ -147,8 +147,10 @@ ex ()
   fi
 }
 
-PATH=$PATH:/home/kolyamba/.yarn/bin
-PATH=~/.local/bin:$PATH
+source "$HOME/.cargo/env"
+
+export STARSHIP_CONFIG=~/.config/starship/config.toml
+eval "$(starship init bash)"
 
 # Start fish shell
 fish
