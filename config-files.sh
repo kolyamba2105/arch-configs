@@ -14,8 +14,6 @@ rm ~/.config/alacritty/alacritty.yml
 
 rm ~/.config/fish/config.fish
 
-rm ~/.config/kitty/kitty.conf
-
 rm ~/.config/nitrogen/bg-saved.cfg
 rm ~/.config/nitrogen/nitrogen.cfg
 
@@ -59,10 +57,6 @@ mkdir -p ~/.config
 # Fish config
 mkdir -p ~/.config/fish
 ln -s $directory/.config/fish/config.fish ~/.config/fish/config.fish
-
-# Kitty terminal
-mkdir -p ~/.config/kitty
-ln -s $directory/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 
 # Alacritty terminal
 mkdir -p ~/.config/alacritty

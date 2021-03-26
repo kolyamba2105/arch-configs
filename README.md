@@ -81,7 +81,7 @@ At some point when you're booted into fresh Arch GUI, generate an `SSH` and add 
 
 ### Install the most necessary programs
 
-- `kitty` and `alacritty`.
+- `alacritty`.
 - `vim` and `nvim`.
 - `firefox`.
 - `nitrogen`.
@@ -100,15 +100,7 @@ This might not be needed if all video-drivers are installed correctly.
 
 ### Install `JetBrains Mono` font
 
-[Article](https://wiki.archlinux.org/index.php/fonts) for reference.
-
-- Download font from the [official site](https://www.jetbrains.com/ru-ru/lp/mono).
-- `sudo pacman -S zip unzip` - install utilities that deal with archives.
-- `unzip JetBrainsMono-2.225.zip` - extract the archive.
-- Install font:
-  1. Create a directory where all fonts are installed by default: `mkdir -p ~/.local/share/fonts/ttf`.
-  2. Choose `ttf` fonts: `cd ~/Downloads/fonts`.
-  3. Move fonts: `mv ttf ~/.local/share/fonts/ttf/JetBrainsMono`.
+Just `yay -S nerd-fonts-jetbrains-mono`.
 
 ### Set typing repeat speed
 
@@ -220,3 +212,9 @@ Basically network manager was installed during basic installation proccess, chec
 ### Default applications settings
 
 [Article](https://wiki.archlinux.org/index.php/Xdg-utils) for reference.
+
+### Rust utils
+
+- Install `rust` (along with `cargo`).
+- `cargo install exa` - a replacement for `ls`.
+- `cargo install bat` - a replacement for `cat`.
