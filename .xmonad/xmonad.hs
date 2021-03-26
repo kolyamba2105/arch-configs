@@ -152,7 +152,7 @@ tabbedLayout = renamed [Replace "Tabbed"] (noBorders (tabbedBottomAlways shrinkT
 
 myTabbedTheme =
   def
-    { fontName = "xft:JetBrainsMono:pixelsize=14:antialias=true"
+    { fontName = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
     , activeColor = "#b2ff59"
     , inactiveColor = "#424242"
     , activeBorderColor = "#b2ff59"

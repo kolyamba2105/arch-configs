@@ -1,7 +1,7 @@
 * {
   background-color: #212121;
   text-color: #eeeeee;
-  font: "JetBrains Mono 11";
+  font: "JetBrains Mono Nerd Font 11";
 }
 
 #window {
