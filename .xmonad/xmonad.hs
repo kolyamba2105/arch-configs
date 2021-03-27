@@ -30,6 +30,8 @@ myKeys =
   [ ("M-S-<Return>", spawn myTerminal)
     -- Tree select actions
   , ("M-a", actions treeSelectConfig)
+    -- Launch file manager
+  , ("M-e", spawn (myTerminal ++ " -e ranger"))
     -- Launch rofi
   , ("M-p", spawn "rofi -show run")
     -- Launch firefox
@@ -196,8 +198,6 @@ myLogHook = return ()
 
 -- Startup hook
 --
-screenLayout = "set-screenlayout"
-
 keyboardLayout = "setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle"
 
 swapCapsEsc = "setxkbmap -option caps:swapescape"
@@ -211,7 +211,6 @@ wallpapers = "nitrogen --restore &"
 compositor = "picom --config ~/.config/picom/picom.conf &"
 
 myStartupHook = do
-  spawn screenLayout
   spawn keyboardLayout
   spawn swapCapsEsc
   spawn typingRepeatSpeed
