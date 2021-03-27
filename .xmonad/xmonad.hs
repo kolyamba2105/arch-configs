@@ -246,12 +246,28 @@ myLogHook = return ()
 
 ------------------------------------------------------------------------
 -- Startup hook
--- Perform an arbitrary action each time xmonad starts or is restarted
--- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
--- per-workspace layout choices.
---
--- By default, do nothing.
-myStartupHook = return ()
+screenLayout = "set-screenlayout"
+
+keyboardLayout = "setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle"
+
+swapCapsEsc = "setxkbmap -option caps:swapescape"
+
+typingRepeatSpeed = "xset r rate 200 35"
+
+cursor = "xsetroot -cursor_name left_ptr"
+
+wallpapers = "nitrogen --restore &"
+
+compositor = "picom --config ~/.config/picom/picom.conf &"
+
+myStartupHook = do
+  spawn screenLayout
+  spawn keyboardLayout
+  spawn swapCapsEsc
+  spawn typingRepeatSpeed
+  spawn cursor
+  spawn wallpapers
+  spawn compositor
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

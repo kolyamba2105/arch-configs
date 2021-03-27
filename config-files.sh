@@ -29,6 +29,7 @@ rm ~/.config/starship/config.toml
 
 rm /usr/local/bin/copy-screenshot
 rm /usr/local/bin/toggle-bluetooth
+rm /usr/local/bin/set-screenlayout
 
 # In case if repo directory gets renamed
 directory=$PWD
@@ -93,3 +94,7 @@ ln -s $directory/scripts/copy-screenshot.sh /usr/local/bin/copy-screenshot
 # Make toggle-bluetooth globally available
 chmod +x $directory/scripts/toggle-bluetooth.sh
 ln -s $directory/scripts/toggle-bluetooth.sh /usr/local/bin/toggle-bluetooth
+
+# Make set-screenlayout globally available
+chmod +x $directory/scripts/set-screenlayout.sh
+ln -s $directory/scripts/set-screenlayout.sh /usr/local/bin/set-screenlayout

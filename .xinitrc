@@ -34,28 +34,5 @@ fi
 
 # ----- MY CONFIG STARTS HERE -----
 
-# Apply screen layout
-# ~/.screenlayout/monitor-only.sh
-
-if (xrandr --listmonitors | grep "Monitors: 2"); then
-  # ~/.screenlayout/monitor-only.sh
-  ~/.screenlayout/my-layout.sh
-fi
-
-# Set keyboard layouts
-setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle
-
-# Swap ESC and CAPS keys
-setxkbmap -option caps:swapescape
-
-# Set typing repeat speed
-xset r rate 200 35
-
-# Render wallpaper
-nitrogen --restore &
-
-# Start compositor
-picom --config ~/.config/picom/picom.conf &
-
 # Start window manager
 xmonad --replace
