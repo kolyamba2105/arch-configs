@@ -200,8 +200,6 @@ myLogHook = return ()
 --
 keyboardLayout = "setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle"
 
-swapCapsEsc = "setxkbmap -option caps:swapescape"
-
 typingRepeatSpeed = "xset r rate 200 35"
 
 cursor = "xsetroot -cursor_name left_ptr"
@@ -212,7 +210,6 @@ compositor = "picom --config ~/.config/picom/picom.conf &"
 
 myStartupHook = do
   spawn keyboardLayout
-  spawn swapCapsEsc
   spawn typingRepeatSpeed
   spawn cursor
   spawn wallpapers

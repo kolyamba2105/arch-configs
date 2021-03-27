@@ -39,5 +39,8 @@ if (xrandr --listmonitors | grep "Monitors: 2"); then
   ~/.screenlayout/my-layout.sh
 fi
 
+# Swap caps and esc
+setxkbmap -option caps:swapescape
+
 # Start window manager
 xmonad --replace
