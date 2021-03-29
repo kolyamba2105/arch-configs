@@ -31,7 +31,7 @@ myKeys =
     -- Tree select actions
   , ("M-a", actions treeSelectConfig)
     -- Launch file manager
-  , ("M-e", spawn (myTerminal ++ " -e ranger"))
+  , ("M-d", spawn (myTerminal ++ " -e ranger"))
     -- Launch rofi
   , ("M-p", spawn "rofi -show run")
     -- Launch firefox
