@@ -115,7 +115,7 @@ tallLayout = renamed [Replace "Tall"] (defaultSpacing defaultTallLayout)
 -- gridLayout = renamed [Replace "Grid"] (defaultSpacing Grid)
 -- fullLayout = noBorders Full
 --
-tabbedLayout = renamed [Replace "Tabbed"] (noBorders (tabbedBottomAlways shrinkText myTabbedTheme))
+tabbedLayout = renamed [Replace "Tabbed"] (noBorders (tabbedBottom shrinkText myTabbedTheme))
 
 myTabbedTheme =
   def

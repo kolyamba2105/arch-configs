@@ -9,7 +9,7 @@ Config
   , allDesktops = True
   , persistent = True
   , commands =
-      [ Run Date "%b %d %Y - %H:%M" "date" 50
+      [ Run Date "%b %d %Y - %a %H:%M" "date" 50
       , Run Cpu ["-t", "  <total>%", "-H", "50", "--high", "red"] 20
       , Run Memory ["-t", "  <used>M (<usedratio>%)"] 20
       , Run DiskU [("/", "  <free> free")] [] 60
