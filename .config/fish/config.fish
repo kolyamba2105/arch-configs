@@ -10,5 +10,7 @@ alias cat "bat"
 alias rm "rm -i"
 alias mv "mv -i"
 
+alias cl "clear"
+
 set -x STARSHIP_CONFIG ~/.config/starship/config.toml
 starship init fish | source

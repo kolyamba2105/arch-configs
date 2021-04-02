@@ -5,13 +5,11 @@
 }
 
 #window {
-  border-radius: 4px;
   padding: 8px;
 }
 
 #element {
   border: 0;
-  border-radius: 4px;
   padding: 2px 8px;
 }
 
@@ -30,7 +28,6 @@
 
 #prompt {
   background-color: #69f0ae;
-  border-radius: 4px;
   padding: 4px 8px;
   text-color: #212121;
 }
