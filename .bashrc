@@ -149,8 +149,7 @@ ex ()
 
 source "$HOME/.cargo/env"
 
-export STARSHIP_CONFIG=~/.config/starship/config.toml
-eval "$(starship init bash)"
-
 # Start fish shell
-fish
+if [ "$TERM" != "linux" ]; then
+  fish
+fi
