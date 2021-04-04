@@ -38,10 +38,10 @@ myKeys =
   , ("M-f", spawn "firefox")
     -- Launch firefox in private mode
   , ("M-S-f", spawn "firefox --private-window")
-    -- Launch chromium
-  , ("M-g", spawn "chromium")
-    -- Launch chromium in incognito mode
-  , ("M-S-g", spawn "chromium --incognito")
+    -- Launch brave
+  , ("M-g", spawn "brave")
+    -- Launch brave in incognito mode
+  , ("M-S-g", spawn "brave --incognito")
     -- Launch PulseMixer
   , ("M-s", spawn (myTerminal ++ " -e pulsemixer"))
     -- Take a screenshot of entire display
@@ -94,11 +94,11 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
   fromList $
     -- mod-button1, Set the window to floating mode and move by dragging
   [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w >> windows W.shiftMaster))
-    -- mod-button2, Raise the window to the top of the stack
+      -- mod-button2, Raise the window to the top of the stack
   , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
-    -- mod-button3, Set the window to floating mode and resize by dragging
+      -- mod-button3, Set the window to floating mode and resize by dragging
   , ((modm, button3), (\w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster))
-    -- you may also bind events to the mouse scroll wheel (button4 and button5)
+      -- you may also bind events to the mouse scroll wheel (button4 and button5)
   ]
 
 -- Layouts
@@ -111,10 +111,6 @@ defaultTallLayout = Tall nMaster delta ratio
 
 tallLayout = renamed [Replace "Tall"] (defaultSpacing defaultTallLayout)
 
--- mirrorLayout = defaultSpacing (Mirror defaultTallLayout)
--- gridLayout = renamed [Replace "Grid"] (defaultSpacing Grid)
--- fullLayout = noBorders Full
---
 tabbedLayout = renamed [Replace "Tabbed"] (noBorders (tabbedBottom shrinkText myTabbedTheme))
 
 myTabbedTheme =
@@ -128,6 +124,9 @@ myTabbedTheme =
     , inactiveTextColor = "#ffffff"
     }
 
+-- mirrorLayout = defaultSpacing (Mirror defaultTallLayout)
+-- gridLayout = renamed [Replace "Grid"] (defaultSpacing Grid)
+-- fullLayout = noBorders Full
 myLayout = avoidStruts (tabbedLayout ||| tallLayout)
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
@@ -181,6 +180,7 @@ actions config =
         , childAction "20%" (spawn "xbacklight -set 20")
         , childAction "0%" (spawn "xbacklight -set 0")
         ]
+    , childAction "Toggle mute" (spawn "pulsemixer --toggle-mute")
     , childAction "Bluetooth" (spawn "toggle-bluetooth")
     ]
 

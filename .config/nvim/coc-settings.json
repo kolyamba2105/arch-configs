@@ -6,9 +6,13 @@
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
-  "cSpell.userWords": [
-    "Kanyon",
-    "Konto",
-    "bimap"
-  ]
+  "cSpell.userWords": ["Kanyon", "Konto", "bimap"],
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+      "filetypes": ["hs", "haskell", "lhaskell"]
+    }
+  }
 }
