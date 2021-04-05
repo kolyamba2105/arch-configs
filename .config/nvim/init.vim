@@ -28,7 +28,8 @@ set nobackup
 set noerrorbells
 set noswapfile
 set nowrap
-set nu
+set number
+set relativenumber
 set scrolloff=12
 set shiftwidth=2
 set showtabline=2
