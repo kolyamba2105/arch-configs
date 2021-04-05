@@ -32,6 +32,8 @@ myKeys =
   , ("M-a", actions treeSelectConfig)
     -- Launch file manager
   , ("M-d", spawn (myTerminal ++ " -e ranger"))
+    -- Launch htop
+  , ("M-S-t", spawn (myTerminal ++ " -e htop"))
     -- Launch rofi
   , ("M-p", spawn "rofi -show run")
     -- Launch firefox
@@ -156,7 +158,7 @@ treeSelectConfig =
 
 empty = ""
 
-parentAction name children = Node (TSNode name empty (return ())) children
+parentAction name = Node (TSNode name empty (return ()))
 
 childAction name action = Node (TSNode name empty action) []
 
