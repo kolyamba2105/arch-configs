@@ -77,7 +77,7 @@ At some point when you're booted into fresh Arch GUI, generate an `SSH` and add 
 
 - `git clone https://aur.archlinux.org/yay-git.git` - clone `yay` repo.
 - `sudo pacman -S base-devel` - install `base-devel` (package required for lots of things in Arch).
-- `cd yay-git && makepkg -si` - buildo `yay` from source.
+- `cd yay-git && makepkg -si` - build `yay` from source.
 
 ### Install the most necessary programs
 
@@ -104,11 +104,11 @@ Just `yay -S nerd-fonts-jetbrains-mono`.
 
 ### Set typing repeat speed
 
-In `.xinitrc` put this: `xset r rate 200 35` (aready added to config).
+In `.xinitrc` put this: `xset r rate 200 35` (already added to config).
 
 ### Setup keyboard layouts
 
-During basic installation proccess, generate both US and RU locales (with `locale-gen`).
+During basic installation process, generate both US and RU locales (with `locale-gen`).
 Minor issue: Russian keyboard erases username in a terminal.
 
 ### Sound setup
@@ -185,7 +185,7 @@ Install a front-end for `xrandr` (which comes with `xorg`) called `arandr`. That
 
 ### Network management
 
-During basic installation procces install `networkmanager`, `dhcpcd`, `netctl`, `dialog` and `wifi-menu`. `wifi-menu` will let you connect to wi-fi during installation and while using the OS. All wifi configs will be stored in `/etc/netctl` directory.
+During basic installation procces install `wpa_supplicant`, `dhcpcd`, `netctl`, `dialog` and `wifi-menu`. `wifi-menu` will let you connect to wi-fi during installation and while using the OS. All wifi configs will be stored in `/etc/netctl` directory.
 
 Example:
 
@@ -197,8 +197,6 @@ Example:
 - `sudo netctl stop-all`
 - `sudo netctl switch-to wlp5s0-network-name-2`
 
-Basically network manager was installed during basic installation proccess, check that first (`networkmanager`).
-
 ### Touchpad settings
 
 [Link](https://unix.stackexchange.com/questions/337008/activate-tap-to-click-on-touchpad) for reference.
@@ -206,8 +204,6 @@ Basically network manager was installed during basic installation proccess, chec
 ### Make screenshots
 
 - `sudo pacman -S scrot` - install a simple CLI for taking screenshots.
-- `sudo pacman -S xclip` - install a tool for copying stuff into clipboard.
-- `cat <image-name>.png | xclip -selection clipboard -t image/png` - copy image into clipboard.
 
 ### Default applications settings
 
