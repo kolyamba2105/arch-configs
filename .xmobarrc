@@ -2,7 +2,7 @@ Config
   { font = "xft:JetBrainsMono Nerd Font:weight=bold:pixelsize=14:antialias=true:hinting=true"
   , bgColor = "#424242"
   , fgColor = "#e0e0e0"
-  , position = Top
+  , position = Static {xpos = 0, ypos = 0, width = 1920, height = 28}
   , overrideRedirect = False
   , lowerOnStart = True
   , hideOnStart = False

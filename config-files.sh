@@ -27,69 +27,55 @@ rm ~/.config/rofi/themes/custom.rasi
 
 rm ~/.config/starship/config.toml
 
-rm /usr/local/bin/copy-screenshot
-rm /usr/local/bin/toggle-bluetooth
-
-# In case if repo directory gets renamed
-directory=$PWD
-
 # Bash profile
-ln -s $directory/.bash_profile ~/.bash_profile
-ln -s $directory/.bashrc ~/.bashrc
+ln -s $PWD/.bash_profile ~/.bash_profile
+ln -s $PWD/.bashrc ~/.bashrc
 
 # X init
-ln -s $directory/.xinitrc ~/.xinitrc
+ln -s $PWD/.xinitrc ~/.xinitrc
 
 # Screen layout (monitors settings)
 mkdir -p ~/.screenlayout
-ln -s $directory/.screenlayout/my-layout.sh ~/.screenlayout/my-layout.sh
-ln -s $directory/.screenlayout/monitor-only.sh ~/.screenlayout/monitor-only.sh
+ln -s $PWD/.screenlayout/my-layout.sh ~/.screenlayout/my-layout.sh
+ln -s $PWD/.screenlayout/monitor-only.sh ~/.screenlayout/monitor-only.sh
 
 # XMonad WM
 mkdir -p ~/.xmonad
-ln -s $directory/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
-ln -s $directory/.xmobarrc ~/.xmobarrc
-ln -s $directory/.hindent.yaml ~/.hindent.yaml
+ln -s $PWD/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
+ln -s $PWD/.xmobarrc ~/.xmobarrc
+ln -s $PWD/.hindent.yaml ~/.hindent.yaml
 
 # Create config directory if it doesn't exist
 mkdir -p ~/.config
 
 # Fish config
 mkdir -p ~/.config/fish
-ln -s $directory/.config/fish/config.fish ~/.config/fish/config.fish
+ln -s $PWD/.config/fish/config.fish ~/.config/fish/config.fish
 
 # Alacritty terminal
 mkdir -p ~/.config/alacritty
-ln -s $directory/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -s $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 # Nitrogen wallpapers
 mkdir -p ~/.config/nitrogen
-ln -s $directory/.config/nitrogen/bg-saved.cfg ~/.config/nitrogen/bg-saved.cfg
-ln -s $directory/.config/nitrogen/nitrogen.cfg ~/.config/nitrogen/nitrogen.cfg
+ln -s $PWD/.config/nitrogen/bg-saved.cfg ~/.config/nitrogen/bg-saved.cfg
+ln -s $PWD/.config/nitrogen/nitrogen.cfg ~/.config/nitrogen/nitrogen.cfg
 
 # Neovim
 mkdir -p ~/.config/nvim
-ln -s $directory/.config/nvim/init.vim ~/.config/nvim/init.vim
-ln -s $directory/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+ln -s $PWD/.config/nvim/init.vim ~/.config/nvim/init.vim
+ln -s $PWD/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 # Picom compositor
 mkdir -p ~/.config/picom
-ln -s $directory/.config/picom/picom.conf ~/.config/picom/picom.conf
+ln -s $PWD/.config/picom/picom.conf ~/.config/picom/picom.conf
 
 # Rofi application runner
 mkdir -p ~/.config/rofi
 mkdir -p ~/.config/rofi/themes
-ln -s $directory/.config/rofi/config.rasi ~/.config/rofi/config.rasi
-ln -s $directory/.config/rofi/themes/custom.rasi ~/.config/rofi/themes/custom.rasi
+ln -s $PWD/.config/rofi/config.rasi ~/.config/rofi/config.rasi
+ln -s $PWD/.config/rofi/themes/custom.rasi ~/.config/rofi/themes/custom.rasi
 
 # Starship prompt
 mkdir -p ~/.config/starship
-ln -s $directory/.config/starship/config.toml ~/.config/starship/config.toml
-
-# Make copy-screenshot globally available
-chmod +x $directory/scripts/copy-screenshot.sh
-ln -s $directory/scripts/copy-screenshot.sh /usr/local/bin/copy-screenshot
-
-# Make toggle-bluetooth globally available
-chmod +x $directory/scripts/toggle-bluetooth.sh
-ln -s $directory/scripts/toggle-bluetooth.sh /usr/local/bin/toggle-bluetooth
+ln -s $PWD/.config/starship/config.toml ~/.config/starship/config.toml
