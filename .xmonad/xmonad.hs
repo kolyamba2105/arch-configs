@@ -7,7 +7,7 @@ import System.Exit
 import System.IO
 import XMonad
 import XMonad.Actions.TreeSelect
-import XMonad.Hooks.DynamicLog (PP(..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
+import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Grid
 import XMonad.Layout.LayoutModifier
@@ -27,80 +27,73 @@ myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 -- Key bindings
 --
 myKeys =
-  [ ("M-S-<Return>", spawn myTerminal)
+  [ ("M-S-<Return>", spawn myTerminal),
     -- Tree select actions
-  , ("M-a", actions treeSelectConfig)
+    ("M-a", actions treeSelectConfig),
     -- Launch file manager
-  , ("M-d", spawn (myTerminal ++ " -e ranger"))
+    ("M-d", spawn (myTerminal ++ " -e ranger")),
     -- Launch htop
-  , ("M-S-t", spawn (myTerminal ++ " -e htop"))
+    ("M-S-t", spawn (myTerminal ++ " -e htop")),
     -- Launch rofi
-  , ("M-p", spawn "rofi -show run")
+    ("M-p", spawn "rofi -show run"),
     -- Launch firefox
-  , ("M-f", spawn "firefox")
+    ("M-f", spawn "firefox"),
     -- Launch firefox in private mode
-  , ("M-S-f", spawn "firefox --private-window")
+    ("M-S-f", spawn "firefox --private-window"),
     -- Launch brave
-  , ("M-g", spawn "brave")
+    ("M-g", spawn "brave"),
     -- Launch brave in incognito mode
-  , ("M-S-g", spawn "brave --incognito")
+    ("M-S-g", spawn "brave --incognito"),
     -- Launch PulseMixer
-  , ("M-s", spawn (myTerminal ++ " -e pulsemixer"))
+    ("M-s", spawn (myTerminal ++ " -e pulsemixer")),
+    -- Toggle mute
+    ("M-S-s", spawn "pulsemixer --toggle-mute"),
     -- Take a screenshot of entire display
-  , ("M-<Print>", spawn "scrot ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png -d 1")
+    ("M-<Print>", spawn "scrot ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png -d 1"),
     -- Take a screenshot of focused window
-  , ("M-C-<Print>", spawn "scrot ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png -d 1-u")
+    ("M-C-<Print>", spawn "scrot ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png -d 1-u"),
     -- Take a screenshot of chosen area
-  , ("M-S-<Print>", spawn "scrot ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png -s 1-u")
+    ("M-S-<Print>", spawn "scrot ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png -s 1-u"),
     -- Close focused window
-  , ("M-S-c", kill)
+    ("M-S-c", kill),
     -- Rotate through the available layout algorithms
-  , ("M-<Space>", sendMessage NextLayout)
+    ("M-<Space>", sendMessage NextLayout),
     -- Resize viewed windows to the correct size
-  , ("M-n", refresh)
+    ("M-n", refresh),
     -- Move focus to the next window
-  , ("M-<Tab>", windows W.focusDown)
+    ("M-<Tab>", windows W.focusDown),
     -- Move focus to the next window
-  , ("M-j", windows W.focusDown)
+    ("M-j", windows W.focusDown),
     -- Move focus to the previous window
-  , ("M-k", windows W.focusUp)
+    ("M-k", windows W.focusUp),
     -- Move focus to the master window
-  , ("M-m", windows W.focusMaster)
+    ("M-m", windows W.focusMaster),
     -- Swap the focused window and the master window
-  , ("M-<Return>", windows W.swapMaster)
+    ("M-<Return>", windows W.swapMaster),
     -- Swap the focused window with the next window
-  , ("M-S-j", windows W.swapDown)
+    ("M-S-j", windows W.swapDown),
     -- Swap the focused window with the previous window
-  , ("M-S-k", windows W.swapUp)
+    ("M-S-k", windows W.swapUp),
     -- Shrink the master area
-  , ("M-h", sendMessage Shrink)
+    ("M-h", sendMessage Shrink),
     -- Expand the master area
-  , ("M-l", sendMessage Expand)
+    ("M-l", sendMessage Expand),
     -- Push window back into tiling
-  , ("M-t", withFocused $ windows . W.sink)
+    ("M-t", withFocused $ windows . W.sink),
     -- Increment the number of windows in the master area
-  , ("M-,", sendMessage (IncMasterN 1))
+    ("M-,", sendMessage (IncMasterN 1)),
     -- Decrement the number of windows in the master area
-  , ("M-.", sendMessage (IncMasterN (-1)))
+    ("M-.", sendMessage (IncMasterN (-1))),
+    -- Increment brightness by 10%
+    ("M-<Page_Up>", spawn "xbacklight -inc 10"),
+    -- Decrement brightness by 10%
+    ("M-<Page_Down>", spawn "xbacklight -dec 10"),
     -- Toggle the status bar gap
-  , ("M-b", sendMessage ToggleStruts)
+    ("M-b", sendMessage ToggleStruts),
     -- Quit xmonad (don't want to accidentally kill session)
-  , ("M-S-q", return ())
+    ("M-S-q", return ()),
     -- Restart xmonad
-  , ("M-q", spawn "xmonad --recompile; xmonad --restart")
-  ]
-
--- Mouse bindings
---
-myMouseBindings (XConfig {XMonad.modMask = modm}) =
-  fromList $
-    -- mod-button1, Set the window to floating mode and move by dragging
-  [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w >> windows W.shiftMaster))
-      -- mod-button2, Raise the window to the top of the stack
-  , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
-      -- mod-button3, Set the window to floating mode and resize by dragging
-  , ((modm, button3), (\w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster))
-      -- you may also bind events to the mouse scroll wheel (button4 and button5)
+    ("M-q", spawn "xmonad --recompile; xmonad --restart")
   ]
 
 -- Layouts
@@ -117,13 +110,13 @@ tabbedLayout = renamed [Replace "Tabbed"] (noBorders (tabbedBottom shrinkText my
 
 myTabbedTheme =
   def
-    { fontName = myFont
-    , activeColor = "#b2ff59"
-    , inactiveColor = "#424242"
-    , activeBorderColor = "#b2ff59"
-    , inactiveBorderColor = "#424242"
-    , activeTextColor = "#333333"
-    , inactiveTextColor = "#ffffff"
+    { fontName = myFont,
+      activeColor = "#b2ff59",
+      inactiveColor = "#424242",
+      activeBorderColor = "#b2ff59",
+      inactiveBorderColor = "#424242",
+      activeTextColor = "#333333",
+      inactiveTextColor = "#ffffff"
     }
 
 -- mirrorLayout = defaultSpacing (Mirror defaultTallLayout)
@@ -141,49 +134,33 @@ defaultSpacing = mySpacing 4
 --
 treeSelectConfig =
   TSConfig
-    { ts_hidechildren = True
-    , ts_background = 0xea333333
-    , ts_font = myFont
-    , ts_node = (0xff000000, 0xff00bfa5)
-    , ts_nodealt = (0xff000000, 0xff1de9b6)
-    , ts_highlight = (0xffffffff, 0xff00695c)
-    , ts_extra = 0xff000000
-    , ts_node_width = 200
-    , ts_node_height = 30
-    , ts_originX = 0
-    , ts_originY = 0
-    , ts_indent = 80
-    , ts_navigate = defaultNavigation
+    { ts_hidechildren = True,
+      ts_background = 0xea333333,
+      ts_font = myFont,
+      ts_node = (0xff000000, 0xff00bfa5),
+      ts_nodealt = (0xff000000, 0xff1de9b6),
+      ts_highlight = (0xffffffff, 0xff00695c),
+      ts_extra = 0xff000000,
+      ts_node_width = 200,
+      ts_node_height = 30,
+      ts_originX = 0,
+      ts_originY = 0,
+      ts_indent = 80,
+      ts_navigate = defaultNavigation
     }
 
 empty = ""
 
-parentAction name = Node (TSNode name empty (return ()))
-
-childAction name action = Node (TSNode name empty action) []
+action name action = Node (TSNode name empty action) []
 
 actions config =
   treeselectAction
     config
-    [ parentAction
-        "System"
-        [ childAction "Lock" (spawn "slock")
-        , childAction "Suspend" (spawn "systemctl suspend")
-        , childAction "Kill session" (io (exitWith ExitSuccess))
-        , childAction "Shutdown" (spawn "shutdown now")
-        , childAction "Reboot" (spawn "reboot")
-        ]
-    , parentAction
-        "Brightness"
-        [ childAction "100%" (spawn "xbacklight -set 100")
-        , childAction "80%" (spawn "xbacklight -set 80")
-        , childAction "60%" (spawn "xbacklight -set 60")
-        , childAction "40%" (spawn "xbacklight -set 40")
-        , childAction "20%" (spawn "xbacklight -set 20")
-        , childAction "0%" (spawn "xbacklight -set 0")
-        ]
-    , childAction "Toggle mute" (spawn "pulsemixer --toggle-mute")
-    , childAction "Bluetooth" (spawn "toggle-bluetooth")
+    [ action "Lock" (spawn "slock"),
+      action "Suspend" (spawn "systemctl suspend"),
+      action "Kill session" (io exitSuccess),
+      action "Shutdown" (spawn "shutdown now"),
+      action "Reboot" (spawn "reboot")
     ]
 
 -- Window rules
@@ -221,45 +198,44 @@ myStartupHook = do
 --
 main = do
   xMobar <- spawnPipe "xmobar -x 0"
-  xmonad $ docks ((defaultSettings xMobar) `additionalKeysP` myKeys)
+  xmonad $ docks (defaultSettings xMobar `additionalKeysP` myKeys)
 
 xmobarPrettyPrinting xMobar =
   dynamicLogWithPP
     xmobarPP
-      { ppOutput = hPutStrLn xMobar
+      { ppOutput = hPutStrLn xMobar,
         -- Current workspace in xmobar
-      , ppCurrent = xmobarColor "#b2ff59" "" . wrap "[" "]"
+        ppCurrent = xmobarColor "#b2ff59" "" . wrap "[" "]",
         -- Visible but not current workspace
-      , ppVisible = xmobarColor "#18ffff" ""
+        ppVisible = xmobarColor "#18ffff" "",
         -- Hidden workspaces in xmobar
-      , ppHidden = xmobarColor "#40c4ff" "" . wrap "*" ""
+        ppHidden = xmobarColor "#40c4ff" "" . wrap "*" "",
         -- Hidden workspaces (no windows)
-      , ppHiddenNoWindows = xmobarColor "#ff4081" ""
+        ppHiddenNoWindows = xmobarColor "#ff4081" "",
         -- Title of active window in xmobar
-      , ppTitle = xmobarColor "#64ffda" "" . shorten 50
-      , ppLayout = xmobarColor "#eeff41" ""
+        ppTitle = xmobarColor "#64ffda" "" . shorten 50,
+        ppLayout = xmobarColor "#eeff41" "",
         -- Separators in xmobar
-      , ppSep = "<fc=#eeeeee> | </fc>"
+        ppSep = "<fc=#eeeeee> | </fc>",
         -- Urgent workspace
-      , ppUrgent = xmobarColor "#ff5252" "" . wrap "!" "!"
+        ppUrgent = xmobarColor "#ff5252" "" . wrap "!" "!",
         -- # of windows current workspace
-      , ppExtras = []
+        ppExtras = []
       }
 
 defaultSettings xMobar =
   def
-    { terminal = myTerminal
-    , focusFollowsMouse = True
-    , clickJustFocuses = False
-    , borderWidth = 2
-    , modMask = mod4Mask
-    , workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    , normalBorderColor = "#424242"
-    , focusedBorderColor = "#18ffff"
-    , mouseBindings = myMouseBindings
-    , layoutHook = myLayout
-    , manageHook = manageDocks <+> myManageHook
-    , handleEventHook = myEventHook
-    , logHook = myLogHook <+> (xmobarPrettyPrinting xMobar)
-    , startupHook = myStartupHook
+    { terminal = myTerminal,
+      focusFollowsMouse = True,
+      clickJustFocuses = False,
+      borderWidth = 2,
+      modMask = mod4Mask,
+      workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+      normalBorderColor = "#424242",
+      focusedBorderColor = "#18ffff",
+      layoutHook = myLayout,
+      manageHook = manageDocks <+> myManageHook,
+      handleEventHook = myEventHook,
+      logHook = myLogHook <+> (xmobarPrettyPrinting xMobar),
+      startupHook = myStartupHook
     }
