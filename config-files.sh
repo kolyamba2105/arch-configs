@@ -10,6 +10,8 @@ rm ~/.xmonad/xmonad.hs
 rm ~/.xmobarrc
 rm ~/.hindent.yaml
 
+rm ~/.config/mimeapps.list
+
 rm ~/.config/alacritty/alacritty.yml
 
 rm ~/.config/fish/config.fish
@@ -47,6 +49,9 @@ ln -s $PWD/.hindent.yaml ~/.hindent.yaml
 
 # Create config directory if it doesn't exist
 mkdir -p ~/.config
+
+# Default apps
+ln -s $PWD/.config/mimeapps.list ~/.config/mimeapps.list
 
 # Fish config
 mkdir -p ~/.config/fish
