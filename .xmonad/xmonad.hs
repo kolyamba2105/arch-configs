@@ -6,7 +6,6 @@ import Graphics.X11.ExtraTypes.XF86
 import System.Exit
 import System.IO
 import XMonad
-import XMonad.Actions.TreeSelect
 import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Grid
@@ -28,8 +27,6 @@ myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 --
 myKeys =
   [ ("M-S-<Return>", spawn myTerminal),
-    -- Tree select actions
-    ("M-a", actions treeSelectConfig),
     -- Launch file manager
     ("M-d", spawn (myTerminal ++ " -e ranger")),
     -- Launch htop
@@ -129,39 +126,6 @@ mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
 defaultSpacing :: l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 defaultSpacing = mySpacing 4
-
--- Tree select
---
-treeSelectConfig =
-  TSConfig
-    { ts_hidechildren = True,
-      ts_background = 0xea333333,
-      ts_font = myFont,
-      ts_node = (0xff000000, 0xff00bfa5),
-      ts_nodealt = (0xff000000, 0xff1de9b6),
-      ts_highlight = (0xffffffff, 0xff00695c),
-      ts_extra = 0xff000000,
-      ts_node_width = 200,
-      ts_node_height = 30,
-      ts_originX = 0,
-      ts_originY = 0,
-      ts_indent = 80,
-      ts_navigate = defaultNavigation
-    }
-
-empty = ""
-
-action name action = Node (TSNode name empty action) []
-
-actions config =
-  treeselectAction
-    config
-    [ action "Lock" (spawn "slock"),
-      action "Suspend" (spawn "systemctl suspend"),
-      action "Kill session" (io exitSuccess),
-      action "Shutdown" (spawn "shutdown now"),
-      action "Reboot" (spawn "reboot")
-    ]
 
 -- Window rules
 --
