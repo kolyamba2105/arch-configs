@@ -1,6 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'Yggdroot/indentLine'
 Plug 'arcticicestudio/nord-vim'
+Plug 'cocopon/iceberg.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -11,11 +13,10 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
-colorscheme nord
+colorscheme iceberg
 syntax on
 
 set colorcolumn=100
@@ -90,7 +91,7 @@ nnoremap <silent> <leader>e  :<C-u>CocList diagnostics<cr>
 let g:NERDTreeWinSize=45
 
 let g:lightline = {
-  \ 'colorscheme': 'nord',
+  \ 'colorscheme': 'iceberg',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
   \ },
