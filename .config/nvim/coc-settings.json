@@ -6,7 +6,12 @@
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
-  "cSpell.userWords": ["Kanyon", "Konto", "bimap"],
+  "cSpell.userWords": [
+    "Kanyon",
+    "Konto",
+    "bimap",
+    "monoid"
+  ],
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",

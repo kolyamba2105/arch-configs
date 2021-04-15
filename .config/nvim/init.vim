@@ -16,7 +16,7 @@ Plug 'tpope/vim-surround'
 
 call plug#end()
 
-colorscheme iceberg
+colorscheme nord
 syntax on
 
 set colorcolumn=100
@@ -91,7 +91,7 @@ nnoremap <silent> <leader>e  :<C-u>CocList diagnostics<cr>
 let g:NERDTreeWinSize=45
 
 let g:lightline = {
-  \ 'colorscheme': 'iceberg',
+  \ 'colorscheme': 'nord',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
   \ },
