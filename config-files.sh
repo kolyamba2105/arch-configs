@@ -26,6 +26,8 @@ rm ~/.config/nvim/coc-settings.json
 
 rm ~/.config/picom/picom.conf
 
+rm ~/.config/ranger/rc.conf
+
 rm ~/.config/rofi/config.rasi
 rm ~/.config/rofi/themes/custom.rasi
 
@@ -78,6 +80,9 @@ ln -s $PWD/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 # Picom compositor
 mkdir -p ~/.config/picom
 ln -s $PWD/.config/picom/picom.conf ~/.config/picom/picom.conf
+
+mkdir -p ~/.config/ranger
+ln -s $PWD/.config/ranger/rc.conf ~/.config/ranger/rc.conf
 
 # Rofi application runner
 mkdir -p ~/.config/rofi

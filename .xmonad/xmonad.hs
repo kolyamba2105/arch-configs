@@ -172,12 +172,15 @@ myStartupHook = do
 
 -- Scratchpads
 --
-myScratchPads :: [NamedScratchpad]
-myScratchPads = [NS "terminal" spawnTerminal findTerminal manageTerminal]
+terminalScratchPad :: NamedScratchpad
+terminalScratchPad = NS "terminal" spawnTerminal findTerminal manageTerminal
   where
     spawnTerminal = myNordTerminal ++ " -t ScratchPad"
     findTerminal = title =? "ScratchPad"
     manageTerminal = customFloating $ W.RationalRect 0.15 0.15 0.7 0.7
+
+myScratchPads :: [NamedScratchpad]
+myScratchPads = [terminalScratchPad]
 
 -- Main
 --
