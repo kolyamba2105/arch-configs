@@ -12,7 +12,7 @@ Config
       [ Run Date "  %a %d/%m/%y - %H:%M" "date" 50
       , Run Cpu ["-t", "  <total>%", "-H", "50", "--high", "red"] 20
       , Run Memory ["-t", "  <used>M (<usedratio>%)"] 20
-      , Run DiskU [("/", "  <free> free")] [] 60
+      , Run DiskU [("/", "  <free> free")] [] 60
       , Run Com "uname" ["-r"] "" 3600
       , Run
           DynNetwork

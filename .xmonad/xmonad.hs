@@ -122,8 +122,11 @@ myTabbedTheme =
     }
 
 -- mirrorLayout = renamed [Replace "Mirror"] (defaultSpacing (Mirror defaultTallLayout))
+
 -- gridLayout = renamed [Replace "Grid"] (defaultSpacing Grid)
+
 -- fullLayout = renamed [Replace "Full"] (noBorders Full)
+
 myLayout = avoidStruts (tallLayout ||| tabbedLayout)
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
@@ -134,12 +137,33 @@ defaultSpacing = mySpacing 4
 
 -- Window rules
 --
+
+rectCentered50 :: W.RationalRect
+rectCentered50 = W.RationalRect 0.25 0.25 0.5 0.5
+
+rectCentered60 :: W.RationalRect
+rectCentered60 = W.RationalRect 0.2 0.2 0.6 0.6
+
+rectCentered70 :: W.RationalRect
+rectCentered70 = W.RationalRect 0.15 0.15 0.7 0.7
+
+rectCentered80 :: W.RationalRect
+rectCentered80 = W.RationalRect 0.1 0.1 0.8 0.8
+
+rectCentered90 :: W.RationalRect
+rectCentered90 = W.RationalRect 0.05 0.05 0.9 0.9
+
+rectCentered100 :: W.RationalRect
+rectCentered100 = W.RationalRect 0 0 1 1
+
 myManageHook =
   composeAll
-    [ title =? "PulseMixer" --> customFloating (W.RationalRect 0.25 0.25 0.5 0.5),
-      title =? "Ranger" --> customFloating (W.RationalRect 0.05 0.05 0.9 0.9),
-      title =? "HTOP" --> customFloating (W.RationalRect 0.1 0.1 0.8 0.8),
-      className =? "Pavucontrol" --> customFloating (W.RationalRect 0.1 0.1 0.8 0.8)
+    [ title =? "PulseMixer" --> customFloating rectCentered50,
+      title =? "Ranger" --> customFloating rectCentered90,
+      title =? "HTOP" --> customFloating rectCentered80,
+      className =? "Arandr" --> customFloating rectCentered50,
+      className =? "Nitrogen" --> customFloating rectCentered50,
+      className =? "Pavucontrol" --> customFloating rectCentered50
     ]
     <+> namedScratchpadManageHook myScratchPads
 
@@ -173,11 +197,11 @@ myStartupHook = do
 -- Scratchpads
 --
 terminalScratchPad :: NamedScratchpad
-terminalScratchPad = NS "terminal" spawnTerminal findTerminal manageTerminal
+terminalScratchPad = NS "terminal" spawn find manage
   where
-    spawnTerminal = myNordTerminal ++ " -t ScratchPad"
-    findTerminal = title =? "ScratchPad"
-    manageTerminal = customFloating $ W.RationalRect 0.15 0.15 0.7 0.7
+    spawn = myNordTerminal ++ " -t ScratchPad"
+    find = title =? "ScratchPad"
+    manage = customFloating rectCentered70
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [terminalScratchPad]
