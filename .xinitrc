@@ -33,10 +33,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # ----- MY CONFIG STARTS HERE -----
+xrandr --auto
 
 if (xrandr --listmonitors | grep "Monitors: 2"); then
   # ~/.screenlayout/monitor-only.sh
-  ~/.screenlayout/my-layout.sh
+  # ~/.screenlayout/my-layout.sh
+  ~/.screenlayout/dual-monitor.sh
 fi
 
 # Swap caps and esc
