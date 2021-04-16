@@ -13,6 +13,8 @@ rm ~/.hindent.yaml
 rm ~/.config/mimeapps.list
 
 rm ~/.config/alacritty/alacritty.yml
+rm ~/.config/alacritty/example-config.yml
+rm ~/.config/alacritty/nord-theme.yml
 
 rm ~/.config/fish/config.fish
 
@@ -60,6 +62,8 @@ ln -s $PWD/.config/fish/config.fish ~/.config/fish/config.fish
 # Alacritty terminal
 mkdir -p ~/.config/alacritty
 ln -s $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -s $PWD/.config/alacritty/example-config.yml ~/.config/alacritty/example-config.yml
+ln -s $PWD/.config/alacritty/nord-theme.yml ~/.config/alacritty/nord-theme.yml
 
 # Nitrogen wallpapers
 mkdir -p ~/.config/nitrogen

@@ -16,10 +16,13 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
+import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 
 myTerminal = "alacritty"
+
+myNordTerminal = myTerminal ++ " --config-file ~/.config/alacritty/nord-theme.yml"
 
 myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 
@@ -27,10 +30,6 @@ myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 --
 myKeys =
   [ ("M-S-<Return>", spawn myTerminal),
-    -- Launch file manager
-    ("M-d", spawn (myTerminal ++ " -e ranger")),
-    -- Launch htop
-    ("M-S-t", spawn (myTerminal ++ " -e htop")),
     -- Launch rofi
     ("M-p", spawn "rofi -show run"),
     -- Launch firefox
@@ -41,16 +40,22 @@ myKeys =
     ("M-g", spawn "brave"),
     -- Launch brave in incognito mode
     ("M-S-g", spawn "brave --incognito"),
-    -- Launch PulseMixer
-    ("M-s", spawn (myTerminal ++ " -e pulsemixer")),
-    -- Toggle mute
-    ("M-S-s", spawn "pulsemixer --toggle-mute"),
     -- Take a screenshot of entire display
     ("M-<Print>", spawn "scrot ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png -d 1"),
     -- Take a screenshot of focused window
     ("M-C-<Print>", spawn "scrot ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png -d 1-u"),
     -- Take a screenshot of chosen area
     ("M-S-<Print>", spawn "scrot ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png -s 1-u"),
+    -- Launch file manager
+    ("M-d", spawn (myNordTerminal ++ " -t Ranger -e ranger")),
+    -- Launch htop
+    ("M-S-t", spawn (myNordTerminal ++ " -t HTOP -e htop")),
+    -- Launch PulseMixer
+    ("M-s", spawn (myNordTerminal ++ " -t PulseMixer -e pulsemixer")),
+    -- Launch Pavucontrol (extended volume control GUI)
+    ("M-S-s", spawn "pavucontrol"),
+    -- Open terminal ScratchPad
+    ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal"),
     -- Close focused window
     ("M-S-c", kill),
     -- Rotate through the available layout algorithms
@@ -116,10 +121,10 @@ myTabbedTheme =
       inactiveTextColor = "#ffffff"
     }
 
--- mirrorLayout = defaultSpacing (Mirror defaultTallLayout)
+-- mirrorLayout = renamed [Replace "Mirror"] (defaultSpacing (Mirror defaultTallLayout))
 -- gridLayout = renamed [Replace "Grid"] (defaultSpacing Grid)
--- fullLayout = noBorders Full
-myLayout = avoidStruts (tabbedLayout ||| tallLayout)
+-- fullLayout = renamed [Replace "Full"] (noBorders Full)
+myLayout = avoidStruts (tallLayout ||| tabbedLayout)
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -129,7 +134,14 @@ defaultSpacing = mySpacing 4
 
 -- Window rules
 --
-myManageHook = composeAll []
+myManageHook =
+  composeAll
+    [ title =? "PulseMixer" --> customFloating (W.RationalRect 0.25 0.25 0.5 0.5),
+      title =? "Ranger" --> customFloating (W.RationalRect 0.05 0.05 0.9 0.9),
+      title =? "HTOP" --> customFloating (W.RationalRect 0.1 0.1 0.8 0.8),
+      className =? "Pavucontrol" --> customFloating (W.RationalRect 0.1 0.1 0.8 0.8)
+    ]
+    <+> namedScratchpadManageHook myScratchPads
 
 -- Event handling
 --
@@ -157,6 +169,15 @@ myStartupHook = do
   spawn cursor
   spawn wallpapers
   spawn compositor
+
+-- Scratchpads
+--
+myScratchPads :: [NamedScratchpad]
+myScratchPads = [NS "terminal" spawnTerminal findTerminal manageTerminal]
+  where
+    spawnTerminal = myNordTerminal ++ " -t ScratchPad"
+    findTerminal = title =? "ScratchPad"
+    manageTerminal = customFloating $ W.RationalRect 0.15 0.15 0.7 0.7
 
 -- Main
 --
@@ -200,6 +221,6 @@ defaultSettings xMobar =
       layoutHook = myLayout,
       manageHook = manageDocks <+> myManageHook,
       handleEventHook = myEventHook,
-      logHook = myLogHook <+> (xmobarPrettyPrinting xMobar),
+      logHook = myLogHook <+> xmobarPrettyPrinting xMobar,
       startupHook = myStartupHook
     }
