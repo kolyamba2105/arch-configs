@@ -10,7 +10,8 @@
     "Kanyon",
     "Konto",
     "bimap",
-    "monoid"
+    "monoid",
+    "struct"
   ],
   "languageserver": {
     "haskell": {
