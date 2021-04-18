@@ -14,6 +14,8 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
+import XMonad.Prompt
+import XMonad.Prompt.Shell
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
@@ -30,8 +32,8 @@ myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 --
 myKeys =
   [ ("M-S-<Return>", spawn myTerminal),
-    -- Launch rofi
-    ("M-p", spawn "rofi -show run"),
+    -- Launch shell prompt
+    ("M-p", shellPrompt myPromptConfig),
     -- Launch firefox
     ("M-f", spawn "firefox"),
     -- Launch firefox in private mode
@@ -206,6 +208,24 @@ terminalScratchPad = NS "terminal" spawn find manage
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [terminalScratchPad]
 
+--Prompt config
+--
+myPromptConfig :: XPConfig
+myPromptConfig =
+  def
+    { font = myFont,
+      bgColor = "#333333",
+      fgColor = "#e0e0e0",
+      bgHLight = "#00b0ff",
+      fgHLight = "#333333",
+      borderColor = "#00b0ff",
+      promptBorderWidth = 2,
+      position = CenteredAt 0.4 0.6,
+      height = 32,
+      maxComplRows = Just 5,
+      showCompletionOnTab = True
+    }
+
 -- Main
 --
 main = do
@@ -216,23 +236,13 @@ xmobarPrettyPrinting xMobar =
   dynamicLogWithPP
     xmobarPP
       { ppOutput = hPutStrLn xMobar,
-        -- Current workspace in xmobar
         ppCurrent = xmobarColor "#b2ff59" "" . wrap "[" "]",
-        -- Visible but not current workspace
         ppVisible = xmobarColor "#18ffff" "",
-        -- Hidden workspaces in xmobar
         ppHidden = xmobarColor "#40c4ff" "" . wrap "*" "",
-        -- Hidden workspaces (no windows)
         ppHiddenNoWindows = xmobarColor "#ff4081" "",
-        -- Title of active window in xmobar
         ppTitle = xmobarColor "#64ffda" "" . shorten 50,
         ppLayout = xmobarColor "#eeff41" "",
-        -- Separators in xmobar
-        ppSep = "<fc=#eeeeee> | </fc>",
-        -- Urgent workspace
-        ppUrgent = xmobarColor "#ff5252" "" . wrap "!" "!",
-        -- # of windows current workspace
-        ppExtras = []
+        ppSep = "<fc=#eeeeee> | </fc>"
       }
 
 defaultSettings xMobar =
@@ -243,8 +253,8 @@ defaultSettings xMobar =
       borderWidth = 2,
       modMask = mod4Mask,
       workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
-      normalBorderColor = "#424242",
-      focusedBorderColor = "#18ffff",
+      normalBorderColor = "#333333",
+      focusedBorderColor = "#00b0ff",
       layoutHook = myLayout,
       manageHook = manageDocks <+> myManageHook,
       handleEventHook = myEventHook,
