@@ -6,6 +6,7 @@ import Graphics.X11.ExtraTypes.XF86
 import System.Exit
 import System.IO
 import XMonad
+import qualified XMonad.Actions.CycleWS as C
 import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Grid
@@ -64,6 +65,24 @@ myKeys =
     ("M-<Page_Up>", spawn "xbacklight -inc 10"),
     -- Decrement brightness by 10%
     ("M-<Page_Down>", spawn "xbacklight -dec 10"),
+    -- Switch to the next workspace
+    ("M-C-j", C.nextWS),
+    -- Switch to the previous workspace
+    ("M-C-k", C.prevWS),
+    -- Move the focused window to the next workspace
+    ("M-C-S-j", C.shiftToNext),
+    -- Move the focused window to the previous workspace
+    ("M-C-S-k", C.shiftToPrev),
+    -- View next screen
+    ("M-C-l", C.nextScreen),
+    -- View prev screen
+    ("M-C-h", C.prevScreen),
+    -- Move focused window to workspace on next screen
+    ("M-C-S-l", C.shiftNextScreen),
+    -- Move focused window to workspace on prev screen
+    ("M-C-S-h", C.shiftPrevScreen),
+    -- Toggle to the workspace displayed previously
+    ("M-C-<Tab>", C.toggleWS),
     -- Close focused window
     ("M-S-c", kill),
     -- Rotate through the available layout algorithms
