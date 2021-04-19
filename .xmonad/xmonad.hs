@@ -154,7 +154,8 @@ myManageHook =
       title =? "HTOP" --> customFloating (rectCentered 0.8),
       className =? "Arandr" --> customFloating (rectCentered 0.5),
       className =? "Nitrogen" --> customFloating (rectCentered 0.5),
-      className =? "Pavucontrol" --> customFloating (rectCentered 0.5)
+      className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
+      className =? "feh" --> doFloat
     ]
     <+> namedScratchpadManageHook myScratchPads
 
@@ -217,6 +218,7 @@ myPromptConfig =
 
 -- Main
 --
+main :: IO ()
 main = do
   xMobar <- spawnPipe "xmobar -x 0"
   xmonad $ docks (defaultSettings xMobar `additionalKeysP` myKeys)
