@@ -46,15 +46,18 @@
 - [rofi](https://archlinux.org/packages/community/x86_64/rofi)
 - [scrot](https://archlinux.org/packages/community/x86_64/scrot)
 - [slock](https://archlinux.org/packages/community/x86_64/slock)
+- [telegram-desktop](https://archlinux.org/packages/community/x86_64/telegram-desktop)
 
 ### AUR
 
 - [brave-bin](https://aur.archlinux.org/packages/brave-bin)
 - [nerd-fonts-jetbrains-mono](https://aur.archlinux.org/packages/nerd-fonts-jetbrains-mono)
 - [postman-bin](https://aur.archlinux.org/packages/postman-bin)
+- [slack-desktop](https://aur.archlinux.org/packages/slack-desktop)
 
 ### Rust utils
 
+- [Rust itself](https://www.rust-lang.org/tools/install)
 - [bat](https://github.com/sharkdp/bat)
 - [exa](https://github.com/ogham/exa)
 - [starship](https://starship.rs)

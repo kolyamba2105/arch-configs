@@ -33,7 +33,9 @@ myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 myKeys =
   [ ("M-S-<Return>", spawn myTerminal),
     -- Launch terminal with Nord theme
-    ("M-S-n", spawn myNordTerminal),
+    ("M-C-<Return>", spawn myNordTerminal),
+    -- Open terminal ScratchPad
+    ("M-S-n", namedScratchpadAction myScratchPads "terminal"),
     -- Launch shell prompt
     ("M-p", shellPrompt myPromptConfig),
     -- Launch firefox
@@ -44,12 +46,6 @@ myKeys =
     ("M-g", spawn "brave"),
     -- Launch brave in incognito mode
     ("M-S-g", spawn "brave --incognito"),
-    -- Take a screenshot of entire display
-    ("M-<Print>", spawn "scrot ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png -d 1"),
-    -- Take a screenshot of focused window
-    ("M-C-<Print>", spawn "scrot ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png -d 1-u"),
-    -- Take a screenshot of chosen area
-    ("M-S-<Print>", spawn "scrot ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png -s 1-u"),
     -- Launch file manager
     ("M-d", spawn (myNordTerminal ++ " -t Ranger -e ranger")),
     -- Launch htop
@@ -58,8 +54,16 @@ myKeys =
     ("M-s", spawn (myNordTerminal ++ " -t PulseMixer -e pulsemixer")),
     -- Launch Pavucontrol (extended volume control GUI)
     ("M-S-s", spawn "pavucontrol"),
-    -- Open terminal ScratchPad
-    ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal"),
+    -- Take a screenshot of entire display
+    ("M-<Print>", spawn "scrot ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png -d 1"),
+    -- Take a screenshot of focused window
+    ("M-C-<Print>", spawn "scrot ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png -d 1-u"),
+    -- Take a screenshot of chosen area
+    ("M-S-<Print>", spawn "scrot ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png -s 1-u"),
+    -- Increment brightness by 10%
+    ("M-<Page_Up>", spawn "xbacklight -inc 10"),
+    -- Decrement brightness by 10%
+    ("M-<Page_Down>", spawn "xbacklight -dec 10"),
     -- Close focused window
     ("M-S-c", kill),
     -- Rotate through the available layout algorithms
@@ -90,10 +94,6 @@ myKeys =
     ("M-,", sendMessage (IncMasterN 1)),
     -- Decrement the number of windows in the master area
     ("M-.", sendMessage (IncMasterN (-1))),
-    -- Increment brightness by 10%
-    ("M-<Page_Up>", spawn "xbacklight -inc 10"),
-    -- Decrement brightness by 10%
-    ("M-<Page_Down>", spawn "xbacklight -dec 10"),
     -- Toggle the status bar gap
     ("M-b", sendMessage ToggleStruts),
     -- Quit xmonad (don't want to accidentally kill session)
