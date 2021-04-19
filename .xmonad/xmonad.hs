@@ -32,6 +32,8 @@ myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 --
 myKeys =
   [ ("M-S-<Return>", spawn myTerminal),
+    -- Launch terminal with Nord theme
+    ("M-S-n", spawn myNordTerminal),
     -- Launch shell prompt
     ("M-p", shellPrompt myPromptConfig),
     -- Launch firefox
@@ -140,32 +142,19 @@ defaultSpacing = mySpacing 4
 -- Window rules
 --
 
-rectCentered50 :: W.RationalRect
-rectCentered50 = W.RationalRect 0.25 0.25 0.5 0.5
-
-rectCentered60 :: W.RationalRect
-rectCentered60 = W.RationalRect 0.2 0.2 0.6 0.6
-
-rectCentered70 :: W.RationalRect
-rectCentered70 = W.RationalRect 0.15 0.15 0.7 0.7
-
-rectCentered80 :: W.RationalRect
-rectCentered80 = W.RationalRect 0.1 0.1 0.8 0.8
-
-rectCentered90 :: W.RationalRect
-rectCentered90 = W.RationalRect 0.05 0.05 0.9 0.9
-
-rectCentered100 :: W.RationalRect
-rectCentered100 = W.RationalRect 0 0 1 1
+rectCentered :: Rational -> W.RationalRect
+rectCentered percentage = W.RationalRect offset offset percentage percentage
+  where
+    offset = (1 - percentage) / 2
 
 myManageHook =
   composeAll
-    [ title =? "PulseMixer" --> customFloating rectCentered50,
-      title =? "Ranger" --> customFloating rectCentered90,
-      title =? "HTOP" --> customFloating rectCentered80,
-      className =? "Arandr" --> customFloating rectCentered50,
-      className =? "Nitrogen" --> customFloating rectCentered50,
-      className =? "Pavucontrol" --> customFloating rectCentered50
+    [ title =? "PulseMixer" --> customFloating (rectCentered 0.5),
+      title =? "Ranger" --> customFloating (rectCentered 0.9),
+      title =? "HTOP" --> customFloating (rectCentered 0.8),
+      className =? "Arandr" --> customFloating (rectCentered 0.5),
+      className =? "Nitrogen" --> customFloating (rectCentered 0.5),
+      className =? "Pavucontrol" --> customFloating (rectCentered 0.5)
     ]
     <+> namedScratchpadManageHook myScratchPads
 
@@ -203,7 +192,7 @@ terminalScratchPad = NS "terminal" spawn find manage
   where
     spawn = myNordTerminal ++ " -t ScratchPad"
     find = title =? "ScratchPad"
-    manage = customFloating rectCentered70
+    manage = customFloating (rectCentered 0.7)
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [terminalScratchPad]
@@ -219,9 +208,9 @@ myPromptConfig =
       bgHLight = "#00b0ff",
       fgHLight = "#333333",
       borderColor = "#00b0ff",
-      promptBorderWidth = 2,
-      position = CenteredAt 0.4 0.6,
-      height = 32,
+      promptBorderWidth = 0,
+      position = CenteredAt 0.4 0.5,
+      height = 40,
       maxComplRows = Just 5,
       showCompletionOnTab = True
     }

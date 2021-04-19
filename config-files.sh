@@ -3,6 +3,7 @@ rm ~/.bash_profile
 rm ~/.bashrc
 
 rm ~/.xinitrc
+rm ~/.screenlayout/dual-monitor.sh
 rm ~/.screenlayout/my-layout.sh
 rm ~/.screenlayout/monitor-only.sh
 
@@ -42,6 +43,7 @@ ln -s $PWD/.xinitrc ~/.xinitrc
 
 # Screen layout (monitors settings)
 mkdir -p ~/.screenlayout
+ln -s $PWD/.screenlayout/dual-monitor.sh ~/.screenlayout/dual-monitor.sh
 ln -s $PWD/.screenlayout/my-layout.sh ~/.screenlayout/my-layout.sh
 ln -s $PWD/.screenlayout/monitor-only.sh ~/.screenlayout/monitor-only.sh
 
