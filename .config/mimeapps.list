@@ -1,9 +1,9 @@
 [Default Applications]
 application/pdf=firefox.desktop
-image/gif=firefox.desktop
-image/jpeg=firefox.desktop
-image/png=firefox.desktop
-image/webp=firefox.desktop
+image/gif=feh.desktop
+image/jpeg=feh.desktop
+image/png=feh.desktop
+image/webp=feh.desktop
 text/html=firefox.desktop
 x-scheme-handler/about=firefox.desktop
 x-scheme-handler/http=firefox.desktop

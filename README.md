@@ -36,6 +36,7 @@
 - [alacritty](https://archlinux.org/packages/community/x86_64/alacritty)
 - [arandr](https://archlinux.org/packages/community/any/arandr)
 - [bluez](https://archlinux.org/packages/extra/x86_64/bluez)
+- [discord](https://archlinux.org/packages/community/x86_64/discord)
 - [feh](https://archlinux.org/packages/extra/x86_64/feh)
 - [firefox](https://archlinux.org/packages/extra/x86_64/firefox)
 - [gucharmap](https://archlinux.org/packages/extra/x86_64/gucharmap)
