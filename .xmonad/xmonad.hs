@@ -82,7 +82,7 @@ myKeys =
     -- Move focused window to workspace on prev screen
     ("M-C-S-h", C.shiftPrevScreen),
     -- Toggle to the workspace displayed previously
-    ("M-C-<Tab>", C.toggleWS),
+    ("M-C-<Tab>", toggleWS),
     -- Close focused window
     ("M-S-c", kill),
     -- Rotate through the available layout algorithms
@@ -257,6 +257,9 @@ shiftToNext = shiftTo Next
 
 shiftToPrev :: X ()
 shiftToPrev = shiftTo Prev
+
+toggleWS :: X ()
+toggleWS = C.toggleWS' ["NSP"]
 
 -- Main
 --
