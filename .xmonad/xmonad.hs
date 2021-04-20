@@ -265,32 +265,34 @@ main = do
   xMobar <- spawnPipe "xmobar -x 0"
   xmonad $ docks (defaultSettings xMobar `additionalKeysP` myKeys)
 
+xmobarPrettyPrinting :: Handle -> X ()
 xmobarPrettyPrinting xMobar =
   (dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP)
     xmobarPP
-      { ppOutput = hPutStrLn xMobar,
-        ppCurrent = xmobarColor "#b2ff59" "" . wrap "[" "]",
-        ppVisible = xmobarColor "#18ffff" "",
-        ppHidden = xmobarColor "#40c4ff" "" . wrap "*" "",
+      { ppCurrent = xmobarColor "#b2ff59" "" . wrap "[" "]",
+        ppHidden = xmobarColor "#40c4ff" "" . wrap "-" "-",
         ppHiddenNoWindows = xmobarColor "#ff4081" "",
-        ppTitle = xmobarColor "#64ffda" "" . shorten 50,
         ppLayout = xmobarColor "#eeff41" "",
-        ppSep = "<fc=#eeeeee> | </fc>"
+        ppOutput = hPutStrLn xMobar,
+        ppSep = "<fc=#eeeeee> | </fc>",
+        ppTitle = xmobarColor "#64ffda" "" . shorten 50,
+        ppUrgent = xmobarColor "#40c4ff" "" . wrap "!" "!",
+        ppVisible = xmobarColor "#18ffff" "" . wrap "<" ">"
       }
 
 defaultSettings xMobar =
   def
-    { terminal = myTerminal,
-      focusFollowsMouse = True,
+    { borderWidth = 2,
       clickJustFocuses = False,
-      borderWidth = 2,
-      modMask = mod4Mask,
-      workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
-      normalBorderColor = "#333333",
+      focusFollowsMouse = True,
       focusedBorderColor = "#00b0ff",
-      layoutHook = myLayout,
-      manageHook = manageDocks <+> myManageHook,
       handleEventHook = myEventHook,
+      layoutHook = myLayout,
       logHook = myLogHook <+> xmobarPrettyPrinting xMobar,
-      startupHook = myStartupHook
+      manageHook = manageDocks <+> myManageHook,
+      modMask = mod4Mask,
+      normalBorderColor = "#333333",
+      startupHook = myStartupHook,
+      terminal = myTerminal,
+      workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     }
