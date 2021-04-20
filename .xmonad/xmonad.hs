@@ -66,13 +66,13 @@ myKeys =
     -- Decrement brightness by 10%
     ("M-<Page_Down>", spawn "xbacklight -dec 10"),
     -- Switch to the next workspace
-    ("M-C-j", C.nextWS),
+    ("M-C-j", nextWS),
     -- Switch to the previous workspace
-    ("M-C-k", C.prevWS),
+    ("M-C-k", prevWS),
     -- Move the focused window to the next workspace
-    ("M-C-S-j", C.shiftToNext),
+    ("M-C-S-j", shiftToNext),
     -- Move the focused window to the previous workspace
-    ("M-C-S-k", C.shiftToPrev),
+    ("M-C-S-k", shiftToPrev),
     -- View next screen
     ("M-C-l", C.nextScreen),
     -- View prev screen
@@ -174,7 +174,7 @@ myManageHook =
       className =? "Arandr" --> customFloating (rectCentered 0.5),
       className =? "Nitrogen" --> customFloating (rectCentered 0.5),
       className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
-      className =? "feh" --> doFloat
+      className =? "feh" --> customFloating (rectCentered 0.75)
     ]
     <+> namedScratchpadManageHook myScratchPads
 
@@ -235,6 +235,29 @@ myPromptConfig =
       showCompletionOnTab = True
     }
 
+-- CycleWS
+--
+workspaceType :: C.WSType
+workspaceType = C.WSIs $ return (\workspace -> W.tag workspace /= "NSP")
+
+moveTo :: Direction1D -> X ()
+moveTo direction = C.moveTo direction workspaceType
+
+nextWS :: X ()
+nextWS = moveTo Next
+
+prevWS :: X ()
+prevWS = moveTo Prev
+
+shiftTo :: Direction1D -> X ()
+shiftTo direction = C.shiftTo direction workspaceType
+
+shiftToNext :: X ()
+shiftToNext = shiftTo Next
+
+shiftToPrev :: X ()
+shiftToPrev = shiftTo Prev
+
 -- Main
 --
 main :: IO ()
@@ -243,7 +266,7 @@ main = do
   xmonad $ docks (defaultSettings xMobar `additionalKeysP` myKeys)
 
 xmobarPrettyPrinting xMobar =
-  dynamicLogWithPP
+  (dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP)
     xmobarPP
       { ppOutput = hPutStrLn xMobar,
         ppCurrent = xmobarColor "#b2ff59" "" . wrap "[" "]",
