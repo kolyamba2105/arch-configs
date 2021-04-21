@@ -1,5 +1,5 @@
 import Data.Map (fromList)
-import Data.Maybe (fromJust)
+import Data.Maybe (fromJust, isJust)
 import Data.Monoid
 import Data.Tree
 import Graphics.X11.ExtraTypes.XF86
@@ -237,8 +237,9 @@ myPromptConfig =
 
 -- CycleWS
 --
+-- Cycle through non-empty workspaces while omitting ScratchPad workspace
 workspaceType :: C.WSType
-workspaceType = C.WSIs $ return (\workspace -> W.tag workspace /= "NSP")
+workspaceType = C.WSIs $ return (\workspace -> isJust (W.stack workspace) && (W.tag workspace /= "NSP"))
 
 moveTo :: Direction1D -> X ()
 moveTo direction = C.moveTo direction workspaceType
