@@ -42,12 +42,12 @@
 - [gucharmap](https://archlinux.org/packages/extra/x86_64/gucharmap)
 - [htop](https://archlinux.org/packages/extra/x86_64/htop)
 - [neofetch](https://archlinux.org/packages/community/any/neofetch)
-- [nitrogen](https://archlinux.org/packages/extra/x86_64/nitrogen)
 - [picom](https://archlinux.org/packages/community/x86_64/picom)
 - [ranger](https://archlinux.org/packages/community/any/ranger)
 - [rofi](https://archlinux.org/packages/community/x86_64/rofi)
 - [scrot](https://archlinux.org/packages/community/x86_64/scrot)
 - [slock](https://archlinux.org/packages/community/x86_64/slock)
+- [sxiv](https://archlinux.org/packages/community/x86_64/sxiv)
 - [telegram-desktop](https://archlinux.org/packages/community/x86_64/telegram-desktop)
 
 ### AUR

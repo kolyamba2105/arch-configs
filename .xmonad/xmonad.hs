@@ -29,6 +29,8 @@ myNordTerminal = myTerminal ++ " --config-file ~/.config/alacritty/nord-theme.ym
 
 myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 
+myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
 -- Key bindings
 --
 myKeys =
@@ -172,9 +174,8 @@ myManageHook =
       title =? "Ranger" --> customFloating (rectCentered 0.9),
       title =? "HTOP" --> customFloating (rectCentered 0.8),
       className =? "Arandr" --> customFloating (rectCentered 0.5),
-      className =? "Nitrogen" --> customFloating (rectCentered 0.5),
-      className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
-      className =? "feh" --> customFloating (rectCentered 0.75)
+      className =? "Sxiv" --> customFloating (rectCentered 0.7),
+      className =? "Pavucontrol" --> customFloating (rectCentered 0.5)
     ]
     <+> namedScratchpadManageHook myScratchPads
 
@@ -194,7 +195,7 @@ typingRepeatSpeed = "xset r rate 200 35"
 
 cursor = "xsetroot -cursor_name left_ptr"
 
-wallpapers = "nitrogen --restore &"
+wallpapers = "~/.fehbg &"
 
 compositor = "picom --config ~/.config/picom/picom.conf &"
 
@@ -298,5 +299,5 @@ defaultSettings xMobar =
       normalBorderColor = "#333333",
       startupHook = myStartupHook,
       terminal = myTerminal,
-      workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+      workspaces = myWorkspaces
     }
