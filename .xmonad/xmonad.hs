@@ -72,9 +72,9 @@ myKeys =
     -- Switch to the previous workspace
     ("M-C-k", prevWS),
     -- Move the focused window to the next workspace
-    ("M-C-S-j", shiftToNext),
+    ("M-C-S-j", C.shiftToNext),
     -- Move the focused window to the previous workspace
-    ("M-C-S-k", shiftToPrev),
+    ("M-C-S-k", C.shiftToPrev),
     -- View next screen
     ("M-C-l", C.nextScreen),
     -- View prev screen
@@ -250,15 +250,6 @@ nextWS = moveTo Next
 
 prevWS :: X ()
 prevWS = moveTo Prev
-
-shiftTo :: Direction1D -> X ()
-shiftTo direction = C.shiftTo direction workspaceType
-
-shiftToNext :: X ()
-shiftToNext = shiftTo Next
-
-shiftToPrev :: X ()
-shiftToPrev = shiftTo Prev
 
 toggleWS :: X ()
 toggleWS = C.toggleWS' ["NSP"]
