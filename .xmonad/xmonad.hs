@@ -7,6 +7,7 @@ import System.Exit
 import System.IO
 import XMonad
 import qualified XMonad.Actions.CycleWS as C
+import XMonad.Actions.GridSelect
 import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Grid
@@ -131,9 +132,9 @@ defaultTallLayout = Tall nMaster delta ratio
     delta = 2 / 100
     ratio = 1 / 2
 
-tallLayout = renamed [Replace "Tall"] (defaultSpacing defaultTallLayout)
+tallLayout = renamed [Replace "Tall"] $ defaultSpacing defaultTallLayout
 
-tabbedLayout = renamed [Replace "Tabbed"] (noBorders (tabbedBottom shrinkText myTabbedTheme))
+tabbedLayout = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabbedTheme
 
 myTabbedTheme =
   def
@@ -146,13 +147,13 @@ myTabbedTheme =
       inactiveTextColor = "#ffffff"
     }
 
--- mirrorLayout = renamed [Replace "Mirror"] (defaultSpacing (Mirror defaultTallLayout))
+mirrorLayout = renamed [Replace "Mirror"] $ defaultSpacing $ Mirror defaultTallLayout
 
--- gridLayout = renamed [Replace "Grid"] (defaultSpacing Grid)
+gridLayout = renamed [Replace "Grid"] $ defaultSpacing Grid
 
--- fullLayout = renamed [Replace "Full"] (noBorders Full)
+monocleLayout = renamed [Replace "Monocle"] $ noBorders Full
 
-myLayout = avoidStruts (tallLayout ||| tabbedLayout)
+myLayout = avoidStruts $ tallLayout ||| monocleLayout
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -238,7 +239,6 @@ myPromptConfig =
 
 -- CycleWS
 --
--- Cycle through non-empty workspaces while omitting ScratchPad workspace
 workspaceType :: C.WSType
 workspaceType = C.WSIs $ return (\workspace -> isJust (W.stack workspace) && (W.tag workspace /= "NSP"))
 
