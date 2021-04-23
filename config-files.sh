@@ -1,6 +1,10 @@
+#!/bin/sh
+
 # Remove all existing configs first
 rm ~/.bash_profile
 rm ~/.bashrc
+
+rm ~/.fehbg
 
 rm ~/.xinitrc
 rm ~/.screenlayout/dual-monitor.sh
@@ -14,29 +18,29 @@ rm ~/.hindent.yaml
 rm ~/.config/mimeapps.list
 
 rm ~/.config/alacritty/alacritty.yml
-rm ~/.config/alacritty/example-config.yml
 rm ~/.config/alacritty/nord-theme.yml
 
 rm ~/.config/fish/config.fish
-
-rm ~/.config/nitrogen/bg-saved.cfg
-rm ~/.config/nitrogen/nitrogen.cfg
 
 rm ~/.config/nvim/init.vim
 rm ~/.config/nvim/coc-settings.json
 
 rm ~/.config/picom/picom.conf
 
+rm ~/.config/ranger/commands.py
+rm ~/.config/ranger/commands_full.py
 rm ~/.config/ranger/rc.conf
-
-rm ~/.config/rofi/config.rasi
-rm ~/.config/rofi/themes/custom.rasi
+rm ~/.config/ranger/rifle.conf
+rm ~/.config/ranger/scope.sh
 
 rm ~/.config/starship/config.toml
 
 # Bash profile
 ln -s $PWD/.bash_profile ~/.bash_profile
 ln -s $PWD/.bashrc ~/.bashrc
+
+# Set wallpaper with feh
+ln -s $PWD/.fehbg ~/.fehbg
 
 # X init
 ln -s $PWD/.xinitrc ~/.xinitrc
@@ -66,13 +70,7 @@ ln -s $PWD/.config/fish/config.fish ~/.config/fish/config.fish
 # Alacritty terminal
 mkdir -p ~/.config/alacritty
 ln -s $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-ln -s $PWD/.config/alacritty/example-config.yml ~/.config/alacritty/example-config.yml
 ln -s $PWD/.config/alacritty/nord-theme.yml ~/.config/alacritty/nord-theme.yml
-
-# Nitrogen wallpapers
-mkdir -p ~/.config/nitrogen
-ln -s $PWD/.config/nitrogen/bg-saved.cfg ~/.config/nitrogen/bg-saved.cfg
-ln -s $PWD/.config/nitrogen/nitrogen.cfg ~/.config/nitrogen/nitrogen.cfg
 
 # Neovim
 mkdir -p ~/.config/nvim
@@ -83,14 +81,13 @@ ln -s $PWD/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 mkdir -p ~/.config/picom
 ln -s $PWD/.config/picom/picom.conf ~/.config/picom/picom.conf
 
+# Ranger file manager
 mkdir -p ~/.config/ranger
+ln -s $PWD/.config/ranger/commands.py ~/.config/ranger/commands.py
+ln -s $PWD/.config/ranger/commands_full.py ~/.config/ranger/commands_full.py
 ln -s $PWD/.config/ranger/rc.conf ~/.config/ranger/rc.conf
-
-# Rofi application runner
-mkdir -p ~/.config/rofi
-mkdir -p ~/.config/rofi/themes
-ln -s $PWD/.config/rofi/config.rasi ~/.config/rofi/config.rasi
-ln -s $PWD/.config/rofi/themes/custom.rasi ~/.config/rofi/themes/custom.rasi
+ln -s $PWD/.config/ranger/rifle.conf ~/.config/ranger/rifle.conf
+ln -s $PWD/.config/ranger/scope.sh ~/.config/ranger/scope.sh
 
 # Starship prompt
 mkdir -p ~/.config/starship

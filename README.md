@@ -47,7 +47,6 @@
 - [rofi](https://archlinux.org/packages/community/x86_64/rofi)
 - [scrot](https://archlinux.org/packages/community/x86_64/scrot)
 - [slock](https://archlinux.org/packages/community/x86_64/slock)
-- [sxiv](https://archlinux.org/packages/community/x86_64/sxiv)
 - [telegram-desktop](https://archlinux.org/packages/community/x86_64/telegram-desktop)
 
 ### AUR

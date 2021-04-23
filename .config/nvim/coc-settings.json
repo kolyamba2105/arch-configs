@@ -10,7 +10,9 @@
     "Kanyon",
     "Konto",
     "bimap",
+    "brutto",
     "monoid",
+    "semigroup",
     "struct"
   ],
   "languageserver": {
