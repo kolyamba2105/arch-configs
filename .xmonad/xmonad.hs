@@ -200,12 +200,15 @@ wallpapers = "~/.fehbg &"
 
 compositor = "picom --config ~/.config/picom/picom.conf &"
 
+systemMonitor = "conky"
+
 myStartupHook = do
   spawn keyboardLayout
   spawn typingRepeatSpeed
   spawn cursor
   spawn wallpapers
   spawn compositor
+  spawn systemMonitor
 
 -- Scratchpads
 --

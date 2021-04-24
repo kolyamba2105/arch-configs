@@ -20,6 +20,8 @@ rm ~/.config/mimeapps.list
 rm ~/.config/alacritty/alacritty.yml
 rm ~/.config/alacritty/nord-theme.yml
 
+rm ~/.config/conky/conky.conf
+
 rm ~/.config/fish/config.fish
 
 rm ~/.config/nvim/init.vim
@@ -71,6 +73,10 @@ ln -s $PWD/.config/fish/config.fish ~/.config/fish/config.fish
 mkdir -p ~/.config/alacritty
 ln -s $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -s $PWD/.config/alacritty/nord-theme.yml ~/.config/alacritty/nord-theme.yml
+
+# Conky system monitor
+mkdir -p ~/.config/conky
+ln -s $PWD/.config/conky/conky.conf ~/.config/conky/conky.conf
 
 # Neovim
 mkdir -p ~/.config/nvim
