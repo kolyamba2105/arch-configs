@@ -9,11 +9,14 @@
   "cSpell.userWords": [
     "Kanyon",
     "Konto",
+    "Nord",
+    "alacritty",
     "bimap",
     "brutto",
     "monoid",
     "semigroup",
-    "struct"
+    "struct",
+    "xmobar"
   ],
   "languageserver": {
     "haskell": {

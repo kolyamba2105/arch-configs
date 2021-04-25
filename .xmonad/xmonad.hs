@@ -35,9 +35,9 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 -- Key bindings
 --
 myKeys =
-  [ ("M-S-<Return>", spawn myTerminal),
-    -- Launch terminal with Nord theme
-    ("M-C-<Return>", spawn myNordTerminal),
+  [ ("M-S-<Return>", spawn myNordTerminal),
+    -- Launch terminal with transparent background
+    ("M-C-<Return>", spawn myTerminal),
     -- Open terminal ScratchPad
     ("M-S-n", namedScratchpadAction myScratchPads "terminal"),
     -- Launch shell prompt
@@ -292,6 +292,6 @@ defaultSettings xMobar =
       modMask = mod4Mask,
       normalBorderColor = "#333333",
       startupHook = myStartupHook,
-      terminal = myTerminal,
+      terminal = myNordTerminal,
       workspaces = myWorkspaces
     }
