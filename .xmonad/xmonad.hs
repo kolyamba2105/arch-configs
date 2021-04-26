@@ -176,7 +176,8 @@ myManageHook =
       title =? "HTOP" --> customFloating (rectCentered 0.8),
       className =? "Arandr" --> customFloating (rectCentered 0.5),
       className =? "feh" --> customFloating (rectCentered 0.8),
-      className =? "Pavucontrol" --> customFloating (rectCentered 0.5)
+      className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
+      className =? "Zathura" --> customFloating (rectCentered 0.7)
     ]
     <+> namedScratchpadManageHook myScratchPads
 

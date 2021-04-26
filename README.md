@@ -49,6 +49,8 @@
 - [scrot](https://archlinux.org/packages/community/x86_64/scrot)
 - [slock](https://archlinux.org/packages/community/x86_64/slock)
 - [telegram-desktop](https://archlinux.org/packages/community/x86_64/telegram-desktop)
+- [zathura](https://archlinux.org/packages/community/x86_64/zathura)
+- [zathura-pdf-mupdf](https://archlinux.org/packages/community/x86_64/zathura-pdf-mupdf)
 
 ### AUR
 
