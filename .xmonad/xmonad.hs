@@ -1,3 +1,4 @@
+import Control.Monad (liftM2)
 import Data.Map (fromList)
 import Data.Maybe (fromJust, isJust)
 import Data.Monoid
@@ -169,15 +170,16 @@ rectCentered percentage = W.RationalRect offset offset percentage percentage
   where
     offset = (1 - percentage) / 2
 
+viewShift :: WorkspaceId -> Query (Endo WindowSet)
+viewShift = doF . liftM2 (.) W.greedyView W.shift
+
 myManageHook =
   composeAll
-    [ title =? "PulseMixer" --> customFloating (rectCentered 0.5),
-      title =? "Ranger" --> customFloating (rectCentered 0.9),
-      title =? "HTOP" --> customFloating (rectCentered 0.8),
-      className =? "Arandr" --> customFloating (rectCentered 0.5),
-      className =? "feh" --> customFloating (rectCentered 0.8),
+    [ className =? "Arandr" --> customFloating (rectCentered 0.5),
       className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
-      className =? "Zathura" --> customFloating (rectCentered 0.7)
+      title =? "HTOP" --> customFloating (rectCentered 0.8),
+      title =? "PulseMixer" --> customFloating (rectCentered 0.5),
+      title =? "Ranger" --> viewShift "9"
     ]
     <+> namedScratchpadManageHook myScratchPads
 
