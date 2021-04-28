@@ -13,6 +13,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'unkiwii/vim-nerdtree-sync'
 
 call plug#end()
 
@@ -88,7 +89,10 @@ nmap <silent> gy    <Plug>(coc-type-definition)
 
 nnoremap <silent> <leader>e  :<C-u>CocList diagnostics<cr>
 
+let g:NERDTreeShowHidden=1
 let g:NERDTreeWinSize=45
+
+let g:nerdtree_sync_cursorline = 1
 
 let g:lightline = {
   \ 'colorscheme': 'nord',
