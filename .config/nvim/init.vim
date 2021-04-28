@@ -153,3 +153,5 @@ setlocal formatprg=hindent
 " Consider using this plugin instead - https://github.com/tpope/vim-unimpaired
 nnoremap <leader>o o<Esc>
 nnoremap <leader>O O<Esc>
+
+nmap <silent> Z :noh<CR>
