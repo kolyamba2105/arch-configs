@@ -13,7 +13,6 @@ rm ~/.screenlayout/monitor-only.sh
 
 rm ~/.xmonad/xmonad.hs
 rm ~/.xmobarrc
-rm ~/.hindent.yaml
 
 rm ~/.config/mimeapps.list
 
@@ -56,7 +55,6 @@ ln -s $PWD/.screenlayout/monitor-only.sh ~/.screenlayout/monitor-only.sh
 mkdir -p ~/.xmonad
 ln -s $PWD/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
 ln -s $PWD/.xmobarrc ~/.xmobarrc
-ln -s $PWD/.hindent.yaml ~/.hindent.yaml
 
 # Create config directory if it doesn't exist
 mkdir -p ~/.config
