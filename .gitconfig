@@ -1,0 +1,26 @@
+[user]
+	email = haravetskyy@gmail.com
+	name = kolyamba2105
+
+[color]
+  ui = true
+
+[alias]
+  a = add
+  b = branch
+  c = commit
+  ca = commit --amend
+  can = commit --amend --no-edit
+  ch = checkout
+  chb = checkout -b
+  d = diff
+  dc = diff --cached
+  l = log
+  p = push
+  pf = push -f
+  pl = pull
+  r = rebase
+  ra = rebase --abort
+  rc = rebase --continue
+  ri = rebase -i
+  s = status

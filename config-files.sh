@@ -6,6 +6,8 @@ rm ~/.bashrc
 
 rm ~/.fehbg
 
+rm ~/.gitconfig
+
 rm ~/.xinitrc
 rm ~/.screenlayout/dual-monitor.sh
 rm ~/.screenlayout/my-layout.sh
@@ -41,6 +43,9 @@ ln -s $PWD/.bashrc ~/.bashrc
 
 # Set wallpaper with feh
 ln -s $PWD/.fehbg ~/.fehbg
+
+# Git config
+ln -s $PWD/.gitconfig ~/.gitconfig
 
 # X init
 ln -s $PWD/.xinitrc ~/.xinitrc
