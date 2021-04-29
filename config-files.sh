@@ -18,7 +18,6 @@ rm ~/.hindent.yaml
 rm ~/.config/mimeapps.list
 
 rm ~/.config/alacritty/alacritty.yml
-rm ~/.config/alacritty/nord-theme.yml
 
 rm ~/.config/conky/conky.conf
 
@@ -72,7 +71,6 @@ ln -s $PWD/.config/fish/config.fish ~/.config/fish/config.fish
 # Alacritty terminal
 mkdir -p ~/.config/alacritty
 ln -s $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-ln -s $PWD/.config/alacritty/nord-theme.yml ~/.config/alacritty/nord-theme.yml
 
 # Conky system monitor
 mkdir -p ~/.config/conky

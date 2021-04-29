@@ -27,7 +27,7 @@ import XMonad.Util.SpawnOnce
 
 myTerminal = "alacritty"
 
-myNordTerminal = myTerminal ++ " --config-file ~/.config/alacritty/nord-theme.yml"
+myTransparentTerminal = myTerminal ++ " -o background_opacity=0.9"
 
 myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 
@@ -36,9 +36,9 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 -- Key bindings
 --
 myKeys =
-  [ ("M-S-<Return>", spawn myNordTerminal),
+  [ ("M-S-<Return>", spawn myTerminal),
     -- Launch terminal with transparent background
-    ("M-C-<Return>", spawn myTerminal),
+    ("M-C-<Return>", spawn myTransparentTerminal),
     -- Open terminal ScratchPad
     ("M-S-n", namedScratchpadAction myScratchPads "terminal"),
     -- Launch shell prompt
@@ -52,11 +52,11 @@ myKeys =
     -- Launch brave in incognito mode
     ("M-S-g", spawn "brave --incognito"),
     -- Launch file manager
-    ("M-d", spawn (myNordTerminal ++ " -t Ranger -e ranger")),
+    ("M-d", spawn (myTerminal ++ " -t Ranger -e ranger")),
     -- Launch htop
-    ("M-S-t", spawn (myNordTerminal ++ " -t HTOP -e htop")),
+    ("M-S-t", spawn (myTerminal ++ " -t HTOP -e htop")),
     -- Launch PulseMixer
-    ("M-s", spawn (myNordTerminal ++ " -t PulseMixer -e pulsemixer")),
+    ("M-s", spawn (myTerminal ++ " -t PulseMixer -e pulsemixer")),
     -- Launch Pavucontrol (extended volume control GUI)
     ("M-S-s", spawn "pavucontrol"),
     -- Take a screenshot of entire display
@@ -218,7 +218,7 @@ myStartupHook = do
 terminalScratchPad :: NamedScratchpad
 terminalScratchPad = NS "terminal" spawn find manage
   where
-    spawn = myNordTerminal ++ " -t ScratchPad"
+    spawn = myTerminal ++ " -t ScratchPad"
     find = title =? "ScratchPad"
     manage = customFloating (rectCentered 0.7)
 
@@ -295,6 +295,6 @@ defaultSettings xMobar =
       modMask = mod4Mask,
       normalBorderColor = "#333333",
       startupHook = myStartupHook,
-      terminal = myNordTerminal,
+      terminal = myTerminal,
       workspaces = myWorkspaces
     }
