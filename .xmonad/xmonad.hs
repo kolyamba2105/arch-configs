@@ -127,13 +127,9 @@ myKeys =
 
 -- Layouts
 --
-defaultTallLayout = Tall nMaster delta ratio
-  where
-    nMaster = 1
-    delta = 2 / 100
-    ratio = 1 / 2
+defaultTall = Tall 1 0.05 0.5
 
-tallLayout = renamed [Replace "Tall"] $ defaultSpacing defaultTallLayout
+defaultLayout = renamed [Replace "Default"] $ defaultSpacing defaultTall
 
 tabbedLayout = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabbedTheme
 
@@ -148,13 +144,13 @@ myTabbedTheme =
       inactiveTextColor = "#ffffff"
     }
 
-mirrorLayout = renamed [Replace "Mirror"] $ defaultSpacing $ Mirror defaultTallLayout
+mirrorLayout = renamed [Replace "Mirror"] $ defaultSpacing $ Mirror defaultTall
 
 gridLayout = renamed [Replace "Grid"] $ defaultSpacing Grid
 
 monocleLayout = renamed [Replace "Monocle"] $ noBorders Full
 
-myLayout = avoidStruts $ tallLayout ||| monocleLayout
+myLayout = avoidStruts $ defaultLayout ||| monocleLayout
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
