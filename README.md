@@ -1,4 +1,6 @@
-### Core
+# My config files
+
+## Core
 
 - [xorg-xinit](https://archlinux.org/packages/extra/x86_64/xorg-xinit)
 - [xorg-server](https://archlinux.org/packages/extra/x86_64/xorg-server)
@@ -6,21 +8,21 @@
 - [xmonad-contrib](https://archlinux.org/packages/community/x86_64/xmonad-contrib)
 - [xmonad](https://archlinux.org/packages/community/x86_64/xmonad)
 
-### Sound
+## Sound
 
 - [alsa-utils](https://archlinux.org/packages/extra/x86_64/alsa-utils)
 - [pavucontrol](https://archlinux.org/packages/extra/x86_64/pavucontrol)
 - [pulseaudio](https://archlinux.org/packages/extra/x86_64/pulseaudio)
 - [pulsemixer](https://archlinux.org/packages/community/any/pulsemixer)
 
-### Network
+## Network
 
 - [dhcpcd](https://archlinux.org/packages/core/x86_64/dhcpcd)
 - [dialog](https://archlinux.org/packages/core/x86_64/dialog)
 - [networkmanager](https://archlinux.org/packages/extra/x86_64/networkmanager)
 - [wpa_supplicant](https://archlinux.org/packages/core/x86_64/wpa_supplicant)
 
-### Development
+## Development
 
 - [fish](https://archlinux.org/packages/community/x86_64/fish)
 - [git](https://archlinux.org/packages/extra/x86_64/git)
@@ -31,7 +33,7 @@
 - [vim](https://archlinux.org/packages/extra/x86_64/vim)
 - [yarn](https://archlinux.org/packages/community/any/yarn)
 
-### Apps
+## Apps
 
 - [alacritty](https://archlinux.org/packages/community/x86_64/alacritty)
 - [arandr](https://archlinux.org/packages/community/any/arandr)
@@ -52,21 +54,21 @@
 - [zathura](https://archlinux.org/packages/community/x86_64/zathura)
 - [zathura-pdf-mupdf](https://archlinux.org/packages/community/x86_64/zathura-pdf-mupdf)
 
-### AUR
+## AUR
 
 - [brave-bin](https://aur.archlinux.org/packages/brave-bin)
 - [nerd-fonts-jetbrains-mono](https://aur.archlinux.org/packages/nerd-fonts-jetbrains-mono)
 - [postman-bin](https://aur.archlinux.org/packages/postman-bin)
 - [slack-desktop](https://aur.archlinux.org/packages/slack-desktop)
 
-### Rust utils
+## Rust utils
 
 - [Rust itself](https://www.rust-lang.org/tools/install)
 - [bat](https://github.com/sharkdp/bat)
 - [exa](https://github.com/ogham/exa)
 - [starship](https://starship.rs)
 
-### Articles
+## Articles
 
 - [Bluetooth](https://wiki.archlinux.org/index.php/Bluetooth)
 - [Default applications](https://wiki.archlinux.org/index.php/Xdg-utils)
