@@ -7,13 +7,16 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
   "cSpell.userWords": [
+    "Evotalk",
     "Kanyon",
     "Konto",
     "Nord",
     "alacritty",
     "bimap",
     "brutto",
+    "combinators",
     "monoid",
+    "newtype",
     "semigroup",
     "struct",
     "xmobar"
