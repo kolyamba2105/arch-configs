@@ -6,6 +6,7 @@ Plug 'cocopon/iceberg.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/goyo.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -156,3 +157,5 @@ nnoremap <leader>o o<Esc>
 nnoremap <leader>O O<Esc>
 
 nmap <silent> Z :noh<CR>
+
+nmap <leader>z :Goyo<CR>
