@@ -56,7 +56,9 @@
 
 ## AUR
 
+- [paru](https://github.com/Morganamilo/paru)
 - [brave-bin](https://aur.archlinux.org/packages/brave-bin)
+- [neovide-git](https://aur.archlinux.org/packages/neovide-git)
 - [nerd-fonts-jetbrains-mono](https://aur.archlinux.org/packages/nerd-fonts-jetbrains-mono)
 - [postman-bin](https://aur.archlinux.org/packages/postman-bin)
 - [slack-desktop](https://aur.archlinux.org/packages/slack-desktop)
@@ -78,4 +80,3 @@
 - [Slock](https://wiki.archlinux.org/index.php/Slock)
 - [Touchpad](https://unix.stackexchange.com/questions/337008/activate-tap-to-click-on-touchpad)
 - [Xorg and video drivers](https://wiki.archlinux.org/index.php/xorg)
-- [yay](https://github.com/Jguer/yay)
