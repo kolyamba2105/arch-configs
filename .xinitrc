@@ -44,5 +44,8 @@ fi
 # Swap caps and esc
 setxkbmap -option caps:swapescape
 
+# Start system monitor
+conky
+
 # Start window manager
 xmonad --replace

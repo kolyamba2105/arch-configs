@@ -8,7 +8,9 @@ import System.Exit
 import System.IO
 import XMonad
 import qualified XMonad.Actions.CycleWS as C
+import XMonad.Actions.DynamicWorkspaces
 import XMonad.Actions.GridSelect
+import XMonad.Actions.WindowGo
 import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Grid
@@ -31,7 +33,11 @@ myTransparentTerminal = myTerminal ++ " -o background_opacity=0.9"
 
 myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+nonVisibleWorkspaces = ["NSP"]
+
+nonReachableWorkspaces = ["FM"]
+
+myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] ++ nonReachableWorkspaces ++ nonVisibleWorkspaces
 
 -- Key bindings
 --
@@ -52,11 +58,11 @@ myKeys =
     -- Launch brave in incognito mode
     ("M-S-g", spawn "brave --incognito"),
     -- Launch file manager
-    ("M-d", spawn (myTerminal ++ " -t Ranger -e ranger")),
+    ("M-d", toggleFileManager),
     -- Launch htop
-    ("M-S-t", spawn (myTerminal ++ " -t HTOP -e htop")),
+    ("M-S-t", raiseMaybe (runInTerm "-t HTOP" "htop") htopWindowQuery),
     -- Launch PulseMixer
-    ("M-s", spawn (myTerminal ++ " -t PulseMixer -e pulsemixer")),
+    ("M-s", raiseMaybe (runInTerm "-t PulseMixer" "pulsemixer") pulseMixerWindowQuery),
     -- Launch Pavucontrol (extended volume control GUI)
     ("M-S-s", spawn "pavucontrol"),
     -- Take a screenshot of entire display
@@ -169,13 +175,22 @@ rectCentered percentage = W.RationalRect offset offset percentage percentage
 viewShift :: WorkspaceId -> Query (Endo WindowSet)
 viewShift = doF . liftM2 (.) W.greedyView W.shift
 
+htopWindowQuery :: Query Bool
+htopWindowQuery = title =? "HTOP"
+
+pulseMixerWindowQuery :: Query Bool
+pulseMixerWindowQuery = title =? "PulseMixer"
+
+rangerWindowQuery :: Query Bool
+rangerWindowQuery = title =? "Ranger"
+
 myManageHook =
   composeAll
     [ className =? "Arandr" --> customFloating (rectCentered 0.5),
       className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
-      title =? "HTOP" --> customFloating (rectCentered 0.8),
-      title =? "PulseMixer" --> customFloating (rectCentered 0.5),
-      title =? "Ranger" --> viewShift "9"
+      htopWindowQuery --> customFloating (rectCentered 0.8),
+      pulseMixerWindowQuery --> customFloating (rectCentered 0.5),
+      rangerWindowQuery --> viewShift "FM"
     ]
     <+> namedScratchpadManageHook myScratchPads
 
@@ -199,15 +214,12 @@ wallpapers = "~/.fehbg &"
 
 compositor = "picom --config ~/.config/picom/picom.conf &"
 
-systemMonitor = "conky"
-
 myStartupHook = do
   spawn keyboardLayout
   spawn typingRepeatSpeed
   spawn cursor
   spawn wallpapers
   spawn compositor
-  spawn systemMonitor
 
 -- Scratchpads
 --
@@ -242,7 +254,9 @@ myPromptConfig =
 -- CycleWS
 --
 workspaceType :: C.WSType
-workspaceType = C.WSIs $ return (\workspace -> isJust (W.stack workspace) && (W.tag workspace /= "NSP"))
+workspaceType = C.WSIs $ return (\(W.Workspace tag _ stack) -> isJust stack && tag `notElem` ignoredWorkspaces)
+  where
+    ignoredWorkspaces = nonReachableWorkspaces ++ nonVisibleWorkspaces
 
 moveTo :: Direction1D -> X ()
 moveTo direction = C.moveTo direction workspaceType
@@ -254,7 +268,22 @@ prevWS :: X ()
 prevWS = moveTo Prev
 
 toggleWS :: X ()
-toggleWS = C.toggleWS' ["NSP"]
+toggleWS = C.toggleWS' $ nonReachableWorkspaces ++ nonVisibleWorkspaces
+
+toggleOrView :: WorkspaceId -> X ()
+toggleOrView = C.toggleOrDoSkip nonVisibleWorkspaces W.greedyView
+
+{-
+ - If there are windows with title Ranger,
+ - then toggle the FM workspace (if it's already opened,
+ - then go back to previously opened workspace, otherwise go to "FM")
+ - otherwise open Ranger (and ManageHook will shift you to "FM" workspace)
+-}
+toggleFileManager :: X ()
+toggleFileManager = ifWindows rangerWindowQuery (const toggle) open
+  where
+    toggle = toggleOrView "FM"
+    open = runInTerm "-t Ranger" "ranger"
 
 -- Main
 --
@@ -265,7 +294,7 @@ main = do
 
 xmobarPrettyPrinting :: Handle -> X ()
 xmobarPrettyPrinting xMobar =
-  (dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP)
+  (dynamicLogWithPP . filterOutNonVisibleWorkspacesPP)
     xmobarPP
       { ppCurrent = xmobarColor "#b2ff59" "" . wrap "[" "]",
         ppHidden = xmobarColor "#40c4ff" "" . wrap "-" "-",
@@ -277,6 +306,12 @@ xmobarPrettyPrinting xMobar =
         ppUrgent = xmobarColor "#40c4ff" "" . wrap "!" "!",
         ppVisible = xmobarColor "#18ffff" "" . wrap "<" ">"
       }
+
+filterOutNonVisibleWorkspaces :: [WindowSpace] -> [WindowSpace]
+filterOutNonVisibleWorkspaces = filter (\(W.Workspace tag _ _) -> tag `notElem` nonVisibleWorkspaces)
+
+filterOutNonVisibleWorkspacesPP :: PP -> PP
+filterOutNonVisibleWorkspacesPP pp = pp {ppSort = fmap (. filterOutNonVisibleWorkspaces) (ppSort pp)}
 
 defaultSettings xMobar =
   def
