@@ -158,4 +158,5 @@ nnoremap <leader>O O<Esc>
 
 nmap <silent> Z :noh<CR>
 
-nmap <leader>z :Goyo<CR>
+nmap <leader>z :Goyo 120<CR>
+nmap <leader>c :close<CR>
