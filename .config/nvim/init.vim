@@ -149,8 +149,6 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " Trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
 
-setlocal formatprg=hindent
- 
 " Quickly insert an empty new line without entering insert mode
 " Consider using this plugin instead - https://github.com/tpope/vim-unimpaired
 nnoremap <leader>o o<Esc>
@@ -158,5 +156,8 @@ nnoremap <leader>O O<Esc>
 
 nmap <silent> Z :noh<CR>
 
-nmap <leader>z :Goyo 120<CR>
+let g:goyo_width = 100
+let g:goyo_linenr = 1
+
+nmap <leader>g :Goyo<CR>
 nmap <leader>c :close<CR>
