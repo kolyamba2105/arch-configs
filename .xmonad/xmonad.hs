@@ -1,4 +1,5 @@
 import Control.Monad (liftM2)
+import Data.Function
 import Data.Map (fromList)
 import Data.Maybe (fromJust, isJust)
 import Data.Monoid
@@ -142,12 +143,12 @@ tabbedLayout = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText 
 myTabbedTheme =
   def
     { fontName = myFont,
-      activeColor = "#b2ff59",
-      inactiveColor = "#424242",
-      activeBorderColor = "#b2ff59",
-      inactiveBorderColor = "#424242",
-      activeTextColor = "#333333",
-      inactiveTextColor = "#ffffff"
+      activeColor = colorPalette !! 8,
+      inactiveColor = colorPalette !! 1,
+      activeBorderColor = colorPalette !! 8,
+      inactiveBorderColor = colorPalette !! 1,
+      activeTextColor = colorPalette !! 1,
+      inactiveTextColor = colorPalette !! 4
     }
 
 mirrorLayout = renamed [Replace "Mirror"] $ defaultSpacing $ Mirror defaultTall
@@ -239,12 +240,12 @@ myPromptConfig :: XPConfig
 myPromptConfig =
   def
     { font = myFont,
-      bgColor = "#333333",
-      fgColor = "#e0e0e0",
-      bgHLight = "#00b0ff",
-      fgHLight = "#333333",
-      borderColor = "#00b0ff",
-      promptBorderWidth = 0,
+      bgColor = colorPalette !! 1,
+      fgColor = colorPalette !! 4,
+      bgHLight = colorPalette !! 8,
+      fgHLight = colorPalette !! 2,
+      borderColor = colorPalette !! 8,
+      promptBorderWidth = 2,
       position = CenteredAt 0.4 0.5,
       height = 40,
       maxComplRows = Just 5,
@@ -273,12 +274,10 @@ toggleWS = C.toggleWS' $ nonReachableWorkspaces ++ nonVisibleWorkspaces
 toggleOrView :: WorkspaceId -> X ()
 toggleOrView = C.toggleOrDoSkip nonVisibleWorkspaces W.greedyView
 
-{-
- - If there are windows with title Ranger,
- - then toggle the FM workspace (if it's already opened,
- - then go back to previously opened workspace, otherwise go to "FM")
- - otherwise open Ranger (and ManageHook will shift you to "FM" workspace)
--}
+-- If there are windows with title Ranger,
+-- then toggle the FM workspace (if it's already opened,
+-- then go back to previously opened workspace, otherwise go to "FM")
+-- otherwise open Ranger (and ManageHook will shift you to "FM" workspace)
 toggleFileManager :: X ()
 toggleFileManager = ifWindows rangerWindowQuery (const toggle) open
   where
@@ -296,36 +295,61 @@ xmobarPrettyPrinting :: Handle -> X ()
 xmobarPrettyPrinting xMobar =
   (dynamicLogWithPP . filterOutNonVisibleWorkspacesPP)
     xmobarPP
-      { ppCurrent = xmobarColor "#b2ff59" "" . wrap "[" "]",
-        ppHidden = xmobarColor "#40c4ff" "" . wrap "-" "-",
-        ppHiddenNoWindows = xmobarColor "#ff4081" "",
-        ppLayout = xmobarColor "#eeff41" "",
+      { ppCurrent = xmobarColor' 4 . wrap "[" "]",
+        ppHidden = xmobarColor' 13 . wrap "-" "-",
+        ppHiddenNoWindows = xmobarColor' 8,
+        ppLayout = xmobarColor' 4,
         ppOutput = hPutStrLn xMobar,
-        ppSep = "<fc=#eeeeee> | </fc>",
-        ppTitle = xmobarColor "#64ffda" "" . shorten 50,
-        ppUrgent = xmobarColor "#40c4ff" "" . wrap "!" "!",
-        ppVisible = xmobarColor "#18ffff" "" . wrap "<" ">"
+        ppSep = "<fc=" ++ (colorPalette !! 4) ++ "> | </fc>",
+        ppTitle = xmobarColor' 4 . shorten 50,
+        ppVisible = xmobarColor' 14 . wrap "<" ">"
       }
+
+xmobarColor' :: Int -> String -> String
+xmobarColor' i = xmobarColor (colorPalette !! i) ""
 
 filterOutNonVisibleWorkspaces :: [WindowSpace] -> [WindowSpace]
 filterOutNonVisibleWorkspaces = filter (\(W.Workspace tag _ _) -> tag `notElem` nonVisibleWorkspaces)
 
 filterOutNonVisibleWorkspacesPP :: PP -> PP
-filterOutNonVisibleWorkspacesPP pp = pp {ppSort = fmap (. filterOutNonVisibleWorkspaces) (ppSort pp)}
+filterOutNonVisibleWorkspacesPP pp = pp {ppSort = (. filterOutNonVisibleWorkspaces) <$> ppSort pp}
 
 defaultSettings xMobar =
   def
     { borderWidth = 2,
       clickJustFocuses = False,
       focusFollowsMouse = True,
-      focusedBorderColor = "#00b0ff",
+      focusedBorderColor = colorPalette !! 6,
       handleEventHook = myEventHook,
       layoutHook = myLayout,
       logHook = myLogHook <+> xmobarPrettyPrinting xMobar,
       manageHook = manageDocks <+> myManageHook,
       modMask = mod4Mask,
-      normalBorderColor = "#333333",
+      normalBorderColor = head colorPalette,
       startupHook = myStartupHook,
       terminal = myTerminal,
       workspaces = myWorkspaces
     }
+
+-- Nord color palette
+-- Each color index corresponds to color index from documentation
+-- https://www.nordtheme.com/docs/colors-and-palettes
+colorPalette :: [String]
+colorPalette =
+  [ "#2e3440",
+    "#3b4252",
+    "#434c5e",
+    "#4c566a",
+    "#d8dee9",
+    "#e5e9f0",
+    "#eceff4",
+    "#8fbcbb",
+    "#88c0d0",
+    "#81a1c1",
+    "#5e81ac",
+    "#bf616a",
+    "#d08770",
+    "#ebcb8b",
+    "#a3be8c",
+    "#b48ead"
+  ]

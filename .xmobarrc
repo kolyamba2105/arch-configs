@@ -1,55 +1,43 @@
 Config
   { font = "xft:JetBrainsMono Nerd Font:weight=bold:pixelsize=14:antialias=true:hinting=true"
-  , bgColor = "#333333"
-  , fgColor = "#e0e0e0"
-  , position = Top
+  , bgColor = "#3b4252"
+  , fgColor = "#d8dee9"
+  , position = Static { xpos = 0, ypos = 0, width = 1920, height = 28 }
   , overrideRedirect = False
   , lowerOnStart = True
   , hideOnStart = False
   , allDesktops = True
   , persistent = True
   , commands =
-      [ Run Date "  %a %d/%m/%y - %H:%M" "date" 50
-      , Run Cpu ["-t", "  <total>%", "-H", "50", "--high", "red"] 20
-      , Run Memory ["-t", "  <used>M (<usedratio>%)"] 20
-      , Run DiskU [("/", "  <free> free")] [] 60
+      [ Run Date "%a %d/%m/%y - %H:%M" "date" 50
+      , Run Cpu ["-t", "<total>%", "-H", "50", "--high", "#bf616a"] 20
+      , Run Memory ["-t", "<used>M (<usedratio>%)"] 20
+      , Run DiskU [("/", "<free> free")] [] 60
       , Run Com "uname" ["-r"] "" 3600
       , Run
           DynNetwork
           [ "-t"
-          , "  <tx>    <rx>"
+          , "<tx> / <rx>"
           , "--Low"
           , "1000"
           , "--High"
           , "5000"
-          , "--low"
-          , "darkgreen"
-          , "--normal"
-          , "darkorange"
-          , "--high"
-          , "darkred"
           ]
           10
       , Run Kbd [("us", "US"), ("pl", "PL"), ("ru", "RU"), ("ua", "UA")]
       , Run
           Battery
           [ "--template"
-          , "  <left>%"
+          , "<left>%"
           , "--Low"
           , "20"
           , "--High"
           , "80"
-          , "--low"
-          , "#ff1744"
-          , "--normal"
-          , "#2979ff"
-          , "--high"
-          , "#76ff03"
           ]
           50
       , Run UnsafeStdinReader
       ]
   , alignSep = "}{"
   , template =
-      "<fc=#69f0ae>  </fc> %UnsafeStdinReader% }{ <fc=#69f0ae>%dynnetwork%</fc> <fc=#eeeeee>  </fc> <fc=#69f0ae>%cpu%</fc> <fc=#eeeeee>  </fc> <fc=#69f0ae>%memory%</fc> <fc=#eeeeee>  </fc> <fc=#69f0ae>%disku%</fc> <fc=#eeeeee>  </fc> <fc=#69f0ae>%battery%</fc> <fc=#eeeeee>  </fc> <fc=#69f0ae>  %kbd%</fc> <fc=#eeeeee>  </fc> <fc=#69f0ae>%date%</fc> "
+      "<fc=#88c0d0>  </fc> %UnsafeStdinReader% }{ <fc=#88c0d0> </fc> %dynnetwork% <fc=#d8dee9>  </fc> <fc=#88c0d0> </fc> %cpu% <fc=#d8dee9>  </fc> <fc=#88c0d0> </fc> %memory% <fc=#d8dee9>  </fc> <fc=#88c0d0> </fc> %disku% <fc=#d8dee9>  </fc> <fc=#88c0d0>  </fc> %battery% <fc=#d8dee9>  </fc> <fc=#88c0d0> </fc> %kbd% <fc=#d8dee9>  </fc> <fc=#88c0d0> </fc> %date% "
   }
