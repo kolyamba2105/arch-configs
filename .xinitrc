@@ -35,16 +35,13 @@ fi
 # ----- MY CONFIG STARTS HERE -----
 xrandr --auto
 
-if (xrandr --listmonitors | grep "Monitors: 2"); then
-  # ~/.screenlayout/monitor-only.sh
-  # ~/.screenlayout/my-layout.sh
-  ~/.screenlayout/dual-monitor.sh
-fi
+~/.screenlayout/dual-monitor.sh
 
 # Swap caps and esc
 setxkbmap -option caps:swapescape
 
+conky
+
 # Start window manager
 xmonad --replace
 
-conky

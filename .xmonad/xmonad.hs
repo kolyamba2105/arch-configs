@@ -295,6 +295,7 @@ xmobarPrettyPrinting xMobar =
   (dynamicLogWithPP . filterOutNonVisibleWorkspacesPP)
     xmobarPP
       { ppCurrent = xmobarColor' 4 . wrap "[" "]",
+        ppExtras = [windowCount],
         ppHidden = xmobarColor' 13 . wrap "-" "-",
         ppHiddenNoWindows = xmobarColor' 8,
         ppLayout = xmobarColor' 4,
@@ -312,6 +313,9 @@ filterOutNonVisibleWorkspaces = filter (\(W.Workspace tag _ _) -> tag `notElem` 
 
 filterOutNonVisibleWorkspacesPP :: PP -> PP
 filterOutNonVisibleWorkspacesPP pp = pp {ppSort = (. filterOutNonVisibleWorkspaces) <$> ppSort pp}
+
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 defaultSettings xMobar =
   def
