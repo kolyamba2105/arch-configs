@@ -22,14 +22,17 @@ call plug#end()
 colorscheme nord
 syntax on
 
+set clipboard+=unnamedplus
 set colorcolumn=100
 set cursorline
 set expandtab
+set foldmethod=syntax
 set ignorecase
 set incsearch
 set laststatus=2
 set nobackup
 set noerrorbells
+set nofoldenable
 set noswapfile
 set nowrap
 set number
