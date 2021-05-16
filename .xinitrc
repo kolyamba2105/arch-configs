@@ -40,7 +40,7 @@ xrandr --auto
 # Swap caps and esc
 setxkbmap -option caps:swapescape
 
-conky
+# conky
 
 # Start window manager
 xmonad --replace

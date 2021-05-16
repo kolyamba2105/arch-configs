@@ -1,6 +1,6 @@
 Config
   { font = "xft:JetBrainsMono Nerd Font:weight=bold:pixelsize=14:antialias=true:hinting=true",
-    bgColor = "#3b4252",
+    bgColor = "#2e3440",
     fgColor = "#d8dee9",
     position = Top,
     overrideRedirect = False,

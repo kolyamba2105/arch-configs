@@ -41,13 +41,10 @@ nonReachableWorkspaces = ["FM"]
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] ++ nonReachableWorkspaces ++ nonVisibleWorkspaces
 
 -- Key bindings
---
 myKeys =
   [ ("M-S-<Return>", spawn myTerminal),
     -- Launch terminal with transparent background
     ("M-C-<Return>", spawn myTransparentTerminal),
-    -- Open terminal ScratchPad
-    ("M-S-n", namedScratchpadAction myScratchPads "terminal"),
     -- Launch shell prompt
     ("M-p", shellPrompt myPromptConfig),
     -- Launch firefox
@@ -66,6 +63,12 @@ myKeys =
     ("M-s", raiseMaybe (runInTerm "-t PulseMixer" "pulsemixer") pulseMixerWindowQuery),
     -- Launch Pavucontrol (extended volume control GUI)
     ("M-S-s", spawn "pavucontrol"),
+    -- Open terminal ScratchPad
+    ("M-M1-n", namedScratchpadAction myScratchPads "terminal"),
+    -- Open telegram ScratchPad
+    ("M-M1-t", namedScratchpadAction myScratchPads "telegram"),
+    -- Open slack ScratchPad
+    ("M-M1-s", namedScratchpadAction myScratchPads "slack"),
     -- Take a screenshot of entire display
     ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
     -- Take a screenshot of focused window
@@ -133,7 +136,6 @@ myKeys =
   ]
 
 -- Layouts
---
 defaultTall = Tall 1 0.05 0.5
 
 defaultLayout = renamed [Replace "Default"] $ defaultSpacing defaultTall
@@ -166,8 +168,6 @@ defaultSpacing :: l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 defaultSpacing = mySpacing 4
 
 -- Window rules
---
-
 rectCentered :: Rational -> W.RationalRect
 rectCentered percentage = W.RationalRect offset offset percentage percentage
   where
@@ -196,15 +196,12 @@ myManageHook =
     <+> namedScratchpadManageHook myScratchPads
 
 -- Event handling
---
 myEventHook = mempty
 
 -- Status bars and logging
---
 myLogHook = return ()
 
 -- Startup hook
---
 keyboardLayout = "setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle"
 
 typingRepeatSpeed = "xset r rate 200 35"
@@ -223,7 +220,6 @@ myStartupHook = do
   spawn compositor
 
 -- Scratchpads
---
 terminalScratchPad :: NamedScratchpad
 terminalScratchPad = NS "terminal" spawn find manage
   where
@@ -231,11 +227,24 @@ terminalScratchPad = NS "terminal" spawn find manage
     find = title =? "ScratchPad"
     manage = customFloating (rectCentered 0.7)
 
+telegramScratchpad :: NamedScratchpad
+telegramScratchpad = NS "telegram" spawn find manage
+  where
+    spawn = "telegram-desktop"
+    find = className =? "TelegramDesktop"
+    manage = nonFloating
+
+slackScratchpad :: NamedScratchpad
+slackScratchpad = NS "slack" spawn find manage
+  where
+    spawn = "slack"
+    find = className =? "Slack"
+    manage = nonFloating
+
 myScratchPads :: [NamedScratchpad]
-myScratchPads = [terminalScratchPad]
+myScratchPads = [slackScratchpad, terminalScratchPad, telegramScratchpad]
 
 --Prompt config
---
 myPromptConfig :: XPConfig
 myPromptConfig =
   def
@@ -252,7 +261,6 @@ myPromptConfig =
     }
 
 -- CycleWS
---
 workspaceType :: C.WSType
 workspaceType = C.WSIs $ return (\(W.Workspace tag _ stack) -> isJust stack && tag `notElem` ignoredWorkspaces)
   where
