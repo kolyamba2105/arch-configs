@@ -1,5 +1,7 @@
 # My config files
 
+![screen-2021-05-16-21-58-34](https://user-images.githubusercontent.com/33033411/118409623-02018080-b694-11eb-9e6d-eaaa1958ee63.png)
+
 ## Core
 
 - [xorg-xinit](https://archlinux.org/packages/extra/x86_64/xorg-xinit)
@@ -33,7 +35,7 @@
 - [vim](https://archlinux.org/packages/extra/x86_64/vim)
 - [yarn](https://archlinux.org/packages/community/any/yarn)
 
-## Apps
+## Apps and utils
 
 - [alacritty](https://archlinux.org/packages/community/x86_64/alacritty)
 - [arandr](https://archlinux.org/packages/community/any/arandr)
@@ -43,6 +45,7 @@
 - [fd](https://archlinux.org/packages/community/x86_64/fd)
 - [feh](https://archlinux.org/packages/extra/x86_64/feh)
 - [firefox](https://archlinux.org/packages/extra/x86_64/firefox)
+- [gimp](https://archlinux.org/packages/extra/x86_64/gimp)
 - [gucharmap](https://archlinux.org/packages/extra/x86_64/gucharmap)
 - [htop](https://archlinux.org/packages/extra/x86_64/htop)
 - [neofetch](https://archlinux.org/packages/community/any/neofetch)
@@ -52,16 +55,18 @@
 - [scrot](https://archlinux.org/packages/community/x86_64/scrot)
 - [slock](https://archlinux.org/packages/community/x86_64/slock)
 - [telegram-desktop](https://archlinux.org/packages/community/x86_64/telegram-desktop)
+- [unzip](https://archlinux.org/packages/extra/x86_64/unzip)
 - [xsel](https://archlinux.org/packages/community/x86_64/xsel)
-- [zathura](https://archlinux.org/packages/community/x86_64/zathura)
 - [zathura-pdf-mupdf](https://archlinux.org/packages/community/x86_64/zathura-pdf-mupdf)
+- [zathura](https://archlinux.org/packages/community/x86_64/zathura)
+- [zip](https://archlinux.org/packages/extra/x86_64/zip)
 
 ## AUR
 
-- [paru](https://github.com/Morganamilo/paru)
 - [brave-bin](https://aur.archlinux.org/packages/brave-bin)
 - [neovide-git](https://aur.archlinux.org/packages/neovide-git)
 - [nerd-fonts-jetbrains-mono](https://aur.archlinux.org/packages/nerd-fonts-jetbrains-mono)
+- [paru](https://github.com/Morganamilo/paru)
 - [postman-bin](https://aur.archlinux.org/packages/postman-bin)
 - [slack-desktop](https://aur.archlinux.org/packages/slack-desktop)
 
