@@ -17,6 +17,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Grid
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
@@ -36,7 +37,7 @@ myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 
 nonVisibleWorkspaces = ["NSP"]
 
-nonReachableWorkspaces = ["FM"]
+nonReachableWorkspaces = ["FM", "IRC"]
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] ++ nonReachableWorkspaces ++ nonVisibleWorkspaces
 
@@ -55,20 +56,22 @@ myKeys =
     ("M-g", spawn "brave"),
     -- Launch brave in incognito mode
     ("M-S-g", spawn "brave --incognito"),
-    -- Launch file manager
-    ("M-d", toggleFileManager),
     -- Launch htop
     ("M-S-t", raiseMaybe (runInTerm "-t HTOP" "htop") htopWindowQuery),
     -- Launch PulseMixer
     ("M-s", raiseMaybe (runInTerm "-t PulseMixer" "pulsemixer") pulseMixerWindowQuery),
-    -- Launch Pavucontrol (extended volume control GUI)
+    -- Launch Pavucontrol
     ("M-S-s", spawn "pavucontrol"),
     -- Open terminal ScratchPad
     ("M-M1-<Return>", namedScratchpadAction myScratchPads "terminal"),
-    -- Open telegram ScratchPad
-    ("M-M1-t", namedScratchpadAction myScratchPads "telegram"),
-    -- Open slack ScratchPad
-    ("M-M1-s", namedScratchpadAction myScratchPads "slack"),
+    -- Toggle Ranger
+    ("M-M1-f", toggleRanger),
+    -- Toggle Discord
+    ("M-M1-d", toggleDiscord),
+    -- Toggle Slack
+    ("M-M1-s", toggleSlack),
+    -- Toggle Telegram
+    ("M-M1-t", toggleTelegram),
     -- Take a screenshot of entire display
     ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
     -- Take a screenshot of focused window
@@ -159,7 +162,7 @@ gridLayout = renamed [Replace "Grid"] $ defaultSpacing Grid
 
 monocleLayout = renamed [Replace "Monocle"] $ noBorders Full
 
-myLayout = avoidStruts $ defaultLayout ||| monocleLayout
+myLayout = avoidStruts $ onWorkspace "IRC" tabbedLayout $ defaultLayout ||| monocleLayout
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -185,13 +188,25 @@ pulseMixerWindowQuery = title =? "PulseMixer"
 rangerWindowQuery :: Query Bool
 rangerWindowQuery = title =? "Ranger"
 
+discordWindowQuery :: Query Bool
+discordWindowQuery = className =? "discord"
+
+telegramWindowQuery :: Query Bool
+telegramWindowQuery = className =? "TelegramDesktop"
+
+slackWindowQuery :: Query Bool
+slackWindowQuery = className =? "Slack"
+
 myManageHook =
   composeAll
     [ className =? "Arandr" --> customFloating (rectCentered 0.5),
       className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
       htopWindowQuery --> customFloating (rectCentered 0.8),
       pulseMixerWindowQuery --> customFloating (rectCentered 0.5),
-      rangerWindowQuery --> viewShift "FM"
+      rangerWindowQuery --> viewShift "FM",
+      discordWindowQuery --> viewShift "IRC",
+      telegramWindowQuery --> viewShift "IRC",
+      slackWindowQuery --> viewShift "IRC"
     ]
     <+> namedScratchpadManageHook myScratchPads
 
@@ -230,22 +245,8 @@ terminalScratchPad = NS "terminal" spawn find manage
     find = title =? "ScratchPad"
     manage = customFloating (rectCentered 0.7)
 
-telegramScratchpad :: NamedScratchpad
-telegramScratchpad = NS "telegram" spawn find manage
-  where
-    spawn = "telegram-desktop"
-    find = className =? "TelegramDesktop"
-    manage = nonFloating
-
-slackScratchpad :: NamedScratchpad
-slackScratchpad = NS "slack" spawn find manage
-  where
-    spawn = "slack"
-    find = className =? "Slack"
-    manage = nonFloating
-
 myScratchPads :: [NamedScratchpad]
-myScratchPads = [slackScratchpad, terminalScratchPad, telegramScratchpad]
+myScratchPads = [terminalScratchPad]
 
 --Prompt config
 myPromptConfig :: XPConfig
@@ -284,18 +285,32 @@ toggleWS = C.toggleWS' $ nonReachableWorkspaces ++ nonVisibleWorkspaces
 toggleOrView :: WorkspaceId -> X ()
 toggleOrView = C.toggleOrDoSkip nonVisibleWorkspaces W.greedyView
 
--- If there are windows with title Ranger,
--- then toggle the FM workspace (if it's already opened,
--- then go back to previously opened workspace, otherwise go to "FM")
--- otherwise open Ranger (and ManageHook will shift you to "FM" workspace)
-toggleFileManager :: X ()
-toggleFileManager = ifWindows rangerWindowQuery (const toggle) open
+-- Toggle specific programs
+toggleRanger :: X ()
+toggleRanger = ifWindows rangerWindowQuery (const toggle) open
   where
     toggle = toggleOrView "FM"
     open = runInTerm "-t Ranger" "ranger"
 
+toggleDiscord :: X ()
+toggleDiscord = ifWindows discordWindowQuery (const toggle) open
+  where
+    toggle = toggleOrView "IRC"
+    open = spawn "discord"
+
+toggleSlack :: X ()
+toggleSlack = ifWindows slackWindowQuery (const toggle) open
+  where
+    toggle = toggleOrView "IRC"
+    open = spawn "slack"
+
+toggleTelegram :: X ()
+toggleTelegram = ifWindows telegramWindowQuery (const toggle) open
+  where
+    toggle = toggleOrView "IRC"
+    open = spawn "telegram-desktop"
+
 -- Main
---
 main :: IO ()
 main = do
   xMobar <- spawnPipe "xmobar -x 0"
