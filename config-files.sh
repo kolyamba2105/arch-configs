@@ -22,6 +22,8 @@ rm ~/.config/alacritty/alacritty.yml
 
 rm ~/.config/conky/conky.conf
 
+rm ~/.config/dunst/dunstrc
+
 rm ~/.config/fish/config.fish
 
 rm ~/.config/nvim/init.vim
@@ -78,6 +80,10 @@ ln -s $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 # Conky system monitor
 mkdir -p ~/.config/conky
 ln -s $PWD/.config/conky/conky.conf ~/.config/conky/conky.conf
+
+# Dunst notification-daemon
+mkdir -p ~/.config/dunst
+ln -s $PWD/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 
 # Neovim
 mkdir -p ~/.config/nvim

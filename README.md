@@ -42,6 +42,7 @@
 - [bluez](https://archlinux.org/packages/extra/x86_64/bluez)
 - [conky](https://archlinux.org/packages/extra/x86_64/conky)
 - [discord](https://archlinux.org/packages/community/x86_64/discord)
+- [dunst](https://archlinux.org/packages/community/x86_64/dunst)
 - [fd](https://archlinux.org/packages/community/x86_64/fd)
 - [feh](https://archlinux.org/packages/extra/x86_64/feh)
 - [firefox](https://archlinux.org/packages/extra/x86_64/firefox)

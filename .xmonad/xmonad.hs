@@ -63,26 +63,22 @@ myKeys =
     ("M-s", raiseMaybe (runInTerm "-t PulseMixer" "pulsemixer") pulseMixerWindowQuery),
     -- Launch Pavucontrol (extended volume control GUI)
     ("M-S-s", spawn "pavucontrol"),
-
     -- Open terminal ScratchPad
     ("M-M1-<Return>", namedScratchpadAction myScratchPads "terminal"),
     -- Open telegram ScratchPad
     ("M-M1-t", namedScratchpadAction myScratchPads "telegram"),
     -- Open slack ScratchPad
     ("M-M1-s", namedScratchpadAction myScratchPads "slack"),
-
     -- Take a screenshot of entire display
     ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
     -- Take a screenshot of focused window
     ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png"),
     -- Take a screenshot of chosen area
     ("M-S-<Print>", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png"),
-
     -- Increment brightness by 10%
     ("M-<Page_Up>", spawn "xbacklight -inc 10"),
     -- Decrement brightness by 10%
     ("M-<Page_Down>", spawn "xbacklight -dec 10"),
-
     -- Switch to the next workspace
     ("M-C-j", nextWS),
     -- Switch to the previous workspace
@@ -101,7 +97,6 @@ myKeys =
     ("M-C-S-h", C.shiftPrevScreen),
     -- Toggle to the workspace displayed previously
     ("M-C-<Tab>", toggleWS),
-
     -- Close focused window
     ("M-S-c", kill),
     -- Rotate through the available layout algorithms
@@ -217,12 +212,15 @@ wallpapers = "~/.fehbg &"
 
 compositor = "picom --config ~/.config/picom/picom.conf &"
 
+notificationDaemon = "dunst"
+
 myStartupHook = do
   spawn keyboardLayout
   spawn typingRepeatSpeed
   spawn cursor
   spawn wallpapers
   spawn compositor
+  spawn notificationDaemon
 
 -- Scratchpads
 terminalScratchPad :: NamedScratchpad
@@ -315,6 +313,7 @@ xmobarPrettyPrinting xMobar =
         ppOutput = hPutStrLn xMobar,
         ppSep = "<fc=" ++ (colorPalette !! 4) ++ "> | </fc>",
         ppTitle = xmobarColor' 4 . shorten 50,
+        ppUrgent = xmobarColor' 11 . wrap "!" "!",
         ppVisible = xmobarColor' 14 . wrap "<" ">"
       }
 
