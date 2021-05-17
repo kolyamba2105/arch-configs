@@ -69,6 +69,7 @@
 - [nerd-fonts-jetbrains-mono](https://aur.archlinux.org/packages/nerd-fonts-jetbrains-mono)
 - [paru](https://github.com/Morganamilo/paru)
 - [postman-bin](https://aur.archlinux.org/packages/postman-bin)
+- [python-ueberzug-git](https://aur.archlinux.org/packages/python-ueberzug-git)
 - [slack-desktop](https://aur.archlinux.org/packages/slack-desktop)
 
 ## Rust utils

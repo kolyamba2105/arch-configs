@@ -1,8 +1,4 @@
 [Default Applications]
-image/gif=feh.desktop
-image/jpeg=feh.desktop
-image/png=feh.desktop
-image/webp=feh.desktop
 text/html=brave.desktop
 x-scheme-handler/about=brave.desktop
 x-scheme-handler/http=brave.desktop
