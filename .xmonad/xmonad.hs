@@ -39,7 +39,9 @@ nonVisibleWorkspaces = ["NSP"]
 
 nonReachableWorkspaces = ["FM", "IRC"]
 
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] ++ nonReachableWorkspaces ++ nonVisibleWorkspaces
+ignoredWorkspaces = nonVisibleWorkspaces ++ nonReachableWorkspaces
+
+myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] ++ ignoredWorkspaces
 
 -- Key bindings
 myKeys =
@@ -267,8 +269,6 @@ myPromptConfig =
 -- CycleWS
 workspaceType :: C.WSType
 workspaceType = C.WSIs $ return (\(W.Workspace tag _ stack) -> isJust stack && tag `notElem` ignoredWorkspaces)
-  where
-    ignoredWorkspaces = nonReachableWorkspaces ++ nonVisibleWorkspaces
 
 moveTo :: Direction1D -> X ()
 moveTo direction = C.moveTo direction workspaceType
@@ -280,17 +280,17 @@ prevWS :: X ()
 prevWS = moveTo Prev
 
 toggleWS :: X ()
-toggleWS = C.toggleWS' $ nonReachableWorkspaces ++ nonVisibleWorkspaces
+toggleWS = C.toggleWS' ignoredWorkspaces
 
 toggleOrView :: WorkspaceId -> X ()
-toggleOrView = C.toggleOrDoSkip nonVisibleWorkspaces W.greedyView
+toggleOrView = C.toggleOrDoSkip ignoredWorkspaces W.greedyView
 
 -- Toggle specific programs
 toggleRanger :: X ()
 toggleRanger = ifWindows rangerWindowQuery (const toggle) open
   where
     toggle = toggleOrView "FM"
-    open = runInTerm "-t Ranger" "ranger"
+    open = spawn $ myTransparentTerminal ++ " -t Ranger -e ranger"
 
 toggleDiscord :: X ()
 toggleDiscord = ifWindows discordWindowQuery (const toggle) open
