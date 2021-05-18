@@ -1,6 +1,6 @@
 # My config files
 
-![rice-2021-05-18](https://user-images.githubusercontent.com/33033411/118693399-b07fff80-b813-11eb-8316-9c9ab31d603b.png)
+![rice-2021-05-18-2](https://user-images.githubusercontent.com/33033411/118712243-3d818380-b829-11eb-9969-d56cb21a946e.png)
 
 ## Core
 
