@@ -21,6 +21,7 @@
     "monoid",
     "newtype",
     "semigroup",
+    "snoc",
     "struct",
     "xmobar"
   ],
