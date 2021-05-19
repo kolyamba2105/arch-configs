@@ -62,18 +62,16 @@ myKeys =
     ("M-S-t", raiseMaybe (runInTerm "-t HTOP" "htop") htopWindowQuery),
     -- Launch PulseMixer
     ("M-s", raiseMaybe (runInTerm "-t PulseMixer" "pulsemixer") pulseMixerWindowQuery),
-    -- Launch Pavucontrol
-    ("M-S-s", spawn "pavucontrol"),
     -- Open terminal ScratchPad
     ("M-M1-<Return>", namedScratchpadAction myScratchPads "terminal"),
-    -- Toggle Ranger
-    ("M-M1-f", toggleRanger),
-    -- Toggle Discord
-    ("M-M1-d", toggleDiscord),
-    -- Toggle Slack
-    ("M-M1-s", toggleSlack),
-    -- Toggle Telegram
-    ("M-M1-t", toggleTelegram),
+    -- Launch Ranger
+    ("M-M1-f", raiseMaybe (spawn $ myTransparentTerminal ++ " -t Ranger -e ranger") rangerWindowQuery),
+    -- Launch Discord
+    ("M-M1-d", raiseMaybe (spawn "discord") discordWindowQuery),
+    -- Launch Slack
+    ("M-M1-s", raiseMaybe (spawn "slack") slackWindowQuery),
+    -- Launch Telegram
+    ("M-M1-t", raiseMaybe (spawn "telegram-desktop") telegramWindowQuery),
     -- Take a screenshot of entire display
     ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
     -- Take a screenshot of focused window
@@ -281,34 +279,6 @@ prevWS = moveTo Prev
 
 toggleWS :: X ()
 toggleWS = C.toggleWS' ignoredWorkspaces
-
-toggleOrView :: WorkspaceId -> X ()
-toggleOrView = C.toggleOrDoSkip ignoredWorkspaces W.greedyView
-
--- Toggle specific programs
-toggleRanger :: X ()
-toggleRanger = ifWindows rangerWindowQuery (const toggle) open
-  where
-    toggle = toggleOrView "FM"
-    open = spawn $ myTransparentTerminal ++ " -t Ranger -e ranger"
-
-toggleDiscord :: X ()
-toggleDiscord = ifWindows discordWindowQuery (const toggle) open
-  where
-    toggle = toggleOrView "IRC"
-    open = spawn "discord"
-
-toggleSlack :: X ()
-toggleSlack = ifWindows slackWindowQuery (const toggle) open
-  where
-    toggle = toggleOrView "IRC"
-    open = spawn "slack"
-
-toggleTelegram :: X ()
-toggleTelegram = ifWindows telegramWindowQuery (const toggle) open
-  where
-    toggle = toggleOrView "IRC"
-    open = spawn "telegram-desktop"
 
 -- Main
 main :: IO ()
