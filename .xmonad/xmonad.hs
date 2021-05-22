@@ -9,6 +9,7 @@ import System.Exit
 import System.IO
 import XMonad
 import qualified XMonad.Actions.CycleWS as C
+import XMonad.Actions.DynamicWorkspaceGroups
 import XMonad.Actions.DynamicWorkspaces
 import XMonad.Actions.GridSelect
 import XMonad.Actions.WindowGo
@@ -35,19 +36,17 @@ myTransparentTerminal = myTerminal ++ " -o background_opacity=0.9"
 
 myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 
-nonVisibleWorkspaces = ["NSP"]
+myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-nonReachableWorkspaces = ["FM", "IRC"]
-
-ignoredWorkspaces = nonVisibleWorkspaces ++ nonReachableWorkspaces
-
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] ++ ignoredWorkspaces
+ignoredWorkspaces = ["NSP"]
 
 -- Key bindings
 myKeys =
   [ ("M-S-<Return>", spawn myTerminal),
     -- Launch terminal with transparent background
     ("M-C-<Return>", spawn myTransparentTerminal),
+    -- Open terminal ScratchPad
+    ("M-M1-<Return>", namedScratchpadAction myScratchPads "terminal"),
     -- Launch shell prompt
     ("M-p", shellPrompt myPromptConfig),
     -- Launch firefox
@@ -58,20 +57,12 @@ myKeys =
     ("M-g", spawn "brave"),
     -- Launch brave in incognito mode
     ("M-S-g", spawn "brave --incognito"),
-    -- Launch htop
+    -- Launch Ranger
+    ("M-d", raiseMaybe (runInTerm "-t Ranger" "ranger") rangerWindowQuery),
+    -- Launch HTOP
     ("M-S-t", raiseMaybe (runInTerm "-t HTOP" "htop") htopWindowQuery),
     -- Launch PulseMixer
     ("M-s", raiseMaybe (runInTerm "-t PulseMixer" "pulsemixer") pulseMixerWindowQuery),
-    -- Open terminal ScratchPad
-    ("M-M1-<Return>", namedScratchpadAction myScratchPads "terminal"),
-    -- Launch Ranger
-    ("M-M1-f", raiseMaybe (spawn $ myTransparentTerminal ++ " -t Ranger -e ranger") rangerWindowQuery),
-    -- Launch Discord
-    ("M-M1-d", raiseMaybe (spawn "discord") discordWindowQuery),
-    -- Launch Slack
-    ("M-M1-s", raiseMaybe (spawn "slack") slackWindowQuery),
-    -- Launch Telegram
-    ("M-M1-t", raiseMaybe (spawn "telegram-desktop") telegramWindowQuery),
     -- Take a screenshot of entire display
     ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
     -- Take a screenshot of focused window
@@ -100,6 +91,12 @@ myKeys =
     ("M-C-S-h", C.shiftPrevScreen),
     -- Toggle to the workspace displayed previously
     ("M-C-<Tab>", toggleWS),
+    -- Add dynamic WS group
+    ("M-M1-n", addGroup),
+    -- Go to dynamic WS group
+    ("M-M1-g", goToGroup),
+    -- Forget dynamic WS group
+    ("M-M1-f", forgetGroup),
     -- Close focused window
     ("M-S-c", kill),
     -- Rotate through the available layout algorithms
@@ -162,7 +159,7 @@ gridLayout = renamed [Replace "Grid"] $ defaultSpacing Grid
 
 monocleLayout = renamed [Replace "Monocle"] $ noBorders Full
 
-myLayout = avoidStruts $ onWorkspace "IRC" tabbedLayout $ defaultLayout ||| monocleLayout
+myLayout = avoidStruts $ defaultLayout ||| monocleLayout
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -188,25 +185,12 @@ pulseMixerWindowQuery = title =? "PulseMixer"
 rangerWindowQuery :: Query Bool
 rangerWindowQuery = title =? "Ranger"
 
-discordWindowQuery :: Query Bool
-discordWindowQuery = className =? "discord"
-
-telegramWindowQuery :: Query Bool
-telegramWindowQuery = className =? "TelegramDesktop"
-
-slackWindowQuery :: Query Bool
-slackWindowQuery = className =? "Slack"
-
 myManageHook =
   composeAll
     [ className =? "Arandr" --> customFloating (rectCentered 0.5),
       className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
       htopWindowQuery --> customFloating (rectCentered 0.8),
-      pulseMixerWindowQuery --> customFloating (rectCentered 0.5),
-      rangerWindowQuery --> viewShift "FM",
-      discordWindowQuery --> viewShift "IRC",
-      telegramWindowQuery --> viewShift "IRC",
-      slackWindowQuery --> viewShift "IRC"
+      pulseMixerWindowQuery --> customFloating (rectCentered 0.5)
     ]
     <+> namedScratchpadManageHook myScratchPads
 
@@ -264,6 +248,16 @@ myPromptConfig =
       showCompletionOnTab = True
     }
 
+-- Dynamic workspace groups
+addGroup :: X ()
+addGroup = promptWSGroupAdd myPromptConfig "Name group: "
+
+goToGroup :: X ()
+goToGroup = promptWSGroupView myPromptConfig "Go to group: "
+
+forgetGroup :: X ()
+forgetGroup = promptWSGroupForget myPromptConfig "Forget group: "
+
 -- CycleWS
 workspaceType :: C.WSType
 workspaceType = C.WSIs $ return (\(W.Workspace tag _ stack) -> isJust stack && tag `notElem` ignoredWorkspaces)
@@ -288,7 +282,7 @@ main = do
 
 xmobarPrettyPrinting :: Handle -> X ()
 xmobarPrettyPrinting xMobar =
-  (dynamicLogWithPP . filterOutNonVisibleWorkspacesPP)
+  (dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP)
     xmobarPP
       { ppCurrent = xmobarColor' 4 . wrap "[" "]",
         ppExtras = [windowCount],
@@ -304,12 +298,6 @@ xmobarPrettyPrinting xMobar =
 
 xmobarColor' :: Int -> String -> String
 xmobarColor' i = xmobarColor (colorPalette !! i) ""
-
-filterOutNonVisibleWorkspaces :: [WindowSpace] -> [WindowSpace]
-filterOutNonVisibleWorkspaces = filter (\(W.Workspace tag _ _) -> tag `notElem` nonVisibleWorkspaces)
-
-filterOutNonVisibleWorkspacesPP :: PP -> PP
-filterOutNonVisibleWorkspacesPP pp = pp {ppSort = (. filterOutNonVisibleWorkspaces) <$> ppSort pp}
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
