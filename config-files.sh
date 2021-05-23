@@ -23,6 +23,9 @@ rm ~/.config/alacritty/alacritty.yml
 rm ~/.config/conky/conky.conf
 
 rm ~/.config/dunst/dunstrc
+rm ~/.config/dunst/notification-critial.png
+rm ~/.config/dunst/notification-low.png
+rm ~/.config/dunst/notification-normal.png
 
 rm ~/.config/fish/config.fish
 
@@ -84,6 +87,9 @@ ln -s $PWD/.config/conky/conky.conf ~/.config/conky/conky.conf
 # Dunst notification-daemon
 mkdir -p ~/.config/dunst
 ln -s $PWD/.config/dunst/dunstrc ~/.config/dunst/dunstrc
+ln -s $PWD/.config/dunst/notification-critical.png ~/.config/dunst/notification-critical.png
+ln -s $PWD/.config/dunst/notification-low.png ~/.config/dunst/notification-low.png
+ln -s $PWD/.config/dunst/notification-normal.png ~/.config/dunst/notification-normal.png
 
 # Neovim
 mkdir -p ~/.config/nvim

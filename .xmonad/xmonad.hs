@@ -87,8 +87,6 @@ myKeys =
     ("M-M1-f", forgetGroup),
     -- Open terminal ScratchPad
     ("M-M1-<Return>", openScratchPad "terminal"),
-    -- Open editor ScratchPad
-    ("M-M1-e", openScratchPad "editor"),
     -- Open HTOP ScratchPad
     ("M-M1-t", openScratchPad "htop"),
     -- Open ranger ScratchPad
@@ -234,13 +232,6 @@ terminalScratchPad = NS "terminal" spawn find manage
   where
     spawn = myTerminal ++ " -t Terminal"
     find = title =? "Terminal"
-    manage = customFloating $ rectCentered 0.7
-
-editorScratchPad :: NamedScratchpad
-editorScratchPad = NS "editor" spawn find manage
-  where
-    spawn = myTerminal ++ " -t Editor -e nvim"
-    find = title =? "Editor"
     manage = customFloating $ vertRectCentered 0.9
 
 rangerScratchPad :: NamedScratchpad
@@ -273,8 +264,7 @@ slackScratchPad = NS "slack" spawn find manage
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads =
-  [ editorScratchPad,
-    htopScratchPad,
+  [ htopScratchPad,
     mixerScratchPad,
     rangerScratchPad,
     slackScratchPad,
