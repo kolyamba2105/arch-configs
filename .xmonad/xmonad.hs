@@ -10,15 +10,11 @@ import System.IO
 import XMonad
 import qualified XMonad.Actions.CycleWS as C
 import XMonad.Actions.DynamicWorkspaceGroups
-import XMonad.Actions.DynamicWorkspaces
-import XMonad.Actions.GridSelect
-import XMonad.Actions.WindowGo
-import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Grid
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.NoBorders
-import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
@@ -45,8 +41,6 @@ myKeys =
   [ ("M-S-<Return>", spawn myTerminal),
     -- Launch terminal with transparent background
     ("M-C-<Return>", spawn myTransparentTerminal),
-    -- Open terminal ScratchPad
-    ("M-M1-<Return>", namedScratchpadAction myScratchPads "terminal"),
     -- Launch shell prompt
     ("M-p", shellPrompt myPromptConfig),
     -- Launch firefox
@@ -57,12 +51,6 @@ myKeys =
     ("M-g", spawn "brave"),
     -- Launch brave in incognito mode
     ("M-S-g", spawn "brave --incognito"),
-    -- Launch Ranger
-    ("M-d", raiseMaybe (runInTerm "-t Ranger" "ranger") rangerWindowQuery),
-    -- Launch HTOP
-    ("M-S-t", raiseMaybe (runInTerm "-t HTOP" "htop") htopWindowQuery),
-    -- Launch PulseMixer
-    ("M-s", raiseMaybe (runInTerm "-t PulseMixer" "pulsemixer") pulseMixerWindowQuery),
     -- Take a screenshot of entire display
     ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
     -- Take a screenshot of focused window
@@ -97,6 +85,20 @@ myKeys =
     ("M-M1-g", goToGroup),
     -- Forget dynamic WS group
     ("M-M1-f", forgetGroup),
+    -- Open terminal ScratchPad
+    ("M-M1-<Return>", openScratchPad "terminal"),
+    -- Open editor ScratchPad
+    ("M-M1-e", openScratchPad "editor"),
+    -- Open HTOP ScratchPad
+    ("M-M1-t", openScratchPad "htop"),
+    -- Open ranger ScratchPad
+    ("M-M1-d", openScratchPad "ranger"),
+    -- Open mixer ScratchPad
+    ("M-s", openScratchPad "mixer"),
+    -- Open slack ScratchPad
+    ("M-M1-s", openScratchPad "slack"),
+    -- Lock the screen
+    ("M-S-l", spawn "slock"),
     -- Close focused window
     ("M-S-c", kill),
     -- Rotate through the available layout algorithms
@@ -173,6 +175,13 @@ rectCentered percentage = W.RationalRect offset offset percentage percentage
   where
     offset = (1 - percentage) / 2
 
+vertRectCentered :: Rational -> W.RationalRect
+vertRectCentered height = W.RationalRect offsetX offsetY width height
+  where
+    width = height / 2
+    offsetX = (1 - width) / 2
+    offsetY = (1 - height) / 2
+
 viewShift :: WorkspaceId -> Query (Endo WindowSet)
 viewShift = doF . liftM2 (.) W.greedyView W.shift
 
@@ -188,9 +197,7 @@ rangerWindowQuery = title =? "Ranger"
 myManageHook =
   composeAll
     [ className =? "Arandr" --> customFloating (rectCentered 0.5),
-      className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
-      htopWindowQuery --> customFloating (rectCentered 0.8),
-      pulseMixerWindowQuery --> customFloating (rectCentered 0.5)
+      className =? "Pavucontrol" --> customFloating (rectCentered 0.5)
     ]
     <+> namedScratchpadManageHook myScratchPads
 
@@ -225,12 +232,57 @@ myStartupHook = do
 terminalScratchPad :: NamedScratchpad
 terminalScratchPad = NS "terminal" spawn find manage
   where
-    spawn = myTerminal ++ " -t ScratchPad"
-    find = title =? "ScratchPad"
-    manage = customFloating (rectCentered 0.7)
+    spawn = myTerminal ++ " -t Terminal"
+    find = title =? "Terminal"
+    manage = customFloating $ rectCentered 0.7
+
+editorScratchPad :: NamedScratchpad
+editorScratchPad = NS "editor" spawn find manage
+  where
+    spawn = myTerminal ++ " -t Editor -e nvim"
+    find = title =? "Editor"
+    manage = customFloating $ vertRectCentered 0.9
+
+rangerScratchPad :: NamedScratchpad
+rangerScratchPad = NS "ranger" spawn find manage
+  where
+    spawn = myTerminal ++ " -t Ranger -e ranger"
+    find = rangerWindowQuery
+    manage = nonFloating
+
+htopScratchPad :: NamedScratchpad
+htopScratchPad = NS "htop" spawn find manage
+  where
+    spawn = myTerminal ++ " -t HTOP -e htop"
+    find = htopWindowQuery
+    manage = customFloating $ rectCentered 0.8
+
+mixerScratchPad :: NamedScratchpad
+mixerScratchPad = NS "mixer" spawn find manage
+  where
+    spawn = myTerminal ++ " -t PulseMixer -e pulsemixer"
+    find = pulseMixerWindowQuery
+    manage = customFloating $ rectCentered 0.5
+
+slackScratchPad :: NamedScratchpad
+slackScratchPad = NS "slack" spawn find manage
+  where
+    spawn = "slack"
+    find = className =? "Slack"
+    manage = nonFloating
 
 myScratchPads :: [NamedScratchpad]
-myScratchPads = [terminalScratchPad]
+myScratchPads =
+  [ editorScratchPad,
+    htopScratchPad,
+    mixerScratchPad,
+    rangerScratchPad,
+    slackScratchPad,
+    terminalScratchPad
+  ]
+
+openScratchPad :: String -> X ()
+openScratchPad = namedScratchpadAction myScratchPads
 
 --Prompt config
 myPromptConfig :: XPConfig
