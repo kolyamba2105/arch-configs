@@ -51,6 +51,16 @@ myKeys =
     ("M-g", spawn "brave"),
     -- Launch brave in incognito mode
     ("M-S-g", spawn "brave --incognito"),
+    -- Open terminal ScratchPad
+    ("M-M1-<Return>", openScratchPad "terminal"),
+    -- Open HTOP ScratchPad
+    ("M-S-t", openScratchPad "htop"),
+    -- Open ranger ScratchPad
+    ("M-d", openScratchPad "ranger"),
+    -- Open mixer ScratchPad
+    ("M-s", openScratchPad "mixer"),
+    -- Open slack ScratchPad
+    ("M-S-s", openScratchPad "slack"),
     -- Take a screenshot of entire display
     ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
     -- Take a screenshot of focused window
@@ -85,16 +95,6 @@ myKeys =
     ("M-M1-g", goToGroup),
     -- Forget dynamic WS group
     ("M-M1-f", forgetGroup),
-    -- Open terminal ScratchPad
-    ("M-M1-<Return>", openScratchPad "terminal"),
-    -- Open HTOP ScratchPad
-    ("M-M1-t", openScratchPad "htop"),
-    -- Open ranger ScratchPad
-    ("M-M1-d", openScratchPad "ranger"),
-    -- Open mixer ScratchPad
-    ("M-s", openScratchPad "mixer"),
-    -- Open slack ScratchPad
-    ("M-M1-s", openScratchPad "slack"),
     -- Lock the screen
     ("M-S-l", spawn "slock"),
     -- Close focused window
