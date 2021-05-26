@@ -1,5 +1,6 @@
 {
   "diagnostic.virtualText": true,
+  "tsserver.log": "verbose",
   "prettier.arrowParens": "avoid",
   "prettier.jsxBracketSameLine": true,
   "prettier.printWidth": 100,
@@ -8,8 +9,10 @@
   "prettier.trailingComma": "all",
   "cSpell.userWords": [
     "Cardv",
+    "Coapplicant",
     "Cond",
     "Evotalk",
+    "Existency",
     "Formik",
     "Janek",
     "Kanyon",

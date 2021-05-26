@@ -41,6 +41,8 @@ set shiftwidth=2
 set showtabline=2
 set smartcase
 set smartindent
+set splitbelow
+set splitright
 set tabstop=2 softtabstop=2
 set termguicolors
 set undodir=~/.vim/undo
@@ -76,6 +78,10 @@ nmap <silent> <C-A-h> :wincmd h<CR>
 nmap <silent> <C-A-j> :wincmd j<CR>
 nmap <silent> <C-A-k> :wincmd k<CR>
 nmap <silent> <C-A-l> :wincmd l<CR>
+
+" Create splits
+nmap <silent> <C-s> :vsp<CR>
+nmap <silent> <C-A-s> :sp<CR>
 
 " Move between buffers
 nmap <silent> <C-h> :bp<CR>
@@ -120,7 +126,9 @@ nmap <leader>g :Goyo<CR>
 " CoC settings
 nmap <leader>a <Plug>(coc-codeaction)
 nmap <leader>f :call CocAction('format')<CR>
-nmap <leader>i :call CocActionAsync('runCommand', 'tsserver.organizeImports')<CR>
+nmap <leader>i :CocCommand tsserver.organizeImports<CR>
+nmap <leader>l :CocCommand tsserver.openTsServerLog<CR>
+nmap <leader>R :CocCommand tsserver.restart<CR>
 nmap <leader>rn <Plug>(coc-rename)
 
 nmap <silent> <C-j> <Plug>(coc-diagnostic-next)

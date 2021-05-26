@@ -208,7 +208,7 @@ myLogHook = return ()
 -- Startup hook
 keyboardLayout = "setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle"
 
-typingRepeatSpeed = "xset r rate 200 35"
+typingRepeatSpeed = "xset r rate 180 40"
 
 cursor = "xsetroot -cursor_name left_ptr"
 
@@ -342,7 +342,17 @@ xmobarColor' :: Int -> String -> String
 xmobarColor' i = xmobarColor (colorPalette !! i) ""
 
 windowCount :: X (Maybe String)
-windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+windowCount =
+  gets $
+    fmap ("Window count: " ++)
+      . Just
+      . show
+      . length
+      . W.integrate'
+      . W.stack
+      . W.workspace
+      . W.current
+      . windowset
 
 defaultSettings xMobar =
   def
