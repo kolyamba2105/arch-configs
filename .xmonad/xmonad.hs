@@ -335,7 +335,7 @@ xmobarPrettyPrinting xMobar =
         ppHiddenNoWindows = xmobarColor' 8,
         ppLayout = xmobarColor' 4,
         ppOutput = hPutStrLn xMobar,
-        ppSep = "<fc=" ++ (colorPalette !! 4) ++ "> | </fc>",
+        ppSep = "<fc=" ++ (colorPalette !! 4) ++ "> " ++ "\63196" ++ " </fc>",
         ppTitle = xmobarColor' 4 . shorten 50,
         ppUrgent = xmobarColor' 11 . wrap "!" "!",
         ppVisible = xmobarColor' 14 . wrap "<" ">"
@@ -347,7 +347,7 @@ xmobarColor' i = xmobarColor (colorPalette !! i) ""
 windowCount :: X (Maybe String)
 windowCount =
   gets $
-    fmap ("Window count: " ++)
+    fmap ("\62600  " ++)
       . Just
       . show
       . length
