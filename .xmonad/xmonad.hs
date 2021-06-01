@@ -129,10 +129,13 @@ myKeys =
     ("M-.", sendMessage (IncMasterN (-1))),
     -- Toggle the status bar gap
     ("M-b", sendMessage ToggleStruts),
-    -- Quit xmonad (don't want to accidentally kill session)
-    ("M-S-q", return ()),
     -- Restart xmonad
     ("M-q", spawn "xmonad --recompile; xmonad --restart")
+  ]
+
+myRemovedKeys :: [String]
+myRemovedKeys =
+  [ "M-S-q"
   ]
 
 -- Layouts
@@ -320,7 +323,7 @@ toggleWS = C.toggleWS' ignoredWorkspaces
 main :: IO ()
 main = do
   xMobar <- spawnPipe "xmobar -x 0"
-  xmonad $ docks (defaultSettings xMobar `additionalKeysP` myKeys)
+  xmonad $ docks (defaultSettings xMobar `additionalKeysP` myKeys `removeKeysP` myRemovedKeys)
 
 xmobarPrettyPrinting :: Handle -> X ()
 xmobarPrettyPrinting xMobar =

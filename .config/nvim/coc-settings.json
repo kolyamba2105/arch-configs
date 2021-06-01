@@ -14,6 +14,7 @@
     "Evotalk",
     "Existency",
     "Formik",
+    "Hanlder",
     "Janek",
     "Kanyon",
     "Kinded",
@@ -23,11 +24,13 @@
     "bimap",
     "brutto",
     "combinators",
+    "contramap",
     "monoid",
     "newtype",
     "semigroup",
     "snoc",
     "struct",
+    "tupled",
     "xmobar"
   ],
   "languageserver": {
