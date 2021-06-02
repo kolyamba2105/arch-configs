@@ -27,6 +27,7 @@
     "contramap",
     "monoid",
     "newtype",
+    "pactl",
     "pixelsize",
     "scrot",
     "semigroup",
