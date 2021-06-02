@@ -27,11 +27,16 @@
     "contramap",
     "monoid",
     "newtype",
+    "pixelsize",
+    "scrot",
     "semigroup",
+    "slock",
     "snoc",
     "struct",
     "tupled",
-    "xmobar"
+    "xbacklight",
+    "xmobar",
+    "xmonad"
   ],
   "languageserver": {
     "haskell": {
