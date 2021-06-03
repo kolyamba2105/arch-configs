@@ -204,7 +204,7 @@
     sticky_history = yes
 
     # Maximum amount of notifications kept in history
-    history_length = 20
+    history_length = 10
 
     ### Misc/Advanced ###
 
@@ -328,19 +328,19 @@
     background = "#434c5e"
     foreground = "#eceff4"
     icon = ~/.config/dunst/notification-low.png
-    timeout = 10
+    timeout = 5
 
 [urgency_normal]
     background = "#434c5e"
     foreground = "#eceff4"
     icon = ~/.config/dunst/notification-normal.png
-    timeout = 10
+    timeout = 5
 
 [urgency_critical]
     background = "#434c5e"
     foreground = "#eceff4"
     icon = ~/.config/dunst/notification-critical.png
-    timeout = 0
+    timeout = 5
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

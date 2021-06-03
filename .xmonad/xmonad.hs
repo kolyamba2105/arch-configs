@@ -10,10 +10,12 @@ import System.IO
 import XMonad
 import qualified XMonad.Actions.CycleWS as C
 import XMonad.Actions.DynamicWorkspaceGroups
+import XMonad.Actions.WithAll
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Grid
 import XMonad.Layout.LayoutModifier
+import XMonad.Layout.LimitWindows
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
@@ -37,7 +39,7 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 ignoredWorkspaces = ["NSP"]
 
 -- Key bindings
-myKeys = coreKeys ++ scratchPadKeys ++ controlKeys ++ cycleWSKeys ++ dynamicWSGroupKeys
+myKeys = coreKeys ++ scratchPadKeys ++ controlKeys ++ cycleWSKeys ++ dynamicWSGroupKeys ++ wmKeys
   where
     coreKeys =
       [ ("M-C-<Return>", spawn myTransparentTerminal),
@@ -61,15 +63,12 @@ myKeys = coreKeys ++ scratchPadKeys ++ controlKeys ++ cycleWSKeys ++ dynamicWSGr
     controlKeys =
       [ ("<XF86AudioMicMute>", spawn "pactl set-source-mute 1 toggle"),
         ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle"),
-        ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
-        ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
-        ("M-<Page_Down>", spawn "xbacklight -dec 10"),
-        ("M-<Page_Up>", spawn "xbacklight -inc 10"),
-        ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
-        ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png"),
+        ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10" `withNotification` Command Low "Brightness" "xbacklight -get"),
+        ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10" `withNotification` Command Low "Brightness" "xbacklight -get"),
+        ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png" `withNotification` Message Critical "Screenshot" "Saved screen capture!"),
+        ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png" `withNotification` Message Critical "Screenshot" "Saved window capture!"),
         ("M-S-<Print>", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png"),
-        ("M-S-l", spawn "slock"),
-        ("M-b", sendMessage ToggleStruts)
+        ("M-S-l", spawn "slock")
       ]
 
     cycleWSKeys =
@@ -90,6 +89,12 @@ myKeys = coreKeys ++ scratchPadKeys ++ controlKeys ++ cycleWSKeys ++ dynamicWSGr
         ("M-M1-n", addGroup)
       ]
 
+    wmKeys =
+      [ ("M-b", sendMessage ToggleStruts),
+        ("M-M1-c", killAll `withNotification` Message Critical "XMonad" "Killed them all!"),
+        ("M-q", spawn "xmonad --recompile && xmonad --restart" `withNotification` Message Normal "XMonad" "Recompiled and restarted!")
+      ]
+
 myRemovedKeys :: [String]
 myRemovedKeys =
   [ "M-S-q"
@@ -98,10 +103,33 @@ myRemovedKeys =
 myKeysConfig :: XConfig a -> XConfig a
 myKeysConfig config = config `additionalKeysP` myKeys `removeKeysP` myRemovedKeys
 
+-- Send notification
+data UrgencyLevel = Low | Normal | Critical
+
+instance Show UrgencyLevel where
+  show Low = "low"
+  show Normal = "normal"
+  show Critical = "critical"
+
+data Notification
+  = Message UrgencyLevel String String
+  | Command UrgencyLevel String String
+
+wrapInQuotes, wrapIntoCommand :: String -> String
+wrapInQuotes = wrap "'" "'"
+wrapIntoCommand = wrap "$(" ")"
+
+sendNotification :: Notification -> X ()
+sendNotification (Message uLevel summary body) = spawn ("notify-send " ++ wrapInQuotes summary ++ " " ++ wrapInQuotes body ++ " -u " ++ wrapInQuotes (show uLevel))
+sendNotification (Command uLevel summary body) = spawn ("notify-send " ++ wrapInQuotes summary ++ " " ++ wrapIntoCommand body ++ " -u " ++ wrapInQuotes (show uLevel))
+
+withNotification :: X () -> Notification -> X ()
+withNotification action notification = action >> sendNotification notification
+
 -- Layouts
 defaultTall = Tall 1 0.05 0.5
 
-defaultLayout = renamed [Replace "Default"] $ defaultSpacing defaultTall
+defaultLayout = renamed [Replace "Default"] $ limitWindows 6 $ defaultSpacing defaultTall
 
 tabbedLayout = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabbedTheme
 
@@ -315,7 +343,7 @@ xmobarColor' i = xmobarColor (colorPalette !! i) ""
 windowCount :: X (Maybe String)
 windowCount =
   gets $
-    fmap ("\62600  " ++)
+    (<$>) ("\62600  " ++)
       . Just
       . show
       . length
