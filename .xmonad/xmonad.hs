@@ -1,11 +1,8 @@
 import Control.Monad (liftM2)
 import Data.Function
-import Data.Map (fromList)
-import Data.Maybe (fromJust, isJust)
+import Data.Maybe
 import Data.Monoid
-import Data.Tree
 import Graphics.X11.ExtraTypes.XF86
-import System.Exit
 import System.IO
 import XMonad
 import qualified XMonad.Actions.CycleWS as C
@@ -67,8 +64,7 @@ myKeys = coreKeys ++ scratchPadKeys ++ controlKeys ++ cycleWSKeys ++ dynamicWSGr
         ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10" `withNotification` Command Low "Brightness" "xbacklight -get"),
         ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png" `withNotification` Message Critical "Screenshot" "Saved screen capture!"),
         ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png" `withNotification` Message Critical "Screenshot" "Saved window capture!"),
-        ("M-S-<Print>", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png"),
-        ("M-S-l", spawn "slock")
+        ("M-S-<Print>", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png")
       ]
 
     cycleWSKeys =
