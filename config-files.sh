@@ -23,7 +23,7 @@ rm ~/.config/alacritty/alacritty.yml
 rm ~/.config/conky/conky.conf
 
 rm ~/.config/dunst/dunstrc
-rm ~/.config/dunst/notification-critial.png
+rm ~/.config/dunst/notification-critical.png
 rm ~/.config/dunst/notification-low.png
 rm ~/.config/dunst/notification-normal.png
 

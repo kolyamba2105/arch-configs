@@ -22,7 +22,7 @@ colorscheme nord
 syntax on
 
 set clipboard+=unnamedplus
-set colorcolumn=100
+set colorcolumn=80
 set cursorline
 set expandtab
 set foldmethod=syntax
@@ -120,7 +120,6 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 " Goyo settings
 let g:goyo_linenr = 1
-let g:goyo_width = 100
 
 nmap <leader>g :Goyo<CR>
 

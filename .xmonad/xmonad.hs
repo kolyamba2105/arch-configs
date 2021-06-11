@@ -201,8 +201,6 @@ cursor = "xsetroot -cursor_name left_ptr"
 
 wallpapers = "~/.fehbg &"
 
-compositor = "picom --config ~/.config/picom/picom.conf &"
-
 notificationDaemon = "dunst"
 
 myStartupHook = do
@@ -210,7 +208,6 @@ myStartupHook = do
   spawn typingRepeatSpeed
   spawn cursor
   spawn wallpapers
-  spawn compositor
   spawn notificationDaemon
 
 -- Scratchpads
