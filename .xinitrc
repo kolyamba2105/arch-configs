@@ -44,3 +44,5 @@ setxkbmap -option caps:swapescape
 
 # Start window manager
 xmonad --replace
+
+rmmod pcspkr

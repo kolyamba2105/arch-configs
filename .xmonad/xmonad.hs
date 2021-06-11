@@ -27,8 +27,6 @@ import XMonad.Util.SpawnOnce
 
 myTerminal = "alacritty"
 
-myTransparentTerminal = myTerminal ++ " -o background_opacity=0.9"
-
 myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -39,8 +37,7 @@ ignoredWorkspaces = ["NSP"]
 myKeys = coreKeys ++ scratchPadKeys ++ controlKeys ++ cycleWSKeys ++ dynamicWSGroupKeys ++ wmKeys
   where
     coreKeys =
-      [ ("M-C-<Return>", spawn myTransparentTerminal),
-        ("M-S-<Return>", spawn myTerminal),
+      [ ("M-S-<Return>", spawn myTerminal),
         ("M-S-f", spawn "firefox --private-window"),
         ("M-S-g", spawn "brave --incognito"),
         ("M-f", spawn "firefox"),
