@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
+
 " Basic Vim settings
 colorscheme nord
 syntax on
@@ -156,3 +157,5 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"

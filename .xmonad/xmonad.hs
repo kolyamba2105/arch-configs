@@ -15,6 +15,7 @@ import XMonad.Layout.LayoutModifier
 import XMonad.Layout.LimitWindows
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import XMonad.Prompt
@@ -27,6 +28,8 @@ import XMonad.Util.SpawnOnce
 
 myTerminal = "alacritty"
 
+myEditor = myTerminal ++ " -e nvim"
+
 myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -34,19 +37,27 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 ignoredWorkspaces = ["NSP"]
 
 -- Key bindings
-myKeys = coreKeys ++ scratchPadKeys ++ controlKeys ++ cycleWSKeys ++ dynamicWSGroupKeys ++ wmKeys
+myKeys =
+  coreKeys
+    ++ scratchPadKeys
+    ++ controlKeys
+    ++ cycleWSKeys
+    ++ dynamicWSGroupKeys
+    ++ wmKeys
+    ++ resizeWindowKeys
   where
     coreKeys =
       [ ("M-S-<Return>", spawn myTerminal),
         ("M-S-f", spawn "firefox --private-window"),
         ("M-S-g", spawn "brave --incognito"),
+        ("M-S-n", spawn myEditor),
         ("M-f", spawn "firefox"),
         ("M-g", spawn "brave"),
         ("M-p", shellPrompt myPromptConfig)
       ]
 
     scratchPadKeys =
-      [ ("M-M1-<Return>", openScratchPad "terminal"),
+      [ ("M-`", openScratchPad "terminal"),
         ("M-S-a", openScratchPad "telegram"),
         ("M-S-s", openScratchPad "slack"),
         ("M-S-t", openScratchPad "htop"),
@@ -80,6 +91,11 @@ myKeys = coreKeys ++ scratchPadKeys ++ controlKeys ++ cycleWSKeys ++ dynamicWSGr
       [ ("M-M1-f", forgetGroup),
         ("M-M1-g", goToGroup),
         ("M-M1-n", addGroup)
+      ]
+
+    resizeWindowKeys =
+      [ ("M-M1-j", sendMessage MirrorShrink),
+        ("M-M1-k", sendMessage MirrorExpand)
       ]
 
     wmKeys =
@@ -124,6 +140,8 @@ defaultTall = Tall 1 0.05 0.5
 
 defaultLayout = renamed [Replace "Default"] $ limitWindows 6 $ defaultSpacing defaultTall
 
+resizable = renamed [Replace "Resizable"] $ limitWindows 6 $ defaultSpacing $ ResizableTall 1 0.05 0.5 []
+
 tabbedLayout = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabbedTheme
 
 myTabbedTheme =
@@ -143,7 +161,7 @@ gridLayout = renamed [Replace "Grid"] $ defaultSpacing Grid
 
 monocleLayout = renamed [Replace "Monocle"] $ noBorders Full
 
-myLayout = avoidStruts $ defaultLayout ||| monocleLayout
+myLayout = avoidStruts $ resizable ||| monocleLayout
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -217,7 +235,7 @@ terminalScratchPad = NS "terminal" spawn find manage
   where
     spawn = myTerminal ++ " -t Terminal"
     find = title =? "Terminal"
-    manage = customFloating $ vertRectCentered 0.9
+    manage = customFloating $ rectCentered 0.7
 
 rangerScratchPad :: NamedScratchpad
 rangerScratchPad = NS "ranger" spawn find manage
@@ -277,7 +295,7 @@ myPromptConfig =
       bgHLight = colorPalette !! 8,
       fgHLight = colorPalette !! 2,
       promptBorderWidth = 0,
-      position = CenteredAt 0.4 0.5,
+      position = CenteredAt 0.4 0.4,
       height = 40,
       maxComplRows = Just 5,
       showCompletionOnTab = True
