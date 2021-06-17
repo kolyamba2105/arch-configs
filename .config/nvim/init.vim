@@ -17,7 +17,6 @@ Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
-
 " Basic Vim settings
 colorscheme nord
 syntax on
@@ -50,11 +49,6 @@ set termguicolors
 set undodir=~/.vim/undo
 set undofile
 set wildignore +=*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules
-
-" Cursor settings
-let &t_SI ="\<Esc>[6 q"
-let &t_SR ="\<Esc>[4 q"
-let &t_EI ="\<Esc>[2 q"
 
 " Disable arrow keys
 no <down>   <Nop>
