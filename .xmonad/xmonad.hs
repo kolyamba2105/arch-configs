@@ -1,5 +1,6 @@
 import Control.Monad (liftM2)
 import Data.Function
+import qualified Data.Map as M
 import Data.Maybe
 import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86
@@ -39,12 +40,13 @@ ignoredWorkspaces = ["NSP"]
 -- Key bindings
 myKeys =
   coreKeys
-    ++ scratchPadKeys
     ++ controlKeys
     ++ cycleWSKeys
     ++ dynamicWSGroupKeys
-    ++ wmKeys
+    ++ layoutKeys
     ++ resizeWindowKeys
+    ++ scratchPadKeys
+    ++ wmKeys
   where
     coreKeys =
       [ ("M-S-<Return>", spawn myTerminal),
@@ -54,15 +56,6 @@ myKeys =
         ("M-f", spawn "firefox"),
         ("M-g", spawn "brave"),
         ("M-p", shellPrompt myPromptConfig)
-      ]
-
-    scratchPadKeys =
-      [ ("M-`", openScratchPad "terminal"),
-        ("M-S-a", openScratchPad "telegram"),
-        ("M-S-s", openScratchPad "slack"),
-        ("M-S-t", openScratchPad "htop"),
-        ("M-d", openScratchPad "ranger"),
-        ("M-s", openScratchPad "mixer")
       ]
 
     controlKeys =
@@ -93,14 +86,28 @@ myKeys =
         ("M-M1-n", addGroup)
       ]
 
+    layoutKeys =
+      [ ("M-b", sendMessage ToggleStruts),
+        ("M-x", withFocused $ toggleFloat $ rectCentered 0.9),
+        ("M-z", withFocused $ toggleFloat $ vertRectCentered 0.9)
+      ]
+
     resizeWindowKeys =
       [ ("M-M1-j", sendMessage MirrorShrink),
         ("M-M1-k", sendMessage MirrorExpand)
       ]
 
+    scratchPadKeys =
+      [ ("M-`", openScratchPad "terminal"),
+        ("M-S-a", openScratchPad "telegram"),
+        ("M-S-s", openScratchPad "slack"),
+        ("M-S-t", openScratchPad "htop"),
+        ("M-d", openScratchPad "ranger"),
+        ("M-s", openScratchPad "mixer")
+      ]
+
     wmKeys =
-      [ ("M-b", sendMessage ToggleStruts),
-        ("M-M1-c", killAll `withNotification` Message Critical "XMonad" "Killed them all!"),
+      [ ("M-M1-c", killAll `withNotification` Message Critical "XMonad" "Killed them all!"),
         ("M-q", spawn "xmonad --recompile && xmonad --restart" `withNotification` Message Normal "XMonad" "Recompiled and restarted!")
       ]
 
@@ -108,6 +115,9 @@ myRemovedKeys :: [String]
 myRemovedKeys =
   [ "M-S-q"
   ]
+
+toggleFloat :: W.RationalRect -> Window -> X ()
+toggleFloat r w = windows (\s -> if M.member w (W.floating s) then W.sink w s else W.float w r s)
 
 myKeysConfig :: XConfig a -> XConfig a
 myKeysConfig config = config `additionalKeysP` myKeys `removeKeysP` myRemovedKeys
