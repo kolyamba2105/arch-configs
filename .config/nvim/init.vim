@@ -48,7 +48,7 @@ set tabstop=2 softtabstop=2
 set termguicolors
 set undodir=~/.vim/undo
 set undofile
-set wildignore +=*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules
 
 " Disable arrow keys
 no <down>   <Nop>
@@ -76,8 +76,8 @@ nmap <silent> <C-A-k> :wincmd k<CR>
 nmap <silent> <C-A-l> :wincmd l<CR>
 
 " Create splits
-nmap <silent> <C-s> :vsp<CR>
-nmap <silent> <C-A-s> :sp<CR>
+nmap <leader>h :sp<CR>
+nmap <leader>v :vsp<CR>
 
 " Move between buffers
 nmap <silent> <C-h> :bp<CR>
