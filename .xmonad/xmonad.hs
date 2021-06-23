@@ -44,7 +44,6 @@ myKeys =
     ++ cycleWSKeys
     ++ dynamicWSGroupKeys
     ++ layoutKeys
-    ++ resizeWindowKeys
     ++ scratchPadKeys
     ++ wmKeys
   where
@@ -81,20 +80,16 @@ myKeys =
       ]
 
     dynamicWSGroupKeys =
-      [ ("M-M1-f", forgetGroup),
-        ("M-M1-g", goToGroup),
-        ("M-M1-n", addGroup)
+      [ ("M-M1-1", viewWSGroup "1"),
+        ("M-M1-2", viewWSGroup "2"),
+        ("M-M1-3", viewWSGroup "3"),
+        ("M-M1-4", viewWSGroup "4")
       ]
 
     layoutKeys =
       [ ("M-b", sendMessage ToggleStruts),
         ("M-x", withFocused $ toggleFloat $ rectCentered 0.9),
         ("M-z", withFocused $ toggleFloat $ vertRectCentered 0.9)
-      ]
-
-    resizeWindowKeys =
-      [ ("M-M1-j", sendMessage MirrorShrink),
-        ("M-M1-k", sendMessage MirrorExpand)
       ]
 
     scratchPadKeys =
@@ -146,32 +141,42 @@ withNotification :: X () -> Notification -> X ()
 withNotification action notification = action >> sendNotification notification
 
 -- Layouts
-defaultTall = Tall 1 0.05 0.5
+myLayout = avoidStruts $ tall ||| monocle
+  where
+    defaultTall = Tall 1 0.05 0.5
 
-defaultLayout = renamed [Replace "Default"] $ limitWindows 6 $ defaultSpacing defaultTall
+    grid = renamed [Replace "Grid"] $ defaultSpacing Grid
 
-resizable = renamed [Replace "Resizable"] $ limitWindows 6 $ defaultSpacing $ ResizableTall 1 0.05 0.5 []
+    mirror = renamed [Replace "Mirror"] $ defaultSpacing $ Mirror defaultTall
 
-tabbedLayout = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabbedTheme
+    monocle = renamed [Replace "Monocle"] $ noBorders Full
 
-myTabbedTheme =
-  def
-    { fontName = myFont,
-      activeColor = colorPalette !! 8,
-      inactiveColor = colorPalette !! 1,
-      activeBorderColor = colorPalette !! 8,
-      inactiveBorderColor = colorPalette !! 1,
-      activeTextColor = colorPalette !! 1,
-      inactiveTextColor = colorPalette !! 4
-    }
+    resizable =
+      renamed [Replace "Resizable"]
+        . limitWindows 6
+        . defaultSpacing
+        $ ResizableTall 1 0.05 0.5 []
 
-mirrorLayout = renamed [Replace "Mirror"] $ defaultSpacing $ Mirror defaultTall
+    tabbed =
+      renamed [Replace "Tabbed"]
+        . noBorders
+        $ tabbedBottom shrinkText myTabbedTheme
+      where
+        myTabbedTheme =
+          def
+            { fontName = myFont,
+              activeColor = colorPalette !! 8,
+              inactiveColor = colorPalette !! 1,
+              activeBorderColor = colorPalette !! 8,
+              inactiveBorderColor = colorPalette !! 1,
+              activeTextColor = colorPalette !! 1,
+              inactiveTextColor = colorPalette !! 4
+            }
 
-gridLayout = renamed [Replace "Grid"] $ defaultSpacing Grid
-
-monocleLayout = renamed [Replace "Monocle"] $ noBorders Full
-
-myLayout = avoidStruts $ resizable ||| monocleLayout
+    tall =
+      renamed [Replace "Default"]
+        . limitWindows 6
+        $ defaultSpacing defaultTall
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -238,6 +243,7 @@ myStartupHook = do
   spawn cursor
   spawn wallpapers
   spawn notificationDaemon
+  initWorkspaceGroups
 
 -- Scratchpads
 terminalScratchPad :: NamedScratchpad
@@ -295,7 +301,7 @@ myScratchPads =
 openScratchPad :: String -> X ()
 openScratchPad = namedScratchpadAction myScratchPads
 
---Prompt config
+-- Prompt config
 myPromptConfig :: XPConfig
 myPromptConfig =
   def
@@ -320,6 +326,13 @@ goToGroup = promptWSGroupView myPromptConfig "Go to group: "
 
 forgetGroup :: X ()
 forgetGroup = promptWSGroupForget myPromptConfig "Forget group: "
+
+initWorkspaceGroups :: X ()
+initWorkspaceGroups = do
+  addRawWSGroup "1" [(S 0, "1"), (S 1, "2")]
+  addRawWSGroup "2" [(S 0, "3"), (S 1, "4")]
+  addRawWSGroup "3" [(S 0, "5"), (S 1, "6")]
+  addRawWSGroup "4" [(S 0, "7"), (S 1, "8")]
 
 -- CycleWS
 workspaceType :: C.WSType
