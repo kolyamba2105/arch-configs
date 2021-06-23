@@ -88,17 +88,17 @@ myKeys =
 
     layoutKeys =
       [ ("M-b", sendMessage ToggleStruts),
-        ("M-x", withFocused $ toggleFloat $ rectCentered 0.9),
-        ("M-z", withFocused $ toggleFloat $ vertRectCentered 0.9)
+        ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
+        ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
       ]
 
     scratchPadKeys =
-      [ ("M-`", openScratchPad "terminal"),
-        ("M-S-a", openScratchPad "telegram"),
-        ("M-S-s", openScratchPad "slack"),
-        ("M-S-t", openScratchPad "htop"),
-        ("M-d", openScratchPad "ranger"),
-        ("M-s", openScratchPad "mixer")
+      [ ("M-<F1>", openScratchPad "htop"),
+        ("M-<F2>", openScratchPad "mixer"),
+        ("M-<F3>", openScratchPad "ranger"),
+        ("M-<F4>", openScratchPad "slack"),
+        ("M-<F5>", openScratchPad "telegram"),
+        ("M-<F6>", openScratchPad "terminal")
       ]
 
     wmKeys =
