@@ -11,12 +11,10 @@ import XMonad.Actions.DynamicWorkspaceGroups
 import XMonad.Actions.WithAll
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
-import XMonad.Layout.Grid
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.LimitWindows
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
-import XMonad.Layout.ResizableTile
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import XMonad.Prompt
@@ -98,7 +96,7 @@ myKeys =
         ("M-<F3>", openScratchPad "ranger"),
         ("M-<F4>", openScratchPad "slack"),
         ("M-<F5>", openScratchPad "telegram"),
-        ("M-<F6>", openScratchPad "terminal")
+        ("M-`", openScratchPad "terminal")
       ]
 
     wmKeys =
@@ -141,42 +139,26 @@ withNotification :: X () -> Notification -> X ()
 withNotification action notification = action >> sendNotification notification
 
 -- Layouts
-myLayout = avoidStruts $ tall ||| monocle
+defaultTall = Tall 1 0.05 0.5
+
+tall = renamed [Replace "Default"] $ limitWindows 6 $ defaultSpacing defaultTall
+
+monocle = renamed [Replace "Monocle"] $ noBorders Full
+
+tabbed = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabbedTheme
   where
-    defaultTall = Tall 1 0.05 0.5
+    myTabbedTheme =
+      def
+        { fontName = myFont,
+          activeColor = colorPalette !! 8,
+          inactiveColor = colorPalette !! 1,
+          activeBorderColor = colorPalette !! 8,
+          inactiveBorderColor = colorPalette !! 1,
+          activeTextColor = colorPalette !! 1,
+          inactiveTextColor = colorPalette !! 4
+        }
 
-    grid = renamed [Replace "Grid"] $ defaultSpacing Grid
-
-    mirror = renamed [Replace "Mirror"] $ defaultSpacing $ Mirror defaultTall
-
-    monocle = renamed [Replace "Monocle"] $ noBorders Full
-
-    resizable =
-      renamed [Replace "Resizable"]
-        . limitWindows 6
-        . defaultSpacing
-        $ ResizableTall 1 0.05 0.5 []
-
-    tabbed =
-      renamed [Replace "Tabbed"]
-        . noBorders
-        $ tabbedBottom shrinkText myTabbedTheme
-      where
-        myTabbedTheme =
-          def
-            { fontName = myFont,
-              activeColor = colorPalette !! 8,
-              inactiveColor = colorPalette !! 1,
-              activeBorderColor = colorPalette !! 8,
-              inactiveBorderColor = colorPalette !! 1,
-              activeTextColor = colorPalette !! 1,
-              inactiveTextColor = colorPalette !! 4
-            }
-
-    tall =
-      renamed [Replace "Default"]
-        . limitWindows 6
-        $ defaultSpacing defaultTall
+myLayout = avoidStruts $ tall ||| monocle
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -220,29 +202,13 @@ myManageHook =
     ]
     <+> namedScratchpadManageHook myScratchPads
 
--- Event handling
-myEventHook = mempty
-
--- Status bars and logging
-myLogHook = return ()
-
 -- Startup hook
-keyboardLayout = "setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle"
-
-typingRepeatSpeed = "xset r rate 180 40"
-
-cursor = "xsetroot -cursor_name left_ptr"
-
-wallpapers = "~/.fehbg &"
-
-notificationDaemon = "dunst"
-
 myStartupHook = do
-  spawn keyboardLayout
-  spawn typingRepeatSpeed
-  spawn cursor
-  spawn wallpapers
-  spawn notificationDaemon
+  spawn "dunst"
+  spawn "setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle"
+  spawn "xset r rate 180 40"
+  spawn "xsetroot -cursor_name left_ptr"
+  spawn "~/.fehbg &"
   initWorkspaceGroups
 
 -- Scratchpads
@@ -394,9 +360,9 @@ defaultSettings xMobar =
       clickJustFocuses = False,
       focusFollowsMouse = True,
       focusedBorderColor = colorPalette !! 6,
-      handleEventHook = myEventHook,
+      handleEventHook = mempty,
       layoutHook = myLayout,
-      logHook = myLogHook <+> xmobarPrettyPrinting xMobar,
+      logHook = xmobarPrettyPrinting xMobar,
       manageHook = manageDocks <+> myManageHook,
       modMask = mod4Mask,
       normalBorderColor = head colorPalette,
