@@ -1,11 +1,17 @@
 * {
-  background-color: #212121;
-  text-color: #eeeeee;
+  background-color: #3b4252;
+  border-color: #e5e9f0;
+  text-color: #e5e9f0;
   font: "JetBrains Mono Nerd Font 11";
 }
 
 #window {
+  border: 2;
   padding: 8px;
+}
+
+#mainbox {
+  padding: 8;
 }
 
 #element {
@@ -14,12 +20,12 @@
 }
 
 #element.selected.normal {
-  background-color: #40c4ff;
-  text-color: #212121;
+  background-color: #81a1c1;
+  text-color: #2e3440;
 }
 
 #inputbar {
-  padding: 0px 0px 10px 0px;
+  padding: 0px 0px 12px 0px;
 }
 
 #entry {
@@ -27,7 +33,7 @@
 }
 
 #prompt {
-  background-color: #69f0ae;
+  background-color: #88c0d0;
   padding: 4px 8px;
-  text-color: #212121;
+  text-color: #2e3440;
 }
