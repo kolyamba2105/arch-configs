@@ -212,48 +212,6 @@ myStartupHook = do
   initWorkspaceGroups
 
 -- Scratchpads
-terminalScratchPad :: NamedScratchpad
-terminalScratchPad = NS "terminal" spawn find manage
-  where
-    spawn = myTerminal ++ " -t Terminal"
-    find = title =? "Terminal"
-    manage = customFloating $ rectCentered 0.7
-
-rangerScratchPad :: NamedScratchpad
-rangerScratchPad = NS "ranger" spawn find manage
-  where
-    spawn = myTerminal ++ " -t Ranger -e ranger"
-    find = rangerWindowQuery
-    manage = nonFloating
-
-htopScratchPad :: NamedScratchpad
-htopScratchPad = NS "htop" spawn find manage
-  where
-    spawn = myTerminal ++ " -t HTOP -e htop"
-    find = htopWindowQuery
-    manage = customFloating $ rectCentered 0.8
-
-mixerScratchPad :: NamedScratchpad
-mixerScratchPad = NS "mixer" spawn find manage
-  where
-    spawn = myTerminal ++ " -t PulseMixer -e pulsemixer"
-    find = pulseMixerWindowQuery
-    manage = customFloating $ rectCentered 0.5
-
-slackScratchPad :: NamedScratchpad
-slackScratchPad = NS "slack" spawn find manage
-  where
-    spawn = "slack"
-    find = className =? "Slack"
-    manage = nonFloating
-
-telegramScratchPad :: NamedScratchpad
-telegramScratchPad = NS "telegram" spawn find manage
-  where
-    spawn = "telegram-desktop"
-    find = className =? "TelegramDesktop"
-    manage = nonFloating
-
 myScratchPads :: [NamedScratchpad]
 myScratchPads =
   [ htopScratchPad,
@@ -263,6 +221,42 @@ myScratchPads =
     telegramScratchPad,
     terminalScratchPad
   ]
+  where
+    terminalScratchPad = NS "terminal" spawn find manage
+      where
+        spawn = myTerminal ++ " -t Terminal"
+        find = title =? "Terminal"
+        manage = customFloating $ rectCentered 0.7
+
+    rangerScratchPad = NS "ranger" spawn find manage
+      where
+        spawn = myTerminal ++ " -t Ranger -e ranger"
+        find = rangerWindowQuery
+        manage = nonFloating
+
+    htopScratchPad = NS "htop" spawn find manage
+      where
+        spawn = myTerminal ++ " -t HTOP -e htop"
+        find = htopWindowQuery
+        manage = customFloating $ rectCentered 0.8
+
+    mixerScratchPad = NS "mixer" spawn find manage
+      where
+        spawn = myTerminal ++ " -t PulseMixer -e pulsemixer"
+        find = pulseMixerWindowQuery
+        manage = customFloating $ rectCentered 0.5
+
+    slackScratchPad = NS "slack" spawn find manage
+      where
+        spawn = "slack"
+        find = className =? "Slack"
+        manage = nonFloating
+
+    telegramScratchPad = NS "telegram" spawn find manage
+      where
+        spawn = "telegram-desktop"
+        find = className =? "TelegramDesktop"
+        manage = nonFloating
 
 openScratchPad :: String -> X ()
 openScratchPad = namedScratchpadAction myScratchPads
@@ -295,10 +289,10 @@ forgetGroup = promptWSGroupForget myPromptConfig "Forget group: "
 
 initWorkspaceGroups :: X ()
 initWorkspaceGroups = do
-  addRawWSGroup "1" [(S 0, "1"), (S 1, "2")]
-  addRawWSGroup "2" [(S 0, "3"), (S 1, "4")]
-  addRawWSGroup "3" [(S 0, "5"), (S 1, "6")]
-  addRawWSGroup "4" [(S 0, "7"), (S 1, "8")]
+  addRawWSGroup "1" [(S 1, "2"), (S 0, "1")]
+  addRawWSGroup "2" [(S 1, "4"), (S 0, "3")]
+  addRawWSGroup "3" [(S 1, "6"), (S 0, "5")]
+  addRawWSGroup "4" [(S 1, "8"), (S 0, "7")]
 
 -- CycleWS
 workspaceType :: C.WSType
