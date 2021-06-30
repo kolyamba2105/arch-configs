@@ -1,7 +1,5 @@
 # My config files
 
-![rice-2021-05-18-2](https://user-images.githubusercontent.com/33033411/118712243-3d818380-b829-11eb-9969-d56cb21a946e.png)
-
 ## Core
 
 - [xorg-xinit](https://archlinux.org/packages/extra/x86_64/xorg-xinit)
@@ -39,10 +37,12 @@
 
 - [alacritty](https://archlinux.org/packages/community/x86_64/alacritty)
 - [arandr](https://archlinux.org/packages/community/any/arandr)
+- [bat](https://archlinux.org/packages/community/x86_64/bat)
 - [bluez](https://archlinux.org/packages/extra/x86_64/bluez)
 - [conky](https://archlinux.org/packages/extra/x86_64/conky)
 - [discord](https://archlinux.org/packages/community/x86_64/discord)
 - [dunst](https://archlinux.org/packages/community/x86_64/dunst)
+- [exa](https://archlinux.org/packages/community/x86_64/exa)
 - [fd](https://archlinux.org/packages/community/x86_64/fd)
 - [feh](https://archlinux.org/packages/extra/x86_64/feh)
 - [firefox](https://archlinux.org/packages/extra/x86_64/firefox)
@@ -72,11 +72,8 @@
 - [python-ueberzug-git](https://aur.archlinux.org/packages/python-ueberzug-git)
 - [slack-desktop](https://aur.archlinux.org/packages/slack-desktop)
 
-## Rust utils
+## Prompt
 
-- [Rust itself](https://www.rust-lang.org/tools/install)
-- [bat](https://github.com/sharkdp/bat)
-- [exa](https://github.com/ogham/exa)
 - [starship](https://starship.rs)
 
 ## Articles

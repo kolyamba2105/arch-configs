@@ -128,7 +128,7 @@ endfunction
 
 " NERDTree settings
 let g:NERDTreeShowHidden=1
-let g:NERDTreeWinSize=45
+let g:NERDTreeWinSize=50
 let g:nerdtree_sync_cursorline = 1
 
 nmap <silent> <C-n> :NERDTreeToggle<CR>

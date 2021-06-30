@@ -29,7 +29,7 @@ myTerminal = "alacritty"
 
 myEditor = myTerminal ++ " -e nvim"
 
-myFont = "xft:JetBrainsMono Nerd Font:pixelsize=14:antialias=true:hinting=true"
+myFont = "xft:JetBrainsMono Nerd Font:weight=regular:pixelsize=14:antialias=true:hinting=true"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 

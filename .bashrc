@@ -147,8 +147,6 @@ ex ()
   fi
 }
 
-source "$HOME/.cargo/env"
-
 # Start fish shell
 if [ "$TERM" != "linux" ]; then
   fish
