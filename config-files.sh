@@ -29,6 +29,7 @@ rm ~/.config/dunst/notification-normal.png
 
 rm ~/.config/fish/config.fish
 rm ~/.config/fish/fish_variables
+rm ~/.config/fish/functions/fish_prompt.fish
 
 rm ~/.config/nvim/init.vim
 rm ~/.config/nvim/coc-settings.json
@@ -75,8 +76,10 @@ ln -s $PWD/.config/mimeapps.list ~/.config/mimeapps.list
 
 # Fish config
 mkdir -p ~/.config/fish
+mkdir -p ~/.config/fish/functions
 ln -s $PWD/.config/fish/config.fish ~/.config/fish/config.fish
 ln -s $PWD/.config/fish/fish_variables ~/.config/fish/fish_variables
+ln -s $PWD/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
 
 # Alacritty terminal
 mkdir -p ~/.config/alacritty
