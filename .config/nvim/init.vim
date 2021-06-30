@@ -4,16 +4,18 @@ Plug 'Yggdroot/indentLine'
 Plug 'arcticicestudio/nord-vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'mengelbrecht/lightline-bufferline'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'unkiwii/vim-nerdtree-sync'
-Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
@@ -97,11 +99,32 @@ nmap <silent> Z :noh<CR>
 nnoremap <leader>o o<Esc>
 nnoremap <leader>O O<Esc>
 
-" Airline settings
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_extensions = ["branch", "ctrlp", "tabline", "whitespace", "wordcount"]
-let g:airline_powerline_fonts = 1
+" Lightline settings
+let g:lightline = {
+  \ 'colorscheme': 'nord',
+  \ 'active': {
+  \   'left': [['mode', 'paste'], ['filename'], ['readonly', 'modified', 'gitbranch']],
+  \   'right': [['lineinfo'], ['percent'], ['filetype', 'fileencoding']]
+  \ },
+  \ 'tabline': {
+  \   'left': [['buffers']],
+  \   'right': [['close']]
+  \ },
+  \ 'component_expand': {
+  \   'buffers': 'lightline#bufferline#buffers'
+  \ },
+  \ 'component_function': {
+  \   'filename': 'FileName',
+  \   'gitbranch': 'FugitiveHead'
+  \ },
+  \ 'component_type': {
+  \   'buffers': 'tabsel'
+  \ }
+  \ }
+
+function! FileName()
+  return expand('%:t') !=# '' ? expand('%:t') : '*'
+endfunction
 
 " NERDTree settings
 let g:NERDTreeShowHidden=1
