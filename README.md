@@ -19,7 +19,8 @@
 
 - [dhcpcd](https://archlinux.org/packages/core/x86_64/dhcpcd)
 - [dialog](https://archlinux.org/packages/core/x86_64/dialog)
-- [networkmanager](https://archlinux.org/packages/extra/x86_64/networkmanager)
+- [netctl](https://archlinux.org/packages/core/any/netctl)
+- [ppp](https://archlinux.org/packages/core/x86_64/ppp)
 - [wpa_supplicant](https://archlinux.org/packages/core/x86_64/wpa_supplicant)
 
 ## Development
@@ -65,16 +66,10 @@
 ## AUR
 
 - [brave-bin](https://aur.archlinux.org/packages/brave-bin)
-- [neovide-git](https://aur.archlinux.org/packages/neovide-git)
 - [nerd-fonts-jetbrains-mono](https://aur.archlinux.org/packages/nerd-fonts-jetbrains-mono)
-- [paru](https://github.com/Morganamilo/paru)
 - [postman-bin](https://aur.archlinux.org/packages/postman-bin)
 - [python-ueberzug-git](https://aur.archlinux.org/packages/python-ueberzug-git)
 - [slack-desktop](https://aur.archlinux.org/packages/slack-desktop)
-
-## Prompt
-
-- [starship](https://starship.rs)
 
 ## Articles
 

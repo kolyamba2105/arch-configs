@@ -147,6 +147,8 @@ ex ()
   fi
 }
 
+[ -f "/home/kolyamba/.ghcup/env" ] && source "/home/kolyamba/.ghcup/env" # ghcup-env
+
 # Start fish shell
 if [ "$TERM" != "linux" ]; then
   fish
