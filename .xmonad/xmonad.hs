@@ -27,8 +27,6 @@ import XMonad.Util.SpawnOnce
 
 myTerminal = "alacritty"
 
-myEditor = myTerminal ++ " -e nvim"
-
 myFont = "xft:JetBrainsMono Nerd Font:weight=regular:pixelsize=14:antialias=true:hinting=true"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -43,13 +41,13 @@ myKeys =
     ++ dynamicWSGroupKeys
     ++ layoutKeys
     ++ scratchPadKeys
+    ++ screenLayoutKeys
     ++ wmKeys
   where
     coreKeys =
       [ ("M-S-<Return>", spawn myTerminal),
         ("M-S-f", spawn "firefox --private-window"),
         ("M-S-g", spawn "brave --incognito"),
-        ("M-S-n", spawn myEditor),
         ("M-f", spawn "firefox"),
         ("M-g", spawn "brave"),
         ("M-p", shellPrompt myPromptConfig)
@@ -58,8 +56,8 @@ myKeys =
     controlKeys =
       [ ("<XF86AudioMicMute>", spawn "pactl set-source-mute 1 toggle"),
         ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle"),
-        ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10" `withNotification` Command Low "Brightness" "xbacklight -get"),
-        ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10" `withNotification` Command Low "Brightness" "xbacklight -get"),
+        ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
+        ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
         ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png" `withNotification` Message Critical "Screenshot" "Saved screen capture!"),
         ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png" `withNotification` Message Critical "Screenshot" "Saved window capture!"),
         ("M-S-<Print>", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png")
@@ -98,6 +96,14 @@ myKeys =
         ("M-<F5>", openScratchPad "telegram"),
         ("M-`", openScratchPad "terminal")
       ]
+
+    screenLayoutKeys =
+      [ ("M-S-<F1>", spawn "~/.screenlayout/1-laptop.sh" `withNotification` notification "Laptop"),
+        ("M-S-<F2>", spawn "~/.screenlayout/2-monitor.sh" `withNotification` notification "Monitor"),
+        ("M-S-<F3>", spawn "~/.screenlayout/3-dual-monitor.sh" `withNotification` notification "Dual monitor")
+      ]
+      where
+        notification msg = Message Critical "Screen layout" msg
 
     wmKeys =
       [ ("M-M1-c", killAll `withNotification` Message Critical "XMonad" "Killed them all!"),
@@ -266,13 +272,13 @@ myPromptConfig :: XPConfig
 myPromptConfig =
   def
     { font = myFont,
-      bgColor = colorPalette !! 1,
+      bgColor = head colorPalette,
       fgColor = colorPalette !! 4,
       bgHLight = colorPalette !! 8,
       fgHLight = colorPalette !! 2,
       promptBorderWidth = 0,
-      position = CenteredAt 0.4 0.4,
-      height = 40,
+      position = Top,
+      height = 28,
       maxComplRows = Just 5,
       showCompletionOnTab = True
     }
@@ -324,7 +330,8 @@ xmobarPrettyPrinting xMobar =
         ppExtras = [windowCount],
         ppHidden = xmobarColor' 13 . wrap "-" "-",
         ppHiddenNoWindows = xmobarColor' 8,
-        ppLayout = xmobarColor' 4,
+        ppLayout = \l -> xmobarColor' 4 ("\57924  " ++ l),
+        ppOrder = \(ws : layout : current : extras) -> [ws, layout] ++ extras ++ [current],
         ppOutput = hPutStrLn xMobar,
         ppSep = "  ",
         ppTitle = xmobarColor' 14 . shorten 50,

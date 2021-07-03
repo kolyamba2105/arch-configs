@@ -9,9 +9,9 @@ rm ~/.fehbg
 rm ~/.gitconfig
 
 rm ~/.xinitrc
-rm ~/.screenlayout/dual-monitor.sh
-rm ~/.screenlayout/my-layout.sh
-rm ~/.screenlayout/monitor-only.sh
+rm ~/.screenlayout/1-laptop.sh
+rm ~/.screenlayout/2-monitor.sh
+rm ~/.screenlayout/3-dual-monitor.sh
 
 rm ~/.xmonad/xmonad.hs
 rm ~/.xmonad/build
@@ -61,9 +61,9 @@ ln -s $PWD/.xinitrc ~/.xinitrc
 
 # Screen layout (monitors settings)
 mkdir -p ~/.screenlayout
-ln -s $PWD/.screenlayout/dual-monitor.sh ~/.screenlayout/dual-monitor.sh
-ln -s $PWD/.screenlayout/my-layout.sh ~/.screenlayout/my-layout.sh
-ln -s $PWD/.screenlayout/monitor-only.sh ~/.screenlayout/monitor-only.sh
+ln -s $PWD/.screenlayout/1-laptop.sh ~/.screenlayout/1-laptop.sh
+ln -s $PWD/.screenlayout/2-monitor.sh ~/.screenlayout/2-monitor.sh
+ln -s $PWD/.screenlayout/3-dual-monitor.sh ~/.screenlayout/3-dual-monitor.sh
 
 # XMonad WM
 mkdir -p ~/.xmonad

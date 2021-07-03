@@ -45,5 +45,5 @@ Config
       ],
     alignSep = "}{",
     template =
-      " %UnsafeStdinReader% }{ <fc=#88c0d0> </fc> %dynnetwork%   <fc=#88c0d0> </fc> %cpu%   <fc=#88c0d0> </fc> %memory%   <fc=#88c0d0> </fc> %disku%   %battery%   <fc=#88c0d0> </fc> %kbd%   <fc=#88c0d0> </fc> %date% "
+      "  %UnsafeStdinReader% } <fc=#88c0d0> </fc> %date%   <fc=#88c0d0> </fc> %kbd% { <fc=#88c0d0> </fc> %dynnetwork%   %battery%   <fc=#88c0d0> </fc> %cpu%   <fc=#88c0d0> </fc> %memory%   <fc=#88c0d0> </fc> %disku%  "
   }
