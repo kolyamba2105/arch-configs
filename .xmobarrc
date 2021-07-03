@@ -2,7 +2,7 @@ Config
   { font = "xft:JetBrainsMono Nerd Font:weight=medium:pixelsize=14:antialias=true:hinting=true",
     bgColor = "#2e3440",
     fgColor = "#d8dee9",
-    position = Top,
+    position = Static { xpos = 0, ypos = 0, width = 2560, height = 28 },
     overrideRedirect = False,
     lowerOnStart = True,
     hideOnStart = False,
@@ -45,5 +45,5 @@ Config
       ],
     alignSep = "}{",
     template =
-      "<fc=#88c0d0>  </fc> %UnsafeStdinReader% }{ <fc=#88c0d0> </fc> %dynnetwork% <fc=#d8dee9>  </fc> <fc=#88c0d0> </fc> %cpu% <fc=#d8dee9>  </fc> <fc=#88c0d0> </fc> %memory% <fc=#d8dee9>  </fc> <fc=#88c0d0> </fc> %disku% <fc=#d8dee9>  </fc> %battery% <fc=#d8dee9>  </fc> <fc=#88c0d0> </fc> %kbd% <fc=#d8dee9>  </fc> <fc=#88c0d0> </fc> %date% "
+      " %UnsafeStdinReader% }{ <fc=#88c0d0> </fc> %dynnetwork%   <fc=#88c0d0> </fc> %cpu%   <fc=#88c0d0> </fc> %memory%   <fc=#88c0d0> </fc> %disku%   %battery%   <fc=#88c0d0> </fc> %kbd%   <fc=#88c0d0> </fc> %date% "
   }

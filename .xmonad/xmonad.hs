@@ -318,7 +318,7 @@ main = do
 
 xmobarPrettyPrinting :: Handle -> X ()
 xmobarPrettyPrinting xMobar =
-  (dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP)
+  (dynamicLogWithPP . filterOutWsPP ignoredWorkspaces)
     xmobarPP
       { ppCurrent = xmobarColor' 4 . wrap "[" "]",
         ppExtras = [windowCount],
@@ -326,8 +326,8 @@ xmobarPrettyPrinting xMobar =
         ppHiddenNoWindows = xmobarColor' 8,
         ppLayout = xmobarColor' 4,
         ppOutput = hPutStrLn xMobar,
-        ppSep = "<fc=" ++ (colorPalette !! 4) ++ "> " ++ "\63196" ++ " </fc>",
-        ppTitle = xmobarColor' 4 . shorten 50,
+        ppSep = "  ",
+        ppTitle = xmobarColor' 14 . shorten 50,
         ppUrgent = xmobarColor' 11 . wrap "!" "!",
         ppVisible = xmobarColor' 14 . wrap "<" ">"
       }

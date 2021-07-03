@@ -14,6 +14,8 @@ rm ~/.screenlayout/my-layout.sh
 rm ~/.screenlayout/monitor-only.sh
 
 rm ~/.xmonad/xmonad.hs
+rm ~/.xmonad/build
+rm ~/.xmonad/hie.yaml
 rm ~/.xmobarrc
 
 rm ~/.config/mimeapps.list
@@ -66,7 +68,10 @@ ln -s $PWD/.screenlayout/monitor-only.sh ~/.screenlayout/monitor-only.sh
 # XMonad WM
 mkdir -p ~/.xmonad
 ln -s $PWD/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
+ln -s $PWD/.xmonad/build ~/.xmonad/build
+ln -s $PWD/.xmonad/hie.yaml ~/.xmonad/hie.yaml
 ln -s $PWD/.xmobarrc ~/.xmobarrc
+
 
 # Create config directory if it doesn't exist
 mkdir -p ~/.config
