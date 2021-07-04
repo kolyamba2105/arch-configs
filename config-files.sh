@@ -36,8 +36,6 @@ rm ~/.config/fish/functions/fish_prompt.fish
 rm ~/.config/nvim/init.vim
 rm ~/.config/nvim/coc-settings.json
 
-rm ~/.config/picom/picom.conf
-
 rm ~/.config/ranger/commands.py
 rm ~/.config/ranger/commands_full.py
 rm ~/.config/ranger/rc.conf
@@ -105,10 +103,6 @@ ln -s $PWD/.config/dunst/notification-normal.png ~/.config/dunst/notification-no
 mkdir -p ~/.config/nvim
 ln -s $PWD/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -s $PWD/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
-
-# Picom compositor
-mkdir -p ~/.config/picom
-ln -s $PWD/.config/picom/picom.conf ~/.config/picom/picom.conf
 
 # Ranger file manager
 mkdir -p ~/.config/ranger

@@ -53,7 +53,6 @@
 - [gucharmap](https://archlinux.org/packages/extra/x86_64/gucharmap)
 - [htop](https://archlinux.org/packages/extra/x86_64/htop)
 - [neofetch](https://archlinux.org/packages/community/any/neofetch)
-- [picom](https://archlinux.org/packages/community/x86_64/picom)
 - [ranger](https://archlinux.org/packages/community/any/ranger)
 - [rofi](https://archlinux.org/packages/community/x86_64/rofi)
 - [scrot](https://archlinux.org/packages/community/x86_64/scrot)
