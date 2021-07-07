@@ -1,17 +1,22 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . 'vimplug')
 
-Plug 'Yggdroot/indentLine'
 Plug 'arcticicestudio/nord-vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'itchyny/lightline.vim'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'hrsh7th/nvim-compe'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/goyo.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'romgrk/barbar.nvim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -25,6 +30,7 @@ syntax on
 
 set clipboard+=unnamedplus
 set colorcolumn=80
+set completeopt=menuone,noselect
 set cursorline
 set expandtab
 set foldmethod=syntax
@@ -72,107 +78,82 @@ vno <up>    <Nop>
 map <Space> <leader>
 
 " Move between windows (splits)
-nmap <silent> <C-A-h> :wincmd h<CR>
-nmap <silent> <C-A-j> :wincmd j<CR>
-nmap <silent> <C-A-k> :wincmd k<CR>
-nmap <silent> <C-A-l> :wincmd l<CR>
+nnoremap <silent> <C-A-h> :wincmd h<CR>
+nnoremap <silent> <C-A-j> :wincmd j<CR>
+nnoremap <silent> <C-A-k> :wincmd k<CR>
+nnoremap <silent> <C-A-l> :wincmd l<CR>
 
 " Create splits
-nmap <leader>h :sp<CR>
-nmap <leader>v :vsp<CR>
+nnoremap <leader>h :sp<CR>
+nnoremap <leader>v :vsp<CR>
 
 " Move between buffers
-nmap <silent> <C-h> :bp<CR>
-nmap <silent> <C-l> :bn<CR>
-nmap <silent> <C-w> :bd<CR>
+nnoremap <silent> <C-h> :bp<CR>
+nnoremap <silent> <C-l> :bn<CR>
+nnoremap <silent> <C-w> :bd<CR>
 
 " Close current buffer/window
-nmap <leader>c :close<CR>
+nnoremap <leader>c :close<CR>
 
 " Save file
-nmap <silent> <leader>w :w<CR>
+nnoremap <leader>w :w<CR>
 
 " Clear search input
-nmap <silent> Z :noh<CR>
+nnoremap <silent> Z :noh<CR>
 
 " Quickly insert an empty new line without entering insert mode
 nnoremap <leader>o o<Esc>
 nnoremap <leader>O O<Esc>
 
-" Lightline settings
-let g:lightline = {
-  \ 'colorscheme': 'nord',
-  \ 'active': {
-  \   'left': [['mode', 'paste'], ['filename'], ['readonly', 'modified', 'gitbranch']],
-  \   'right': [['lineinfo'], ['percent'], ['filetype', 'fileencoding']]
-  \ },
-  \ 'tabline': {
-  \   'left': [['buffers']],
-  \   'right': [['close']]
-  \ },
-  \ 'component_expand': {
-  \   'buffers': 'lightline#bufferline#buffers'
-  \ },
-  \ 'component_function': {
-  \   'filename': 'FileName',
-  \   'gitbranch': 'FugitiveHead'
-  \ },
-  \ 'component_type': {
-  \   'buffers': 'tabsel'
-  \ }
-  \ }
+" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <leader>fb <cmd>Telescope buffers<CR>
+nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 
-function! FileName()
-  return expand('%:t') !=# '' ? expand('%:t') : '*'
-endfunction
+" LSP
+nnoremap <silent> <C-j> <cmd>Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent> <C-k> <cmd>Lspsaga diagnostic_jump_prev<CR>
+nnoremap <silent> K     <cmd>Lspsaga hover_doc<CR>
+nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 
-" NERDTree settings
-let g:NERDTreeShowHidden=1
-let g:NERDTreeWinSize=50
-let g:nerdtree_sync_cursorline = 1
+" Directory tree
+let g:nvim_tree_auto_close = 1
+let g:nvim_tree_auto_open = 1
+let g:nvim_tree_follow = 1
+let g:nvim_tree_highlight_opened_files = 1
+let g:nvim_tree_ignore = ['.git']
+let g:nvim_tree_quit_on_open = 1
+let g:nvim_tree_update_cwd = 1
+let g:nvim_tree_width = 50
 
-nmap <silent> <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n>      :NvimTreeToggle<CR>
+nnoremap <leader>r  :NvimTreeRefresh<CR>
+nnoremap <leader>n  :NvimTreeFindFile<CR>
 
-" Ctrl-p settings
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" Buffer line
+let bufferline = get(g:, 'bufferline', {})
 
-" Goyo settings
-let g:goyo_linenr = 1
+let bufferline.animation = v:false
+let bufferline.auto_hide = v:true
+let bufferline.clickable = v:false
+let bufferline.closable = v:false
+let bufferline.icon_close_tab = ''
+let bufferline.icon_close_tab_modified = ''
+let bufferline.icon_separator_active = ''
+let bufferline.icon_separator_inactive = ''
+let bufferline.no_name_title = 'Buffer'
+let bufferline.maximum_padding = 12
+let bufferline.tabpages = v:false
 
-nmap <leader>g :Goyo<CR>
-
-" CoC settings
-nmap <leader>a <Plug>(coc-codeaction)
-nmap <leader>f :call CocAction('format')<CR>
-nmap <leader>i :CocCommand tsserver.organizeImports<CR>
-nmap <leader>l :CocCommand tsserver.openTsServerLog<CR>
-nmap <leader>R :CocCommand tsserver.restart<CR>
-nmap <leader>rn <Plug>(coc-rename)
-
-nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
-nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gy <Plug>(coc-type-definition)
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-inoremap <silent><expr> <c-space> coc#refresh()
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
+lua << EOF
+require("completion")
+require("fuzzy-finder")
+require("lsp")
+require("status-line")
+require("treesitter")
+EOF
