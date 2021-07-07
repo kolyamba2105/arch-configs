@@ -6,12 +6,10 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kabouzeid/nvim-lspinstall'
+Plug 'kien/ctrlp.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/barbar.nvim'
@@ -105,11 +103,8 @@ nnoremap <silent> Z :noh<CR>
 nnoremap <leader>o o<Esc>
 nnoremap <leader>O O<Esc>
 
-" Telescope
-nnoremap <leader>ff <cmd>Telescope find_files<CR>
-nnoremap <leader>fg <cmd>Telescope live_grep<CR>
-nnoremap <leader>fb <cmd>Telescope buffers<CR>
-nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+" Ctrl-p
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " LSP
 nnoremap <silent> <C-j> <cmd>Lspsaga diagnostic_jump_next<CR>
@@ -152,7 +147,6 @@ let bufferline.tabpages = v:false
 
 lua << EOF
 require("completion")
-require("fuzzy-finder")
 require("lsp")
 require("status-line")
 require("treesitter")
