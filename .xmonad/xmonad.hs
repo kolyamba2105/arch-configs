@@ -197,14 +197,10 @@ pulseMixerWindowQuery = title =? "PulseMixer"
 rangerWindowQuery :: Query Bool
 rangerWindowQuery = title =? "Ranger"
 
-zoomWindowQuery :: Query Bool
-zoomWindowQuery = className =? "zoom"
-
 myManageHook =
   composeAll
     [ className =? "Arandr" --> customFloating (rectCentered 0.5),
-      className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
-      zoomWindowQuery --> viewShift "9"
+      className =? "Pavucontrol" --> customFloating (rectCentered 0.5)
     ]
     <+> namedScratchpadManageHook myScratchPads
 
