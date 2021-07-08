@@ -1,19 +1,19 @@
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "all",
+    ensure_installed = 'all',
     highlight = {
       enable = true,
     },
     incremental_selection = {
       enable = true,
       disable = {
-        "cpp",
-        "lua"
+        'cpp',
+        'lua'
       },
       keymaps = {
-        init_selection = "gnn",
-        node_decremental = "grm",
-        node_incremental = "grn",
-        scope_incremental = "grc",
+        init_selection = 'gnn',
+        node_decremental = 'grm',
+        node_incremental = 'grn',
+        scope_incremental = 'grc'
       }
     },
     indent = {
@@ -23,13 +23,13 @@ require'nvim-treesitter.configs'.setup {
       select = {
         enable = true,
         keymaps = {
-          ["bi"] = "@block.inner",
-          ["bo"] = "@block.outer",
-          ["fi"] = "@function.inner",
-          ["fo"] = "@function.outer",
-          ["si"] = "@statement.inner",
-          ["so"] = "@statement.outer",
-        },
-      },
-    },
+          ['bi'] = '@block.inner',
+          ['bo'] = '@block.outer',
+          ['fi'] = '@function.inner',
+          ['fo'] = '@function.outer',
+          ['si'] = '@statement.inner',
+          ['so'] = '@statement.outer'
+        }
+      }
+    }
 }

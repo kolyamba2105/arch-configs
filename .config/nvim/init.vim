@@ -117,7 +117,6 @@ nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 
 " Directory tree
-let g:nvim_tree_auto_close = 1
 let g:nvim_tree_auto_open = 1
 let g:nvim_tree_follow = 1
 let g:nvim_tree_highlight_opened_files = 1
@@ -146,8 +145,8 @@ let bufferline.maximum_padding = 12
 let bufferline.tabpages = v:false
 
 lua << EOF
-require("completion")
-require("lsp")
-require("status-line")
-require("treesitter")
+require('completion')
+require('lsp')
+require('status-line')
+require('treesitter')
 EOF
