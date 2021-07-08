@@ -85,11 +85,6 @@ nnoremap <silent> <C-A-l> :wincmd l<CR>
 nnoremap <leader>h :sp<CR>
 nnoremap <leader>v :vsp<CR>
 
-" Move between buffers
-nnoremap <silent> <C-h> :bp<CR>
-nnoremap <silent> <C-l> :bn<CR>
-nnoremap <silent> <C-w> :bd<CR>
-
 " Close current buffer/window
 nnoremap <leader>c :close<CR>
 
@@ -105,16 +100,6 @@ nnoremap <leader>O O<Esc>
 
 " Ctrl-p
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-" LSP
-nnoremap <silent> <C-j> <cmd>Lspsaga diagnostic_jump_next<CR>
-nnoremap <silent> <C-k> <cmd>Lspsaga diagnostic_jump_prev<CR>
-nnoremap <silent> K     <cmd>Lspsaga hover_doc<CR>
-nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 
 " Directory tree
 let g:nvim_tree_auto_open = 1
@@ -140,9 +125,13 @@ let bufferline.icon_close_tab = ''
 let bufferline.icon_close_tab_modified = ''
 let bufferline.icon_separator_active = ''
 let bufferline.icon_separator_inactive = ''
-let bufferline.no_name_title = 'Buffer'
 let bufferline.maximum_padding = 12
+let bufferline.no_name_title = 'Buffer'
 let bufferline.tabpages = v:false
+
+nnoremap <silent> <C-c> :BufferClose<CR>
+nnoremap <silent> <C-h> :BufferPrevious<CR>
+nnoremap <silent> <C-l> :BufferNext<CR>
 
 lua << EOF
 require('completion')
