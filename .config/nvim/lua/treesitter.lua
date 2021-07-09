@@ -1,14 +1,27 @@
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = 'all',
+    ensure_installed = {
+      'bash',
+      'comment',
+      'css',
+      'dockerfile',
+      'fish',
+      'html',
+      'javascript',
+      'jsdoc',
+      'json',
+      'jsonc',
+      'lua',
+      'scss',
+      'tsx',
+      'typescript',
+      'yaml'
+    },
     highlight = {
       enable = true,
     },
     incremental_selection = {
       enable = true,
-      disable = {
-        'cpp',
-        'lua'
-      },
+      disable = { 'lua' },
       keymaps = {
         init_selection = 'gnn',
         node_decremental = 'grm',

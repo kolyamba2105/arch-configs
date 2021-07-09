@@ -97,6 +97,9 @@ nnoremap <silent> Z :noh<CR>
 nnoremap <leader>o o<Esc>
 nnoremap <leader>O O<Esc>
 
+" Search for visually selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
 " Ctrl-p
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -129,6 +132,7 @@ let bufferline.no_name_title = 'Buffer'
 let bufferline.tabpages = v:false
 
 nnoremap <silent> <C-c> :BufferClose<CR>
+nnoremap <silent> <C-f> :BufferPick<CR>
 nnoremap <silent> <C-h> :BufferPrevious<CR>
 nnoremap <silent> <C-l> :BufferNext<CR>
 
