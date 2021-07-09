@@ -17,11 +17,13 @@ local on_attach = function(client, bufnr)
 
   local opts = { noremap = true, silent = true }
 
-  buf_set_keymap('n', '<C-j>',  '<cmd>Lspsaga diagnostic_jump_next<CR>',  opts)
-  buf_set_keymap('n', '<C-k>',  '<cmd>Lspsaga diagnostic_jump_prev<CR>',  opts)
-  buf_set_keymap('n', 'K',      '<cmd>Lspsaga hover_doc<CR>',             opts)
-  buf_set_keymap('n', 'ga',     '<cmd>Lspsaga code_action<CR>',           opts)
+
+  buf_set_keymap('n', '<C-j>',  ':Lspsaga diagnostic_jump_next<CR>',      opts)
+  buf_set_keymap('n', '<C-k>',  ':Lspsaga diagnostic_jump_prev<CR>',      opts)
+  buf_set_keymap('n', 'K',      ':Lspsaga hover_doc<CR>',                 opts)
+  buf_set_keymap('n', 'ga',     ':Lspsaga code_action<CR>',               opts)
   buf_set_keymap('n', 'gd',     '<cmd>lua vim.lsp.buf.definition()<CR>',  opts)
+  buf_set_keymap('n', 'ge',     ':Lspsaga show_line_diagnostics<CR>',     opts)
   buf_set_keymap('n', 'gn',     '<cmd>lua vim.lsp.buf.rename()<CR>',      opts)
   buf_set_keymap('n', 'gr',     '<cmd>lua vim.lsp.buf.references()<CR>',  opts)
 
@@ -46,8 +48,8 @@ local diagnostic_settings = {
   },
   init_options = {
     filetypes = {
-      typescript = 'prettier',
-      typescriptreact = 'prettier'
+      typescript = 'eslint',
+      typescriptreact = 'eslint'
     },
     formatters = {
       prettier = {
@@ -58,6 +60,28 @@ local diagnostic_settings = {
     formatFiletypes = {
       typescript = 'prettier',
       typescriptreact = 'prettier'
+    },
+    linters = {
+      eslint = {
+        args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
+        command = 'eslint_d',
+        debounce = 100,
+        rootPatterns = { '.git' },
+        parseJson = {
+          column = 'column',
+          endColumn = 'endColumn',
+          endLine = 'endLine',
+          errorsRoot = '[0].messages',
+          line = 'line',
+          message = '[ESLint] ${message} [${ruleId}]',
+          security = 'severity'
+        },
+        securities = {
+          [1] = 'warning',
+          [2] = 'error'
+        },
+        sourceName = 'eslint_d'
+      }
     }
   },
 }
@@ -68,7 +92,7 @@ local function setup_servers()
   local servers = require'lspinstall'.installed_servers()
 
   for _, server in pairs(servers) do
-    local config = {}
+    local config = { on_attach = on_attach }
 
     if server == "tsserver" then
       config = typescript_settings
