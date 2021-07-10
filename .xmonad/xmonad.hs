@@ -50,7 +50,8 @@ myKeys =
         ("M-S-g", spawn "brave --incognito"),
         ("M-f", spawn "firefox"),
         ("M-g", spawn "brave"),
-        ("M-p", shellPrompt myPromptConfig)
+        ("M-p", shellPrompt myPromptConfig),
+        ("M-/", spawn "firefox --private-window https://vim.rtorr.com")
       ]
 
     controlKeys =
@@ -115,9 +116,6 @@ myRemovedKeys =
   [ "M-S-q"
   ]
 
-toggleFloat :: W.RationalRect -> Window -> X ()
-toggleFloat r w = windows (\s -> if M.member w (W.floating s) then W.sink w s else W.float w r s)
-
 myKeysConfig :: XConfig a -> XConfig a
 myKeysConfig config = config `additionalKeysP` myKeys `removeKeysP` myRemovedKeys
 
@@ -171,6 +169,9 @@ mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
 defaultSpacing :: l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 defaultSpacing = mySpacing 4
+
+toggleFloat :: W.RationalRect -> Window -> X ()
+toggleFloat r w = windows (\s -> if M.member w (W.floating s) then W.sink w s else W.float w r s)
 
 -- Window rules
 rectCentered :: Rational -> W.RationalRect

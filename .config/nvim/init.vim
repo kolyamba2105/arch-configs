@@ -120,9 +120,9 @@ let bufferline.no_name_title = 'Buffer'
 let bufferline.tabpages = v:false
 
 nnoremap <silent> <C-c> :BufferClose<CR>
-nnoremap <silent> <C-f> :BufferPick<CR>
 nnoremap <silent> <C-h> :BufferPrevious<CR>
 nnoremap <silent> <C-l> :BufferNext<CR>
+nnoremap <silent> <C-p> :BufferPick<CR>
 
 " Telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
