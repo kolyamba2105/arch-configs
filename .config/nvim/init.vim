@@ -24,36 +24,25 @@ Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 " Basic Vim settings
-syntax on
 colorscheme nord
 
 set clipboard+=unnamedplus
 set colorcolumn=80
 set completeopt=menuone,noselect
-set cursorline
 set expandtab
 set foldmethod=syntax
 set ignorecase
-set incsearch
-set laststatus=2
-set nobackup
-set noerrorbells
-set nofoldenable
-set noswapfile
 set nowrap
 set number
 set relativenumber
 set scrolloff=12
 set shiftwidth=2
-set showtabline=2
 set signcolumn=yes
-set smartcase
 set smartindent
 set splitbelow
 set splitright
 set tabstop=2 softtabstop=2
 set termguicolors
-set undodir=~/.vim/undo
 set undofile
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules
 
