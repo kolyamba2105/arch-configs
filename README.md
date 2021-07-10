@@ -33,6 +33,7 @@
 - [nodejs](https://archlinux.org/packages/community/x86_64/nodejs)
 - [openssh](https://archlinux.org/packages/core/x86_64/openssh)
 - [postgres](https://archlinux.org/packages/extra/x86_64/postgresql)
+- [ripgrep](https://archlinux.org/packages/community/x86_64/ripgrep)
 - [vim](https://archlinux.org/packages/extra/x86_64/vim)
 - [yarn](https://archlinux.org/packages/community/any/yarn)
 

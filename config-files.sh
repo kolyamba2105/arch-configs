@@ -35,6 +35,7 @@ rm ~/.config/fish/functions/fish_prompt.fish
 
 rm ~/.config/nvim/init.vim
 rm ~/.config/nvim/lua/completion.lua
+rm ~/.config/nvim/lua/fuzzy-finder.lua
 rm ~/.config/nvim/lua/lsp.lua
 rm ~/.config/nvim/lua/status-line.lua
 rm ~/.config/nvim/lua/treesitter.lua
@@ -107,6 +108,7 @@ mkdir -p ~/.config/nvim
 mkdir -p ~/.config/nvim/lua
 ln -s $PWD/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -s $PWD/.config/nvim/lua/completion.lua ~/.config/nvim/lua/completion.lua
+ln -s $PWD/.config/nvim/lua/fuzzy-finder.lua ~/.config/nvim/lua/fuzzy-finder.lua
 ln -s $PWD/.config/nvim/lua/lsp.lua ~/.config/nvim/lua/lsp.lua
 ln -s $PWD/.config/nvim/lua/status-line.lua ~/.config/nvim/lua/status-line.lua
 ln -s $PWD/.config/nvim/lua/treesitter.lua ~/.config/nvim/lua/treesitter.lua

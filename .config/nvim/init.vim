@@ -6,10 +6,12 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kabouzeid/nvim-lspinstall'
-Plug 'kien/ctrlp.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/barbar.nvim'
@@ -22,8 +24,8 @@ Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 " Basic Vim settings
-colorscheme nord
 syntax on
+colorscheme nord
 
 set clipboard+=unnamedplus
 set colorcolumn=80
@@ -100,9 +102,6 @@ nnoremap <leader>O O<Esc>
 " Search for visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-" Ctrl-p
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
 " Directory tree
 let g:nvim_tree_auto_open = 1
 let g:nvim_tree_follow = 1
@@ -136,8 +135,13 @@ nnoremap <silent> <C-f> :BufferPick<CR>
 nnoremap <silent> <C-h> :BufferPrevious<CR>
 nnoremap <silent> <C-l> :BufferNext<CR>
 
+" Telescope
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<CR>
+
 lua << EOF
 require('completion')
+require('fuzzy-finder')
 require('lsp')
 require('status-line')
 require('treesitter')
