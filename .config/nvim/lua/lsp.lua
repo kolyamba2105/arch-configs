@@ -86,18 +86,29 @@ local diagnostic_settings = {
   },
 }
 
+local haskell_config = {
+  default_config = {
+    cmd = { 'haskell-language-server-wrapper', '--lsp' },
+    filetypes = { 'haskell', 'lhaskell' },
+    root_dir = require('lspconfig/util').root_pattern('*.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml')
+  }
+}
+
 local function setup_servers()
   require'lspinstall'.setup()
+
+  local config = { on_attach = on_attach }
+
+  require('lspconfig/configs').haskell = haskell_config
+  require('lspconfig').haskell.setup(config)
 
   local servers = require'lspinstall'.installed_servers()
 
   for _, server in pairs(servers) do
-    local config = { on_attach = on_attach }
-
-    if server == "tsserver" then
+    if server == 'tsserver' then
       config = typescript_settings
     end
-    if server == "diagnosticls" then
+    if server == 'diagnosticls' then
       config = diagnostic_settings
     end
 
@@ -109,5 +120,5 @@ setup_servers()
 
 require'lspinstall'.post_install_hook = function ()
   setup_servers()
-  vim.cmd("bufdo e")
+  vim.cmd('bufdo e')
 end

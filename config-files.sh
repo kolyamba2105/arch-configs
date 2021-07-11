@@ -15,7 +15,6 @@ rm ~/.screenlayout/3-dual-monitor.sh
 
 rm ~/.xmonad/xmonad.hs
 rm ~/.xmonad/build
-rm ~/.xmonad/hie.yaml
 rm ~/.xmobarrc
 
 rm ~/.config/mimeapps.list
@@ -71,7 +70,6 @@ ln -s $PWD/.screenlayout/3-dual-monitor.sh ~/.screenlayout/3-dual-monitor.sh
 mkdir -p ~/.xmonad
 ln -s $PWD/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
 ln -s $PWD/.xmonad/build ~/.xmonad/build
-ln -s $PWD/.xmonad/hie.yaml ~/.xmonad/hie.yaml
 ln -s $PWD/.xmobarrc ~/.xmobarrc
 
 
