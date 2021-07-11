@@ -33,6 +33,7 @@ set cursorline
 set expandtab
 set foldmethod=syntax
 set ignorecase
+set nofoldenable
 set nowrap
 set number
 set relativenumber
