@@ -5,11 +5,6 @@
 - [xorg-xinit](https://archlinux.org/packages/extra/x86_64/xorg-xinit)
 - [xorg-server](https://archlinux.org/packages/extra/x86_64/xorg-server)
 
-## Haskell
-
-- [ghcup](https://www.haskell.org/ghcup)
-- [Setup XMonad and Xmobar via stack](https://brianbuccola.com/how-to-install-xmonad-and-xmobar-via-stack)
-
 ## Sound
 
 - [alsa-utils](https://archlinux.org/packages/extra/x86_64/alsa-utils)

@@ -13,9 +13,8 @@ rm ~/.screenlayout/1-laptop.sh
 rm ~/.screenlayout/2-monitor.sh
 rm ~/.screenlayout/3-dual-monitor.sh
 
-rm ~/.xmonad/xmonad.hs
-rm ~/.xmonad/build
 rm ~/.xmobarrc
+rm -rf ~/.xmonad
 
 rm ~/.config/mimeapps.list
 
@@ -67,11 +66,8 @@ ln -s $PWD/.screenlayout/2-monitor.sh ~/.screenlayout/2-monitor.sh
 ln -s $PWD/.screenlayout/3-dual-monitor.sh ~/.screenlayout/3-dual-monitor.sh
 
 # XMonad WM
-mkdir -p ~/.xmonad
-ln -s $PWD/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
-ln -s $PWD/.xmonad/build ~/.xmonad/build
+ln -s $PWD/.xmonad ~/.xmonad
 ln -s $PWD/.xmobarrc ~/.xmobarrc
-
 
 # Create config directory if it doesn't exist
 mkdir -p ~/.config
