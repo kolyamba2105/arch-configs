@@ -34,6 +34,7 @@ set expandtab
 set foldmethod=syntax
 set ignorecase
 set nofoldenable
+set noswapfile
 set nowrap
 set number
 set relativenumber

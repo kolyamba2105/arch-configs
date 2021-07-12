@@ -97,14 +97,14 @@ local haskell_config = {
 local function setup_servers()
   require'lspinstall'.setup()
 
-  local config = { on_attach = on_attach }
-
   require('lspconfig/configs').haskell = haskell_config
-  require('lspconfig').haskell.setup(config)
+  require('lspconfig').haskell.setup { on_attach = on_attach }
 
   local servers = require'lspinstall'.installed_servers()
 
   for _, server in pairs(servers) do
+    local config = { on_attach = on_attach }
+
     if server == 'tsserver' then
       config = typescript_settings
     end
