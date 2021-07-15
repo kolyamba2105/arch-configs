@@ -30,7 +30,10 @@ rm ~/.config/fish/config.fish
 rm ~/.config/fish/fish_variables
 rm ~/.config/fish/functions/fish_prompt.fish
 
+rm ~/.config/nvim/basics.vim
+rm ~/.config/nvim/buffer-line.vim
 rm ~/.config/nvim/coc-settings.json
+rm ~/.config/nvim/coc.vim
 rm ~/.config/nvim/init-coc.vim
 rm ~/.config/nvim/init.vim
 rm ~/.config/nvim/lua/completion.lua
@@ -38,6 +41,9 @@ rm ~/.config/nvim/lua/fuzzy-finder.lua
 rm ~/.config/nvim/lua/lsp.lua
 rm ~/.config/nvim/lua/status-line.lua
 rm ~/.config/nvim/lua/treesitter.lua
+rm ~/.config/nvim/mappings.vim
+rm ~/.config/nvim/nvim-tree.vim
+rm ~/.config/nvim/telescope.vim
 
 rm ~/.config/ranger/commands.py
 rm ~/.config/ranger/commands_full.py
@@ -100,7 +106,10 @@ ln -s $PWD/.config/dunst/notification-normal.png ~/.config/dunst/notification-no
 # Neovim
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/nvim/lua
+ln -s $PWD/.config/nvim/basics.vim ~/.config/nvim/basics.vim
+ln -s $PWD/.config/nvim/buffer-line.vim ~/.config/nvim/buffer-line.vim
 ln -s $PWD/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+ln -s $PWD/.config/nvim/coc.vim ~/.config/nvim/coc.vim
 ln -s $PWD/.config/nvim/init-coc.vim ~/.config/nvim/init-coc.vim
 ln -s $PWD/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -s $PWD/.config/nvim/lua/completion.lua ~/.config/nvim/lua/completion.lua
@@ -108,6 +117,9 @@ ln -s $PWD/.config/nvim/lua/fuzzy-finder.lua ~/.config/nvim/lua/fuzzy-finder.lua
 ln -s $PWD/.config/nvim/lua/lsp.lua ~/.config/nvim/lua/lsp.lua
 ln -s $PWD/.config/nvim/lua/status-line.lua ~/.config/nvim/lua/status-line.lua
 ln -s $PWD/.config/nvim/lua/treesitter.lua ~/.config/nvim/lua/treesitter.lua
+ln -s $PWD/.config/nvim/mappings.vim ~/.config/nvim/mappings.vim
+ln -s $PWD/.config/nvim/nvim-tree.vim ~/.config/nvim/nvim-tree.vim
+ln -s $PWD/.config/nvim/telescope.vim ~/.config/nvim/telescope.vim
 
 # Ranger file manager
 mkdir -p ~/.config/ranger
