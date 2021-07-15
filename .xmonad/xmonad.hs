@@ -316,7 +316,7 @@ toggleWS = C.toggleWS' ignoredWorkspaces
 -- Main
 main :: IO ()
 main = do
-  xMobar <- spawnPipe "xmobar -x 0"
+  xMobar <- spawnPipe "xmobar ~/.xmonad/xmobar.config"
   xmonad $ docks (defaultSettings xMobar & myKeysConfig)
 
 xmobarPrettyPrinting :: Handle -> X ()
