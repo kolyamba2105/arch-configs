@@ -20,12 +20,12 @@ call plug#end()
 
 colorscheme nord
 
-source ~/.config/nvim/basics.vim
-source ~/.config/nvim/buffer-line.vim
-source ~/.config/nvim/coc.vim
-source ~/.config/nvim/mappings.vim
-source ~/.config/nvim/nvim-tree.vim
-source ~/.config/nvim/telescope.vim
+source ~/.config/nvim/vim/basics.vim
+source ~/.config/nvim/vim/buffer-line.vim
+source ~/.config/nvim/vim/coc.vim
+source ~/.config/nvim/vim/mappings.vim
+source ~/.config/nvim/vim/nvim-tree.vim
+source ~/.config/nvim/vim/telescope.vim
 
 lua << EOF
 require('fuzzy-finder')
