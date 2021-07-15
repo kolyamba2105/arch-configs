@@ -13,10 +13,11 @@ Run `nvim` to use all new features and plugins of Neovim 0.5.
   - [lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)
   - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
   - [nvim-lspinstall](https://github.com/kabouzeid/nvim-lspinstall)
+
 - Autocompletion
   - [nvim-compe](https://github.com/hrsh7th/nvim-compe)
 
-List of language servers:
+### List of language servers
 
 - bash
 - css
@@ -35,7 +36,9 @@ Run `vim` to use some new features and plugins of Neovim 0.5 together with CoC.
 
 All extensions are installed into `$HOME/.config/coc/extensions`.
 
-`CocInstall coc-css coc-cssmodules coc-diagnostic coc-eslint coc-git coc-html coc-json coc-markdownlint coc-prettier coc-sh coc-spell-checker coc-tsserver coc-vimlsp coc-yaml`
+```vim
+CocInstall coc-css coc-cssmodules coc-diagnostic coc-eslint coc-git coc-html coc-json coc-markdownlint coc-prettier coc-sh coc-spell-checker coc-tsserver coc-vimlsp coc-yaml
+```
 
 ### Common plugins
 

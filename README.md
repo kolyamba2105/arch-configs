@@ -1,7 +1,5 @@
 # My config files
 
-## Useful articles
-
 - [Bluetooth](https://wiki.archlinux.org/index.php/Bluetooth)
 - [Default applications](https://wiki.archlinux.org/index.php/Xdg-utils)
 - [Network configuration](https://wiki.archlinux.org/index.php/Network_configuration)
