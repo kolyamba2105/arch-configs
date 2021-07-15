@@ -12,4 +12,4 @@ alias mv "mv -i"
 
 alias cl "clear"
 
-alias vim "nvim -u ~/.config/nvim/init-coc.vim"
+alias nvim-lsp "nvim -u ~/.config/nvim/init-lsp.vim"

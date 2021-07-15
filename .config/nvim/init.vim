@@ -1,19 +1,16 @@
 call plug#begin(stdpath('data') . 'vimplug')
 
+Plug 'Yggdroot/indentLine'
 Plug 'arcticicestudio/nord-vim'
-Plug 'glepnir/lspsaga.nvim'
 Plug 'hoob3rt/lualine.nvim'
-Plug 'hrsh7th/nvim-compe'
 Plug 'jiangmiao/auto-pairs'
-Plug 'kabouzeid/nvim-lspinstall'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'neovim/nvim-lspconfig'
+Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'typescriptreact']}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/barbar.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -25,14 +22,12 @@ colorscheme nord
 
 source ~/.config/nvim/vim/basics.vim
 source ~/.config/nvim/vim/buffer-line.vim
+source ~/.config/nvim/vim/coc.vim
 source ~/.config/nvim/vim/mappings.vim
 source ~/.config/nvim/vim/nvim-tree.vim
 source ~/.config/nvim/vim/telescope.vim
 
 lua << EOF
-require('completion')
 require('fuzzy-finder')
-require('lsp')
 require('status-line')
-require('treesitter')
 EOF

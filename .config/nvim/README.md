@@ -7,7 +7,11 @@
 
 ## Neovim with native LSP
 
-Run `nvim` to use all new features and plugins of Neovim 0.5.
+Run `nvim-lsp` to use all new features and plugins of Neovim 0.5.
+
+- Syntax highlighting
+  - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+  - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
 
 - Native LSP
   - [lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)
@@ -30,14 +34,16 @@ Run `nvim` to use all new features and plugins of Neovim 0.5.
 
 ## Neovim with CoC
 
-Run `vim` to use some new features and plugins of Neovim 0.5 together with CoC.
+Run `nvim` to use some new features and plugins of Neovim 0.5 together with CoC.
 
 ### CoC extensions
 
 All extensions are installed into `$HOME/.config/coc/extensions`.
 
 ```vim
-CocInstall coc-css coc-cssmodules coc-diagnostic coc-eslint coc-git coc-html coc-json coc-markdownlint coc-prettier coc-sh coc-spell-checker coc-tsserver coc-vimlsp coc-yaml
+CocInstall coc-css coc-cssmodules coc-diagnostic coc-eslint coc-html coc-json
+coc-markdownlint coc-prettier coc-sh coc-spell-checker coc-tsserver coc-vimlsp
+coc-yaml
 ```
 
 ### Common plugins
@@ -45,5 +51,4 @@ CocInstall coc-css coc-cssmodules coc-diagnostic coc-eslint coc-git coc-html coc
 - [barbar.nvim](https://github.com/romgrk/barbar.nvim)
 - [lualine.nvim](https://github.com/hoob3rt/lualine.nvim)
 - [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)

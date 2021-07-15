@@ -83,6 +83,7 @@
     "slock",
     "snoc",
     "struct",
+    "textobjects",
     "tpope",
     "treesitter",
     "tupled",

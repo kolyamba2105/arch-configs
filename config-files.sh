@@ -33,7 +33,7 @@ rm ~/.config/fish/functions/fish_prompt.fish
 rm ~/.config/htop/htoprc
 
 rm ~/.config/nvim/coc-settings.json
-rm ~/.config/nvim/init-coc.vim
+rm ~/.config/nvim/init-lsp.vim
 rm ~/.config/nvim/init.vim
 rm ~/.config/nvim/lua/completion.lua
 rm ~/.config/nvim/lua/fuzzy-finder.lua
@@ -114,7 +114,7 @@ mkdir -p ~/.config/nvim
 mkdir -p ~/.config/nvim/lua
 mkdir -p ~/.config/nvim/vim
 ln -s $PWD/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
-ln -s $PWD/.config/nvim/init-coc.vim ~/.config/nvim/init-coc.vim
+ln -s $PWD/.config/nvim/init-lsp.vim ~/.config/nvim/init-lsp.vim
 ln -s $PWD/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -s $PWD/.config/nvim/lua/completion.lua ~/.config/nvim/lua/completion.lua
 ln -s $PWD/.config/nvim/lua/fuzzy-finder.lua ~/.config/nvim/lua/fuzzy-finder.lua
