@@ -30,6 +30,8 @@ rm ~/.config/fish/config.fish
 rm ~/.config/fish/fish_variables
 rm ~/.config/fish/functions/fish_prompt.fish
 
+rm ~/.config/nvim/coc-settings.json
+rm ~/.config/nvim/init-coc.vim
 rm ~/.config/nvim/init.vim
 rm ~/.config/nvim/lua/completion.lua
 rm ~/.config/nvim/lua/fuzzy-finder.lua
@@ -98,6 +100,8 @@ ln -s $PWD/.config/dunst/notification-normal.png ~/.config/dunst/notification-no
 # Neovim
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/nvim/lua
+ln -s $PWD/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+ln -s $PWD/.config/nvim/init-coc.vim ~/.config/nvim/init-coc.vim
 ln -s $PWD/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -s $PWD/.config/nvim/lua/completion.lua ~/.config/nvim/lua/completion.lua
 ln -s $PWD/.config/nvim/lua/fuzzy-finder.lua ~/.config/nvim/lua/fuzzy-finder.lua

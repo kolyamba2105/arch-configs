@@ -11,3 +11,5 @@ alias rm "rm -i"
 alias mv "mv -i"
 
 alias cl "clear"
+
+alias vim "nvim -u ~/.config/nvim/init-coc.vim"
