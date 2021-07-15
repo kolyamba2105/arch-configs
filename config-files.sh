@@ -30,6 +30,8 @@ rm ~/.config/fish/config.fish
 rm ~/.config/fish/fish_variables
 rm ~/.config/fish/functions/fish_prompt.fish
 
+rm ~/.config/htop/htoprc
+
 rm ~/.config/nvim/coc-settings.json
 rm ~/.config/nvim/init-coc.vim
 rm ~/.config/nvim/init.vim
@@ -102,6 +104,10 @@ ln -s $PWD/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 ln -s $PWD/.config/dunst/notification-critical.png ~/.config/dunst/notification-critical.png
 ln -s $PWD/.config/dunst/notification-low.png ~/.config/dunst/notification-low.png
 ln -s $PWD/.config/dunst/notification-normal.png ~/.config/dunst/notification-normal.png
+
+# HTOP
+mkdir -p ~/.config/htop
+ln -s $PWD/.config/htop/htoprc ~/.config/htop/htoprc
 
 # Neovim
 mkdir -p ~/.config/nvim
