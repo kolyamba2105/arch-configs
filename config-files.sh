@@ -45,6 +45,7 @@ rm ~/.config/nvim/vim/buffer-line.vim
 rm ~/.config/nvim/vim/coc.vim
 rm ~/.config/nvim/vim/mappings.vim
 rm ~/.config/nvim/vim/nvim-tree.vim
+rm ~/.config/nvim/vim/status-line.vim
 rm ~/.config/nvim/vim/telescope.vim
 
 rm ~/.config/ranger/commands.py
@@ -126,6 +127,7 @@ ln -s $PWD/.config/nvim/vim/buffer-line.vim ~/.config/nvim/vim/buffer-line.vim
 ln -s $PWD/.config/nvim/vim/coc.vim ~/.config/nvim/vim/coc.vim
 ln -s $PWD/.config/nvim/vim/mappings.vim ~/.config/nvim/vim/mappings.vim
 ln -s $PWD/.config/nvim/vim/nvim-tree.vim ~/.config/nvim/vim/nvim-tree.vim
+ln -s $PWD/.config/nvim/vim/status-line.vim ~/.config/nvim/vim/status-line.vim
 ln -s $PWD/.config/nvim/vim/telescope.vim ~/.config/nvim/vim/telescope.vim
 
 # Ranger file manager

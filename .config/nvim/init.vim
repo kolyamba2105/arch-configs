@@ -25,6 +25,7 @@ source ~/.config/nvim/vim/buffer-line.vim
 source ~/.config/nvim/vim/coc.vim
 source ~/.config/nvim/vim/mappings.vim
 source ~/.config/nvim/vim/nvim-tree.vim
+source ~/.config/nvim/vim/status-line.vim
 source ~/.config/nvim/vim/telescope.vim
 
 lua << EOF
