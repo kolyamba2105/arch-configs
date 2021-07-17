@@ -49,7 +49,6 @@ ripgrep
 rofi
 scrot
 slock
-sublime-text
 sudo
 telegram-desktop
 texinfo
