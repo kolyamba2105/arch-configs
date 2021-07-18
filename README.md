@@ -360,7 +360,7 @@ EndSection
 
 ### Screen lock setup
 
-Create `/etc/systemd/system/slock@.service` file and add the following content:
+- Create `/etc/systemd/system/slock@.service` file and add the following content:
 
 ```sh
 [Unit]
@@ -375,6 +375,12 @@ ExecStart=/usr/bin/slock
 
 [Install]
 WantedBy=sleep.target
+```
+
+- Enable service
+
+```sh
+systemctl enable slock@<user-name>.service
 ```
 
 ## Useful Wiki pages
