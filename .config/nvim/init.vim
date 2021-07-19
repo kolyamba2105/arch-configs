@@ -4,7 +4,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'arcticicestudio/nord-vim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'joshdick/onedark.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'leafgarland/typescript-vim', {'for': ['typescript', 'typescriptreact']}
@@ -19,7 +18,7 @@ Plug 'tpope/vim-surround'
 
 call plug#end()
 
-colorscheme onedark
+colorscheme nord
 
 source ~/.config/nvim/vim/basics.vim
 source ~/.config/nvim/vim/buffer-line.vim
