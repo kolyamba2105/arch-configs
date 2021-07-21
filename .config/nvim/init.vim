@@ -12,13 +12,14 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'romgrk/barbar.nvim'
+Plug 'gruvbox-community/gruvbox'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 
 call plug#end()
 
-colorscheme nord
+colorscheme gruvbox
 
 source ~/.config/nvim/vim/basics.vim
 source ~/.config/nvim/vim/buffer-line.vim

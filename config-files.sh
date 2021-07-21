@@ -18,6 +18,7 @@ rm -rf ~/.xmonad
 rm ~/.config/mimeapps.list
 
 rm ~/.config/alacritty/alacritty.yml
+rm ~/.config/alacritty/alacritty-gruvbox.yml
 
 rm ~/.config/conky/conky.conf
 
@@ -94,6 +95,7 @@ ln -s $PWD/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish
 # Alacritty terminal
 mkdir -p ~/.config/alacritty
 ln -s $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -s $PWD/.config/alacritty/alacritty-gruvbox.yml ~/.config/alacritty/alacritty-gruvbox.yml
 
 # Conky system monitor
 mkdir -p ~/.config/conky

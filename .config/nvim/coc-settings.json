@@ -1,5 +1,6 @@
 {
   "diagnostic.virtualText": true,
+  "coc.preferences.formatOnSaveFiletypes": ["typescript",  "typescriptreact"],
   "prettier.arrowParens": "avoid",
   "prettier.jsxBracketSameLine": true,
   "prettier.printWidth": 100,
@@ -21,6 +22,7 @@
     "Existency",
     "Formik",
     "Functors",
+    "Gruvbox",
     "HKTs",
     "Hanlder",
     "Janek",

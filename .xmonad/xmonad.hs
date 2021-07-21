@@ -27,6 +27,8 @@ import XMonad.Util.SpawnOnce
 
 myTerminal = "alacritty"
 
+myGruvboxTerminal = "alacritty --config-file ~/.config/alacritty/alacritty-gruvbox.yml"
+
 myFont = "xft:JetBrainsMono Nerd Font:weight=regular:pixelsize=14:antialias=true:hinting=true"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -46,6 +48,7 @@ myKeys =
   where
     coreKeys =
       [ ("M-S-<Return>", spawn myTerminal),
+        ("M-S-n", spawn myGruvboxTerminal),
         ("M-S-f", spawn "firefox --private-window"),
         ("M-S-g", spawn "brave --incognito"),
         ("M-f", spawn "firefox"),
