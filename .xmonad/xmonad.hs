@@ -8,6 +8,7 @@ import System.IO
 import XMonad
 import qualified XMonad.Actions.CycleWS as C
 import XMonad.Actions.DynamicWorkspaceGroups
+import XMonad.Actions.NoBorders
 import XMonad.Actions.WithAll
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -87,7 +88,7 @@ myKeys =
       ]
 
     layoutKeys =
-      [ ("M-b", sendMessage ToggleStruts),
+      [ ("M-b", toggleFullScreen),
         ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
         ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
       ]
@@ -150,7 +151,7 @@ defaultTall = Tall 1 0.05 0.5
 
 tall = renamed [Replace "Default"] $ limitWindows 6 $ defaultSpacing defaultTall
 
-monocle = renamed [Replace "Monocle"] $ noBorders Full
+monocle = renamed [Replace "Monocle"] $ defaultSpacing Full
 
 tabbed = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabbedTheme
   where
@@ -175,6 +176,13 @@ defaultSpacing = mySpacing 4
 
 toggleFloat :: W.RationalRect -> Window -> X ()
 toggleFloat r w = windows (\s -> if M.member w (W.floating s) then W.sink w s else W.float w r s)
+
+toggleFullScreen :: X ()
+toggleFullScreen = do
+  toggleScreenSpacingEnabled
+  toggleWindowSpacingEnabled
+  withFocused toggleBorder
+  sendMessage ToggleStruts
 
 -- Window rules
 rectCentered :: Rational -> W.RationalRect
@@ -207,6 +215,7 @@ myManageHook =
       className =? "Pavucontrol" --> customFloating (rectCentered 0.5)
     ]
     <+> namedScratchpadManageHook myScratchPads
+    <+> manageDocks
 
 -- Startup hook
 myStartupHook = do
@@ -364,7 +373,7 @@ defaultSettings xMobar =
       handleEventHook = mempty,
       layoutHook = myLayout,
       logHook = xmobarPrettyPrinting xMobar,
-      manageHook = manageDocks <+> myManageHook,
+      manageHook = myManageHook,
       modMask = mod4Mask,
       normalBorderColor = head colorPalette,
       startupHook = myStartupHook,
