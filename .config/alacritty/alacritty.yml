@@ -9,22 +9,22 @@ window:
 
 font:
   normal:
-    family: JetBrains Mono Nerd Font
+    family: Iosevka Nerd Font
     style: Regular
 
   bold:
-    family: JetBrains Mono Nerd Font
+    family: Iosevka Nerd Font
     style: Bold
 
   italic:
-    family: JetBrains Mono Nerd Font
+    family: Iosevka Nerd Font
     style: Italic
 
   bold_italic:
-    family: JetBrains Mono Nerd Font
+    family: Iosevka Nerd Font
     style: Bold Italic
 
-  size: 10.0
+  size: 12
 
 # Copied from here: https://github.com/eendroroy/alacritty-theme/blob/master/themes/nord.yaml
 colors:

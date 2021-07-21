@@ -1,6 +1,5 @@
 {
   "diagnostic.virtualText": true,
-  "tsserver.log": "verbose",
   "prettier.arrowParens": "avoid",
   "prettier.jsxBracketSameLine": true,
   "prettier.printWidth": 100,
@@ -34,6 +33,7 @@
     "Pangram",
     "Pavucontrol",
     "Touchpad",
+    "WINIT",
     "WSIs",
     "Yggdroot",
     "alacritty",

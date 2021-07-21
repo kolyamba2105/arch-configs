@@ -1,4 +1,5 @@
 brave-bin
+nerd-fonts-iosevka
 nerd-fonts-jetbrains-mono
 netctl-vpnc
 postman-bin
