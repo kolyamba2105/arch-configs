@@ -29,7 +29,9 @@ font:
 # Copied from https://github.com/eendroroy/alacritty-theme/blob/master/themes/gruvbox_dark.yaml
 colors:
   primary:
-    background: '0x282828'
+    # background: '0x1d2021' # hard contrast
+    # background: '0x282828' # medium contrast
+    background: '0x32302f' # soft contrast
     foreground: '0xebdbb2'
 
   normal:

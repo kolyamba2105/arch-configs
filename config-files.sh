@@ -44,6 +44,7 @@ rm ~/.config/nvim/lua/treesitter.lua
 rm ~/.config/nvim/vim/basics.vim
 rm ~/.config/nvim/vim/buffer-line.vim
 rm ~/.config/nvim/vim/coc.vim
+rm ~/.config/nvim/vim/color-scheme.vim
 rm ~/.config/nvim/vim/fugitive.vim
 rm ~/.config/nvim/vim/mappings.vim
 rm ~/.config/nvim/vim/nvim-tree.vim
@@ -128,6 +129,7 @@ ln -s $PWD/.config/nvim/lua/treesitter.lua ~/.config/nvim/lua/treesitter.lua
 ln -s $PWD/.config/nvim/vim/basics.vim ~/.config/nvim/vim/basics.vim
 ln -s $PWD/.config/nvim/vim/buffer-line.vim ~/.config/nvim/vim/buffer-line.vim
 ln -s $PWD/.config/nvim/vim/coc.vim ~/.config/nvim/vim/coc.vim
+ln -s $PWD/.config/nvim/vim/color-scheme.vim ~/.config/nvim/vim/color-scheme.vim
 ln -s $PWD/.config/nvim/vim/fugitive.vim ~/.config/nvim/vim/fugitive.vim
 ln -s $PWD/.config/nvim/vim/mappings.vim ~/.config/nvim/vim/mappings.vim
 ln -s $PWD/.config/nvim/vim/nvim-tree.vim ~/.config/nvim/vim/nvim-tree.vim

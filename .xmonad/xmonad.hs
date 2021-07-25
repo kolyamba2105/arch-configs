@@ -88,8 +88,7 @@ myKeys =
       ]
 
     layoutKeys =
-      [ ("M-b", toggleFullScreen),
-        ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
+      [ ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
         ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
       ]
 
@@ -176,13 +175,6 @@ defaultSpacing = mySpacing 4
 
 toggleFloat :: W.RationalRect -> Window -> X ()
 toggleFloat r w = windows (\s -> if M.member w (W.floating s) then W.sink w s else W.float w r s)
-
-toggleFullScreen :: X ()
-toggleFullScreen = do
-  toggleScreenSpacingEnabled
-  toggleWindowSpacingEnabled
-  withFocused toggleBorder
-  sendMessage ToggleStruts
 
 -- Window rules
 rectCentered :: Rational -> W.RationalRect
