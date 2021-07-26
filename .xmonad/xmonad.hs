@@ -48,8 +48,8 @@ myKeys =
     ++ wmKeys
   where
     coreKeys =
-      [ ("M-S-<Return>", spawn myTerminal),
-        ("M-S-n", spawn myGruvboxTerminal),
+      [ ("M-S-<Return>", spawn myGruvboxTerminal),
+        ("M-S-n", spawn myTerminal),
         ("M-S-f", spawn "firefox --private-window"),
         ("M-S-g", spawn "brave --incognito"),
         ("M-f", spawn "firefox"),
