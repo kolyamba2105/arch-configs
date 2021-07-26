@@ -1,6 +1,6 @@
 {
   "diagnostic.virtualText": true,
-  "coc.preferences.formatOnSaveFiletypes": ["typescript",  "typescriptreact"],
+  "coc.preferences.formatOnSaveFiletypes": ["typescript",  "typescriptreact", "haskell"],
   "prettier.arrowParens": "avoid",
   "prettier.jsxBracketSameLine": true,
   "prettier.printWidth": 100,
