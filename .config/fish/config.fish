@@ -12,6 +12,7 @@ alias mv "mv -i"
 
 alias cl "clear"
 
+alias nvim-coc "nvim -u ~/.config/nvim/init-coc.vim"
 alias nvim-lsp "nvim -u ~/.config/nvim/init-lsp.vim"
 
 alias n-12 "n exec 12.22.1"

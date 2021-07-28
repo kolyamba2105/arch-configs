@@ -17,7 +17,6 @@ local on_attach = function(client, bufnr)
 
   local opts = { noremap = true, silent = true }
 
-
   buf_set_keymap('n', '<C-j>',  ':Lspsaga diagnostic_jump_next<CR>',      opts)
   buf_set_keymap('n', '<C-k>',  ':Lspsaga diagnostic_jump_prev<CR>',      opts)
   buf_set_keymap('n', 'K',      ':Lspsaga hover_doc<CR>',                 opts)
