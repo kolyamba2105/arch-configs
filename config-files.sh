@@ -128,7 +128,7 @@ ln -s $PWD/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 ln -s $PWD/.config/nvim/init-coc.vim ~/.config/nvim/init-coc.vim
 ln -s $PWD/.config/nvim/init-lsp.vim ~/.config/nvim/init-lsp.vim
 
-ln -s ~/.config/nvim/init-coc.vim ~/.config/nvim/init.vim
+ln -s ~/.config/nvim/init-lsp.vim ~/.config/nvim/init.vim
 
 ln -s $PWD/.config/nvim/lua/completion.lua ~/.config/nvim/lua/completion.lua
 ln -s $PWD/.config/nvim/lua/fuzzy-finder.lua ~/.config/nvim/lua/fuzzy-finder.lua

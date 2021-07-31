@@ -325,7 +325,7 @@ ssh key-gen
 ### Install global `yarn` packages
 
 ```sh
-yarn global add @buildo/hophop @stoplight/prism-cli corsproxy-https-insecure n prettier
+yarn global add @buildo/hophop @stoplight/prism-cli corsproxy-https-insecure n prettier eslint_d
 ```
 
 ### Laptop brightness setup

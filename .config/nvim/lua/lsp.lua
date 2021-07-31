@@ -9,6 +9,19 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   }
 )
 
+_G.organize_imports = function ()
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  local params = {
+    command = '_typescript.organizeImports',
+    arguments = {
+      vim.api.nvim_buf_get_name(bufnr)
+    }
+  }
+
+  vim.lsp.buf.execute_command(params)
+end
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -26,12 +39,21 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gn',     '<cmd>lua vim.lsp.buf.rename()<CR>',      opts)
   buf_set_keymap('n', 'gr',     '<cmd>lua vim.lsp.buf.references()<CR>',  opts)
 
+  vim.cmd('command! Format lua vim.lsp.buf.formatting_seq_sync()')
+  vim.cmd('command! Organize lua organize_imports()')
+
   if client.resolved_capabilities.document_formatting then
-    buf_set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    vim.api.nvim_command [[augroup Format]]
+    vim.api.nvim_command [[autocmd! * <buffer>]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    vim.api.nvim_command [[augroup END]]
   end
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 local typescript_settings = {
+  capabilities = capabilities,
   on_attach = on_attach,
   filetypes = {
     'typescript',
@@ -40,8 +62,13 @@ local typescript_settings = {
 }
 
 local diagnostic_settings = {
+  capabilities = capabilities,
   on_attach = on_attach,
   filetypes = {
+    'css',
+    'json',
+    'markdown',
+    'scss',
     'typescript',
     'typescriptreact'
   },
@@ -57,6 +84,10 @@ local diagnostic_settings = {
       }
     },
     formatFiletypes = {
+      css = 'prettier',
+      json = 'prettier',
+      markdown = 'prettier',
+      scss = 'prettier',
       typescript = 'prettier',
       typescriptreact = 'prettier'
     },
