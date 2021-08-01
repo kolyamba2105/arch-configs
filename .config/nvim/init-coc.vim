@@ -10,7 +10,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/barbar.nvim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'tpope/vim-commentary'
