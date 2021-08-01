@@ -30,8 +30,8 @@ local on_attach = function(client, bufnr)
 
   local opts = { noremap = true, silent = true }
 
-  buf_set_keymap('n', '<C-j>',  ':Lspsaga diagnostic_jump_next<CR>',      opts)
-  buf_set_keymap('n', '<C-k>',  ':Lspsaga diagnostic_jump_prev<CR>',      opts)
+  buf_set_keymap('n', '<C-j>',  ':Lspsaga diagnostic_jump_next<CR>zzzv',  opts)
+  buf_set_keymap('n', '<C-k>',  ':Lspsaga diagnostic_jump_prev<CR>zzzv',  opts)
   buf_set_keymap('n', 'K',      ':Lspsaga hover_doc<CR>',                 opts)
   buf_set_keymap('n', 'ga',     ':Lspsaga code_action<CR>',               opts)
   buf_set_keymap('n', 'gd',     '<cmd>lua vim.lsp.buf.definition()<CR>',  opts)

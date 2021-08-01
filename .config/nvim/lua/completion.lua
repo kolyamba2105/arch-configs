@@ -10,6 +10,7 @@ require'compe'.setup {
   min_length = 1;
   preselect = 'enable';
   source = {
+    buffer = true,
     nvim_lsp = true,
     path = true,
   };
