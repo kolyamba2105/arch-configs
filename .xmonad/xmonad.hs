@@ -54,8 +54,7 @@ myKeys =
         ("M-S-g", spawn "brave --incognito"),
         ("M-f", spawn "firefox"),
         ("M-g", spawn "brave"),
-        ("M-p", shellPrompt myPromptConfig),
-        ("M-/", spawn "firefox --private-window https://vim.rtorr.com")
+        ("M-p", shellPrompt myPromptConfig)
       ]
 
     controlKeys =
@@ -70,21 +69,21 @@ myKeys =
 
     cycleWSKeys =
       [ ("M-C-<Tab>", toggleWS),
-        ("M-C-S-h", C.shiftPrevScreen),
-        ("M-C-S-j", C.shiftToNext),
-        ("M-C-S-k", C.shiftToPrev),
-        ("M-C-S-l", C.shiftNextScreen),
         ("M-C-h", C.prevScreen),
         ("M-C-j", nextWS),
         ("M-C-k", prevWS),
-        ("M-C-l", C.nextScreen)
+        ("M-C-l", C.nextScreen),
+        ("M-M1-h", C.shiftPrevScreen),
+        ("M-M1-j", C.shiftToNext),
+        ("M-M1-k", C.shiftToPrev),
+        ("M-M1-l", C.shiftNextScreen)
       ]
 
     dynamicWSGroupKeys =
-      [ ("M-M1-1", viewWSGroup "1"),
-        ("M-M1-2", viewWSGroup "2"),
-        ("M-M1-3", viewWSGroup "3"),
-        ("M-M1-4", viewWSGroup "4")
+      [ ("M-d 1", viewWSGroup "1"),
+        ("M-d 2", viewWSGroup "2"),
+        ("M-d 3", viewWSGroup "3"),
+        ("M-d 4", viewWSGroup "4")
       ]
 
     layoutKeys =
@@ -93,18 +92,18 @@ myKeys =
       ]
 
     scratchPadKeys =
-      [ ("M-<F1>", openScratchPad "htop"),
-        ("M-<F2>", openScratchPad "mixer"),
-        ("M-<F3>", openScratchPad "ranger"),
-        ("M-<F4>", openScratchPad "slack"),
-        ("M-<F5>", openScratchPad "telegram"),
-        ("M-`", openScratchPad "terminal")
+      [ ("M-`", openScratchPad "terminal"),
+        ("M-s 1", openScratchPad "htop"),
+        ("M-s 2", openScratchPad "mixer"),
+        ("M-s 3", openScratchPad "ranger"),
+        ("M-s 4", openScratchPad "slack"),
+        ("M-s 5", openScratchPad "telegram")
       ]
 
     screenLayoutKeys =
-      [ ("M-S-<F1>", spawn "~/.screenlayout/1-laptop.sh" `withNotification` notification "Laptop"),
-        ("M-S-<F2>", spawn "~/.screenlayout/2-monitor.sh" `withNotification` notification "Monitor"),
-        ("M-S-<F3>", spawn "~/.screenlayout/3-dual-monitor.sh" `withNotification` notification "Dual monitor")
+      [ ("M-/ 1", spawn "~/.screenlayout/1-laptop.sh" `withNotification` notification "Laptop"),
+        ("M-/ 2", spawn "~/.screenlayout/2-monitor.sh" `withNotification` notification "Monitor"),
+        ("M-/ 3", spawn "~/.screenlayout/3-dual-monitor.sh" `withNotification` notification "Dual monitor")
       ]
       where
         notification msg = Message Critical "Screen layout" msg
