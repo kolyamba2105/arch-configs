@@ -1,10 +1,10 @@
 call plug#begin(stdpath('data') . 'vimplug')
 
-Plug 'Yggdroot/indentLine'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
