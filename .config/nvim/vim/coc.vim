@@ -10,6 +10,22 @@ inoremap          <expr> <S-TAB>    pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent> <expr> <TAB>      pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <silent> <expr> <c-space>  coc#refresh()
 
+let g:coc_global_extensions = [
+  \'coc-css',
+  \'coc-cssmodules',
+  \'coc-diagnostic',
+  \'coc-eslint',
+  \'coc-html',
+  \'coc-json',
+  \'coc-markdownlint',
+  \'coc-prettier',
+  \'coc-sh',
+  \'coc-spell-checker',
+  \'coc-tsserver',
+  \'coc-vimlsp',
+  \'coc-yaml',
+  \]
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
