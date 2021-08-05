@@ -1,9 +1,6 @@
 #!/bin/sh
 
 # Remove all existing configs first
-rm ~/.bash_profile
-rm ~/.bashrc
-
 rm ~/.fehbg
 
 rm ~/.gitconfig
@@ -26,10 +23,6 @@ rm ~/.config/dunst/dunstrc
 rm ~/.config/dunst/notification-critical.png
 rm ~/.config/dunst/notification-low.png
 rm ~/.config/dunst/notification-normal.png
-
-rm ~/.config/fish/config.fish
-rm ~/.config/fish/fish_variables
-rm ~/.config/fish/functions/fish_prompt.fish
 
 rm ~/.config/htop/htoprc
 
@@ -70,9 +63,12 @@ rm ~/.config/ranger/scope.sh
 
 rm ~/.config/starship/config.toml
 
-# Bash profile
-ln -s $PWD/.bash_profile ~/.bash_profile
-ln -s $PWD/.bashrc ~/.bashrc
+rm ~/.zprofile
+rm ~/.zshrc
+
+# ZSH
+ln -s $PWD/.zprofile ~/.zprofile
+ln -s $PWD/.zshrc ~/.zshrc
 
 # Set wallpaper with feh
 ln -s $PWD/.fehbg ~/.fehbg
@@ -97,13 +93,6 @@ mkdir -p ~/.config
 
 # Default apps
 ln -s $PWD/.config/mimeapps.list ~/.config/mimeapps.list
-
-# Fish config
-mkdir -p ~/.config/fish
-mkdir -p ~/.config/fish/functions
-ln -s $PWD/.config/fish/config.fish ~/.config/fish/config.fish
-ln -s $PWD/.config/fish/fish_variables ~/.config/fish/fish_variables
-ln -s $PWD/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
 
 # Alacritty terminal
 mkdir -p ~/.config/alacritty
