@@ -1,6 +1,10 @@
 {
   "diagnostic.virtualText": true,
-  "coc.preferences.formatOnSaveFiletypes": ["typescript",  "typescriptreact", "haskell"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "typescript",
+    "typescriptreact",
+    "haskell"
+  ],
   "prettier.arrowParens": "avoid",
   "prettier.jsxBracketSameLine": true,
   "prettier.printWidth": 100,
@@ -141,7 +145,13 @@
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
-      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
       "filetypes": ["haskell", "lhaskell"]
     }
   }
