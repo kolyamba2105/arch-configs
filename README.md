@@ -295,6 +295,10 @@ cd ~/config-files
 sh config-files.sh
 ```
 
+### Setup ZSH
+
+[Install ohmyzsh](https://github.com/ohmyzsh/ohmyzsh#basic-installation)
+
 ### Setup XMonad
 
 [Setup guide](./.xmonad/README.md)

@@ -16,6 +16,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'voldikss/vim-floaterm'
 
 call plug#end()
 
@@ -26,6 +27,7 @@ source ~/.config/nvim/vim/color-scheme.vim
 source ~/.config/nvim/vim/fugitive.vim
 source ~/.config/nvim/vim/mappings.vim
 source ~/.config/nvim/vim/nvim-tree.vim
+source ~/.config/nvim/vim/term.vim
 
 lua << EOF
 require('fuzzy-finder')

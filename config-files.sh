@@ -54,6 +54,7 @@ rm ~/.config/nvim/vim/color-scheme.vim
 rm ~/.config/nvim/vim/fugitive.vim
 rm ~/.config/nvim/vim/mappings.vim
 rm ~/.config/nvim/vim/nvim-tree.vim
+rm ~/.config/nvim/vim/term.vim
 
 rm ~/.config/ranger/commands.py
 rm ~/.config/ranger/commands_full.py
@@ -149,6 +150,7 @@ ln -s $PWD/.config/nvim/vim/color-scheme.vim ~/.config/nvim/vim/color-scheme.vim
 ln -s $PWD/.config/nvim/vim/fugitive.vim ~/.config/nvim/vim/fugitive.vim
 ln -s $PWD/.config/nvim/vim/mappings.vim ~/.config/nvim/vim/mappings.vim
 ln -s $PWD/.config/nvim/vim/nvim-tree.vim ~/.config/nvim/vim/nvim-tree.vim
+ln -s $PWD/.config/nvim/vim/term.vim ~/.config/nvim/vim/term.vim
 
 # Ranger file manager
 mkdir -p ~/.config/ranger
