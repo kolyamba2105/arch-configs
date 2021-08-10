@@ -1,6 +1,6 @@
-import Control.Monad (liftM2)
+import Control.Monad
 import Data.Function
-import qualified Data.Map as M
+import Data.Map
 import Data.Maybe
 import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86
@@ -173,7 +173,7 @@ defaultSpacing :: l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 defaultSpacing = mySpacing 4
 
 toggleFloat :: W.RationalRect -> Window -> X ()
-toggleFloat r w = windows (\s -> if M.member w (W.floating s) then W.sink w s else W.float w r s)
+toggleFloat r w = windows (\s -> if member w (W.floating s) then W.sink w s else W.float w r s)
 
 -- Window rules
 rectCentered :: Rational -> W.RationalRect

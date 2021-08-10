@@ -1,13 +1,14 @@
 {
   "diagnostic.virtualText": true,
   "coc.preferences.formatOnSaveFiletypes": [
+    "haskell",
+    "json",
     "typescript",
-    "typescriptreact",
-    "haskell"
+    "typescriptreact"
   ],
   "prettier.arrowParens": "avoid",
   "prettier.jsxBracketSameLine": true,
-  "prettier.printWidth": 100,
+  "prettier.printWidth": 80,
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
