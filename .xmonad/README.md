@@ -19,3 +19,8 @@ stack install
 # XMonad is ready to be recompiled
 xmonad --recompile && xmonad --restart
 ```
+
+## Update
+
+- Pull `xmonad-git`, `xmonad-contrib-git` and `xmobar-git` repositories
+- Run `stack install` from `.xmonad`

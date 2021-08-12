@@ -126,7 +126,7 @@ ln -s $PWD/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 ln -s $PWD/.config/nvim/init-coc.vim ~/.config/nvim/init-coc.vim
 ln -s $PWD/.config/nvim/init-lsp.vim ~/.config/nvim/init-lsp.vim
 
-ln -s ~/.config/nvim/init-coc.vim ~/.config/nvim/init.vim
+ln -s ~/.config/nvim/init-lsp.vim ~/.config/nvim/init.vim
 
 ln -s $PWD/.config/nvim/lua/lsp/common.lua ~/.config/nvim/lua/lsp/common.lua
 ln -s $PWD/.config/nvim/lua/lsp/diagnostic.lua ~/.config/nvim/lua/lsp/diagnostic.lua
