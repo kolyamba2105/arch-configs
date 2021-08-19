@@ -1,6 +1,5 @@
 call plug#begin(stdpath('data') . 'vimplug')
 
-Plug 'glepnir/lspsaga.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'kabouzeid/nvim-lspinstall'
