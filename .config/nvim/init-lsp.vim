@@ -3,7 +3,6 @@ call plug#begin(stdpath('data') . 'vimplug')
 Plug 'glepnir/lspsaga.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'hrsh7th/nvim-compe'
-Plug 'jiangmiao/auto-pairs'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'

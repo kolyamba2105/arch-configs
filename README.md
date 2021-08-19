@@ -316,7 +316,7 @@ Just reboot and follow the final steps...
 - Generate `ssh` key
 
 ```sh
-ssh key-gen
+ssh-keygen
 ```
 
 - Add content of `~/.ssh/id_rsa.pub` to Github

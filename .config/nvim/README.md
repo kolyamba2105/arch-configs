@@ -22,6 +22,7 @@ Run `nvim-lsp` to use all new features and plugins of Neovim 0.5.
 - bash
 - css
 - diagnosticls
+- elm
 - json
 - typescript
 - vim
