@@ -34,11 +34,14 @@ rm ~/.config/nvim/init-lsp.vim
 
 rm ~/.config/nvim/lua/lsp/common.lua
 rm ~/.config/nvim/lua/lsp/diagnostic.lua
+rm ~/.config/nvim/lua/lsp/efm.lua
 rm ~/.config/nvim/lua/lsp/haskell.lua
+rm ~/.config/nvim/lua/lsp/html.lua
 rm ~/.config/nvim/lua/lsp/json.lua
 rm ~/.config/nvim/lua/lsp/init.lua
 rm ~/.config/nvim/lua/lsp/typescript.lua
 
+rm ~/.config/nvim/lua/common.lua
 rm ~/.config/nvim/lua/completion.lua
 rm ~/.config/nvim/lua/fuzzy-finder.lua
 rm ~/.config/nvim/lua/status-line.lua
@@ -127,12 +130,15 @@ ln -s $PWD/.config/nvim/init-lsp.vim ~/.config/nvim/init-lsp.vim
 ln -s ~/.config/nvim/init-lsp.vim ~/.config/nvim/init.vim
 
 ln -s $PWD/.config/nvim/lua/lsp/common.lua ~/.config/nvim/lua/lsp/common.lua
+ln -s $PWD/.config/nvim/lua/lsp/efm.lua ~/.config/nvim/lua/lsp/efm.lua
 ln -s $PWD/.config/nvim/lua/lsp/diagnostic.lua ~/.config/nvim/lua/lsp/diagnostic.lua
 ln -s $PWD/.config/nvim/lua/lsp/haskell.lua ~/.config/nvim/lua/lsp/haskell.lua
+ln -s $PWD/.config/nvim/lua/lsp/html.lua ~/.config/nvim/lua/lsp/html.lua
 ln -s $PWD/.config/nvim/lua/lsp/json.lua ~/.config/nvim/lua/lsp/json.lua
 ln -s $PWD/.config/nvim/lua/lsp/init.lua ~/.config/nvim/lua/lsp/init.lua
 ln -s $PWD/.config/nvim/lua/lsp/typescript.lua ~/.config/nvim/lua/lsp/typescript.lua
 
+ln -s $PWD/.config/nvim/lua/common.lua ~/.config/nvim/lua/common.lua
 ln -s $PWD/.config/nvim/lua/completion.lua ~/.config/nvim/lua/completion.lua
 ln -s $PWD/.config/nvim/lua/fuzzy-finder.lua ~/.config/nvim/lua/fuzzy-finder.lua
 ln -s $PWD/.config/nvim/lua/status-line.lua ~/.config/nvim/lua/status-line.lua

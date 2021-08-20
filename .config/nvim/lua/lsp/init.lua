@@ -1,6 +1,7 @@
 local common = require('lsp/common')
 local diagnostic_settings = require('lsp/diagnostic')
 local haskell_config = require('lsp/haskell')
+local html_settings = require('lsp/html')
 local json_settings = require('lsp/json')
 local typescript_settings = require('lsp/typescript')
 
@@ -21,6 +22,10 @@ local function setup_servers()
 
     if server == 'json' then
       config = json_settings(common.on_attach)
+    end
+
+    if server == 'html' then
+      config = html_settings(common.on_attach)
     end
 
     if server == 'typescript' then
