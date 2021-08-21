@@ -387,6 +387,24 @@ WantedBy=sleep.target
 systemctl enable slock@<user-name>.service
 ```
 
+### Pacman list-packages hook
+
+- Create `/usr/share/libalpm/hooks/list-packages.hook` file and add the following content:
+
+```sh
+[Trigger]
+Operation = Install
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+When = PostTransaction
+Exec = /bin/sh -c '/usr/bin/pacman -Qqen > /etc/pkglist.txt'
+```
+
+This will update a list of explicitly installed packages in `/etc/pkglist.txt` which is linked to `./packages/pkgs.txt` file.
+
 ## Useful Wiki pages
 
 - [Bluetooth](https://wiki.archlinux.org/index.php/Bluetooth)
