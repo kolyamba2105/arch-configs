@@ -4,6 +4,7 @@ set colorcolumn=80
 set completeopt=menuone,noselect
 set cursorline
 set expandtab
+set foldmethod=syntax
 set hidden
 set ignorecase
 set nobackup
