@@ -38,13 +38,13 @@ M.on_attach = function(client, bufnr)
   common.buf_set_keymap('n', 'gq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   common.buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 
-  vim.cmd('command! Format lua vim.lsp.buf.formatting_sync()')
+  vim.cmd('command! Format lua vim.lsp.buf.formatting_sync(nil, 5000)')
   vim.cmd('command! Type lua vim.lsp.buf.type_definition()')
 
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_command [[augroup Format]]
     vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 5000)]]
     vim.api.nvim_command [[augroup END]]
   end
 end

@@ -31,7 +31,7 @@ return function (on_attach)
       linters = {
         eslint = {
           args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
-          command = 'eslint',
+          command = 'eslint_d',
           debounce = 100,
           rootPatterns = { '.git' },
           parseJson = {
