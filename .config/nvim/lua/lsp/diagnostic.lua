@@ -3,6 +3,8 @@ return function (on_attach)
     on_attach = on_attach,
     filetypes = {
       'css',
+      'javascript',
+      'javascriptreact',
       'json',
       'markdown',
       'scss',
@@ -11,6 +13,8 @@ return function (on_attach)
     },
     init_options = {
       filetypes = {
+        javascript = 'eslint',
+        javascriptreact = 'eslint',
         typescript = 'eslint',
         typescriptreact = 'eslint'
       },
@@ -22,6 +26,8 @@ return function (on_attach)
       },
       formatFiletypes = {
         css = 'prettier',
+        javascript = 'prettier',
+        javascriptreact = 'prettier',
         json = 'prettier',
         markdown = 'prettier',
         scss = 'prettier',

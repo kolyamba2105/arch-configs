@@ -11,8 +11,6 @@ local config = {
   }
 }
 
-vim.cmd [[au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif]]
-
 table.insert(config.sections.lualine_b, { 'branch' })
 
 table.insert(config.sections.lualine_b, {
@@ -31,3 +29,5 @@ table.insert(config.sections.lualine_x, {
 table.insert(config.sections.lualine_x, { 'filetype' })
 
 lualine.setup(config)
+
+vim.cmd [[au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif]]
