@@ -12,7 +12,6 @@ Run `nvim-lsp` to use all new features and plugins of Neovim 0.5.
 ### Plugins
 
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [nvim-lspinstall](https://github.com/kabouzeid/nvim-lspinstall)
 - [nvim-compe](https://github.com/hrsh7th/nvim-compe)
@@ -22,9 +21,9 @@ Run `nvim-lsp` to use all new features and plugins of Neovim 0.5.
 - bash
 - css
 - diagnosticls
-- elm
 - html
 - json
+- lua
 - typescript
 - vim
 - yaml

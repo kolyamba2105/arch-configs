@@ -87,7 +87,8 @@ myKeys =
       ]
 
     layoutKeys =
-      [ ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
+      [ ("M-b", sendMessage ToggleStruts),
+        ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
         ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
       ]
 
@@ -151,6 +152,8 @@ tall = renamed [Replace "Default"] $ limitWindows 6 $ defaultSpacing defaultTall
 
 monocle = renamed [Replace "Monocle"] $ defaultSpacing Full
 
+fullScreen = renamed [Replace "FullScreen"] $ noBorders Full
+
 tabbed = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabbedTheme
   where
     myTabbedTheme =
@@ -164,7 +167,7 @@ tabbed = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabb
           inactiveTextColor = colorPalette !! 4
         }
 
-myLayout = avoidStruts $ tall ||| monocle
+myLayout = avoidStruts $ tall ||| monocle ||| fullScreen
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
