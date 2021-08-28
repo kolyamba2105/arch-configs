@@ -403,7 +403,49 @@ When = PostTransaction
 Exec = /bin/sh -c '/usr/bin/pacman -Qqen > /etc/pkglist.txt'
 ```
 
-This will update a list of explicitly installed packages in `/etc/pkglist.txt` which is linked to `./packages/pkgs.txt` file.
+### Connect HDD
+
+- Use `fdisk` to partition the disk
+
+```sh
+# Create the only partion of type "Linux FileSystem"
+fdisk /dev/sda
+```
+
+- Format partition
+
+```sh
+mkfs.ext4 /dev/sda1
+```
+
+- Add an entry in `/etc/fstab` file
+
+```sh
+# Retrieve disk UUID
+lsa /dev/disk/by-uuid
+```
+
+- Create mount point
+
+```sh
+mkdir /hdd
+```
+
+- Re-mount
+
+```sh
+mount -a
+```
+
+- Change permissions
+
+```sh
+chgrp storage /hdd
+chmod 775 /hdd
+
+# This may be optional if user was already added to storage group
+gpasswd -a <user-name> storage
+```
 
 ## Useful Wiki pages
 

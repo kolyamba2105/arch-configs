@@ -32,6 +32,7 @@ nnoremap <leader>c :close<CR>
 
 " Save file
 nnoremap <leader>w :w<CR>
+nnoremap <leader>W :wall<CR>
 
 " Clear search input
 nnoremap <silent> Z :noh<CR>

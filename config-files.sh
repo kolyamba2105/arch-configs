@@ -165,6 +165,3 @@ ln -s $PWD/.config/ranger/scope.sh ~/.config/ranger/scope.sh
 # Starship prompt
 mkdir -p ~/.config/starship
 ln -s $PWD/.config/starship/config.toml ~/.config/starship/config.toml
-
-# Packages list
-ln -s /etc/pkglist.txt ~/config-files/packages/pkgs.txt

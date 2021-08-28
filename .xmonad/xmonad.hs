@@ -15,6 +15,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.LimitWindows
 import XMonad.Layout.NoBorders
+import XMonad.Layout.PerScreen
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
@@ -167,7 +168,7 @@ tabbed = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabb
           inactiveTextColor = colorPalette !! 4
         }
 
-myLayout = avoidStruts $ tall ||| monocle ||| fullScreen
+myLayout = avoidStruts $ tall ||| ifWider 1920 monocle fullScreen
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
