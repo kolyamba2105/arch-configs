@@ -41,6 +41,7 @@ rm ~/.config/nvim/lua/lsp/json.lua
 rm ~/.config/nvim/lua/lsp/init.lua
 rm ~/.config/nvim/lua/lsp/typescript.lua
 
+rm ~/.config/nvim/lua/color-scheme.lua
 rm ~/.config/nvim/lua/common.lua
 rm ~/.config/nvim/lua/completion.lua
 rm ~/.config/nvim/lua/fuzzy-finder.lua
@@ -51,7 +52,6 @@ rm ~/.config/nvim/lua/treesitter.lua
 rm ~/.config/nvim/vim/basics.vim
 rm ~/.config/nvim/vim/buffer-line.vim
 rm ~/.config/nvim/vim/coc.vim
-rm ~/.config/nvim/vim/color-scheme.vim
 rm ~/.config/nvim/vim/fugitive.vim
 rm ~/.config/nvim/vim/mappings.vim
 rm ~/.config/nvim/vim/nvim-tree.vim
@@ -138,6 +138,7 @@ ln -s $PWD/.config/nvim/lua/lsp/json.lua ~/.config/nvim/lua/lsp/json.lua
 ln -s $PWD/.config/nvim/lua/lsp/init.lua ~/.config/nvim/lua/lsp/init.lua
 ln -s $PWD/.config/nvim/lua/lsp/typescript.lua ~/.config/nvim/lua/lsp/typescript.lua
 
+ln -s $PWD/.config/nvim/lua/color-scheme.lua ~/.config/nvim/lua/color-scheme.lua
 ln -s $PWD/.config/nvim/lua/common.lua ~/.config/nvim/lua/common.lua
 ln -s $PWD/.config/nvim/lua/completion.lua ~/.config/nvim/lua/completion.lua
 ln -s $PWD/.config/nvim/lua/fuzzy-finder.lua ~/.config/nvim/lua/fuzzy-finder.lua
@@ -148,7 +149,6 @@ ln -s $PWD/.config/nvim/lua/treesitter.lua ~/.config/nvim/lua/treesitter.lua
 ln -s $PWD/.config/nvim/vim/basics.vim ~/.config/nvim/vim/basics.vim
 ln -s $PWD/.config/nvim/vim/buffer-line.vim ~/.config/nvim/vim/buffer-line.vim
 ln -s $PWD/.config/nvim/vim/coc.vim ~/.config/nvim/vim/coc.vim
-ln -s $PWD/.config/nvim/vim/color-scheme.vim ~/.config/nvim/vim/color-scheme.vim
 ln -s $PWD/.config/nvim/vim/fugitive.vim ~/.config/nvim/vim/fugitive.vim
 ln -s $PWD/.config/nvim/vim/mappings.vim ~/.config/nvim/vim/mappings.vim
 ln -s $PWD/.config/nvim/vim/nvim-tree.vim ~/.config/nvim/vim/nvim-tree.vim

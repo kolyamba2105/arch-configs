@@ -27,3 +27,6 @@
   rss = restore --staged
   s = status
   sw = switch
+
+[pager]
+  branch = false
