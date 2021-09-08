@@ -13,6 +13,7 @@ dhcpcd
 dialog
 discord
 docker
+docker-compose
 dosfstools
 dunst
 efibootmgr
@@ -45,6 +46,7 @@ mtools
 neofetch
 neovim
 netctl
+nginx-mainline
 nodejs
 openssh
 os-prober
