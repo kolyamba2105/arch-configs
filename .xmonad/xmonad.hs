@@ -81,10 +81,10 @@ myKeys =
       ]
 
     dynamicWSGroupKeys =
-      [ ("M-d 1", viewWSGroup "1"),
-        ("M-d 2", viewWSGroup "2"),
-        ("M-d 3", viewWSGroup "3"),
-        ("M-d 4", viewWSGroup "4")
+      [ ("M-, 1", viewWSGroup "1"),
+        ("M-, 2", viewWSGroup "2"),
+        ("M-, 3", viewWSGroup "3"),
+        ("M-, 4", viewWSGroup "4")
       ]
 
     layoutKeys =
@@ -95,11 +95,11 @@ myKeys =
 
     scratchPadKeys =
       [ ("M-`", openScratchPad "terminal"),
-        ("M-s 1", openScratchPad "htop"),
-        ("M-s 2", openScratchPad "mixer"),
-        ("M-s 3", openScratchPad "ranger"),
-        ("M-s 4", openScratchPad "slack"),
-        ("M-s 5", openScratchPad "telegram")
+        ("M-. 1", openScratchPad "htop"),
+        ("M-. 2", openScratchPad "mixer"),
+        ("M-. 3", openScratchPad "ranger"),
+        ("M-. 4", openScratchPad "slack"),
+        ("M-. 5", openScratchPad "telegram")
       ]
 
     screenLayoutKeys =
