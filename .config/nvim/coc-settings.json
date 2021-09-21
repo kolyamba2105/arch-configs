@@ -1,7 +1,11 @@
 {
   "diagnostic.virtualText": true,
   "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "elm",
     "haskell",
+    "javascript",
+    "javascriptreact",
     "json",
     "typescript",
     "typescriptreact"
@@ -154,6 +158,11 @@
         "hie.yaml"
       ],
       "filetypes": ["haskell", "lhaskell"]
+    },
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"]
     }
   }
 }

@@ -16,6 +16,8 @@ rm ~/.config/mimeapps.list
 
 rm ~/.config/alacritty/alacritty.yml
 rm ~/.config/alacritty/alacritty-gruvbox.yml
+rm ~/.config/alacritty/tokyo-night.yml
+rm ~/.config/alacritty/tokyo-night-storm.yml
 
 rm ~/.config/conky/conky.conf
 
@@ -100,6 +102,8 @@ ln -s $PWD/.config/mimeapps.list ~/.config/mimeapps.list
 mkdir -p ~/.config/alacritty
 ln -s $PWD/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -s $PWD/.config/alacritty/alacritty-gruvbox.yml ~/.config/alacritty/alacritty-gruvbox.yml
+ln -s $PWD/.config/alacritty/tokyo-night.yml ~/.config/alacritty/tokyo-night.yml
+ln -s $PWD/.config/alacritty/tokyo-night-storm.yml ~/.config/alacritty/tokyo-night-storm.yml
 
 # Conky system monitor
 mkdir -p ~/.config/conky

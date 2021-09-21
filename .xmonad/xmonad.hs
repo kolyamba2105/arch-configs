@@ -50,7 +50,7 @@ myKeys =
   where
     coreKeys =
       [ ("M-S-<Return>", spawn myGruvboxTerminal),
-        ("M-S-n", spawn myTerminal),
+        ("M-S-n", spawn myGruvboxTerminal),
         ("M-S-f", spawn "firefox --private-window"),
         ("M-S-g", spawn "brave --incognito"),
         ("M-f", spawn "firefox"),
@@ -81,10 +81,10 @@ myKeys =
       ]
 
     dynamicWSGroupKeys =
-      [ ("M-, 1", viewWSGroup "1"),
-        ("M-, 2", viewWSGroup "2"),
-        ("M-, 3", viewWSGroup "3"),
-        ("M-, 4", viewWSGroup "4")
+      [ ("M-d 1", viewWSGroup "1"),
+        ("M-d 2", viewWSGroup "2"),
+        ("M-d 3", viewWSGroup "3"),
+        ("M-d 4", viewWSGroup "4")
       ]
 
     layoutKeys =
@@ -95,11 +95,11 @@ myKeys =
 
     scratchPadKeys =
       [ ("M-`", openScratchPad "terminal"),
-        ("M-. 1", openScratchPad "htop"),
-        ("M-. 2", openScratchPad "mixer"),
-        ("M-. 3", openScratchPad "ranger"),
-        ("M-. 4", openScratchPad "slack"),
-        ("M-. 5", openScratchPad "telegram")
+        ("M-s 1", openScratchPad "htop"),
+        ("M-s 2", openScratchPad "mixer"),
+        ("M-s 3", openScratchPad "ranger"),
+        ("M-s 4", openScratchPad "slack"),
+        ("M-s 5", openScratchPad "telegram")
       ]
 
     screenLayoutKeys =
@@ -240,19 +240,19 @@ myScratchPads =
 
     rangerScratchPad = NS "ranger" spawn find manage
       where
-        spawn = myTerminal ++ " -t Ranger -e ranger"
+        spawn = myGruvboxTerminal ++ " -t Ranger -e ranger"
         find = rangerWindowQuery
         manage = nonFloating
 
     htopScratchPad = NS "htop" spawn find manage
       where
-        spawn = myTerminal ++ " -t HTOP -e htop"
+        spawn = myGruvboxTerminal ++ " -t HTOP -e htop"
         find = htopWindowQuery
         manage = customFloating $ rectCentered 0.8
 
     mixerScratchPad = NS "mixer" spawn find manage
       where
-        spawn = myTerminal ++ " -t PulseMixer -e pulsemixer"
+        spawn = myGruvboxTerminal ++ " -t PulseMixer -e pulsemixer"
         find = pulseMixerWindowQuery
         manage = customFloating $ rectCentered 0.5
 
