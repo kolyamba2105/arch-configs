@@ -32,6 +32,7 @@ lua << EOF
 require('color-scheme')
 require('completion')
 require('fuzzy-finder')
+require('indent-line')
 require('lsp')
 require('status-line')
 require('treesitter')

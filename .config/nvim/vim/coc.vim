@@ -6,7 +6,7 @@ nmap <silent> gd    <Plug>(coc-definition)
 nmap <silent> gn    <Plug>(coc-rename)
 nmap <silent> gr    <Plug>(coc-references)
 
-nnoremap <silent> <nowait> gq  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <nowait> gl  :<C-u>CocList diagnostics<cr>
 
 inoremap          <expr> <S-TAB>    pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent> <expr> <TAB>      pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()

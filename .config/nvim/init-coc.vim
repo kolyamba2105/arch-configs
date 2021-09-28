@@ -30,6 +30,7 @@ source ~/.config/nvim/vim/term.vim
 lua << EOF
 require('color-scheme')
 require('fuzzy-finder')
+require('indent-line')
 require('status-line')
 require('treesitter')
 EOF
