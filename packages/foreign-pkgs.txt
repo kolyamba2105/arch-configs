@@ -1,9 +1,9 @@
 brave-bin
-nerd-fonts-iosevka
 nerd-fonts-jetbrains-mono
 netctl-vpnc
 postman-bin
 python-ueberzug-git
 slack-desktop
+spotify
 yay
 zoom
