@@ -12,6 +12,8 @@ rm ~/.screenlayout/3-dual-monitor.sh
 
 rm -rf ~/.xmonad
 
+rm ~/.stack/config.yaml
+
 rm ~/.config/mimeapps.list
 
 rm ~/.config/alacritty/alacritty.yml
@@ -63,6 +65,8 @@ ln -s $PWD/.screenlayout/3-dual-monitor.sh ~/.screenlayout/3-dual-monitor.sh
 # XMonad WM
 ln -s $PWD/.xmonad ~/.xmonad
 
+ln -s $PWD/.stack/config.yaml ~/.stack/config.yaml
+
 # Create config directory if it doesn't exist
 mkdir -p ~/.config
 
@@ -93,8 +97,6 @@ ln -s $PWD/.config/htop/htoprc ~/.config/htop/htoprc
 
 # Neovim
 ln -s $PWD/.config/nvim ~/.config/nvim
-
-ln -s $PWD/.config/nvim/init-coc.vim ~/.config/nvim/init.vim
 
 # Ranger file manager
 mkdir -p ~/.config/ranger
