@@ -28,37 +28,7 @@ rm ~/.config/dunst/notification-normal.png
 
 rm ~/.config/htop/htoprc
 
-rm ~/.config/nvim/coc-settings.json
-
-rm ~/.config/nvim/init.vim
-rm ~/.config/nvim/init-coc.vim
-rm ~/.config/nvim/init-lsp.vim
-
-rm ~/.config/nvim/lua/lsp/common.lua
-rm ~/.config/nvim/lua/lsp/diagnostic.lua
-rm ~/.config/nvim/lua/lsp/efm.lua
-rm ~/.config/nvim/lua/lsp/haskell.lua
-rm ~/.config/nvim/lua/lsp/html.lua
-rm ~/.config/nvim/lua/lsp/json.lua
-rm ~/.config/nvim/lua/lsp/init.lua
-rm ~/.config/nvim/lua/lsp/typescript.lua
-
-rm ~/.config/nvim/lua/color-scheme.lua
-rm ~/.config/nvim/lua/common.lua
-rm ~/.config/nvim/lua/completion.lua
-rm ~/.config/nvim/lua/fuzzy-finder.lua
-rm ~/.config/nvim/lua/indent-line.lua
-rm ~/.config/nvim/lua/status-line.lua
-rm ~/.config/nvim/lua/toggle-tree.lua
-rm ~/.config/nvim/lua/treesitter.lua
-
-rm ~/.config/nvim/vim/basics.vim
-rm ~/.config/nvim/vim/buffer-line.vim
-rm ~/.config/nvim/vim/coc.vim
-rm ~/.config/nvim/vim/fugitive.vim
-rm ~/.config/nvim/vim/mappings.vim
-rm ~/.config/nvim/vim/nvim-tree.vim
-rm ~/.config/nvim/vim/term.vim
+rm -rf ~/.config/nvim
 
 rm ~/.config/ranger/commands.py
 rm ~/.config/ranger/commands_full.py
@@ -122,43 +92,9 @@ mkdir -p ~/.config/htop
 ln -s $PWD/.config/htop/htoprc ~/.config/htop/htoprc
 
 # Neovim
-mkdir -p ~/.config/nvim
-mkdir -p ~/.config/nvim/lua
-mkdir -p ~/.config/nvim/lua/lsp
-mkdir -p ~/.config/nvim/vim
+ln -s $PWD/.config/nvim ~/.config/nvim
 
-ln -s $PWD/.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
-
-ln -s $PWD/.config/nvim/init-coc.vim ~/.config/nvim/init-coc.vim
-ln -s $PWD/.config/nvim/init-lsp.vim ~/.config/nvim/init-lsp.vim
-
-ln -s ~/.config/nvim/init-coc.vim ~/.config/nvim/init.vim
-
-ln -s $PWD/.config/nvim/lua/lsp/common.lua ~/.config/nvim/lua/lsp/common.lua
-ln -s $PWD/.config/nvim/lua/lsp/efm.lua ~/.config/nvim/lua/lsp/efm.lua
-ln -s $PWD/.config/nvim/lua/lsp/diagnostic.lua ~/.config/nvim/lua/lsp/diagnostic.lua
-ln -s $PWD/.config/nvim/lua/lsp/haskell.lua ~/.config/nvim/lua/lsp/haskell.lua
-ln -s $PWD/.config/nvim/lua/lsp/html.lua ~/.config/nvim/lua/lsp/html.lua
-ln -s $PWD/.config/nvim/lua/lsp/json.lua ~/.config/nvim/lua/lsp/json.lua
-ln -s $PWD/.config/nvim/lua/lsp/init.lua ~/.config/nvim/lua/lsp/init.lua
-ln -s $PWD/.config/nvim/lua/lsp/typescript.lua ~/.config/nvim/lua/lsp/typescript.lua
-
-ln -s $PWD/.config/nvim/lua/color-scheme.lua ~/.config/nvim/lua/color-scheme.lua
-ln -s $PWD/.config/nvim/lua/common.lua ~/.config/nvim/lua/common.lua
-ln -s $PWD/.config/nvim/lua/completion.lua ~/.config/nvim/lua/completion.lua
-ln -s $PWD/.config/nvim/lua/fuzzy-finder.lua ~/.config/nvim/lua/fuzzy-finder.lua
-ln -s $PWD/.config/nvim/lua/indent-line.lua ~/.config/nvim/lua/indent-line.lua
-ln -s $PWD/.config/nvim/lua/status-line.lua ~/.config/nvim/lua/status-line.lua
-ln -s $PWD/.config/nvim/lua/toggle-tree.lua ~/.config/nvim/lua/toggle-tree.lua
-ln -s $PWD/.config/nvim/lua/treesitter.lua ~/.config/nvim/lua/treesitter.lua
-
-ln -s $PWD/.config/nvim/vim/basics.vim ~/.config/nvim/vim/basics.vim
-ln -s $PWD/.config/nvim/vim/buffer-line.vim ~/.config/nvim/vim/buffer-line.vim
-ln -s $PWD/.config/nvim/vim/coc.vim ~/.config/nvim/vim/coc.vim
-ln -s $PWD/.config/nvim/vim/fugitive.vim ~/.config/nvim/vim/fugitive.vim
-ln -s $PWD/.config/nvim/vim/mappings.vim ~/.config/nvim/vim/mappings.vim
-ln -s $PWD/.config/nvim/vim/nvim-tree.vim ~/.config/nvim/vim/nvim-tree.vim
-ln -s $PWD/.config/nvim/vim/term.vim ~/.config/nvim/vim/term.vim
+ln -s $PWD/.config/nvim/init-coc.vim ~/.config/nvim/init.vim
 
 # Ranger file manager
 mkdir -p ~/.config/ranger
