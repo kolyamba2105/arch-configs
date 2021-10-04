@@ -1,1 +1,1 @@
-/home/kolyamba/config-files/.config/nvim/init-coc.vim
+init-lsp.vim

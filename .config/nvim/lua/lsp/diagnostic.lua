@@ -18,22 +18,6 @@ return function (on_attach)
         typescript = 'eslint',
         typescriptreact = 'eslint'
       },
-      formatters = {
-        prettier = {
-          command = 'prettier',
-          args = { '--stdin-filepath', '%filename' }
-        }
-      },
-      formatFiletypes = {
-        css = 'prettier',
-        javascript = 'prettier',
-        javascriptreact = 'prettier',
-        json = 'prettier',
-        markdown = 'prettier',
-        scss = 'prettier',
-        typescript = 'prettier',
-        typescriptreact = 'prettier'
-      },
       linters = {
         eslint = {
           args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },

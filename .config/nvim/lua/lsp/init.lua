@@ -1,5 +1,6 @@
 local common = require('lsp/common')
 local diagnostic_settings = require('lsp/diagnostic')
+local elm_config = require('lsp/elm')
 local haskell_config = require('lsp/haskell')
 local html_settings = require('lsp/html')
 local json_settings = require('lsp/json')
@@ -10,6 +11,9 @@ local function setup_servers()
 
   require('lspconfig/configs').haskell = haskell_config
   require('lspconfig').haskell.setup { on_attach = common.on_attach }
+
+  require('lspconfig/configs').elmLS = elm_config
+  require('lspconfig').elmLS.setup { on_attach = common.on_attach }
 
   local servers = require'lspinstall'.installed_servers()
 

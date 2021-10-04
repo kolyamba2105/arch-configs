@@ -22,14 +22,14 @@ local setup_config = function ()
   table.insert(config.sections.lualine_c, { 'filename' })
 
   -- Use with native LSP
-  -- table.insert(config.sections.lualine_x, {
-  --   'diagnostics',
-  --   sources = { 'nvim_lsp' },
-  --   symbols = { error = '  ', hint = '  ', info = '  ', warn = '  ' }
-  -- })
+  table.insert(config.sections.lualine_x, {
+    'diagnostics',
+    sources = { 'nvim_lsp' },
+    symbols = { error = '  ', hint = '  ', info = '  ', warn = '  ' }
+  })
 
   -- Use with CoC
-  table.insert(config.sections.lualine_x, { 'g:coc_status' })
+  -- table.insert(config.sections.lualine_x, { 'g:coc_status' })
 
   table.insert(config.sections.lualine_x, { 'filetype' })
 

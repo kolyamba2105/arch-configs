@@ -6,6 +6,7 @@ Plug 'kabouzeid/nvim-lspinstall'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'mhartington/formatter.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
@@ -30,7 +31,8 @@ source ~/.config/nvim/vim/term.vim
 lua << EOF
 require('color-scheme')
 require('completion')
-require('file-type')
+require('file-tree')
+require('format')
 require('fuzzy-finder')
 require('indent-line')
 require('lsp')
