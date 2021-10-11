@@ -1,7 +1,10 @@
 call plug#begin(stdpath('data') . 'vimplug')
 
 Plug 'hoob3rt/lualine.nvim'
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'

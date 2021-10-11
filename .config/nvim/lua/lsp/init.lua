@@ -18,7 +18,10 @@ local function setup_servers()
   local servers = require'lspinstall'.installed_servers()
 
   for _, server in pairs(servers) do
-    local config = { on_attach = common.on_attach }
+    local config = {
+      on_attach = common.on_attach,
+      capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    }
 
     if server == 'diagnosticls' then
       config = diagnostic_settings(common.on_attach)
