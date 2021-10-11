@@ -24,3 +24,10 @@ xmonad --recompile && xmonad --restart
 
 - Pull `xmonad-git`, `xmonad-contrib-git` and `xmobar-git` repositories
 - Run `stack install` from `.xmonad`
+
+## Install stylish-haskell
+
+```sh
+stack install stylish-haskell
+```
+
