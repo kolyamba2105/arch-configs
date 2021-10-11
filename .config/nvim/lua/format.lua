@@ -26,6 +26,9 @@ require('formatter').setup {
     elm = {
       function () return { exe = 'elm-format', args = { '--stdin' }, stdin = true } end
     },
+    haskell = {
+      function () return { exe = 'stylish-haskell', stdin = true } end
+    },
     javascript = { prettier_config },
     javascriptreact = { prettier_config },
     json = { prettier_config },
@@ -36,5 +39,5 @@ require('formatter').setup {
 
 vim.api.nvim_command [[augroup FormatGroup]]
 vim.api.nvim_command [[autocmd!]]
-vim.api.nvim_command [[autocmd BufWritePost *.elm,*.js,*.json,*.ts,*.tsx FormatWrite]]
+vim.api.nvim_command [[autocmd BufWritePost *.elm,*.hs,*.js,*.json,*.ts,*.tsx FormatWrite]]
 vim.api.nvim_command [[augroup END]]

@@ -303,6 +303,12 @@ sh config-files.sh
 
 [Setup guide](./.xmonad/README.md)
 
+### Install stylish-haskell
+
+```sh
+stack install stylish-haskell
+```
+
 ### Log into graphical environment
 
 Just reboot and follow the final steps...

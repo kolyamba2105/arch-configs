@@ -1,31 +1,31 @@
-import Control.Monad
-import Data.Function
-import Data.Map
-import Data.Maybe
-import Data.Monoid
-import Graphics.X11.ExtraTypes.XF86
-import System.IO
-import XMonad
-import qualified XMonad.Actions.CycleWS as C
-import XMonad.Actions.DynamicWorkspaceGroups
-import XMonad.Actions.NoBorders
-import XMonad.Actions.WithAll
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
-import XMonad.Layout.LayoutModifier
-import XMonad.Layout.LimitWindows
-import XMonad.Layout.NoBorders
-import XMonad.Layout.PerScreen
-import XMonad.Layout.Renamed
-import XMonad.Layout.Spacing
-import XMonad.Layout.Tabbed
-import XMonad.Prompt
-import XMonad.Prompt.Shell
-import qualified XMonad.StackSet as W
-import XMonad.Util.EZConfig
-import XMonad.Util.NamedScratchpad
-import XMonad.Util.Run
-import XMonad.Util.SpawnOnce
+import           Control.Monad
+import           Data.Function
+import           Data.Map
+import           Data.Maybe
+import           Data.Monoid
+import           Graphics.X11.ExtraTypes.XF86
+import           System.IO
+import           XMonad
+import qualified XMonad.Actions.CycleWS                as C
+import           XMonad.Actions.DynamicWorkspaceGroups
+import           XMonad.Actions.NoBorders
+import           XMonad.Actions.WithAll
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Layout.LayoutModifier
+import           XMonad.Layout.LimitWindows
+import           XMonad.Layout.NoBorders
+import           XMonad.Layout.PerScreen
+import           XMonad.Layout.Renamed
+import           XMonad.Layout.Spacing
+import           XMonad.Layout.Tabbed
+import           XMonad.Prompt
+import           XMonad.Prompt.Shell
+import qualified XMonad.StackSet                       as W
+import           XMonad.Util.EZConfig
+import           XMonad.Util.NamedScratchpad
+import           XMonad.Util.Run
+import           XMonad.Util.SpawnOnce
 
 myTerminal = "alacritty"
 
@@ -127,8 +127,8 @@ myKeysConfig config = config `additionalKeysP` myKeys `removeKeysP` myRemovedKey
 data UrgencyLevel = Low | Normal | Critical
 
 instance Show UrgencyLevel where
-  show Low = "low"
-  show Normal = "normal"
+  show Low      = "low"
+  show Normal   = "normal"
   show Critical = "critical"
 
 data Notification
