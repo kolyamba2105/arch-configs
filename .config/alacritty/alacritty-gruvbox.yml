@@ -55,4 +55,4 @@ colors:
     white: '0xebdbb2'
 
 key_bindings:
-  - { key: N, mods: Control|Shift, action: SpawnNewInstance }
+  - { key: 'N', mods: Control|Shift, action: SpawnNewInstance }

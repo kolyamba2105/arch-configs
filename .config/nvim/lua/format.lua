@@ -34,10 +34,11 @@ require('formatter').setup {
     json = { prettier_config },
     typescript = { prettier_config },
     typescriptreact = { prettier_config },
+    yaml = { prettier_config }
   }
 }
 
 vim.api.nvim_command [[augroup FormatGroup]]
 vim.api.nvim_command [[autocmd!]]
-vim.api.nvim_command [[autocmd BufWritePost *.elm,*.hs,*.js,*.json,*.ts,*.tsx FormatWrite]]
+vim.api.nvim_command [[autocmd BufWritePost *.elm,*.hs,*.js,*.json,*.ts,*.tsx,*.yml,*.yaml FormatWrite]]
 vim.api.nvim_command [[augroup END]]
