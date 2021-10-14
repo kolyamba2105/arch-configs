@@ -29,8 +29,6 @@ import           XMonad.Util.SpawnOnce
 
 myTerminal = "alacritty"
 
-myGruvboxTerminal = "alacritty --config-file ~/.config/alacritty/alacritty-gruvbox.yml"
-
 myFont = "xft:Iosevka Nerd Font:weight=regular:pixelsize=16:antialias=true:hinting=true"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -49,8 +47,7 @@ myKeys =
     ++ wmKeys
   where
     coreKeys =
-      [ ("M-S-<Return>", spawn myGruvboxTerminal),
-        ("M-S-n", spawn myGruvboxTerminal),
+      [ ("M-S-<Return>", spawn myTerminal),
         ("M-S-f", spawn "firefox --private-window"),
         ("M-S-g", spawn "brave --incognito"),
         ("M-f", spawn "firefox"),
@@ -240,19 +237,19 @@ myScratchPads =
 
     rangerScratchPad = NS "ranger" spawn find manage
       where
-        spawn = myGruvboxTerminal ++ " -t Ranger -e ranger"
+        spawn = myTerminal ++ " -t Ranger -e ranger"
         find = rangerWindowQuery
         manage = nonFloating
 
     htopScratchPad = NS "htop" spawn find manage
       where
-        spawn = myGruvboxTerminal ++ " -t HTOP -e htop"
+        spawn = myTerminal ++ " -t HTOP -e htop"
         find = htopWindowQuery
         manage = customFloating $ rectCentered 0.8
 
     mixerScratchPad = NS "mixer" spawn find manage
       where
-        spawn = myGruvboxTerminal ++ " -t PulseMixer -e pulsemixer"
+        spawn = myTerminal ++ " -t PulseMixer -e pulsemixer"
         find = pulseMixerWindowQuery
         manage = customFloating $ rectCentered 0.5
 
