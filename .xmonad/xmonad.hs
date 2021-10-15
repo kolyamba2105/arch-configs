@@ -18,7 +18,6 @@ import           XMonad.Layout.NoBorders
 import           XMonad.Layout.PerScreen
 import           XMonad.Layout.Renamed
 import           XMonad.Layout.Spacing
-import           XMonad.Layout.Tabbed
 import           XMonad.Prompt
 import           XMonad.Prompt.Shell
 import qualified XMonad.StackSet                       as W
@@ -60,8 +59,8 @@ myKeys =
         ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle"),
         ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
         ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
-        ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png" `withNotification` Message Critical "Screenshot" "Saved screen capture!"),
-        ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png" `withNotification` Message Critical "Screenshot" "Saved window capture!"),
+        ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png" <!> Message Critical "Screenshot" "Saved screen capture!"),
+        ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png" <!> Message Critical "Screenshot" "Saved window capture!"),
         ("M-S-<Print>", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png")
       ]
 
@@ -100,16 +99,16 @@ myKeys =
       ]
 
     screenLayoutKeys =
-      [ ("M-/ 1", spawn "~/.screenlayout/1-laptop.sh" `withNotification` notification "Laptop"),
-        ("M-/ 2", spawn "~/.screenlayout/2-monitor.sh" `withNotification` notification "Monitor"),
-        ("M-/ 3", spawn "~/.screenlayout/3-dual-monitor.sh" `withNotification` notification "Dual monitor")
+      [ ("M-/ 1", spawn "~/.screenlayout/1-laptop.sh" <!> notification "Laptop"),
+        ("M-/ 2", spawn "~/.screenlayout/2-monitor.sh" <!> notification "Monitor"),
+        ("M-/ 3", spawn "~/.screenlayout/3-dual-monitor.sh" <!> notification "Dual monitor")
       ]
       where
         notification msg = Message Critical "Screen layout" msg
 
     wmKeys =
-      [ ("M-M1-c", killAll `withNotification` Message Critical "XMonad" "Killed them all!"),
-        ("M-q", spawn "xmonad --recompile && xmonad --restart" `withNotification` Message Normal "XMonad" "Recompiled and restarted!")
+      [ ("M-M1-c", killAll <!> Message Critical "XMonad" "Killed them all!"),
+        ("M-q", spawn "xmonad --recompile && xmonad --restart" <!> Message Normal "XMonad" "Recompiled and restarted!")
       ]
 
 myRemovedKeys :: [String]
@@ -140,8 +139,8 @@ sendNotification :: Notification -> X ()
 sendNotification (Message uLevel summary body) = spawn ("notify-send " ++ wrapInQuotes summary ++ " " ++ wrapInQuotes body ++ " -u " ++ wrapInQuotes (show uLevel))
 sendNotification (Command uLevel summary body) = spawn ("notify-send " ++ wrapInQuotes summary ++ " " ++ wrapIntoCommand body ++ " -u " ++ wrapInQuotes (show uLevel))
 
-withNotification :: X () -> Notification -> X ()
-withNotification action notification = action >> sendNotification notification
+(<!>) :: X () -> Notification -> X ()
+(<!>) action notification = action >> sendNotification notification
 
 -- Layouts
 defaultTall = Tall 1 0.05 0.5
@@ -151,19 +150,6 @@ tall = renamed [Replace "Default"] $ limitWindows 6 $ defaultSpacing defaultTall
 monocle = renamed [Replace "Monocle"] $ defaultSpacing Full
 
 fullScreen = renamed [Replace "FullScreen"] $ noBorders Full
-
-tabbed = renamed [Replace "Tabbed"] $ noBorders $ tabbedBottom shrinkText myTabbedTheme
-  where
-    myTabbedTheme =
-      def
-        { fontName = myFont,
-          activeColor = colorPalette !! 8,
-          inactiveColor = colorPalette !! 1,
-          activeBorderColor = colorPalette !! 8,
-          inactiveBorderColor = colorPalette !! 1,
-          activeTextColor = colorPalette !! 1,
-          inactiveTextColor = colorPalette !! 4
-        }
 
 myLayout = avoidStruts $ tall ||| ifWider 1920 monocle fullScreen
 
@@ -273,10 +259,9 @@ myPromptConfig :: XPConfig
 myPromptConfig =
   def
     { font = myFont,
-      bgColor = head colorPalette,
-      fgColor = colorPalette !! 4,
-      bgHLight = colorPalette !! 8,
-      fgHLight = colorPalette !! 2,
+      bgColor = background $ primary colors,
+      fgColor = foreground $ primary colors,
+      bgHLight = yellow $ normal colors,
       promptBorderWidth = 0,
       position = Top,
       height = 28,
@@ -327,26 +312,26 @@ xmobarPrettyPrinting :: Handle -> X ()
 xmobarPrettyPrinting xMobar =
   (dynamicLogWithPP . filterOutWsPP ignoredWorkspaces)
     xmobarPP
-      { ppCurrent = xmobarColor' 4 . wrap "[" "]",
+      { ppCurrent = xmobarColor' (green $ normal colors) . wrap "[" "]",
         ppExtras = [windowCount],
-        ppHidden = xmobarColor' 13 . wrap "-" "-",
-        ppHiddenNoWindows = xmobarColor' 8,
-        ppLayout = \l -> xmobarColor' 4 ("\57924  " ++ l),
+        ppHidden = xmobarColor' (magenta $ normal colors) . wrap "-" "-",
+        ppHiddenNoWindows = xmobarColor' (blue $ normal colors),
+        ppLayout = ("\57924  " ++),
         ppOrder = \(ws : layout : current : extras) -> [ws, layout] ++ extras ++ [current],
         ppOutput = hPutStrLn xMobar,
         ppSep = "  ",
-        ppTitle = xmobarColor' 14 . shorten 50,
-        ppUrgent = xmobarColor' 11 . wrap "!" "!",
-        ppVisible = xmobarColor' 14 . wrap "<" ">"
+        ppTitle = xmobarColor' (green $ normal colors) . shorten 50,
+        ppUrgent = xmobarColor' (red $ normal colors) . wrap "!" "!",
+        ppVisible = xmobarColor' (yellow $ normal colors) . wrap "<" ">"
       }
 
-xmobarColor' :: Int -> String -> String
-xmobarColor' i = xmobarColor (colorPalette !! i) ""
+xmobarColor' :: String -> String -> String
+xmobarColor' color = xmobarColor color ""
 
 windowCount :: X (Maybe String)
 windowCount =
   gets $
-    (<$>) ("\62600  " ++)
+    fmap ("\62600  " ++)
       . Just
       . show
       . length
@@ -361,37 +346,54 @@ defaultSettings xMobar =
     { borderWidth = 2,
       clickJustFocuses = False,
       focusFollowsMouse = True,
-      focusedBorderColor = colorPalette !! 6,
+      focusedBorderColor = white $ normal colors,
       handleEventHook = mempty,
       layoutHook = myLayout,
       logHook = xmobarPrettyPrinting xMobar,
       manageHook = myManageHook,
       modMask = mod4Mask,
-      normalBorderColor = head colorPalette,
+      normalBorderColor = black $ normal colors,
       startupHook = myStartupHook,
       terminal = myTerminal,
       workspaces = myWorkspaces
     }
 
--- Nord color palette
--- Each color index corresponds to color index from documentation
--- https://www.nordtheme.com/docs/colors-and-palettes
-colorPalette :: [String]
-colorPalette =
-  [ "#2e3440",
-    "#3b4252",
-    "#434c5e",
-    "#4c566a",
-    "#d8dee9",
-    "#e5e9f0",
-    "#eceff4",
-    "#8fbcbb",
-    "#88c0d0",
-    "#81a1c1",
-    "#5e81ac",
-    "#bf616a",
-    "#d08770",
-    "#ebcb8b",
-    "#a3be8c",
-    "#b48ead"
-  ]
+-- Color palette (GruvBox Material)
+colors :: Colors
+colors = Colors {
+  primary = PrimaryColors {
+    background = "#282828",
+    foreground = "#dfbf8e"
+  },
+  normal = RegularColors {
+    black   = "#665c54",
+    blue    = "#7daea3",
+    cyan    = "#89b482",
+    green   = "#a9b665",
+    magenta = "#d3869b",
+    red     = "#ea6962",
+    white   = "#dfbf8e",
+    yellow  = "#e78a4e"
+  }
+}
+
+data Colors = Colors
+  { primary :: PrimaryColors,
+    normal  :: RegularColors
+  }
+
+data PrimaryColors = PrimaryColors
+  { background :: String,
+    foreground :: String
+  }
+
+data RegularColors = RegularColors
+  { black   :: String,
+    blue    :: String,
+    cyan    :: String,
+    green   :: String,
+    magenta :: String,
+    red     :: String,
+    white   :: String,
+    yellow  :: String
+  }
