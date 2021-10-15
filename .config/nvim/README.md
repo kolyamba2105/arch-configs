@@ -11,22 +11,28 @@ Run `nvim-lsp` to use all new features and plugins of Neovim 0.5.
 
 ### Plugins
 
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+  - [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
+  - [cmp-path](https://github.com/hrsh7th/cmp-path)
+  - [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
+- [formatter.nvim](https://github.com/mhartington/formatter.nvim)
+- [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- [nvim-lspinstall](https://github.com/kabouzeid/nvim-lspinstall)
-- [nvim-compe](https://github.com/hrsh7th/nvim-compe)
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
-### List of language servers
+
+### Language servers
 
 - bash
 - css
-- diagnosticls
 - html
 - json
 - lua
 - typescript
 - vim
 - yaml
+
+To install necessary language servers run `InstallServers` command
 
 ## Neovim with CoC
 
@@ -38,7 +44,7 @@ CoC.
 All extensions are listed in `./vim/coc.vim` and installed into
 `$HOME/.config/coc/extensions`.
 
-### Common plugins
+## Common plugins
 
 - [barbar.nvim](https://github.com/romgrk/barbar.nvim)
 - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)

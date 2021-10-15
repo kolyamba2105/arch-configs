@@ -1,51 +1,42 @@
 local common = require('lsp/common')
-local diagnostic_settings = require('lsp/diagnostic')
 local elm_config = require('lsp/elm')
 local haskell_config = require('lsp/haskell')
 local html_settings = require('lsp/html')
 local json_settings = require('lsp/json')
 local typescript_settings = require('lsp/typescript')
 
-local function setup_servers()
-  require'lspinstall'.setup()
+local config = {
+  on_attach = common.on_attach,
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+}
 
-  require('lspconfig/configs').haskell = haskell_config
-  require('lspconfig').haskell.setup { on_attach = common.on_attach }
+require('lspconfig/configs').haskell = haskell_config
+require('lspconfig').haskell.setup(config)
 
-  require('lspconfig/configs').elmLS = elm_config
-  require('lspconfig').elmLS.setup { on_attach = common.on_attach }
+require('lspconfig/configs').elmLS = elm_config
+require('lspconfig').elmLS.setup(config)
 
-  local servers = require'lspinstall'.installed_servers()
+require('nvim-lsp-installer').on_server_ready(function (server)
+  local config = {
+    on_attach = common.on_attach,
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  }
 
-  for _, server in pairs(servers) do
-    local config = {
-      on_attach = common.on_attach,
-      capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    }
-
-    if server == 'diagnosticls' then
-      config = diagnostic_settings(common.on_attach)
-    end
-
-    if server == 'json' then
-      config = json_settings(common.on_attach)
-    end
-
-    if server == 'html' then
-      config = html_settings(common.on_attach)
-    end
-
-    if server == 'typescript' then
-      config = typescript_settings(common.on_attach)
-    end
-
-    require'lspconfig'[server].setup(config)
+  if server.name == 'json' then
+    config = json_settings(common.on_attach)
   end
-end
 
-setup_servers()
+  if server.name == 'html' then
+    config = html_settings(common.on_attach)
+  end
 
-require'lspinstall'.post_install_hook = function ()
-  setup_servers()
-  vim.cmd('bufdo e')
-end
+  if server.name == 'tsserver' then
+    config = typescript_settings(common.on_attach)
+  end
+
+  server:setup(config)
+
+  vim.cmd [[ do User LspAttachBuffer ]]
+end)
+
+vim.cmd('command! InstallServers LspInstall bashls cssls eslint html jsonls tsserver vimls yamlls')
