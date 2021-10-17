@@ -21,7 +21,7 @@ end
 
 local M = {}
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function()
   define_signs()
 
   common.buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -42,5 +42,23 @@ M.on_attach = function(client, bufnr)
 
   vim.cmd('command! Type lua vim.lsp.buf.type_definition()')
 end
+
+M.disable_formatting = function (client)
+  client.resolved_capabilities.document_formatting = false
+  client.resolved_capabilities.document_range_formatting = false
+end
+
+M.default_config = {
+  on_attach = M.on_attach,
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+}
+
+M.no_formatting_config = {
+  on_attach = function (client)
+    M.on_attach()
+    M.disable_formatting(client)
+  end,
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+}
 
 return M

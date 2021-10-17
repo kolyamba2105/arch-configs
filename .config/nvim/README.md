@@ -21,18 +21,12 @@ Run `nvim-lsp` to use all new features and plugins of Neovim 0.5.
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 
-### Language servers
+### Install language servers
 
-- bash
-- css
-- html
-- json
-- lua
-- typescript
-- vim
-- yaml
+```sh
+yarn global add @elm-tooling/elm-language-server bash-language-server typescript-language-server vscode-langservers-extracted yaml-language-server
+```
 
-To install necessary language servers run `InstallServers` command
 
 ## Neovim with CoC
 
