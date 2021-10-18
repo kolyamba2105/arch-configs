@@ -39,8 +39,7 @@ M.on_attach = function()
   common.buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   common.buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
   common.buf_set_keymap('n', 'gs', '<cmd>Telescope lsp_document_symbols<CR>', opts)
-
-  vim.cmd('command! Type lua vim.lsp.buf.type_definition()')
+  common.buf_set_keymap('n', 'gt', '<cmd>Telescope lsp_type_definitions<CR>', opts)
 end
 
 M.disable_formatting = function (client)
