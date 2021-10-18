@@ -14,10 +14,6 @@ require('nvim-tree').setup {
   }
 }
 
-vim.cmd [[
-  command! ToggleDefault lua require'toggle-tree'.toggle_default()
+local opts = { noremap = true, silent = true }
 
-  nnoremap <C-n>      :ToggleDefault<CR>
-  nnoremap <leader>n  :NvimTreeFindFile<CR>
-  nnoremap <leader>r  :NvimTreeRefresh<CR>
-]]
+vim.api.nvim_set_keymap('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', opts)
