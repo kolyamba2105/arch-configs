@@ -35,11 +35,11 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>W :wall<CR>
 
 " Clear search input
-nnoremap <silent> Z :noh<CR>
-
-" Quickly insert an empty new line without entering insert mode
-nnoremap <leader>o o<Esc>
-nnoremap <leader>O O<Esc>
+nnoremap <leader>z :noh<CR>
 
 " Search for visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
+" Apply macros
+nnoremap Q @q
+vnoremap Q :norm @q<CR>
