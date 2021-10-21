@@ -40,6 +40,7 @@ M.on_attach = function()
   common.buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
   common.buf_set_keymap('n', 'gs', '<cmd>Telescope lsp_document_symbols<CR>', opts)
   common.buf_set_keymap('n', 'gt', '<cmd>Telescope lsp_type_definitions<CR>', opts)
+  common.buf_set_keymap('n', 'gw', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
 end
 
 M.disable_formatting = function (client)
@@ -47,9 +48,11 @@ M.disable_formatting = function (client)
   client.resolved_capabilities.document_range_formatting = false
 end
 
+M.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 M.default_config = {
   on_attach = M.on_attach,
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  capabilities = M.capabilities
 }
 
 M.no_formatting_config = {
@@ -57,7 +60,7 @@ M.no_formatting_config = {
     M.on_attach()
     M.disable_formatting(client)
   end,
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  capabilities = M.capabilities
 }
 
 return M
