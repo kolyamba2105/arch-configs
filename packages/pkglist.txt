@@ -64,7 +64,6 @@ scrot
 sed
 slock
 sudo
-telegram-desktop
 texinfo
 ttf-iosevka-nerd
 unzip
