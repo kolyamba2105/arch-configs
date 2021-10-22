@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-32+48"
+    geometry = "0x5-32+48"
 
     # Turn on the progess bar
     progress_bar = true
@@ -327,19 +327,19 @@
 [urgency_low]
     background = "#282828"
     foreground = "#dfbf8e"
-    icon = ~/.config/dunst/notification-low.png
+    new_icon = ~/.config/dunst/notification-low.png
     timeout = 5
 
 [urgency_normal]
     background = "#282828"
     foreground = "#dfbf8e"
-    icon = ~/.config/dunst/notification-normal.png
+    new_icon = ~/.config/dunst/notification-normal.png
     timeout = 5
 
 [urgency_critical]
     background = "#282828"
     foreground = "#dfbf8e"
-    icon = ~/.config/dunst/notification-critical.png
+    new_icon = ~/.config/dunst/notification-critical.png
     timeout = 5
 
 # Every section that isn't one of the above is interpreted as a rules to
