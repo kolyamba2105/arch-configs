@@ -93,9 +93,7 @@ myKeys =
       [ ("M-`", openScratchPad "terminal"),
         ("M-s 1", openScratchPad "htop"),
         ("M-s 2", openScratchPad "mixer"),
-        ("M-s 3", openScratchPad "ranger"),
-        ("M-s 4", openScratchPad "slack"),
-        ("M-s 5", openScratchPad "telegram")
+        ("M-s 3", openScratchPad "ranger")
       ]
 
     screenLayoutKeys =
@@ -206,14 +204,7 @@ myStartupHook = do
 
 -- Scratchpads
 myScratchPads :: [NamedScratchpad]
-myScratchPads =
-  [ htopScratchPad,
-    mixerScratchPad,
-    rangerScratchPad,
-    slackScratchPad,
-    telegramScratchPad,
-    terminalScratchPad
-  ]
+myScratchPads = [htopScratchPad, mixerScratchPad, rangerScratchPad, terminalScratchPad]
   where
     terminalScratchPad = NS "terminal" spawn find manage
       where
@@ -238,18 +229,6 @@ myScratchPads =
         spawn = myTerminal ++ " -t PulseMixer -e pulsemixer"
         find = pulseMixerWindowQuery
         manage = customFloating $ rectCentered 0.5
-
-    slackScratchPad = NS "slack" spawn find manage
-      where
-        spawn = "slack"
-        find = className =? "Slack"
-        manage = nonFloating
-
-    telegramScratchPad = NS "telegram" spawn find manage
-      where
-        spawn = "telegram-desktop"
-        find = className =? "TelegramDesktop"
-        manage = nonFloating
 
 openScratchPad :: String -> X ()
 openScratchPad = namedScratchpadAction myScratchPads
