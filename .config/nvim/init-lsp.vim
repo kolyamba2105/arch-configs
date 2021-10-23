@@ -1,6 +1,5 @@
 call plug#begin(stdpath('data') . 'vimplug')
 
-Plug 'hoob3rt/lualine.nvim'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-path'
@@ -12,8 +11,9 @@ Plug 'mhartington/formatter.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'romgrk/barbar.nvim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'tpope/vim-commentary'

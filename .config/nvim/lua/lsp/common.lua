@@ -1,39 +1,43 @@
 local common = require('common')
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-      prefix = '',
-      spacing = 0
+local function diagnostic_config()
+  vim.diagnostic.config {
+    float = {
+      border = 'single',
+      show_header = false,
+      source = 'always'
     },
+    severity_sort = true,
     signs = true,
     underline = true,
-    update_in_insert = false
+    update_in_insert = false,
+    virtual_text = false
   }
-)
+end
 
 local function define_signs()
-  vim.fn.sign_define('LspDiagnosticsSignError', { text='', texthl='LspDiagnosticsError' })
-  vim.fn.sign_define('LspDiagnosticsSignHint', { text='', texthl='LspDiagnosticsHint' })
-  vim.fn.sign_define('LspDiagnosticsSignInformation', { text='', texthl='LspDiagnosticsInformation' })
-  vim.fn.sign_define('LspDiagnosticsSignWarning', { text='', texthl='LspDiagnosticsWarning' })
+  vim.fn.sign_define('DiagnosticSignError', { text='', texthl='DiagnosticSignError' })
+  vim.fn.sign_define('DiagnosticSignHint', { text='', texthl='DiagnosticSignHint' })
+  vim.fn.sign_define('DiagnosticSignInfo', { text='', texthl='DiagnosticSignInfo' })
+  vim.fn.sign_define('DiagnosticSignWarn', { text='', texthl='DiagnosticSignWarn' })
 end
 
 local M = {}
 
 M.on_attach = function()
+  diagnostic_config()
   define_signs()
 
   common.buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap = true, silent = true }
 
-  common.buf_set_keymap('n', '<C-j>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  common.buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  common.buf_set_keymap('n', '<C-j>', '<cmd>lua vim.diagnostic.goto_next({ float = { border = "single" } })<CR>', opts)
+  common.buf_set_keymap('n', '<C-k>', '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "single" } })<CR>', opts)
   common.buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   common.buf_set_keymap('n', 'ga', '<cmd>Telescope lsp_code_actions<CR>', opts)
   common.buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
-  common.buf_set_keymap('n', 'ge', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  common.buf_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, { scope="line", border = "single" })<CR>', opts)
   common.buf_set_keymap('n', 'gf', '<cmd>Format<CR>', opts)
   common.buf_set_keymap('n', 'gl', '<cmd>Telescope lsp_document_diagnostics<CR>', opts)
   common.buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)

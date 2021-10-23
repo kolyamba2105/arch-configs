@@ -3,7 +3,7 @@ local lualine = require'lualine'
 local setup_config = function ()
   local config = {
     options = {
-      theme = 'gruvbox_material'
+      theme = 'gruvbox-material'
     },
     sections = {
       lualine_b = {},
