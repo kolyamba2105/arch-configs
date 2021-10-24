@@ -13,6 +13,13 @@ local function diagnostic_config()
     update_in_insert = false,
     virtual_text = false
   }
+
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = 'single'
+  })
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = 'single',
+  })
 end
 
 local function define_signs()
@@ -32,12 +39,12 @@ M.on_attach = function()
 
   local opts = { noremap = true, silent = true }
 
-  common.buf_set_keymap('n', '<C-j>', '<cmd>lua vim.diagnostic.goto_next({ float = { border = "single" } })<CR>', opts)
-  common.buf_set_keymap('n', '<C-k>', '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "single" } })<CR>', opts)
+  common.buf_set_keymap('n', '<C-j>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  common.buf_set_keymap('n', '<C-k>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   common.buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   common.buf_set_keymap('n', 'ga', '<cmd>Telescope lsp_code_actions<CR>', opts)
   common.buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
-  common.buf_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, { scope="line", border = "single" })<CR>', opts)
+  common.buf_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, { scope="line" })<CR>', opts)
   common.buf_set_keymap('n', 'gf', '<cmd>Format<CR>', opts)
   common.buf_set_keymap('n', 'gl', '<cmd>Telescope lsp_document_diagnostics<CR>', opts)
   common.buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
