@@ -23,6 +23,7 @@
   rba = rebase --abort
   rbc = rebase --continue
   rbi = rebase -i
+  rbm = rebase master
   rs = restore
   rss = restore --staged
   s = status
