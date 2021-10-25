@@ -76,24 +76,18 @@ myKeys =
         ("M-M1-l", C.shiftNextScreen)
       ]
 
-    dynamicWSGroupKeys =
-      [ ("M-d 1", viewWSGroup "1"),
-        ("M-d 2", viewWSGroup "2"),
-        ("M-d 3", viewWSGroup "3"),
-        ("M-d 4", viewWSGroup "4")
-      ]
-
-    layoutKeys =
-      [ ("M-b", sendMessage ToggleStruts),
-        ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
-        ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
-      ]
-
     scratchPadKeys =
       [ ("M-`", openScratchPad "terminal"),
-        ("M-s 1", openScratchPad "htop"),
-        ("M-s 2", openScratchPad "mixer"),
-        ("M-s 3", openScratchPad "ranger")
+        ("M-, 1", openScratchPad "htop"),
+        ("M-, 2", openScratchPad "mixer"),
+        ("M-, 3", openScratchPad "ranger")
+      ]
+
+    dynamicWSGroupKeys =
+      [ ("M-. 1", viewWSGroup "1"),
+        ("M-. 2", viewWSGroup "2"),
+        ("M-. 3", viewWSGroup "3"),
+        ("M-. 4", viewWSGroup "4")
       ]
 
     screenLayoutKeys =
@@ -104,9 +98,17 @@ myKeys =
       where
         notification msg = Message Critical "Screen layout" msg
 
+    layoutKeys =
+      [ ("M-b", sendMessage ToggleStruts),
+        ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
+        ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
+      ]
+
     wmKeys =
       [ ("M-M1-c", killAll <!> Message Critical "XMonad" "Killed them all!"),
-        ("M-q", spawn "xmonad --recompile && xmonad --restart" <!> Message Normal "XMonad" "Recompiled and restarted!")
+        ("M-q", spawn "xmonad --recompile && xmonad --restart" <!> Message Normal "XMonad" "Recompiled and restarted!"),
+        ("M-[", sendMessage (IncMasterN 1)),
+        ("M-]", sendMessage (IncMasterN (-1)))
       ]
 
 myRemovedKeys :: [String]
