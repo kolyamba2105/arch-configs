@@ -1,5 +1,6 @@
 call plug#begin(stdpath('data') . 'vimplug')
 
+Plug 'L3MON4D3/LuaSnip'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-path'
