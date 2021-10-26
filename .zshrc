@@ -8,7 +8,7 @@ export ZSH="/home/kolyamba/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="half-life"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -126,6 +126,7 @@ alias n-12="n exec 12.22.1"
 alias n-14="n exec 14.17.3"
 alias nvim-coc="nvim -u ~/.config/nvim/init-coc.vim"
 alias nvim-lsp="nvim -u ~/.config/nvim/init-lsp.vim"
+alias vim="nvim"
 alias rm="rm -i"
 
 [ -f "/home/kolyamba/.ghcup/env" ] && source "/home/kolyamba/.ghcup/env" # ghcup-env

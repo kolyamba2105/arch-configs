@@ -91,9 +91,9 @@ myKeys =
       ]
 
     screenLayoutKeys =
-      [ ("M-/ 1", spawn "~/.screenlayout/1-laptop.sh" <!> notification "Laptop"),
-        ("M-/ 2", spawn "~/.screenlayout/2-monitor.sh" <!> notification "Monitor"),
-        ("M-/ 3", spawn "~/.screenlayout/3-dual-monitor.sh" <!> notification "Dual monitor")
+      [ ("M-\\ 1", spawn "~/.screenlayout/1-laptop.sh" <!> notification "Laptop"),
+        ("M-\\ 2", spawn "~/.screenlayout/2-monitor.sh" <!> notification "Monitor"),
+        ("M-\\ 3", spawn "~/.screenlayout/3-dual-monitor.sh" <!> notification "Dual monitor")
       ]
       where
         notification msg = Message Critical "Screen layout" msg
