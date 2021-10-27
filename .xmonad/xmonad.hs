@@ -59,8 +59,8 @@ myKeys =
         ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle"),
         ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
         ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
-        ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png" <!> Message Critical "Screenshot" "Saved screen capture!"),
-        ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png" <!> Message Critical "Screenshot" "Saved window capture!"),
+        ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
+        ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png"),
         ("M-S-<Print>", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png")
       ]
 
