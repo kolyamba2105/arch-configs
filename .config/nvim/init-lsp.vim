@@ -5,7 +5,6 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'kyazdani42/nvim-tree.lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'mhartington/formatter.nvim'
@@ -34,7 +33,6 @@ source ~/.config/nvim/vim/term.vim
 lua << EOF
 require('color-scheme')
 require('completion')
-require('file-tree')
 require('format')
 require('fuzzy-finder')
 require('indent-line')

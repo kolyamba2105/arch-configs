@@ -17,6 +17,9 @@ vno <up>    <Nop>
 " Set space as a leader key
 map <Space> <leader>
 
+" Open standard directory tree
+nnoremap <leader>e :e .<CR>
+
 " Move between windows (splits)
 nnoremap <silent> <C-A-h> :wincmd h<CR>
 nnoremap <silent> <C-A-j> :wincmd j<CR>
