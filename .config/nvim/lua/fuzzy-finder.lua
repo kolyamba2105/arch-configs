@@ -25,6 +25,9 @@ require('telescope').setup {
     find_files = {
       hidden = true,
       previewer = false
+    },
+    file_browser = {
+      hidden = true
     }
   }
 }

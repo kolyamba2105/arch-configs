@@ -20,17 +20,17 @@ Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 source ~/.config/nvim/vim/basics.vim
-source ~/.config/nvim/vim/buffer-line.vim
 source ~/.config/nvim/vim/coc.vim
-source ~/.config/nvim/vim/fugitive.vim
 source ~/.config/nvim/vim/mappings.vim
-source ~/.config/nvim/vim/term.vim
 
 lua << EOF
+require('buffer-line')
 require('color-scheme')
 require('file-tree')
+require('fugitive')
 require('fuzzy-finder')
 require('indent-line')
 require('status-line')
+require('term')
 require('treesitter')
 EOF
