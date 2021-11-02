@@ -218,7 +218,7 @@ myScratchPads = [htopScratchPad, mixerScratchPad, rangerScratchPad, terminalScra
       where
         spawn = myTerminal ++ " -t Ranger -e ranger"
         find = rangerWindowQuery
-        manage = nonFloating
+        manage = customFloating $ rectCentered 0.9
 
     htopScratchPad = NS "htop" spawn find manage
       where

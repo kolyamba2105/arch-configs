@@ -29,11 +29,7 @@ rm ~/.config/htop/htoprc
 
 rm -rf ~/.config/nvim
 
-rm ~/.config/ranger/commands.py
-rm ~/.config/ranger/commands_full.py
-rm ~/.config/ranger/rc.conf
-rm ~/.config/ranger/rifle.conf
-rm ~/.config/ranger/scope.sh
+rm -rf ~/.config/ranger
 
 rm ~/.config/starship/config.toml
 
@@ -92,12 +88,7 @@ ln -s $PWD/.config/htop/htoprc ~/.config/htop/htoprc
 ln -s $PWD/.config/nvim ~/.config/nvim
 
 # Ranger file manager
-mkdir -p ~/.config/ranger
-ln -s $PWD/.config/ranger/commands.py ~/.config/ranger/commands.py
-ln -s $PWD/.config/ranger/commands_full.py ~/.config/ranger/commands_full.py
-ln -s $PWD/.config/ranger/rc.conf ~/.config/ranger/rc.conf
-ln -s $PWD/.config/ranger/rifle.conf ~/.config/ranger/rifle.conf
-ln -s $PWD/.config/ranger/scope.sh ~/.config/ranger/scope.sh
+ln -s $PWD/.config/ranger ~/.config/ranger
 
 # Starship prompt
 mkdir -p ~/.config/starship
