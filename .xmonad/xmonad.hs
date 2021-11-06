@@ -96,11 +96,10 @@ myKeys =
         ("M-\\ 3", spawn "~/.screenlayout/3-dual-monitor.sh" <!> notification "Dual monitor")
       ]
       where
-        notification msg = Message Critical "Screen layout" msg
+        notification msg = Message Normal "Screen layout" msg
 
     layoutKeys =
-      [ ("M-b", sendMessage ToggleStruts),
-        ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
+      [ ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
         ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
       ]
 
@@ -112,9 +111,7 @@ myKeys =
       ]
 
 myRemovedKeys :: [String]
-myRemovedKeys =
-  [ "M-S-q"
-  ]
+myRemovedKeys = ["M-b", "M-S-q"]
 
 myKeysConfig :: XConfig a -> XConfig a
 myKeysConfig config = config `additionalKeysP` myKeys `removeKeysP` myRemovedKeys
@@ -151,7 +148,7 @@ monocle = renamed [Replace "Monocle"] $ defaultSpacing Full
 
 fullScreen = renamed [Replace "FullScreen"] $ noBorders Full
 
-myLayout = avoidStruts $ tall ||| monocle ||| fullScreen
+myLayout = avoidStruts $ tall ||| monocle
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -200,6 +197,7 @@ myStartupHook = do
   spawn "dunst"
   spawn "setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle"
   spawn "xset r rate 180 40"
+  spawn "setxkbmap -option caps:swapescape"
   spawn "xsetroot -cursor_name left_ptr"
   spawn "~/.fehbg &"
   initWorkspaceGroups
@@ -301,10 +299,10 @@ shiftToPrev = shiftTo Prev
 
 -- Main
 main :: IO ()
-main = xmonad . withEasySB statusBar defToggleStrutsKey . docks . myKeysConfig $ defaultSettings
+main = xmonad . withSB statusBar . docks . myKeysConfig $ defaultSettings
 
 statusBar :: StatusBarConfig
-statusBar = statusBarProp "xmobar ~/.xmonad/xmobar.config" (pure pp)
+statusBar = statusBarProp "xmobar ~/.xmonad/xmobar.config" $ pure pp
   where
     pp = filterOutWsPP ignoredWorkspaces xmobarPP
       { ppCurrent = xmobarColor' (green $ normal colors) . wrap "[" "]",
