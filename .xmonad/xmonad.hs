@@ -1,5 +1,4 @@
 import           Control.Monad
-import           Data.Function
 import           Data.Map
 import           Data.Maybe
 import           Data.Monoid
@@ -10,12 +9,12 @@ import qualified XMonad.Actions.CycleWS                as C
 import           XMonad.Actions.DynamicWorkspaceGroups
 import           XMonad.Actions.NoBorders
 import           XMonad.Actions.WithAll
-import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.StatusBar
+import           XMonad.Hooks.StatusBar.PP
 import           XMonad.Layout.LayoutModifier
 import           XMonad.Layout.LimitWindows
 import           XMonad.Layout.NoBorders
-import           XMonad.Layout.PerScreen
 import           XMonad.Layout.Renamed
 import           XMonad.Layout.Spacing
 import           XMonad.Prompt
@@ -152,7 +151,7 @@ monocle = renamed [Replace "Monocle"] $ defaultSpacing Full
 
 fullScreen = renamed [Replace "FullScreen"] $ noBorders Full
 
-myLayout = avoidStruts $ tall ||| ifWider 1920 monocle fullScreen
+myLayout = avoidStruts $ tall ||| monocle ||| fullScreen
 
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -302,21 +301,18 @@ shiftToPrev = shiftTo Prev
 
 -- Main
 main :: IO ()
-main = do
-  xMobar <- spawnPipe "xmobar ~/.xmonad/xmobar.config"
-  xmonad $ docks (defaultSettings xMobar & myKeysConfig)
+main = xmonad . withEasySB statusBar defToggleStrutsKey . docks . myKeysConfig $ defaultSettings
 
-xmobarPrettyPrinting :: Handle -> X ()
-xmobarPrettyPrinting xMobar =
-  (dynamicLogWithPP . filterOutWsPP ignoredWorkspaces)
-    xmobarPP
+statusBar :: StatusBarConfig
+statusBar = statusBarProp "xmobar ~/.xmonad/xmobar.config" (pure pp)
+  where
+    pp = filterOutWsPP ignoredWorkspaces xmobarPP
       { ppCurrent = xmobarColor' (green $ normal colors) . wrap "[" "]",
         ppExtras = [windowCount],
         ppHidden = xmobarColor' (magenta $ normal colors) . wrap "-" "-",
         ppHiddenNoWindows = xmobarColor' (blue $ normal colors),
         ppLayout = ("\57924  " ++),
         ppOrder = \(ws : layout : current : extras) -> [ws, layout] ++ extras ++ [current],
-        ppOutput = hPutStrLn xMobar,
         ppSep = "  ",
         ppTitle = xmobarColor' (green $ normal colors) . shorten 50,
         ppUrgent = xmobarColor' (red $ normal colors) . wrap "!" "!",
@@ -339,7 +335,7 @@ windowCount =
       . W.current
       . windowset
 
-defaultSettings xMobar =
+defaultSettings =
   def
     { borderWidth = 2,
       clickJustFocuses = False,
@@ -347,7 +343,6 @@ defaultSettings xMobar =
       focusedBorderColor = white $ normal colors,
       handleEventHook = mempty,
       layoutHook = myLayout,
-      logHook = xmobarPrettyPrinting xMobar,
       manageHook = myManageHook,
       modMask = mod4Mask,
       normalBorderColor = black $ normal colors,
