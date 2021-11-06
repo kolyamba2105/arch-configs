@@ -70,10 +70,10 @@ myKeys =
         ("M-C-j", nextWS),
         ("M-C-k", prevWS),
         ("M-C-l", C.nextScreen),
-        ("M-M1-h", C.shiftPrevScreen),
-        ("M-M1-j", C.shiftToNext),
-        ("M-M1-k", C.shiftToPrev),
-        ("M-M1-l", C.shiftNextScreen)
+        ("M-M1-h", C.shiftPrevScreen >> C.nextScreen),
+        ("M-M1-j", shiftToNext >> nextWS),
+        ("M-M1-k", shiftToPrev >> prevWS),
+        ("M-M1-l", C.shiftNextScreen >> C.prevScreen)
       ]
 
     scratchPadKeys =
@@ -275,11 +275,10 @@ initWorkspaceGroups = do
   addRawWSGroup "4" [(S 1, "8"), (S 0, "7")]
 
 -- CycleWS
-workspaceType :: C.WSType
-workspaceType = C.WSIs $ return (\(W.Workspace tag _ stack) -> isJust stack && tag `notElem` ignoredWorkspaces)
-
 moveTo :: Direction1D -> X ()
-moveTo direction = C.moveTo direction workspaceType
+moveTo direction = C.moveTo direction wsType
+  where
+    wsType = C.WSIs $ return (\(W.Workspace tag _ stack) -> isJust stack && tag `notElem` ignoredWorkspaces)
 
 nextWS :: X ()
 nextWS = moveTo Next
@@ -289,6 +288,17 @@ prevWS = moveTo Prev
 
 toggleWS :: X ()
 toggleWS = C.toggleWS' ignoredWorkspaces
+
+shiftTo :: Direction1D -> X ()
+shiftTo direction = C.shiftTo direction wsType
+  where
+    wsType = C.WSIs $ return (\(W.Workspace tag _ _) -> tag `notElem` ignoredWorkspaces)
+
+shiftToNext :: X ()
+shiftToNext = shiftTo Next
+
+shiftToPrev :: X ()
+shiftToPrev = shiftTo Prev
 
 -- Main
 main :: IO ()
