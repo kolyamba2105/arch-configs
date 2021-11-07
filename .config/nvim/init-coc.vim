@@ -27,10 +27,10 @@ lua << EOF
 require('buffer-line')
 require('color-scheme')
 require('file-tree')
-require('fugitive')
-require('fuzzy-finder')
+require('git-integration')
 require('indent-line')
 require('status-line')
+require('tele-scope')
 require('term')
 require('treesitter')
 EOF
