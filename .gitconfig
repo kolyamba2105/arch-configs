@@ -8,6 +8,7 @@
 [alias]
   a = add
   b = branch
+  bd = branch -d
   c = commit
   ca = commit --amend
   can = commit --amend --no-edit
