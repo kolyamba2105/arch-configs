@@ -69,10 +69,10 @@ myKeys =
         ("M-C-j", nextWS),
         ("M-C-k", prevWS),
         ("M-C-l", C.nextScreen),
-        ("M-M1-h", C.shiftPrevScreen >> C.nextScreen),
-        ("M-M1-j", shiftToNext >> nextWS),
-        ("M-M1-k", shiftToPrev >> prevWS),
-        ("M-M1-l", C.shiftNextScreen >> C.prevScreen)
+        ("M-M1-h", C.shiftPrevScreen),
+        ("M-M1-j", shiftToNext),
+        ("M-M1-k", shiftToPrev),
+        ("M-M1-l", C.shiftNextScreen)
       ]
 
     scratchPadKeys =
