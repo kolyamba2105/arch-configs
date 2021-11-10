@@ -24,9 +24,15 @@ Run `nvim-lsp` to use all new features and plugins of Neovim 0.5.
 ### Install language servers
 
 ```sh
-yarn global add @elm-tooling/elm-language-server bash-language-server typescript-language-server vscode-langservers-extracted yaml-language-server
+yarn global add \
+  @elm-tooling/elm-language-server \
+  bash-language-server \
+  typescript-language-server \
+  vscode-langservers-extracted \
+  yaml-language-server
 ```
 
+- Rust language server (`rust_analyzer`) is installed via Pacman.
 
 ## Neovim with CoC
 

@@ -18,6 +18,7 @@ require('lspconfig').eslint.setup(common.no_formatting_config)
 require('lspconfig').hls.setup(common.default_config)
 require('lspconfig').html.setup(common.no_formatting_config)
 require('lspconfig').jsonls.setup(common.no_formatting_config)
+require('lspconfig').rust_analyzer.setup(common.default_config)
 require('lspconfig').tsserver.setup {
   on_attach = function (client)
     common.on_attach()

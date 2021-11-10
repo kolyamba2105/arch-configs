@@ -59,6 +59,7 @@ pulsemixer
 ranger
 ripgrep
 rofi
+rust-analyzer
 scrot
 sed
 slock
