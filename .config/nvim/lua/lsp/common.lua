@@ -39,8 +39,8 @@ M.on_attach = function()
 
   local opts = { noremap = true, silent = true }
 
-  common.buf_set_keymap('n', '<C-j>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  common.buf_set_keymap('n', '<C-k>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  common.buf_set_keymap('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  common.buf_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   common.buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   common.buf_set_keymap('n', 'ga', '<cmd>Telescope lsp_code_actions<CR>', opts)
   common.buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)

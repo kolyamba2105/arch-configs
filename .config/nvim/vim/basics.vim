@@ -2,6 +2,7 @@ set clipboard+=unnamedplus
 set cmdheight=2
 set colorcolumn=80
 set completeopt=menu,menuone,noselect
+set cursorcolumn
 set cursorline
 set expandtab
 set foldmethod=syntax
