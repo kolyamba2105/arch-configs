@@ -329,7 +329,7 @@ ssh-keygen
 ### Install global `yarn` packages
 
 ```sh
-yarn global add @buildo/hophop @stoplight/prism-cli corsproxy-https-insecure eslint_d n prettier
+yarn global add gatsby-cli n prettier
 ```
 
 ### Laptop brightness setup
