@@ -1,11 +1,10 @@
 [Default Applications]
-text/html=firefox.desktop
-x-scheme-handler/about=firefox.desktop
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
-x-scheme-handler/postman=Postman.desktop
+text/html=brave.desktop
+x-scheme-handler/about=brave.desktop
+x-scheme-handler/http=brave.desktop
+x-scheme-handler/https=brave.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-6QET00.desktop
-x-scheme-handler/unknown=firefox.desktop
+x-scheme-handler/unknown=brave.desktop
 
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-6QET00.desktop;
