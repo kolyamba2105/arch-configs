@@ -332,11 +332,18 @@ ssh-keygen
 yarn global add gatsby-cli n prettier
 ```
 
-### Laptop brightness setup
+### Update GRUB config
 
-- Add the following line to `/etc/default/grub`
+- Add/modify the following lines to `/etc/default/grub`
 
 ```sh
+# This will make GRUB menu disappear immediately
+GRUB_TIMEOUT=0
+
+# This will decrease the amount of logs during start-up
+GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 vga=current"
+
+# This will fix a problem with laptop brightness (on Lenovo ThinkPad E580)
 GRUB_CMDLINE_LINUX="intel_backlight.enable_dpcd_backlight=0"
 ```
 
@@ -454,4 +461,5 @@ gpasswd -a <user-name> storage
 - [Network configuration](https://wiki.archlinux.org/index.php/Network_configuration)
 - [Pacman - Tips & Tricks](https://wiki.archlinux.org/title/Pacman/Tips_and_tricks)
 - [Power management](https://wiki.archlinux.org/index.php/Power_management)
+- [Silent boot](https://wiki.archlinux.org/title/Silent_boot)
 - [Xorg and video drivers](https://wiki.archlinux.org/index.php/xorg)
