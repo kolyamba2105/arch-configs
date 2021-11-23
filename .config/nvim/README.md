@@ -26,6 +26,7 @@ Run `nvim-lsp` to use all new features and plugins of Neovim 0.5.
 ```sh
 yarn global add \
   @elm-tooling/elm-language-server \
+  @tailwindcss/language-server \
   bash-language-server \
   typescript-language-server \
   vscode-langservers-extracted \
