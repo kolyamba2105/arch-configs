@@ -255,15 +255,6 @@ myPromptConfig =
     }
 
 -- Dynamic workspace groups
-addGroup :: X ()
-addGroup = promptWSGroupAdd myPromptConfig "Name group: "
-
-goToGroup :: X ()
-goToGroup = promptWSGroupView myPromptConfig "Go to group: "
-
-forgetGroup :: X ()
-forgetGroup = promptWSGroupForget myPromptConfig "Forget group: "
-
 initWorkspaceGroups :: X ()
 initWorkspaceGroups = do
   addRawWSGroup "1" [(S 1, "2"), (S 0, "1")]
