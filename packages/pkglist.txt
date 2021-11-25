@@ -40,6 +40,9 @@ htop
 libtool
 linux
 linux-firmware
+linux-headers
+linux-zen
+linux-zen-headers
 m4
 make
 mtools
@@ -48,7 +51,6 @@ netctl
 nginx-mainline
 nodejs
 openssh
-os-prober
 pacman
 patch
 pavucontrol

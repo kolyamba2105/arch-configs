@@ -93,7 +93,7 @@ fdisk <disk-name>
 ### Install essential packages
 
 ```sh
-pacstrap /mnt base base-devel linux linux-firmware git neovim
+pacstrap /mnt base base-devel linux linux-firmware linux-headers linux-zen linux-zen-headers git neovim
 ```
 
 ## Configure the system
@@ -337,6 +337,15 @@ yarn global add gatsby-cli n prettier
 - Add/modify the following lines to `/etc/default/grub`
 
 ```sh
+# Save last used kernel
+GRUB_DEFAULT=saved
+
+# Show all available kernels
+GRUB_DISABLE_SUBMENU=y
+
+# Use last selected kernel
+GRUB_SAVEDEFAULT=true
+
 # This will make GRUB menu disappear immediately
 GRUB_TIMEOUT=0
 
