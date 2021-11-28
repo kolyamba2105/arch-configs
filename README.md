@@ -403,20 +403,26 @@ WantedBy=sleep.target
 systemctl enable slock@<user-name>.service
 ```
 
-### Pacman list-packages hook
+### Pacman settings
 
-- Create `/usr/share/libalpm/hooks/list-packages.hook` file and add the following content:
+- Update mirror list with `reflector`:
 
 ```sh
-[Trigger]
-Operation = Install
-Operation = Remove
-Type = Package
-Target = *
+reflector @/etc/xdg/reflector/reflector.conf
+```
 
-[Action]
-When = PostTransaction
-Exec = /bin/sh -c '/usr/bin/pacman -Qqen > /etc/pkglist.txt'
+- Update package list:
+
+```sh
+# From ~/config-files/pacman
+sh list-pkgs.sh
+```
+
+- Update foreign (yay) package list:
+
+```sh
+# From ~/config-files/pacman
+sh list-foreign-pkgs.sh
 ```
 
 ### Connect HDD

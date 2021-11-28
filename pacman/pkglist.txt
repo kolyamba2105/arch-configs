@@ -59,8 +59,8 @@ postgresql
 pulseaudio
 pulsemixer
 ranger
+reflector
 ripgrep
-rofi
 rust-analyzer
 scrot
 sed
