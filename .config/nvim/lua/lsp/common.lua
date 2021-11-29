@@ -22,18 +22,10 @@ local function diagnostic_config()
   })
 end
 
-local function define_signs()
-  vim.fn.sign_define('DiagnosticSignError', { text='', texthl='DiagnosticSignError' })
-  vim.fn.sign_define('DiagnosticSignHint', { text='', texthl='DiagnosticSignHint' })
-  vim.fn.sign_define('DiagnosticSignInfo', { text='', texthl='DiagnosticSignInfo' })
-  vim.fn.sign_define('DiagnosticSignWarn', { text='', texthl='DiagnosticSignWarn' })
-end
-
 local M = {}
 
 M.on_attach = function()
   diagnostic_config()
-  define_signs()
 
   common.buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
