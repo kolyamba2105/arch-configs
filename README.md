@@ -378,6 +378,12 @@ Section "InputClass"
 EndSection
 ```
 
+### Power management settings
+
+- Edit `/etc/systemd/logind.conf` file, here is a [default
+  configuration](https://github.com/systemd/systemd/blob/main/src/login/logind.conf.in)
+- Apply changes with `systemctl kill -s HUP systemd-logind` or just reboot
+
 ### Screen lock setup
 
 - Create `/etc/systemd/system/slock@.service` file and add the following content:
