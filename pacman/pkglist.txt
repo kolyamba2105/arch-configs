@@ -41,12 +41,11 @@ libtool
 linux
 linux-firmware
 linux-headers
-linux-zen
-linux-zen-headers
 m4
 make
 mtools
 neofetch
+neovim
 netctl
 nginx-mainline
 nodejs
