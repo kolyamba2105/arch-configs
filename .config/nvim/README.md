@@ -1,10 +1,5 @@
 # Neovim
 
-## Initial setup
-
-- Install [vim-plug](https://github.com/junegunn/vim-plug)
-- Install plugins with `:PlugInstall`
-
 ## Neovim with native LSP
 
 Run `nvim-lsp` to use all new features and plugins of Neovim 0.5.
