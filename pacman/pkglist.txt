@@ -45,7 +45,6 @@ m4
 make
 mtools
 neofetch
-neovim
 netctl
 nginx-mainline
 nodejs
