@@ -6,7 +6,6 @@ set cursorcolumn
 set cursorline
 set expandtab
 set foldmethod=syntax
-set hidden
 set ignorecase
 set nobackup
 set nofoldenable
