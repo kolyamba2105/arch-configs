@@ -1,12 +1,29 @@
 local cmp = require('cmp')
 local snip = require('luasnip')
 
-cmp.setup {
+local config = {
+  documentation = {
+    border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+  },
+  formatting = {
+    format = function (entry, vim_item)
+      local source_names = {
+        buffer = "[Buffer]",
+        luasnip = "[Snippet]",
+        nvim_lsp = "[LSP]",
+      }
+      vim_item.menu = source_names[entry.source.name]
+
+      return vim_item
+    end,
+  },
   mapping = {
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-e>'] = cmp.mapping.close(),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
     ['<C-y>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
     ['<Tab>'] = function (fallback)
       if cmp.visible() then
@@ -35,3 +52,5 @@ cmp.setup {
   },
   snippet = { expand = function(args) snip.lsp_expand(args.body) end },
 }
+
+cmp.setup(config)
