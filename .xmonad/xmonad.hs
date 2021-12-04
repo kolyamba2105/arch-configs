@@ -187,10 +187,10 @@ rangerWindowQuery = title =? "Ranger"
 myManageHook =
   composeAll
     [ className =? "Arandr" --> customFloating (rectCentered 0.5),
-      className =? "Pavucontrol" --> customFloating (rectCentered 0.5)
+      className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
+      manageDocks,
+      namedScratchpadManageHook myScratchPads
     ]
-    <+> namedScratchpadManageHook myScratchPads
-    <+> manageDocks
 
 -- Startup hook
 myStartupHook = do
