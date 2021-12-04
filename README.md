@@ -277,14 +277,14 @@ git clone https://github.com/kolyamba2105/my-wallpapers.git
 - Install official packages
 
 ```sh
-cd ~/config-files/packages
+cd ~/config-files/pacman
 pacman -S --needed - < pkgs.txt
 ```
 
 - Install packages from AUR
 
 ```sh
-cd ~/config-files/packages
+cd ~/config-files/pacman
 yay -S --needed - < foreign-pkgs.txt
 ```
 
@@ -417,19 +417,27 @@ systemctl enable slock@<user-name>.service
 reflector @/etc/xdg/reflector/reflector.conf
 ```
 
-- Update package list:
+#### Setup list-pkgs hook
+
+- Make `list-pkgs.sh` executable:
 
 ```sh
-# From ~/config-files/pacman
-sh list-pkgs.sh
+chmod u+x ~/config-files/pacman/list-pkgs.sh
 ```
 
-- Update foreign (yay) package list:
+- Create a symlink:
 
 ```sh
-# From ~/config-files/pacman
-sh list-foreign-pkgs.sh
+sudo ln ~/config-files/pacman/list-pkgs.sh /usr/local/bin/list-pkgs
 ```
+
+- Copy `list-pkgs.hook` into Pacman hooks directory:
+
+```sh
+sudo cp ~/config-files/pacman/list-pkgs.hook /usr/share/libalpm/hooks/
+```
+
+- Repeat similar procedure for `list-foreign-pkgs` hook
 
 ### Connect HDD
 

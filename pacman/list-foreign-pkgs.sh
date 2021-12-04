@@ -1,3 +1,3 @@
 #!/bin/sh
 
-pacman -Qqem > $HOME/config-files/pacman/foreign-pkgs.txt
+pacman -Qqem > /home/kolyamba/config-files/pacman/foreign-pkgs.txt
