@@ -1,9 +1,0 @@
-add_newline = false
-
-[character]
-error_symbol = "[](bold red)"
-success_symbol = "[](bold green)"
-vicmd_symbol = "[](bold blue)"
-
-[package]
-disabled = true
