@@ -31,6 +31,5 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'voldikss/vim-floaterm'
 
 call plug#end()
