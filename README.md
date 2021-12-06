@@ -439,6 +439,11 @@ sudo cp ~/config-files/pacman/list-pkgs.hook /usr/share/libalpm/hooks/
 
 - Repeat similar procedure for `list-foreign-pkgs` hook
 
+### Setup scripts
+
+- Make each script in `scripts` directory executable
+- Link each script to `usr/local/bin/<script-name>`
+
 ### Connect HDD
 
 - Use `fdisk` to partition the disk

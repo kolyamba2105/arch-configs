@@ -195,9 +195,7 @@ myManageHook =
 -- Startup hook
 myStartupHook = do
   spawn "dunst"
-  spawn "setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle"
-  spawn "xset r rate 180 40"
-  spawn "setxkbmap -option caps:swapescape"
+  spawn "setup-kbd"
   spawn "xsetroot -cursor_name left_ptr"
   spawn "~/.fehbg &"
   initWorkspaceGroups
