@@ -29,7 +29,7 @@ require('formatter').setup {
       function () return { exe = 'elm-format', args = { '--stdin' }, stdin = true } end
     },
     haskell = {
-      function () return { exe = 'stylish-haskell', stdin = true } end
+      function () return { exe = 'hindent', stdin = true } end
     },
     javascript = { prettier_config },
     javascriptreact = { prettier_config },

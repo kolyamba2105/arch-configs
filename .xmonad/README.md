@@ -25,9 +25,9 @@ xmonad --recompile && xmonad --restart
 - Pull `xmonad-git`, `xmonad-contrib-git` and `xmobar-git` repositories
 - Run `stack install` from `.xmonad`
 
-## Install stylish-haskell
+## Install hindent
 
 ```sh
-stack install stylish-haskell
+stack install hindent
 ```
 
