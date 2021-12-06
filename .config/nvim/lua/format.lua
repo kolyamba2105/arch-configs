@@ -1,3 +1,5 @@
+local common = require('common')
+
 _G.prettier_config = function()
   local buffer_name = vim.api.nvim_buf_get_name(0)
 
@@ -42,3 +44,6 @@ vim.api.nvim_command [[augroup FormatGroup]]
 vim.api.nvim_command [[autocmd!]]
 vim.api.nvim_command [[autocmd BufWritePost *.elm,*.hs,*.js,*.json,*.ts,*.tsx,*.yml,*.yaml FormatWrite]]
 vim.api.nvim_command [[augroup END]]
+
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap('n', '<leader>f', '<cmd>Format<CR>', opts)
