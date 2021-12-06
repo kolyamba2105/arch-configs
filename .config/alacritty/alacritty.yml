@@ -1,15 +1,15 @@
 window:
   padding:
     x: 4
-    'y': 4
+    "y": 4
 key_bindings:
-- mods: Control|Shift
-  action: SpawnNewInstance
-  key: 'N'
+  - mods: Control|Shift
+    action: SpawnNewInstance
+    key: "N"
 env:
-  WINIT_X11_SCALE_FACTOR: '1.0'
+  WINIT_X11_SCALE_FACTOR: "1.0"
 font:
-  size: 12
+  size: 14
   bold_italic:
     style: Bold Italic
     family: Iosevka Nerd Font
@@ -24,24 +24,24 @@ font:
     family: Iosevka Nerd Font
 colors:
   bright:
-    white: '0xdfbf8e'
-    red: '0xea6962'
-    yellow: '0xe3a84e'
-    black: '0x928374'
-    cyan: '0x89b482'
-    magenta: '0xd3869b'
-    green: '0xa9b665'
-    blue: '0x7daea3'
+    white: "0xdfbf8e"
+    red: "0xea6962"
+    yellow: "0xe3a84e"
+    black: "0x928374"
+    cyan: "0x89b482"
+    magenta: "0xd3869b"
+    green: "0xa9b665"
+    blue: "0x7daea3"
   normal:
-    white: '0xdfbf8e'
-    red: '0xea6962'
-    yellow: '0xe78a4e'
-    black: '0x665c54'
-    cyan: '0x89b482'
-    magenta: '0xd3869b'
-    green: '0xa9b665'
-    blue: '0x7daea3'
+    white: "0xdfbf8e"
+    red: "0xea6962"
+    yellow: "0xe78a4e"
+    black: "0x665c54"
+    cyan: "0x89b482"
+    magenta: "0xd3869b"
+    green: "0xa9b665"
+    blue: "0x7daea3"
   primary:
-    foreground: '0xdfbf8e'
-    background: '0x282828'
+    foreground: "0xdfbf8e"
+    background: "0x282828"
   dim: null

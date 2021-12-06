@@ -32,9 +32,6 @@ require('formatter').setup {
     javascript = { prettier_config },
     javascriptreact = { prettier_config },
     json = { prettier_config },
-    rust = {
-      function () return { exe = 'rustfmt', args = { '--emit=stdout' }, stdin = true } end
-    },
     typescript = { prettier_config },
     typescriptreact = { prettier_config },
     yaml = { prettier_config }
@@ -43,5 +40,5 @@ require('formatter').setup {
 
 vim.api.nvim_command [[augroup FormatGroup]]
 vim.api.nvim_command [[autocmd!]]
-vim.api.nvim_command [[autocmd BufWritePost *.elm,*.hs,*.js,*.json,*.rs,*.ts,*.tsx,*.yml,*.yaml FormatWrite]]
+vim.api.nvim_command [[autocmd BufWritePost *.elm,*.hs,*.js,*.json,*.ts,*.tsx,*.yml,*.yaml FormatWrite]]
 vim.api.nvim_command [[augroup END]]

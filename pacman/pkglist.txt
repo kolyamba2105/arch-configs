@@ -59,7 +59,6 @@ pulsemixer
 ranger
 reflector
 ripgrep
-rust-analyzer
 scrot
 sed
 slock
