@@ -26,6 +26,9 @@ ln -s $PWD/.xmonad ~/.xmonad
 rm ~/.stack/config.yaml
 ln -s $PWD/.stack/config.yaml ~/.stack/config.yaml
 
+rm ~/.hindent.yaml
+ln -s $PWD/.hindent.yaml ~/.hindent.yaml
+
 rm ~/.config/mimeapps.list
 ln -s $PWD/.config/mimeapps.list ~/.config/mimeapps.list
 
