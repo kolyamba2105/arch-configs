@@ -1,5 +1,3 @@
-local common = require('common')
-
 _G.prettier_config = function()
   local buffer_name = vim.api.nvim_buf_get_name(0)
 

@@ -1,5 +1,3 @@
-local common = require('common')
-
 local function diagnostic_config()
   vim.diagnostic.config {
     float = {
@@ -27,22 +25,25 @@ local M = {}
 M.on_attach = function()
   diagnostic_config()
 
-  common.buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  local buf_set_keymap = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local buf_set_option = function(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap = true, silent = true }
 
-  common.buf_set_keymap('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  common.buf_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  common.buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  common.buf_set_keymap('n', 'ga', '<cmd>Telescope lsp_code_actions<CR>', opts)
-  common.buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
-  common.buf_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, { scope="line" })<CR>', opts)
-  common.buf_set_keymap('n', 'gl', '<cmd>Telescope lsp_document_diagnostics<CR>', opts)
-  common.buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  common.buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-  common.buf_set_keymap('n', 'gs', '<cmd>Telescope lsp_document_symbols<CR>', opts)
-  common.buf_set_keymap('n', 'gt', '<cmd>Telescope lsp_type_definitions<CR>', opts)
-  common.buf_set_keymap('n', 'gw', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
+  buf_set_keymap('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'ga', '<cmd>Telescope lsp_code_actions<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
+  buf_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float(0, { scope="line" })<CR>', opts)
+  buf_set_keymap('n', 'gl', '<cmd>Telescope lsp_document_diagnostics<CR>', opts)
+  buf_set_keymap('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
+  buf_set_keymap('n', 'gs', '<cmd>Telescope lsp_document_symbols<CR>', opts)
+  buf_set_keymap('n', 'gt', '<cmd>Telescope lsp_type_definitions<CR>', opts)
+  buf_set_keymap('n', 'gw', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
 end
 
 M.disable_formatting = function (client)
