@@ -36,8 +36,7 @@ ignoredWorkspaces = ["NSP"]
 -- Key bindings
 myKeys =
   coreKeys ++
-  controlKeys ++
-  cycleWSKeys ++ dynamicWSGroupKeys ++ layoutKeys ++ scratchPadKeys ++ screenLayoutKeys ++ wmKeys
+  controlKeys ++ cycleWSKeys ++ dynamicWSGroupKeys ++ layoutKeys ++ scratchPadKeys ++ screenLayoutKeys ++ wmKeys
   where
     coreKeys =
       [ ("M-S-<Return>", spawn myTerminal)
@@ -75,16 +74,12 @@ myKeys =
       , ("M-, 4", openScratchPad "telegram")
       ]
     dynamicWSGroupKeys =
-      [ ("M-. 1", viewWSGroup "1")
-      , ("M-. 2", viewWSGroup "2")
-      , ("M-. 3", viewWSGroup "3")
-      , ("M-. 4", viewWSGroup "4")
-      ]
+      [("M-. 1", viewWSGroup "1"), ("M-. 2", viewWSGroup "2"), ("M-. 3", viewWSGroup "3"), ("M-. 4", viewWSGroup "4")]
     screenLayoutKeys =
       [ ("M-\\ 1", spawn "~/.screenlayout/1-laptop.sh" <!> notification "Laptop")
       , ("M-\\ 2", spawn "~/.screenlayout/2-monitor.sh" <!> notification "Monitor")
-      , ( "M-\\ 3"
-        , spawn "~/.screenlayout/3-monitor-and-laptop.sh" <!> notification "Monitor and laptop")
+      , ("M-\\ 3", spawn "~/.screenlayout/3-monitor-and-laptop.sh" <!> notification "Monitor and laptop")
+      , ("M-\\ 4", spawn "~/.screenlayout/4-left-monitor-and-laptop.sh" <!> notification "Monitor (left) and laptop")
       ]
       where
         notification msg = Message Normal "Screen layout" msg
@@ -94,9 +89,7 @@ myKeys =
       ]
     wmKeys =
       [ ("M-M1-c", killAll <!> Message Critical "XMonad" "Killed them all!")
-      , ( "M-q"
-        , spawn "xmonad --recompile && xmonad --restart" <!>
-          Message Normal "XMonad" "Recompiled and restarted!")
+      , ("M-q", spawn "xmonad --recompile && xmonad --restart" <!> Message Normal "XMonad" "Recompiled and restarted!")
       , ("M-[", sendMessage (IncMasterN 1))
       , ("M-]", sendMessage (IncMasterN (-1)))
       ]
@@ -129,13 +122,9 @@ wrapIntoCommand = wrap "$(" ")"
 
 sendNotification :: Notification -> X ()
 sendNotification (Message uLevel summary body) =
-  spawn
-    ("notify-send " ++
-     wrapInQuotes summary ++ " " ++ wrapInQuotes body ++ " -u " ++ wrapInQuotes (show uLevel))
+  spawn ("notify-send " ++ wrapInQuotes summary ++ " " ++ wrapInQuotes body ++ " -u " ++ wrapInQuotes (show uLevel))
 sendNotification (Command uLevel summary body) =
-  spawn
-    ("notify-send " ++
-     wrapInQuotes summary ++ " " ++ wrapIntoCommand body ++ " -u " ++ wrapInQuotes (show uLevel))
+  spawn ("notify-send " ++ wrapInQuotes summary ++ " " ++ wrapIntoCommand body ++ " -u " ++ wrapInQuotes (show uLevel))
 
 (<!>) :: X () -> Notification -> X ()
 (<!>) action notification = action >> sendNotification notification
@@ -266,9 +255,7 @@ initWorkspaceGroups = do
 moveTo :: Direction1D -> X ()
 moveTo direction = C.moveTo direction wsType
   where
-    wsType =
-      C.WSIs $
-      return (\(W.Workspace tag _ stack) -> isJust stack && tag `notElem` ignoredWorkspaces)
+    wsType = C.WSIs $ return (\(W.Workspace tag _ stack) -> isJust stack && tag `notElem` ignoredWorkspaces)
 
 nextWS :: X ()
 nextWS = moveTo Next
@@ -318,9 +305,7 @@ xmobarColor' color = xmobarColor color ""
 
 windowCount :: X (Maybe String)
 windowCount =
-  gets $
-  fmap ("\62600  " ++) .
-  Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+  gets $ fmap ("\62600  " ++) . Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 defaultSettings =
   def
