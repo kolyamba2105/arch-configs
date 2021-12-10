@@ -13,7 +13,6 @@ dhcpcd
 dialog
 discord
 docker
-docker-compose
 dosfstools
 dunst
 efibootmgr
@@ -28,7 +27,6 @@ flex
 gawk
 gcc
 gettext
-gimp
 git
 go
 grep

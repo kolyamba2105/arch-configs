@@ -1,8 +1,5 @@
 brave-bin
 neovim-git
 nerd-fonts-jetbrains-mono
-netctl-vpnc
 python-ueberzug-git
-slack-desktop
 yay
-zoom

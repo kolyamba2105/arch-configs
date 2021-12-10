@@ -93,7 +93,7 @@ fdisk <disk-name>
 ### Install essential packages
 
 ```sh
-pacstrap /mnt base base-devel linux linux-firmware linux-headers linux-zen linux-zen-headers git neovim
+pacstrap /mnt base base-devel linux linux-firmware linux-headers git neovim
 ```
 
 ## Configure the system
@@ -240,10 +240,6 @@ umount -R /mnt
 ```
 
 - Reboot and remove installation media
-
-```sh
-reboot
-```
 
 ## Post-installation
 
@@ -399,6 +395,8 @@ systemctl enable slock@<user-name>.service
 ```
 
 ### Pacman settings
+
+#### Update mirrors
 
 - Update mirror list with `reflector`:
 
