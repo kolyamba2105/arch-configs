@@ -28,7 +28,6 @@ gawk
 gcc
 gettext
 git
-go
 grep
 groff
 grub
