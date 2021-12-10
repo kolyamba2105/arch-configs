@@ -429,7 +429,7 @@ sudo cp ~/config-files/pacman/list-pkgs.hook /usr/share/libalpm/hooks/
 ### Setup scripts
 
 - Make each script in `scripts` directory executable
-- Link each script to `usr/local/bin/<script-name>`
+- Link each script to `/usr/local/bin/<script-name>`
 
 ### Connect HDD
 
