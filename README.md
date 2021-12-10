@@ -321,17 +321,6 @@ ssh-keygen
 
 - Add content of `~/.ssh/id_rsa.pub` to Github
 
-### Setup VPN
-
-- Follow [this guide](https://michaelheap.com/arch-linux-netctl-and-vpnc-cisco-vpn)
-- Set vpn profile in `/etc/vpnc/vpn-<username>.conf`
-
-### Install global `yarn` packages
-
-```sh
-yarn global add gatsby-cli n prettier
-```
-
 ### Update GRUB config
 
 - Add/modify the following lines to `/etc/default/grub`
