@@ -1,10 +1,10 @@
 resolver:
-  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/2.yaml
+  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/18.yaml
 
 packages:
-- xmobar-git
-- xmonad-git
-- xmonad-contrib-git
+  - xmobar-git
+  - xmonad-git
+  - xmonad-contrib-git
 
 extra-deps:
   - netlink-1.1.1.0@sha256:d83424b5ba9921191449e4b1f53c7cba7f4375f2c55a9b737c77e982e1f40d00,3689
