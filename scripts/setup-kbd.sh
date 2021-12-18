@@ -1,5 +1,4 @@
 #!/bin/sh
 
-setxkbmap -layout us,pl,ru,ua -option grp:alt_shift_toggle
-setxkbmap -option caps:swapescape
+setxkbmap -layout us,ru,ua -option grp:alt_shift_toggle
 xset r rate 180 40
