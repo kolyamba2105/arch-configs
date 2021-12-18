@@ -18,7 +18,7 @@ vno <up>    <Nop>
 map <Space> <leader>
 
 " Open standard directory tree
-nnoremap <leader>e :e .<CR>
+nnoremap <leader>e :Explore<CR>
 
 " Move between windows (splits)
 nnoremap <silent> <C-A-h> :wincmd h<CR>
