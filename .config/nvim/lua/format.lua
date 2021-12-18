@@ -23,12 +23,10 @@ end
 
 require('formatter').setup {
   filetype = {
-    elm = {
-      function () return { exe = 'elm-format', args = { '--stdin' }, stdin = true } end
-    },
-    haskell = {
-      function () return { exe = 'hindent', stdin = true } end
-    },
+    css = { prettier_config },
+    elm = { function () return { exe = 'elm-format', args = { '--stdin' }, stdin = true } end },
+    haskell = { function () return { exe = 'hindent', stdin = true } end },
+    html = { prettier_config },
     javascript = { prettier_config },
     javascriptreact = { prettier_config },
     json = { prettier_config },
@@ -40,7 +38,7 @@ require('formatter').setup {
 
 vim.api.nvim_command [[augroup FormatGroup]]
 vim.api.nvim_command [[autocmd!]]
-vim.api.nvim_command [[autocmd BufWritePost *.elm,*.hs,*.js,*.json,*.ts,*.tsx,*.yml,*.yaml FormatWrite]]
+vim.api.nvim_command [[autocmd BufWritePost *.css,*.sass,*.scss,*.elm,*.hs,*.html,*.js,*.json,*.ts,*.tsx,*.yml,*.yaml FormatWrite]]
 vim.api.nvim_command [[augroup END]]
 
 local opts = { noremap = true, silent = true }
