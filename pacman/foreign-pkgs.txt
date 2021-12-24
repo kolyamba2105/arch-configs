@@ -1,6 +1,8 @@
 brave-bin
+figma-linux
 neovim-git
 nerd-fonts-jetbrains-mono
+postman-bin
 python-ueberzug-git
 slack-desktop
 yay
