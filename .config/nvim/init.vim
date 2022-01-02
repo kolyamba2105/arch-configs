@@ -12,6 +12,5 @@ require('indent-line')
 require('lsp')
 require('status-line')
 require('tele-scope')
-require('term')
 require('treesitter')
 EOF
