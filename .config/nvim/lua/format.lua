@@ -30,6 +30,8 @@ require('formatter').setup {
     javascript = { prettier_config },
     javascriptreact = { prettier_config },
     json = { prettier_config },
+    sass = { prettier_config },
+    scss = { prettier_config },
     typescript = { prettier_config },
     typescriptreact = { prettier_config },
     yaml = { prettier_config }

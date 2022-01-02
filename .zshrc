@@ -119,13 +119,14 @@ export LANG=en_US.UTF-8
 alias cat="bat"
 alias cp="cp -i"
 alias grep="grep --color=auto"
-alias ls="exa"
 alias ll="exa -la"
+alias ls="exa"
 alias mv="mv -i"
 alias n-12="n exec 12.22.1"
 alias n-14="n exec 14.17.3"
 alias n-16="n exec 16.13.1"
-alias vim="nvim"
 alias rm="rm -i"
+alias swap-esc="setxkbmap -option \"caps:swapescape\""
+alias vim="nvim"
 
 [ -f "/home/kolyamba/.ghcup/env" ] && source "/home/kolyamba/.ghcup/env" # ghcup-env
