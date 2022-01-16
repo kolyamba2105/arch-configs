@@ -9,7 +9,7 @@ key_bindings:
 env:
   WINIT_X11_SCALE_FACTOR: "1.0"
 font:
-  size: 14
+  size: 12
   bold_italic:
     style: Bold Italic
     family: Iosevka Nerd Font
