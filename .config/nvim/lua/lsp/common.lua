@@ -22,11 +22,11 @@ end
 
 local M = {}
 
-M.on_attach = function()
+M.on_attach = function(_, bufnr)
   diagnostic_config()
 
-  local buf_set_keymap = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local buf_set_option = function(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local buf_set_keymap = function(...) vim.api.nvim_buf_set_keymap(bufnr or 0, ...) end
+  local buf_set_option = function(...) vim.api.nvim_buf_set_option(bufnr or 0, ...) end
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
