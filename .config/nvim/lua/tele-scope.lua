@@ -10,6 +10,9 @@ vim.api.nvim_set_keymap('n', '<leader>ts', '<cmd>Telescope search_history<CR>', 
 vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>Telescope file_browser<CR>', opts)
 
 require('telescope').setup {
+  defaults = {
+    layout_strategy = 'vertical',
+  },
   pickers = {
     find_files = {
       hidden = true,
