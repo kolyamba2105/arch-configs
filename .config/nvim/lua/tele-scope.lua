@@ -1,5 +1,6 @@
 local opts = { noremap = true, silent = true }
 
+vim.api.nvim_set_keymap('n', '<leader>tb', '<cmd>Telescope buffers<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>tc', '<cmd>Telescope command_history<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>tf', '<cmd>Telescope find_files<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>tg', '<cmd>Telescope live_grep<CR>', opts)
