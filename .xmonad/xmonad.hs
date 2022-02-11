@@ -246,10 +246,10 @@ myPromptConfig =
 -- Dynamic workspace groups
 initWorkspaceGroups :: X ()
 initWorkspaceGroups = do
-  addRawWSGroup "1" [(S 1, "2"), (S 0, "1")]
-  addRawWSGroup "2" [(S 1, "4"), (S 0, "3")]
-  addRawWSGroup "3" [(S 1, "6"), (S 0, "5")]
-  addRawWSGroup "4" [(S 1, "8"), (S 0, "7")]
+  addRawWSGroup "1" [(S 1, "1"), (S 0, "2")]
+  addRawWSGroup "2" [(S 1, "3"), (S 0, "4")]
+  addRawWSGroup "3" [(S 1, "5"), (S 0, "6")]
+  addRawWSGroup "4" [(S 1, "7"), (S 0, "8")]
 
 -- CycleWS
 moveTo :: Direction1D -> X ()

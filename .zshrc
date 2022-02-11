@@ -130,3 +130,5 @@ alias swap-esc="setxkbmap -option \"caps:swapescape\""
 alias vim="nvim"
 
 [ -f "/home/kolyamba/.ghcup/env" ] && source "/home/kolyamba/.ghcup/env" # ghcup-env
+
+export GPG_TTY=$TTY
