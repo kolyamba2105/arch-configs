@@ -3,7 +3,6 @@ source ~/.config/nvim/vim/mappings.vim
 source ~/.config/nvim/vim/plugins.vim
 
 lua << EOF
-require('buffer-line')
 require('color-scheme')
 require('completion')
 require('format')

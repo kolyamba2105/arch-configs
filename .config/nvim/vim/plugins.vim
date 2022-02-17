@@ -24,7 +24,6 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'romgrk/barbar.nvim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'

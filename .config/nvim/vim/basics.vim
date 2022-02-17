@@ -27,4 +27,6 @@ set undofile
 set updatetime=300
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.svg,*.png,*.jpg,*.gif,node_modules
 
+au VimEnter * :set showtabline=0
+
 autocmd FileType elm setlocal shiftwidth=4 tabstop=4
