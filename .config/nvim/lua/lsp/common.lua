@@ -1,4 +1,6 @@
-local function diagnostic_config()
+local M = {}
+
+M.diagnostic_config = function ()
   vim.diagnostic.config {
     float = {
       border = 'single',
@@ -20,11 +22,8 @@ local function diagnostic_config()
   })
 end
 
-local M = {}
 
-M.on_attach = function(_, bufnr)
-  diagnostic_config()
-
+M.on_attach = function(client, bufnr)
   local buf_set_keymap = function(...) vim.api.nvim_buf_set_keymap(bufnr or 0, ...) end
   local buf_set_option = function(...) vim.api.nvim_buf_set_option(bufnr or 0, ...) end
 
@@ -38,12 +37,20 @@ M.on_attach = function(_, bufnr)
   buf_set_keymap('n', '<leader>la', '<cmd>Telescope lsp_code_actions<CR>', opts)
   buf_set_keymap('n', '<leader>ld', '<cmd>Telescope lsp_definitions<CR>', opts)
   buf_set_keymap('n', '<leader>le', '<cmd>lua vim.diagnostic.open_float(0, { scope="line" })<CR>', opts)
+  buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   buf_set_keymap('n', '<leader>ll', '<cmd>Telescope diagnostics<CR>', opts)
   buf_set_keymap('n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>lr', '<cmd>Telescope lsp_references<CR>', opts)
   buf_set_keymap('n', '<leader>ls', '<cmd>Telescope lsp_document_symbols<CR>', opts)
   buf_set_keymap('n', '<leader>lt', '<cmd>Telescope lsp_type_definitions<CR>', opts)
   buf_set_keymap('n', '<leader>lw', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
+
+  if client.resolved_capabilities.document_formatting then
+    vim.api.nvim_command [[augroup Format]]
+    vim.api.nvim_command [[autocmd! * <buffer>]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    vim.api.nvim_command [[augroup END]]
+  end
 end
 
 M.disable_formatting = function (client)
@@ -59,8 +66,8 @@ M.default_config = {
 }
 
 M.no_formatting_config = {
-  on_attach = function (client)
-    M.on_attach()
+  on_attach = function (client, bufnr)
+    M.on_attach(client, bufnr)
     M.disable_formatting(client)
   end,
   capabilities = M.capabilities

@@ -5,7 +5,6 @@ source ~/.config/nvim/vim/plugins.vim
 lua << EOF
 require('color-scheme')
 require('completion')
-require('format')
 require('git-integration')
 require('indent-line')
 require('lsp')

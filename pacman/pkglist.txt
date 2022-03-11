@@ -16,6 +16,7 @@ docker
 dosfstools
 dunst
 efibootmgr
+efm-langserver
 exa
 fakeroot
 fd

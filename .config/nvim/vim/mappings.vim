@@ -38,9 +38,6 @@ nnoremap <leader>d :bdelete<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>W :wall<CR>
 
-" Clear search input
-nnoremap <leader>z :noh<CR>
-
 " Search for visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
