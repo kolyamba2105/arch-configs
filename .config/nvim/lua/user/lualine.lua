@@ -3,8 +3,6 @@ local lualine = require('lualine')
 local setup_config = function ()
   local config = {
     options = {
-      component_separators = { left = '', right = '' },
-      section_separators = { left = '', right = '' },
       theme = 'gruvbox-material',
     },
     sections = {
