@@ -14,6 +14,9 @@ ln -s $PWD/.fehbg ~/.fehbg
 rm ~/.gitconfig
 ln -s $PWD/.gitconfig ~/.gitconfig
 
+rm ~/.tmux.conf
+ln -s $PWD/.tmux.conf ~/.tmux.conf
+
 rm ~/.xinitrc
 ln -s $PWD/.xinitrc ~/.xinitrc
 

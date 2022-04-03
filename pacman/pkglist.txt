@@ -66,6 +66,7 @@ sudo
 telegram-desktop
 texinfo
 thunar
+tmux
 ttf-iosevka-nerd
 ufw
 unzip
