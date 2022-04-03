@@ -1,7 +1,6 @@
 brave-bin
 efm-langserver
 figma-linux
-libvterm-0.1
 neovim-git
 nerd-fonts-jetbrains-mono
 postman-bin
