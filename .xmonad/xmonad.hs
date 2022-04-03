@@ -35,63 +35,69 @@ ignoredWorkspaces = ["NSP"]
 
 -- Key bindings
 myKeys =
-  coreKeys ++
-  controlKeys ++ cycleWSKeys ++ dynamicWSGroupKeys ++ layoutKeys ++ scratchPadKeys ++ screenLayoutKeys ++ wmKeys
+  coreKeys
+    ++ controlKeys
+    ++ cycleWSKeys
+    ++ dynamicWSGroupKeys
+    ++ layoutKeys
+    ++ scratchPadKeys
+    ++ screenLayoutKeys
+    ++ wmKeys
   where
     coreKeys =
-      [ ("M-S-<Return>", spawn myTerminal)
-      , ("M-S-f", spawn "firefox --private-window")
-      , ("M-S-g", spawn "brave --incognito")
-      , ("M-f", spawn "firefox")
-      , ("M-g", spawn "brave")
-      , ("M-p", shellPrompt myPromptConfig)
+      [ ("M-S-<Return>", spawn myTerminal),
+        ("M-S-f", spawn "firefox --private-window"),
+        ("M-S-g", spawn "brave --incognito"),
+        ("M-f", spawn "firefox"),
+        ("M-g", spawn "brave"),
+        ("M-p", shellPrompt myPromptConfig)
       ]
     controlKeys =
-      [ ("<XF86AudioMicMute>", spawn "pactl set-source-mute 1 toggle")
-      , ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle")
-      , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
-      , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
-      , ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png")
-      , ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png")
-      , ("M-S-<Print>", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png")
+      [ ("<XF86AudioMicMute>", spawn "pactl set-source-mute 1 toggle"),
+        ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle"),
+        ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
+        ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
+        ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
+        ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png"),
+        ("M-S-<Print>", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png")
       ]
     cycleWSKeys =
-      [ ("M-C-<Tab>", toggleWS)
-      , ("M-C-h", C.prevScreen)
-      , ("M-C-j", nextWS)
-      , ("M-C-k", prevWS)
-      , ("M-C-l", C.nextScreen)
-      , ("M-M1-h", C.shiftPrevScreen)
-      , ("M-M1-j", shiftToNext)
-      , ("M-M1-k", shiftToPrev)
-      , ("M-M1-l", C.shiftNextScreen)
+      [ ("M-C-<Tab>", toggleWS),
+        ("M-C-h", C.prevScreen),
+        ("M-C-j", nextWS),
+        ("M-C-k", prevWS),
+        ("M-C-l", C.nextScreen),
+        ("M-M1-h", C.shiftPrevScreen),
+        ("M-M1-j", shiftToNext),
+        ("M-M1-k", shiftToPrev),
+        ("M-M1-l", C.shiftNextScreen)
       ]
     scratchPadKeys =
-      [ ("M-`", openScratchPad "terminal")
-      , ("M-, 1", openScratchPad "htop")
-      , ("M-, 2", openScratchPad "mixer")
-      , ("M-, 3", openScratchPad "ranger")
-      , ("M-, 4", openScratchPad "telegram")
+      [ ("M-`", openScratchPad "terminal"),
+        ("M-, 1", openScratchPad "htop"),
+        ("M-, 2", openScratchPad "mixer"),
+        ("M-, 3", openScratchPad "ranger"),
+        ("M-, 4", openScratchPad "telegram")
       ]
     dynamicWSGroupKeys =
       [("M-. 1", viewWSGroup "1"), ("M-. 2", viewWSGroup "2"), ("M-. 3", viewWSGroup "3"), ("M-. 4", viewWSGroup "4")]
     screenLayoutKeys =
-      [ ("M-\\ 1", spawn "~/.screenlayout/1-laptop.sh" <!> notification "Laptop")
-      , ("M-\\ 2", spawn "~/.screenlayout/2-monitor.sh" <!> notification "Monitor")
-      , ("M-\\ 3", spawn "~/.screenlayout/3-monitor-and-laptop.sh" <!> notification "Monitor and laptop")
-      , ("M-\\ 4", spawn "~/.screenlayout/4-left-monitor-and-laptop.sh" <!> notification "Monitor (left) and laptop")
+      [ ("M-\\ 1", spawn "~/.screenlayout/1-laptop.sh" <!> notification "Laptop"),
+        ("M-\\ 2", spawn "~/.screenlayout/2-monitor.sh" <!> notification "Monitor"),
+        ("M-\\ 3", spawn "~/.screenlayout/3-monitor-and-laptop.sh" <!> notification "Monitor and laptop"),
+        ("M-\\ 4", spawn "~/.screenlayout/4-left-monitor-and-laptop.sh" <!> notification "Monitor (left) and laptop")
       ]
       where
         notification msg = Message Normal "Screen layout" msg
     layoutKeys =
-      [ ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9)
-      , ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
+      [ ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
+        ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
       ]
     wmKeys =
-      [ ("M-M1-c", killAll <!> Message Critical "XMonad" "Killed them all!")
-      , ("M-q", spawn "xmonad --recompile && xmonad --restart" <!> Message Normal "XMonad" "Recompiled and restarted!")
-      , ("M-[", sendMessage (IncMasterN 1))
-      , ("M-]", sendMessage (IncMasterN (-1)))
+      [ ("M-M1-c", killAll <!> Message Critical "XMonad" "Killed them all!"),
+        ("M-q", spawn "xmonad --recompile && xmonad --restart" <!> Message Normal "XMonad" "Recompiled and restarted!"),
+        ("M-[", sendMessage (IncMasterN 1)),
+        ("M-]", sendMessage (IncMasterN (-1)))
       ]
 
 myRemovedKeys :: [String]
@@ -117,7 +123,6 @@ data Notification
 
 wrapInQuotes, wrapIntoCommand :: String -> String
 wrapInQuotes = wrap "'" "'"
-
 wrapIntoCommand = wrap "$(" ")"
 
 sendNotification :: Notification -> X ()
@@ -149,10 +154,11 @@ defaultSpacing = mySpacing 4
 toggleFloat :: W.RationalRect -> Window -> X ()
 toggleFloat r w =
   windows
-    (\s ->
-       if member w (W.floating s)
-         then W.sink w s
-         else W.float w r s)
+    ( \s ->
+        if member w (W.floating s)
+          then W.sink w s
+          else W.float w r s
+    )
 
 -- Window rules
 rectCentered :: Rational -> W.RationalRect
@@ -181,10 +187,10 @@ rangerWindowQuery = title =? "Ranger"
 
 myManageHook =
   composeAll
-    [ className =? "Arandr" --> customFloating (rectCentered 0.5)
-    , className =? "Pavucontrol" --> customFloating (rectCentered 0.5)
-    , manageDocks
-    , namedScratchpadManageHook myScratchPads
+    [ className =? "Arandr" --> customFloating (rectCentered 0.5),
+      className =? "Pavucontrol" --> customFloating (rectCentered 0.5),
+      manageDocks,
+      namedScratchpadManageHook myScratchPads
     ]
 
 -- Startup hook
@@ -232,15 +238,15 @@ openScratchPad = namedScratchpadAction myScratchPads
 myPromptConfig :: XPConfig
 myPromptConfig =
   def
-    { font = myFont
-    , bgColor = background $ primary colors
-    , fgColor = foreground $ primary colors
-    , bgHLight = yellow $ normal colors
-    , promptBorderWidth = 0
-    , position = Top
-    , height = 28
-    , maxComplRows = Just 5
-    , showCompletionOnTab = True
+    { font = myFont,
+      bgColor = background $ primary colors,
+      fgColor = foreground $ primary colors,
+      bgHLight = yellow $ normal colors,
+      promptBorderWidth = 0,
+      position = Top,
+      height = 28,
+      maxComplRows = Just 5,
+      showCompletionOnTab = True
     }
 
 -- Dynamic workspace groups
@@ -288,16 +294,16 @@ statusBar = statusBarProp "xmobar ~/.xmonad/xmobar.config" $ pure pp
       filterOutWsPP
         ignoredWorkspaces
         xmobarPP
-          { ppCurrent = xmobarColor' (green $ normal colors) . wrap "[" "]"
-          , ppExtras = [windowCount]
-          , ppHidden = xmobarColor' (magenta $ normal colors) . wrap "-" "-"
-          , ppHiddenNoWindows = xmobarColor' (blue $ normal colors)
-          , ppLayout = ("\57924  " ++)
-          , ppOrder = \(ws:layout:current:extras) -> [ws, layout] ++ extras ++ [current]
-          , ppSep = "  "
-          , ppTitle = xmobarColor' (green $ normal colors) . shorten 50
-          , ppUrgent = xmobarColor' (red $ normal colors) . wrap "!" "!"
-          , ppVisible = xmobarColor' (yellow $ normal colors) . wrap "<" ">"
+          { ppCurrent = xmobarColor' (green $ normal colors) . wrap "[" "]",
+            ppExtras = [windowCount],
+            ppHidden = xmobarColor' (magenta $ normal colors) . wrap "-" "-",
+            ppHiddenNoWindows = xmobarColor' (blue $ normal colors),
+            ppLayout = ("\57924  " ++),
+            ppOrder = \(ws : layout : current : extras) -> [ws, layout] ++ extras ++ [current],
+            ppSep = "  ",
+            ppTitle = xmobarColor' (green $ normal colors) . shorten 50,
+            ppUrgent = xmobarColor' (red $ normal colors) . wrap "!" "!",
+            ppVisible = xmobarColor' (yellow $ normal colors) . wrap "<" ">"
           }
 
 xmobarColor' :: String -> String -> String
@@ -309,58 +315,55 @@ windowCount =
 
 defaultSettings =
   def
-    { borderWidth = 2
-    , clickJustFocuses = False
-    , focusFollowsMouse = True
-    , focusedBorderColor = white $ normal colors
-    , handleEventHook = mempty
-    , layoutHook = myLayout
-    , manageHook = myManageHook
-    , modMask = mod4Mask
-    , normalBorderColor = black $ normal colors
-    , startupHook = myStartupHook
-    , terminal = myTerminal
-    , workspaces = myWorkspaces
+    { borderWidth = 2,
+      clickJustFocuses = False,
+      focusFollowsMouse = True,
+      focusedBorderColor = white $ normal colors,
+      handleEventHook = mempty,
+      layoutHook = myLayout,
+      manageHook = myManageHook,
+      modMask = mod4Mask,
+      normalBorderColor = black $ normal colors,
+      startupHook = myStartupHook,
+      terminal = myTerminal,
+      workspaces = myWorkspaces
     }
 
 -- Color palette (GruvBox Material)
 colors :: Colors
 colors =
   Colors
-    { primary = PrimaryColors {background = "#282828", foreground = "#dfbf8e"}
-    , normal =
+    { primary = PrimaryColors {background = "#282828", foreground = "#dfbf8e"},
+      normal =
         RegularColors
-          { black = "#665c54"
-          , blue = "#7daea3"
-          , cyan = "#89b482"
-          , green = "#a9b665"
-          , magenta = "#d3869b"
-          , red = "#ea6962"
-          , white = "#dfbf8e"
-          , yellow = "#e78a4e"
+          { black = "#665c54",
+            blue = "#7daea3",
+            cyan = "#89b482",
+            green = "#a9b665",
+            magenta = "#d3869b",
+            red = "#ea6962",
+            white = "#dfbf8e",
+            yellow = "#e78a4e"
           }
     }
 
-data Colors =
-  Colors
-    { primary :: PrimaryColors
-    , normal :: RegularColors
-    }
+data Colors = Colors
+  { primary :: PrimaryColors,
+    normal :: RegularColors
+  }
 
-data PrimaryColors =
-  PrimaryColors
-    { background :: String
-    , foreground :: String
-    }
+data PrimaryColors = PrimaryColors
+  { background :: String,
+    foreground :: String
+  }
 
-data RegularColors =
-  RegularColors
-    { black :: String
-    , blue :: String
-    , cyan :: String
-    , green :: String
-    , magenta :: String
-    , red :: String
-    , white :: String
-    , yellow :: String
-    }
+data RegularColors = RegularColors
+  { black :: String,
+    blue :: String,
+    cyan :: String,
+    green :: String,
+    magenta :: String,
+    red :: String,
+    white :: String,
+    yellow :: String
+  }
