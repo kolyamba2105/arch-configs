@@ -43,6 +43,3 @@ ln -s $PWD/.config/htop ~/.config/htop
 
 rm -rf ~/.config/nvim
 ln -s $PWD/.config/nvim ~/.config/nvim
-
-rm -rf ~/.config/ranger
-ln -s $PWD/.config/ranger ~/.config/ranger
