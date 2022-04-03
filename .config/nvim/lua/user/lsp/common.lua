@@ -22,7 +22,6 @@ M.diagnostic_config = function ()
   })
 end
 
-
 M.on_attach = function(client, bufnr)
   local buf_set_keymap = function(...) vim.api.nvim_buf_set_keymap(bufnr or 0, ...) end
   local buf_set_option = function(...) vim.api.nvim_buf_set_option(bufnr or 0, ...) end

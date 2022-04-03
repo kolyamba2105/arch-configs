@@ -1,4 +1,4 @@
-local common = require('lsp/common')
+local common = require('user.lsp.common')
 
 local prettier_config = {
   formatCommand = 'prettier --find-config-path --stdin-filepath ${INPUT}',
@@ -8,8 +8,10 @@ local prettier_config = {
 return {
   cmd = { 'efm-langserver' },
   capabilities = common.capabilities,
+  filetypes = { 'css', 'html', 'javascript', 'javascriptreact', 'json', 'sass', 'scss', 'typescript', 'typescriptreact', 'yaml' },
   init_options = { documentFormatting = true },
   on_attach = common.on_attach,
+  root_dir = require('lspconfig').util.root_pattern('.git'),
   settings = {
     languages = {
       css = { prettier_config },

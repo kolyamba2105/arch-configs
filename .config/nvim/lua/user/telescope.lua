@@ -11,11 +11,22 @@ vim.api.nvim_set_keymap('n', '<leader>tr', '<cmd>Telescope grep_string<CR>', opt
 vim.api.nvim_set_keymap('n', '<leader>ts', '<cmd>Telescope search_history<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>Telescope file_browser<CR>', opts)
 
+-- Git
+vim.api.nvim_set_keymap('n', '<leader>gc', '<cmd>Telescope git_commits<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>gs', '<cmd>Telescope git_status<CR>', opts)
+
 require('telescope').setup {
   defaults = {
     layout_strategy = 'vertical',
   },
   pickers = {
+    buffers = {
+      mappings = {
+        i = {
+          ['<c-d>'] = "delete_buffer",
+        },
+      },
+    },
     find_files = {
       hidden = true,
     },

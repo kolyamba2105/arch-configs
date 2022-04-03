@@ -15,5 +15,5 @@ yarn global add @tailwindcss/language-server bash-language-server typescript-lan
 - Install efm language server
 
 ```sh
-sudo pacman -S efm-langserver
+brew install efm-langserver
 ```
