@@ -76,7 +76,7 @@ myKeys =
       [ ("M-`", openScratchPad "terminal"),
         ("M-, 1", openScratchPad "htop"),
         ("M-, 2", openScratchPad "mixer"),
-        ("M-, 3", openScratchPad "ranger"),
+        ("M-, 3", openScratchPad "thunar"),
         ("M-, 4", openScratchPad "telegram")
       ]
     dynamicWSGroupKeys =
@@ -176,15 +176,6 @@ vertRectCentered height = W.RationalRect offsetX offsetY width height
 viewShift :: WorkspaceId -> Query (Endo WindowSet)
 viewShift = doF . liftM2 (.) W.greedyView W.shift
 
-htopWindowQuery :: Query Bool
-htopWindowQuery = title =? "HTOP"
-
-pulseMixerWindowQuery :: Query Bool
-pulseMixerWindowQuery = title =? "PulseMixer"
-
-rangerWindowQuery :: Query Bool
-rangerWindowQuery = title =? "Ranger"
-
 myManageHook =
   composeAll
     [ className =? "Arandr" --> customFloating (rectCentered 0.5),
@@ -203,27 +194,28 @@ myStartupHook = do
 
 -- Scratchpads
 myScratchPads :: [NamedScratchpad]
-myScratchPads = [htop, mixer, ranger, terminal, telegram]
+myScratchPads = [htop, mixer, terminal, thunar, telegram]
   where
     terminal = NS "terminal" spawn find manage
       where
         spawn = myTerminal ++ " -t Terminal"
         find = title =? "Terminal"
         manage = customFloating $ rectCentered 0.7
-    ranger = NS "ranger" spawn find manage
+    thunar = NS "thunar" spawn find manage
       where
-        spawn = myTerminal ++ " -t Ranger -e ranger"
-        find = rangerWindowQuery
+        spawn = "thunar"
+        -- FIXME assign normal title
+        find = title =? "kolyamba"
         manage = customFloating $ rectCentered 0.9
     htop = NS "htop" spawn find manage
       where
         spawn = myTerminal ++ " -t HTOP -e htop"
-        find = htopWindowQuery
+        find = title =? "HTOP"
         manage = customFloating $ rectCentered 0.8
     mixer = NS "mixer" spawn find manage
       where
         spawn = myTerminal ++ " -t PulseMixer -e pulsemixer"
-        find = pulseMixerWindowQuery
+        find = title =? "PulseMixer"
         manage = customFloating $ rectCentered 0.5
     telegram = NS "telegram" spawn find manage
       where
