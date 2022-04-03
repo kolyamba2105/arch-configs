@@ -16,7 +16,6 @@ docker
 dosfstools
 dunst
 efibootmgr
-efm-langserver
 exa
 fakeroot
 fd
@@ -66,6 +65,7 @@ slock
 sudo
 telegram-desktop
 texinfo
+thunar
 ttf-iosevka-nerd
 ufw
 unzip
