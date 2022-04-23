@@ -1,21 +1,14 @@
 local common = require('user.lsp.common')
 
-_G.organize_imports = function ()
-  vim.lsp.buf.execute_command {
-    command = '_typescript.organizeImports',
-    arguments = {
-      vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
-    }
+require('typescript').setup({
+  disable_formatting = true,
+  server = {
+    capabilities = common.capabilities,
+    on_attach = function(client, bufnr)
+      common.on_attach(client, bufnr)
+
+      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lo', '<cmd>TypescriptOrganizeImports<CR>', { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lu', '<cmd>TypescriptRemoveUnused<CR>', { noremap = true, silent = true })
+    end,
   }
-end
-
-return {
-  capabilities = common.capabilities,
-  on_attach = function (client, bufnr)
-    common.on_attach(client, bufnr)
-    common.disable_formatting(client)
-
-    vim.cmd('command! Organize lua organize_imports()')
-    vim.api.nvim_buf_set_keymap(bufnr or 0, 'n', '<leader>lo', '<cmd>Organize<CR>', { noremap = true, silent = true })
-  end,
-}
+})

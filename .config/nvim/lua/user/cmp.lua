@@ -2,11 +2,8 @@ local cmp = require('cmp')
 local snip = require('luasnip')
 
 local config = {
-  documentation = {
-    border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
-  },
   formatting = {
-    format = function (entry, vim_item)
+    format = function(entry, vim_item)
       local source_names = {
         buffer = "[Buffer]",
         luasnip = "[Snippet]",
@@ -17,7 +14,7 @@ local config = {
       return vim_item
     end,
   },
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
     ['<C-Space>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-e>'] = cmp.mapping.close(),
@@ -25,7 +22,7 @@ local config = {
     ['<C-j>'] = cmp.mapping.select_next_item(),
     ['<C-k>'] = cmp.mapping.select_prev_item(),
     ['<C-y>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-    ['<Tab>'] = function (fallback)
+    ['<Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif snip.expand_or_jumpable() then
@@ -34,7 +31,7 @@ local config = {
         fallback()
       end
     end,
-    ['<S-Tab>'] = function (fallback)
+    ['<S-Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif snip.jumpable(-1) then
@@ -43,7 +40,7 @@ local config = {
         fallback()
       end
     end,
-  },
+  }),
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
@@ -51,6 +48,10 @@ local config = {
     { name = 'buffer' },
   },
   snippet = { expand = function(args) snip.lsp_expand(args.body) end },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
 }
 
 cmp.setup(config)

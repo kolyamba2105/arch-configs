@@ -10,10 +10,12 @@ let g:plug_window = 'new'
 call plug#begin(stdpath('data') . 'vimplug')
 
 Plug 'L3MON4D3/LuaSnip'
+Plug 'ggandor/lightspeed.nvim'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'jose-elias-alvarez/typescript.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'

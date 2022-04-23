@@ -31,8 +31,8 @@ nnoremap <leader>h :sp<CR>
 nnoremap <leader>v :vsp<CR>
 
 " Close current buffer/window
-nnoremap <leader>c :close<CR>
-nnoremap <leader>d :bdelete<CR>
+nnoremap <silent> <C-c> :close<CR>
+nnoremap <silent> <C-d> :bdelete<CR>
 
 " Save file
 nnoremap <leader>w :w<CR>

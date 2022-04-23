@@ -1,6 +1,6 @@
 local M = {}
 
-M.diagnostic_config = function ()
+M.diagnostic_config = function()
   vim.diagnostic.config {
     float = {
       border = 'single',
@@ -52,7 +52,7 @@ M.on_attach = function(client, bufnr)
   end
 end
 
-M.disable_formatting = function (client)
+M.disable_formatting = function(client)
   client.resolved_capabilities.document_formatting = false
   client.resolved_capabilities.document_range_formatting = false
 end
@@ -65,7 +65,7 @@ M.default_config = {
 }
 
 M.no_formatting_config = {
-  on_attach = function (client, bufnr)
+  on_attach = function(client, bufnr)
     M.on_attach(client, bufnr)
     M.disable_formatting(client)
   end,
