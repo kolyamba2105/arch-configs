@@ -1,5 +1,6 @@
-brave-bin
 efm-langserver
+gruvbox-material-gtk-theme-git
+gruvbox-material-icon-theme-git
 neovim-git
 nerd-fonts-jetbrains-mono
 postman-bin

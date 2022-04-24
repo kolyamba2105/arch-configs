@@ -41,6 +41,9 @@ ln -s $PWD/.config/alacritty ~/.config/alacritty
 rm -rf ~/.config/dunst
 ln -s $PWD/.config/dunst ~/.config/dunst
 
+rm -rf ~/.config/gtk-3.0/settings.ini
+ln -s $PWD/.config/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
+
 rm -rf ~/.config/htop
 ln -s $PWD/.config/htop ~/.config/htop
 

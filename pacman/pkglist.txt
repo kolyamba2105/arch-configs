@@ -41,6 +41,7 @@ linux-firmware
 linux-headers
 lsof
 lua-language-server
+lxappearance-gtk3
 m4
 make
 mtools
