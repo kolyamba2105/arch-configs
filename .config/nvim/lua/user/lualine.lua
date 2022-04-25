@@ -4,8 +4,6 @@ local setup_config = function()
   local config = {
     options = {
       globalstatus = true,
-      section_separators = { left = '', right = '' },
-      component_separators = { left = '', right = '' },
       theme = 'gruvbox-material',
     },
     sections = {
