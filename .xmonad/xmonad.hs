@@ -47,9 +47,8 @@ myKeys =
     coreKeys =
       [ ("M-S-<Return>", spawn myTerminal),
         ("M-S-f", spawn "firefox --private-window"),
-        ("M-S-g", spawn "brave --incognito"),
+        ("M-e", spawn "thunar"),
         ("M-f", spawn "firefox"),
-        ("M-g", spawn "brave"),
         ("M-p", shellPrompt myPromptConfig)
       ]
     controlKeys =
@@ -76,8 +75,7 @@ myKeys =
       [ ("M-`", openScratchPad "terminal"),
         ("M-, 1", openScratchPad "htop"),
         ("M-, 2", openScratchPad "mixer"),
-        ("M-, 3", openScratchPad "thunar"),
-        ("M-, 4", openScratchPad "telegram")
+        ("M-, 3", openScratchPad "telegram")
       ]
     dynamicWSGroupKeys =
       [("M-. 1", viewWSGroup "1"), ("M-. 2", viewWSGroup "2"), ("M-. 3", viewWSGroup "3"), ("M-. 4", viewWSGroup "4")]
@@ -194,19 +192,13 @@ myStartupHook = do
 
 -- Scratchpads
 myScratchPads :: [NamedScratchpad]
-myScratchPads = [htop, mixer, terminal, thunar, telegram]
+myScratchPads = [htop, mixer, terminal, telegram]
   where
     terminal = NS "terminal" spawn find manage
       where
         spawn = myTerminal ++ " -t Terminal"
         find = title =? "Terminal"
         manage = customFloating $ rectCentered 0.7
-    thunar = NS "thunar" spawn find manage
-      where
-        spawn = "thunar"
-        -- FIXME assign normal title
-        find = title =? "kolyamba"
-        manage = customFloating $ rectCentered 0.9
     htop = NS "htop" spawn find manage
       where
         spawn = myTerminal ++ " -t HTOP -e htop"
