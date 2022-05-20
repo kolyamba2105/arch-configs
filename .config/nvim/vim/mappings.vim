@@ -38,6 +38,9 @@ nnoremap <silent> <C-d> :bdelete<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>W :wall<CR>
 
+" Sort visually selected items
+vnoremap <leader>s :sort<CR>
+
 " Search for visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
