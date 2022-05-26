@@ -6,7 +6,6 @@ import Graphics.X11.ExtraTypes.XF86
 import System.IO
 import XMonad
 import qualified XMonad.Actions.CycleWS as C
-import XMonad.Actions.DynamicWorkspaceGroups
 import XMonad.Actions.NoBorders
 import XMonad.Actions.WithAll
 import XMonad.Hooks.ManageDocks
@@ -38,10 +37,10 @@ myKeys =
   coreKeys
     ++ controlKeys
     ++ cycleWSKeys
-    ++ dynamicWSGroupKeys
     ++ layoutKeys
     ++ scratchPadKeys
     ++ screenLayoutKeys
+    ++ screenShotKeys
     ++ wmKeys
   where
     coreKeys =
@@ -55,10 +54,7 @@ myKeys =
       [ ("<XF86AudioMicMute>", spawn "pactl set-source-mute 1 toggle"),
         ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle"),
         ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10"),
-        ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10"),
-        ("M-<Print>", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
-        ("M-C-<Print>", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png"),
-        ("M-S-<Print>", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png")
+        ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
       ]
     cycleWSKeys =
       [ ("M-C-<Tab>", toggleWS),
@@ -71,14 +67,16 @@ myKeys =
         ("M-M1-k", shiftToPrev),
         ("M-M1-l", C.shiftNextScreen)
       ]
+    layoutKeys =
+      [ ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
+        ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
+      ]
     scratchPadKeys =
       [ ("M-`", openScratchPad "terminal"),
         ("M-, 1", openScratchPad "htop"),
         ("M-, 2", openScratchPad "mixer"),
         ("M-, 3", openScratchPad "telegram")
       ]
-    dynamicWSGroupKeys =
-      [("M-. 1", viewWSGroup "1"), ("M-. 2", viewWSGroup "2"), ("M-. 3", viewWSGroup "3"), ("M-. 4", viewWSGroup "4")]
     screenLayoutKeys =
       [ ("M-\\ 1", spawn "~/.screenlayout/1-laptop.sh" <!> notification "Laptop"),
         ("M-\\ 2", spawn "~/.screenlayout/2-monitor.sh" <!> notification "Monitor"),
@@ -87,9 +85,10 @@ myKeys =
       ]
       where
         notification msg = Message Normal "Screen layout" msg
-    layoutKeys =
-      [ ("M-t", withFocused $ toggleFloat $ vertRectCentered 0.9),
-        ("M-S-t", withFocused $ toggleFloat $ rectCentered 0.9)
+    screenShotKeys =
+      [ ("M-. 1", spawn "scrot -q 100 ~/Pictures/Screenshots/screen-%Y-%m-%d-%H-%M-%S.png"),
+        ("M-. 2", spawn "scrot -s -q 100 ~/Pictures/Screenshots/area-%Y-%m-%d-%H-%M-%S.png"),
+        ("M-. 3", spawn "scrot -u -q 100 ~/Pictures/Screenshots/window-%Y-%m-%d-%H-%M-%S.png")
       ]
     wmKeys =
       [ ("M-M1-c", killAll <!> Message Critical "XMonad" "Killed them all!"),
@@ -188,7 +187,6 @@ myStartupHook = do
   spawn "setup-kbd"
   spawn "xsetroot -cursor_name left_ptr"
   spawn "~/.fehbg &"
-  initWorkspaceGroups
 
 -- Scratchpads
 myScratchPads :: [NamedScratchpad]
@@ -213,7 +211,7 @@ myScratchPads = [htop, mixer, terminal, telegram]
       where
         spawn = "telegram-desktop"
         find = className =? "TelegramDesktop"
-        manage = customFloating $ vertRectCentered 0.9
+        manage = customFloating $ rectCentered 0.8
 
 openScratchPad :: String -> X ()
 openScratchPad = namedScratchpadAction myScratchPads
@@ -232,14 +230,6 @@ myPromptConfig =
       maxComplRows = Just 5,
       showCompletionOnTab = True
     }
-
--- Dynamic workspace groups
-initWorkspaceGroups :: X ()
-initWorkspaceGroups = do
-  addRawWSGroup "1" [(S 1, "1"), (S 0, "2")]
-  addRawWSGroup "2" [(S 1, "3"), (S 0, "4")]
-  addRawWSGroup "3" [(S 1, "5"), (S 0, "6")]
-  addRawWSGroup "4" [(S 1, "7"), (S 0, "8")]
 
 -- CycleWS
 moveTo :: Direction1D -> X ()
