@@ -68,6 +68,7 @@ telegram-desktop
 texinfo
 thunar
 tmux
+tree
 ttf-iosevka-nerd
 ufw
 unzip
