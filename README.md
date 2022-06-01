@@ -246,7 +246,12 @@ umount -R /mnt
 ### Clone this repo
 
 ```sh
-git clone https://github.com/kolyamba2105/config-files.git
+git clone https://github.com/kolyamba2105/arch-configs.git configs
+
+cd ~/configs
+
+git submodule init
+git submodule update
 ```
 
 ### Install `yay`
@@ -273,22 +278,22 @@ git clone https://github.com/kolyamba2105/my-wallpapers.git
 - Install official packages
 
 ```sh
-cd ~/config-files/pacman
+cd ~/configs/pacman
 pacman -S --needed - < pkgs.txt
 ```
 
 - Install packages from AUR
 
 ```sh
-cd ~/config-files/pacman
+cd ~/configs/pacman
 yay -S --needed - < foreign-pkgs.txt
 ```
 
 ### Setup config files
 
 ```sh
-cd ~/config-files
-sh config-files.sh
+cd ~/configs
+sh setup.sh
 ```
 
 ### Setup ZSH
@@ -409,19 +414,19 @@ reflector @/etc/xdg/reflector/reflector.conf
 - Make `list-pkgs.sh` executable:
 
 ```sh
-chmod u+x ~/config-files/pacman/list-pkgs.sh
+chmod u+x ~/configs/pacman/list-pkgs.sh
 ```
 
 - Create a symlink:
 
 ```sh
-sudo ln ~/config-files/pacman/list-pkgs.sh /usr/local/bin/list-pkgs
+sudo ln ~/configs/pacman/list-pkgs.sh /usr/local/bin/list-pkgs
 ```
 
 - Copy `list-pkgs.hook` into Pacman hooks directory:
 
 ```sh
-sudo cp ~/config-files/pacman/list-pkgs.hook /usr/share/libalpm/hooks/
+sudo cp ~/configs/pacman/list-pkgs.hook /usr/share/libalpm/hooks/
 ```
 
 - Repeat similar procedure for `list-foreign-pkgs` hook
