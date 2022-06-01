@@ -310,7 +310,7 @@ Just reboot and follow the final steps...
 
 ### Setup Neovim
 
-[Setup guide](./.config/nvim/README.md)
+[Setup guide](https://github.com/kolyamba2105/neovim-config/blob/master/README.md)
 
 ### Setup SSH
 
