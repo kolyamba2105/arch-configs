@@ -1,4 +1,3 @@
-efm-langserver
 figma-linux
 gruvbox-material-gtk-theme-git
 gruvbox-material-icon-theme-git
