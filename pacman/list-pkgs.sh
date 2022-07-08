@@ -1,3 +1,3 @@
 #!/bin/sh
 
-pacman -Qqen > /home/kolyamba/config-files/pacman/pkglist.txt
+pacman -Qqen > /home/kolyamba/configs/pacman/pkglist.txt
