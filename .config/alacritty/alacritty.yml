@@ -7,9 +7,7 @@ window:
     y: 8
 
 key_bindings:
-  - mods: Control|Shift
-    action: SpawnNewInstance
-    key: "N"
+  - { mods: Control|Shift, action: SpawnNewInstance, key: "N" }
 
 env:
   WINIT_X11_SCALE_FACTOR: "1.0"
