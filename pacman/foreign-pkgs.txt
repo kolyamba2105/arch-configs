@@ -2,8 +2,8 @@ efm-langserver
 figma-linux
 gruvbox-material-gtk-theme-git
 gruvbox-material-icon-theme-git
-neovim-git
 nerd-fonts-jetbrains-mono
+nvim-packer-git
 postman-bin
 slack-desktop
 yay
